@@ -1,15 +1,24 @@
 # MastodonKit
 
-MastodonKit is a Swift Framework that wraps Mastodon API. Currently, it's a work in progress but the goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
+MastodonKit is a Swift Framework that wraps the Mastodon API. Currently, it's a work in progress but the goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
 
 Please note there's a lot to do before MastodonKit can be used in production code.
 
-## Building from Source
+## Building from source
+
+MastodonKit uses the Swift Package Manager and can be built using the following command:
 
 ```
 $ git clone https://github.com/ornithocoder/MastodonKit.git
 $ cd MastodonKit
 $ swift build
+```
+
+If you prefer, Swift Package Manager can create an Xcode Project:
+
+```
+$ swift package generate-xcodeproj
+$ open MastodonKit.xcodeproj
 ```
 
 ## Initializing the client
