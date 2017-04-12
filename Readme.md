@@ -35,7 +35,7 @@ let client = MastodonClient(
 ```swift
 let resource = Timelines.home()
 
-client.get(resource) { statuses in
+client.run(resource) { statuses in
     // do something with 'statuses'
 }
 ```

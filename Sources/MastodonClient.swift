@@ -13,7 +13,7 @@ extension URLComponents {
         path = resource.path
 
         if let parameters = resource.parameters {
-            queryItems?.append(contentsOf: parameters)
+            queryItems = parameters
         }
     }
 }
