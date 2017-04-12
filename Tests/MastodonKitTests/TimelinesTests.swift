@@ -25,7 +25,7 @@ class TimelinesTests: XCTestCase {
     }
 
     func testTagTimeline() {
-        let resource = Timelines.tag(hashtag: "mastodonkit")
+        let resource = Timelines.tag("mastodonkit")
 
         XCTAssertEqual(resource.path, "/api/v1/timelines/tag/mastodonkit")
         XCTAssertNil(resource.parameters)
