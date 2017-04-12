@@ -1,6 +1,6 @@
 # MastodonKit
 
-MastodonKit is a Swift Framework that wraps the Mastodon API. Currently, it's a work in progress but the goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
+MastodonKit is a Swift Framework that wraps the Mastodon API. Currently, it's a _work in progress_ but the goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
 
 Please note there's a lot to do before MastodonKit can be used in production code.
 
@@ -108,7 +108,7 @@ public struct Timelines {
 
 # License
 
-Copyright (c) 2017 Ornithologist Coder. All rights reserved.
+Copyright (c) 2017 Ornithologist Coder and MastodonKit Contributors. All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
