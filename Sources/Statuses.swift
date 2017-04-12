@@ -4,7 +4,7 @@ public struct Statuses {
     /// Fetches a status.
     ///
     /// - Parameter id: The status id.
-    /// - Returns: Resource for fetching a status.
+    /// - Returns: Resource for `Status?`.
     public static func status(id: Int) -> StatusResource {
         return StatusResource(path: "/api/v1/statuses/\(id)", parameters: nil, parse: StatusResource.parser)
     }
@@ -12,7 +12,7 @@ public struct Statuses {
     /// Gets a status context.
     ///
     /// - Parameter id: The status id.
-    /// - Returns: Resource for getting a status context.
+    /// - Returns: Resource for `Context?`.
     public static func context(id: Int) -> ContextResource {
         return ContextResource(path: "/api/v1/statuses/\(id)/context", parameters: nil, parse: ContextResource.parser)
     }
@@ -20,7 +20,7 @@ public struct Statuses {
     /// Gets a card associated with a status.
     ///
     /// - Parameter id: The status id.
-    /// - Returns: Resource for getting a card associated with a status.
+    /// - Returns: Resource for `Card?`.
     public static func card(id: Int) -> CardResource {
         return CardResource(path: "/api/v1/statuses/\(id)/card", parameters: nil, parse: CardResource.parser)
     }
@@ -28,7 +28,7 @@ public struct Statuses {
     /// Gets who reblogged a status.
     ///
     /// - Parameter id: The status id.
-    /// - Returns: Resource for getting who reblogged a status.
+    /// - Returns: Resource for `[Account]`.
     public static func rebloggedBy(id: Int) -> AccountsResource {
         return AccountsResource(path: "/api/v1/statuses/\(id)/reblogged_by", parameters: nil, parse: AccountsResource.parser)
     }
@@ -36,7 +36,7 @@ public struct Statuses {
     /// Gets who favourited a status.
     ///
     /// - Parameter id: The status id.
-    /// - Returns: Resource for getting who favourited a status.
+    /// - Returns: Resource for `[Account]`.
     public static func favouritedBy(id: Int) -> AccountsResource {
         return AccountsResource(path: "/api/v1/statuses/\(id)/favourited_by", parameters: nil, parse: AccountsResource.parser)
     }
