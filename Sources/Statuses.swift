@@ -40,4 +40,34 @@ public struct Statuses {
     public static func favouritedBy(id: Int) -> AccountsResource {
         return AccountsResource(path: "/api/v1/statuses/\(id)/favourited_by", parse: AccountsResource.parser)
     }
+
+    /// Posts a new status.
+    ///
+    /// - Parameters:
+    ///   - status: The text of the status.
+    ///   - replyTo: The local ID of the status you want to reply to.
+    ///   - sensitive: Marks the status as NSFW.
+    ///   - spoilerText: the text to be shown as a warning before the actual content.
+    ///   - visibility: The status' visibility.
+    /// - Returns: Resource for `Status?`.
+    public static func create(status: String, replyToID: Int? = nil, sensitive: Bool? = nil, spoilerText: String? = nil, visibility: VisibilityType = .public) -> StatusResource {
+        var parameters = [
+            URLQueryItem(name: "status", value: status),
+            URLQueryItem(name: "visibility", value: visibility.toString())
+        ]
+
+        if let replyToID = replyToID {
+            parameters.append(URLQueryItem(name: "in_reply_to_id", value: String(replyToID)))
+        }
+
+        if let sensitive = sensitive {
+            parameters.append(URLQueryItem(name: "sensitive", value: String(sensitive)))
+        }
+
+        if let spoilerText = spoilerText {
+            parameters.append(URLQueryItem(name: "spoiler_text", value: spoilerText))
+        }
+
+        return StatusResource(path: "/api/v1/statuses", parameters: parameters, httpMethod: "POST", parse: StatusResource.parser)
+    }
 }

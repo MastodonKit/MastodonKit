@@ -120,24 +120,32 @@ class AccountsTests: XCTestCase {
     func testSearchWithoutLimit() {
         let resource = Accounts.search(query: "Ash")
 
+        let expectedQuery = URLQueryItem(name: "q", value: "Ash")
+        let expectedLimit = URLQueryItem(name: "limit", value: "40")
+
         XCTAssertEqual(resource.path, "/api/v1/accounts/search")
         XCTAssertEqual(resource.httpMethod, "GET")
-        XCTAssertEqual(resource.parameters?.first?.name, "q")
-        XCTAssertEqual(resource.parameters?.first?.value, "Ash")
-        XCTAssertEqual(resource.parameters?.last?.name, "limit")
-        XCTAssertEqual(resource.parameters?.last?.value, "40")
+
+        XCTAssertEqual(resource.parameters?.count, 2)
+        XCTAssertTrue(resource.parameters!.contains(expectedQuery))
+        XCTAssertTrue(resource.parameters!.contains(expectedLimit))
+
         XCTAssertNotNil(resource.parse)
     }
 
     func testSearchWithLimit() {
         let resource = Accounts.search(query: "Ash", limit: 42)
 
+        let expectedQuery = URLQueryItem(name: "q", value: "Ash")
+        let expectedLimit = URLQueryItem(name: "limit", value: "42")
+
         XCTAssertEqual(resource.path, "/api/v1/accounts/search")
         XCTAssertEqual(resource.httpMethod, "GET")
-        XCTAssertEqual(resource.parameters?.first?.name, "q")
-        XCTAssertEqual(resource.parameters?.first?.value, "Ash")
-        XCTAssertEqual(resource.parameters?.last?.name, "limit")
-        XCTAssertEqual(resource.parameters?.last?.value, "42")
+
+        XCTAssertEqual(resource.parameters?.count, 2)
+        XCTAssertTrue(resource.parameters!.contains(expectedQuery))
+        XCTAssertTrue(resource.parameters!.contains(expectedLimit))
+
         XCTAssertNotNil(resource.parse)
     }
 }

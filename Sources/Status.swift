@@ -40,6 +40,19 @@ extension VisibilityType {
             self = .unlisted
         }
     }
+
+    func toString() -> String {
+        switch self {
+        case .public:
+            return "public"
+        case .unlisted:
+            return "unlisted"
+        case .private:
+            return "private"
+        case .direct:
+            return "direct"
+        }
+    }
 }
 
 extension Status {
