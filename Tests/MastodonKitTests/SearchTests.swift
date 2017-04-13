@@ -11,6 +11,7 @@ class TimelinesTeSearchTestssts: XCTestCase {
         let resource = Search.search(query: "mastodonkit")
 
         XCTAssertEqual(resource.path, "/api/v1/search")
+        XCTAssertEqual(resource.httpMethod, "GET")
         XCTAssertEqual(resource.parameters?.first?.name, "q")
         XCTAssertEqual(resource.parameters?.first?.value, "mastodonkit")
         XCTAssertEqual(resource.parameters?.last?.name, "resolve")
@@ -22,6 +23,7 @@ class TimelinesTeSearchTestssts: XCTestCase {
         let resource = Search.search(query: "mastodonkit", resolve: true)
 
         XCTAssertEqual(resource.path, "/api/v1/search")
+        XCTAssertEqual(resource.httpMethod, "GET")
         XCTAssertEqual(resource.parameters?.first?.name, "q")
         XCTAssertEqual(resource.parameters?.first?.value, "mastodonkit")
         XCTAssertEqual(resource.parameters?.last?.name, "resolve")

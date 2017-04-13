@@ -10,6 +10,7 @@ class FavouritesTests: XCTestCase {
         let resource = Favourites.all()
 
         XCTAssertEqual(resource.path, "/api/v1/favourites")
+        XCTAssertEqual(resource.httpMethod, "GET")
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }

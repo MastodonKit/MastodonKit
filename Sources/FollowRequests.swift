@@ -5,6 +5,6 @@ public struct FollowRequests {
     ///
     /// - Returns: Resource for `[Account]`.
     public static func all() -> AccountsResource {
-        return AccountsResource(path: "/api/v1/follow_requests", parameters: nil, parse: AccountsResource.parser)
+        return AccountsResource(path: "/api/v1/follow_requests", parse: AccountsResource.parser)
     }
 }

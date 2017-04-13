@@ -5,6 +5,6 @@ public struct Instances {
     ///
     /// - Returns: Resource for `Instance?`.
     public static func current() -> InstanceResource {
-        return InstanceResource(path: "/api/v1/instance", parameters: nil, parse: InstanceResource.parser)
+        return InstanceResource(path: "/api/v1/instance", parse: InstanceResource.parser)
     }
 }

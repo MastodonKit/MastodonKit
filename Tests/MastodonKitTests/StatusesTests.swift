@@ -14,6 +14,7 @@ class StatusesTests: XCTestCase {
         let resource = Statuses.status(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/statuses/42")
+        XCTAssertEqual(resource.httpMethod, "GET")
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -22,6 +23,7 @@ class StatusesTests: XCTestCase {
         let resource = Statuses.context(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/context")
+        XCTAssertEqual(resource.httpMethod, "GET")
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -30,6 +32,7 @@ class StatusesTests: XCTestCase {
         let resource = Statuses.card(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/card")
+        XCTAssertEqual(resource.httpMethod, "GET")
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -38,6 +41,7 @@ class StatusesTests: XCTestCase {
         let resource = Statuses.rebloggedBy(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/reblogged_by")
+        XCTAssertEqual(resource.httpMethod, "GET")
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -46,6 +50,7 @@ class StatusesTests: XCTestCase {
         let resource = Statuses.favouritedBy(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/favourited_by")
+        XCTAssertEqual(resource.httpMethod, "GET")
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }

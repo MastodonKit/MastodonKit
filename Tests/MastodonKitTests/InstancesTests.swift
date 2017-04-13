@@ -10,6 +10,7 @@ class InstancesTests: XCTestCase {
         let resource = Instances.current()
 
         XCTAssertEqual(resource.path, "/api/v1/instance")
+        XCTAssertEqual(resource.httpMethod, "GET")
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }

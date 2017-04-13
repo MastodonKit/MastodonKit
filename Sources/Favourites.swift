@@ -5,6 +5,6 @@ public struct Favourites {
     ///
     /// - Returns: Resource for `[Status]`.
     public static func all() -> TimelineResource {
-        return TimelineResource(path: "/api/v1/favourites", parameters: nil, parse: TimelineResource.parser)
+        return TimelineResource(path: "/api/v1/favourites", parse: TimelineResource.parser)
     }
 }

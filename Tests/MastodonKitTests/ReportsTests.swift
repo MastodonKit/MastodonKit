@@ -10,6 +10,7 @@ class ReportsTests: XCTestCase {
         let resource = Reports.all()
 
         XCTAssertEqual(resource.path, "/api/v1/reports")
+        XCTAssertEqual(resource.httpMethod, "GET")
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }

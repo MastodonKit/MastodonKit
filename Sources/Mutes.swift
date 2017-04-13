@@ -5,6 +5,6 @@ public struct Mutes {
     ///
     /// - Returns: Resource for `[Account]`.
     public static func all() -> AccountsResource {
-        return AccountsResource(path: "/api/v1/mutes", parameters: nil, parse: AccountsResource.parser)
+        return AccountsResource(path: "/api/v1/mutes", parse: AccountsResource.parser)
     }
 }

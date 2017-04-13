@@ -6,14 +6,14 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Account?`.
     public static func account(id: Int) -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/\(id)", parameters: nil, parse: AccountResource.parser)
+        return AccountResource(path: "/api/v1/accounts/\(id)", parse: AccountResource.parser)
     }
 
     /// Gets the current user.
     ///
     /// - Returns: Resource for `Account?`.
     public static func currentUser() -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/verify_credentials", parameters: nil, parse: AccountResource.parser)
+        return AccountResource(path: "/api/v1/accounts/verify_credentials", parse: AccountResource.parser)
     }
 
     /// Gets an account's followers.
@@ -21,7 +21,7 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `[Account]`.
     public static func followers(id: Int) -> AccountsResource {
-        return AccountsResource(path: "/api/v1/accounts/\(id)/followers", parameters: nil, parse: AccountsResource.parser)
+        return AccountsResource(path: "/api/v1/accounts/\(id)/followers", parse: AccountsResource.parser)
     }
 
     /// Gets who account is following.
@@ -29,7 +29,7 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `[Account]`.
     public static func following(id: Int) -> AccountsResource {
-        return AccountsResource(path: "/api/v1/accounts/\(id)/following", parameters: nil, parse: AccountsResource.parser)
+        return AccountsResource(path: "/api/v1/accounts/\(id)/following", parse: AccountsResource.parser)
     }
 
     /// Gets an account's statuses.
@@ -37,7 +37,7 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `[Status]`.
     public static func statuses(id: Int) -> TimelineResource {
-        return TimelineResource(path: "/api/v1/accounts/\(id)/statuses", parameters: nil, parse: TimelineResource.parser)
+        return TimelineResource(path: "/api/v1/accounts/\(id)/statuses", parse: TimelineResource.parser)
     }
 
     /// Follows an account.
@@ -45,7 +45,7 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Account?`.
     public static func follow(id: Int) -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/\(id)/follow", parameters: nil, parse: AccountResource.parser)
+        return AccountResource(path: "/api/v1/accounts/\(id)/follow", parse: AccountResource.parser)
     }
 
     /// Unfollow an account.
@@ -53,7 +53,7 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Account?`.
     public static func unfollow(id: Int) -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/\(id)/unfollow", parameters: nil, parse: AccountResource.parser)
+        return AccountResource(path: "/api/v1/accounts/\(id)/unfollow", parse: AccountResource.parser)
     }
 
     /// Blocks an account.
@@ -61,7 +61,7 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Account?`.
     public static func block(id: Int) -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/\(id)/block", parameters: nil, parse: AccountResource.parser)
+        return AccountResource(path: "/api/v1/accounts/\(id)/block", parse: AccountResource.parser)
     }
 
     /// Unblocks an account.
@@ -69,7 +69,7 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Account?`.
     public static func unblock(id: Int) -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/\(id)/unblock", parameters: nil, parse: AccountResource.parser)
+        return AccountResource(path: "/api/v1/accounts/\(id)/unblock", parse: AccountResource.parser)
     }
 
     /// Mutes an account.
@@ -77,7 +77,7 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Account?`.
     public static func mute(id: Int) -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/\(id)/mute", parameters: nil, parse: AccountResource.parser)
+        return AccountResource(path: "/api/v1/accounts/\(id)/mute", parse: AccountResource.parser)
     }
 
     /// Unmutes an account.
@@ -85,7 +85,7 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Account?`.
     public static func unmute(id: Int) -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/\(id)/unmute", parameters: nil, parse: AccountResource.parser)
+        return AccountResource(path: "/api/v1/accounts/\(id)/unmute", parse: AccountResource.parser)
     }
 
     /// Searches for accounts.

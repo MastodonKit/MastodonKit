@@ -10,6 +10,7 @@ class MutesTests: XCTestCase {
         let resource = Mutes.all()
 
         XCTAssertEqual(resource.path, "/api/v1/mutes")
+        XCTAssertEqual(resource.httpMethod, "GET")
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
