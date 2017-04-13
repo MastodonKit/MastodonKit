@@ -51,22 +51,15 @@ public struct Statuses {
     ///   - visibility: The status' visibility.
     /// - Returns: Resource for `Status?`.
     public static func create(status: String, replyToID: Int? = nil, sensitive: Bool? = nil, spoilerText: String? = nil, visibility: VisibilityType = .public) -> StatusResource {
-        var parameters = [
-            URLQueryItem(name: "status", value: status),
-            URLQueryItem(name: "visibility", value: visibility.toString())
+        let dictionary: [String : String?] = [
+            "status": status,
+            "in_reply_to_id": replyToID != nil ? String(replyToID!) : nil,
+            "sensitive": sensitive != nil ? String(sensitive!) : nil,
+            "spoiler_text": spoilerText,
+            "visibility": visibility.stringValue
         ]
 
-        if let replyToID = replyToID {
-            parameters.append(URLQueryItem(name: "in_reply_to_id", value: String(replyToID)))
-        }
-
-        if let sensitive = sensitive {
-            parameters.append(URLQueryItem(name: "sensitive", value: String(sensitive)))
-        }
-
-        if let spoilerText = spoilerText {
-            parameters.append(URLQueryItem(name: "spoiler_text", value: spoilerText))
-        }
+        let parameters = dictionary.flatMap(toQueryItem)
 
         return StatusResource(path: "/api/v1/statuses", parameters: parameters, httpMethod: "POST", parse: StatusResource.parser)
     }

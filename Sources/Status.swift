@@ -26,6 +26,19 @@ public struct Status {
 }
 
 extension VisibilityType {
+    var stringValue: String {
+        switch self {
+        case .public:
+            return "public"
+        case .unlisted:
+            return "unlisted"
+        case .private:
+            return "private"
+        case .direct:
+            return "direct"
+        }
+    }
+
     init(string: String) {
         switch string {
         case "public":
@@ -38,19 +51,6 @@ extension VisibilityType {
             self = .direct
         default:
             self = .unlisted
-        }
-    }
-
-    func toString() -> String {
-        switch self {
-        case .public:
-            return "public"
-        case .unlisted:
-            return "unlisted"
-        case .private:
-            return "private"
-        case .direct:
-            return "direct"
         }
     }
 }
