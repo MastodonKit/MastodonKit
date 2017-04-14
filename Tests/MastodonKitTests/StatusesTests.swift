@@ -12,7 +12,12 @@ class StatusesTests: XCTestCase {
         ("testCreateWithMessageAndReplyID", testCreateWithMessageAndReplyID),
         ("testCreateWithSensitiveMessage", testCreateWithSensitiveMessage),
         ("testCreateWithSpoilerMessage", testCreateWithSpoilerMessage),
-        ("testCreateWithUnlistedMessage", testCreateWithUnlistedMessage)
+        ("testCreateWithUnlistedMessage", testCreateWithUnlistedMessage),
+        ("testDelete", testDelete),
+        ("testReblog", testReblog),
+        ("testUnreblog", testUnreblog),
+        ("testFavourite", testFavourite),
+        ("testUnfavourite", testUnfavourite)
     ]
 
     func testStatus() {
@@ -143,6 +148,51 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(resource.parameters!.contains(expectedStatus))
         XCTAssertTrue(resource.parameters!.contains(expectedVisibility))
 
+        XCTAssertNotNil(resource.parse)
+    }
+
+    func testDelete() {
+        let resource = Statuses.delete(id: 42)
+
+        XCTAssertEqual(resource.path, "/api/v1/statuses/42")
+        XCTAssertEqual(resource.httpMethod, "DELETE")
+        XCTAssertNil(resource.parameters)
+        XCTAssertNotNil(resource.parse)
+    }
+
+    func testReblog() {
+        let resource = Statuses.reblog(id: 42)
+
+        XCTAssertEqual(resource.path, "/api/v1/statuses/42/reblog")
+        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertNil(resource.parameters)
+        XCTAssertNotNil(resource.parse)
+    }
+
+    func testUnreblog() {
+        let resource = Statuses.unreblog(id: 42)
+
+        XCTAssertEqual(resource.path, "/api/v1/statuses/42/unreblog")
+        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertNil(resource.parameters)
+        XCTAssertNotNil(resource.parse)
+    }
+
+    func testFavourite() {
+        let resource = Statuses.favourite(id: 42)
+
+        XCTAssertEqual(resource.path, "/api/v1/statuses/42/favourite")
+        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertNil(resource.parameters)
+        XCTAssertNotNil(resource.parse)
+    }
+
+    func testUnfavourite() {
+        let resource = Statuses.unfavourite(id: 42)
+
+        XCTAssertEqual(resource.path, "/api/v1/statuses/42/unfavourite")
+        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
 }

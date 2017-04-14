@@ -33,76 +33,20 @@ let client = MastodonClient(
 ## Making requests
 
 ```swift
+// Getting the home timeline
+
 let resource = Timelines.home()
 
 client.run(resource) { statuses in
     // do something with 'statuses'
 }
-```
 
-The following resources are already implemented or under development:
+// Posting a new status
 
-```swift
-public struct Accounts {
-    public static func account(id: Int) -> AccountResource
-    public static func currentUser() -> AccountResource
-    public static func followers(id: Int) -> AccountsResource
-    public static func following(id: Int) -> AccountsResource
-    public static func statuses(id: Int) -> TimelineResource
-    public static func follow(id: Int) -> AccountResource
-    public static func unfollow(id: Int) -> AccountResource
-    public static func block(id: Int) -> AccountResource
-    public static func unblock(id: Int) -> AccountResource
-    public static func mute(id: Int) -> AccountResource
-    public static func unmute(id: Int) -> AccountResource
-    public static func search(query: String, limit: Int = 40) -> AccountsResource
-}
+let resource = Statuses.create("Mastodon's API is awesome!")
 
-public struct Blocks {
-    public static func all() -> AccountsResource
-}
-
-public struct Favourites {
-    public static func all() -> TimelineResource
-}
-
-public struct FollowRequests {
-    public static func all() -> AccountsResource
-}
-
-public struct Instances {
-    public static func current() -> InstanceResource
-}
-
-public struct Mutes {
-    public static func all() -> AccountsResource
-}
-
-public struct Notifications {
-    public static func all() -> NotificationsResource
-    public static func notification(id: Int) -> NotificationResource
-}
-
-public struct Reports {
-    public static func all() -> ReportsResource
-}
-
-public struct Search {
-    public static func search(query: String, resolve: Bool = false) -> ResultsResource
-}
-
-public struct Statuses {
-    public static func status(id: Int) -> StatusResource
-    public static func context(id: Int) -> ContextResource
-    public static func card(id: Int) -> CardResource
-    public static func rebloggedBy(id: Int) -> AccountsResource
-    public static func favouritedBy(id: Int) -> AccountsResource
-}
-
-public struct Timelines {
-    public static func home() -> TimelineResource
-    public static func `public`() -> TimelineResource
-    public static func tag(hashtag: String) -> TimelineResource
+client.run(resource) { status in
+    // do something with 'status'
 }
 ```
 
