@@ -3,7 +3,8 @@ import XCTest
 
 class ReportsTests: XCTestCase {
     static var allTests = [
-        ("testAll", testAll)
+        ("testAll", testAll),
+        ("testReport", testReport)
     ]
 
     func testAll() {
@@ -12,6 +13,25 @@ class ReportsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/reports")
         XCTAssertEqual(resource.httpMethod, "GET")
         XCTAssertNil(resource.parameters)
+        XCTAssertNotNil(resource.parse)
+    }
+
+    func testReport() {
+        let resource = Reports.report(accountID: 40, statusID: 2, reason: "Westworld Spoiler!!!")
+
+        let expectedAccoundID = URLQueryItem(name: "account_id", value: "40")
+        let expectedStatusID = URLQueryItem(name: "status_ids", value: "2")
+        let expectedVisibility = URLQueryItem(name: "comment", value: "Westworld Spoiler!!!")
+
+
+        XCTAssertEqual(resource.path, "/api/v1/reports")
+        XCTAssertEqual(resource.httpMethod, "POST")
+
+        XCTAssertEqual(resource.parameters?.count, 3)
+        XCTAssertTrue(resource.parameters!.contains(expectedAccoundID))
+        XCTAssertTrue(resource.parameters!.contains(expectedStatusID))
+        XCTAssertTrue(resource.parameters!.contains(expectedVisibility))
+
         XCTAssertNotNil(resource.parse)
     }
 }

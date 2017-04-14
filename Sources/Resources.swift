@@ -7,6 +7,7 @@ public typealias ContextResource = Resource<Context?>
 public typealias InstanceResource = Resource<Instance?>
 public typealias NotificationResource = Resource<Notification?>
 public typealias NotificationsResource = Resource<[Notification]>
+public typealias ReportResource = Resource<Report?>
 public typealias ReportsResource = Resource<[Report]>
 public typealias ResultsResource = Resource<Results?>
 public typealias StatusResource = Resource<Status?>
@@ -72,6 +73,15 @@ extension Resource where Model == [Notification] {
     static func parser(jsonObject: Any) -> [Notification] {
         guard let array = jsonObject as? [JSONDictionary] else { return [] }
         return array.flatMap(Notification.init)
+    }
+}
+
+// MARK: ReportResource
+
+extension Resource where Model == Report? {
+    static func parser(jsonObject: Any) -> Report? {
+        guard let json = jsonObject as? JSONDictionary else { return nil }
+        return Report(json: json)
     }
 }
 
