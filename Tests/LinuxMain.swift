@@ -6,6 +6,7 @@ XCTMain([
     testCase(BlocksTests.allTests),
     testCase(FavouritesTests.allTests),
     testCase(FollowRequestsTests.allTests),
+    testCase(HTTPMethodTests.allTests),
     testCase(InstancesTests.allTests),
     testCase(MutesTests.allTests),
     testCase(NotificationsTests.allTests),

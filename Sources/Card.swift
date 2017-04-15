@@ -9,7 +9,6 @@ public struct Card {
 
 extension Card {
     init?(json: JSONDictionary) {
-
         guard
             let urlString = json["url"] as? String,
             let url = URL(string: urlString),
