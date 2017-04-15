@@ -24,6 +24,6 @@ public struct Reports {
 
         let parameters = dictionary.flatMap(toQueryItem)
 
-        return ReportResource(path: "/api/v1/reports", parameters: parameters, httpMethod: .post, parse: ReportResource.parser)
+        return ReportResource(path: "/api/v1/reports", parameters: parameters, method: .post, parse: ReportResource.parser)
     }
 }

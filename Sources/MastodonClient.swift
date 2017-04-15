@@ -6,10 +6,10 @@ public struct Resource<Model> {
     let httpMethod: HTTPMethod
     let parse: (Any) -> Model
 
-    init(path: String, parameters: [URLQueryItem]? = nil, httpMethod: HTTPMethod = .get, parse: @escaping (Any) -> Model) {
+    init(path: String, parameters: [URLQueryItem]? = nil, method: HTTPMethod = .get, parse: @escaping (Any) -> Model) {
         self.path = path
         self.parameters = parameters
-        self.httpMethod = httpMethod
+        self.httpMethod = method
         self.parse = parse
     }
 }
