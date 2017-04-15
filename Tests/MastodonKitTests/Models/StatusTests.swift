@@ -56,5 +56,4 @@ class StatusTests: XCTestCase {
         XCTAssertEqual(status?.tags.count, 0)
         XCTAssertNotNil(status?.application)
     }
-    
 }
