@@ -14,6 +14,7 @@ class AccountsTests: XCTestCase {
         ("testUnblock", testUnblock),
         ("testMute", testMute),
         ("testUnmute", testUnmute),
+        ("testRelationships", testRelationships),
         ("testSearchWithoutLimit", testSearchWithoutLimit),
         ("testSearchWithLimit", testSearchWithLimit)
     ]
@@ -114,6 +115,20 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/unmute")
         XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
+        XCTAssertNotNil(resource.parse)
+    }
+
+    func testRelationships() {
+        let resource = Accounts.relationships(id: 42)
+
+        let expectedID = URLQueryItem(name: "id", value: "42")
+
+        XCTAssertEqual(resource.path, "/api/v1/accounts/relationships")
+        XCTAssertEqual(resource.httpMethod, .get)
+
+        XCTAssertEqual(resource.parameters?.count, 1)
+        XCTAssertTrue(resource.parameters!.contains(expectedID))
+
         XCTAssertNotNil(resource.parse)
     }
 

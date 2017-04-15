@@ -1,6 +1,7 @@
 import Foundation
 
 public struct Relationship {
+    public let id: Int
     public let following: Bool
     public let followedBy: Bool
     public let blocking: Bool
@@ -11,6 +12,7 @@ public struct Relationship {
 extension Relationship {
     init?(json: JSONDictionary) {
         guard
+            let id = json["id"] as? Int,
             let following = json["following"] as? Bool,
             let followedBy = json["followed_by"] as? Bool,
             let blocking = json["blocking"] as? Bool,
@@ -20,6 +22,7 @@ extension Relationship {
                 return nil
         }
 
+        self.id = id
         self.following = following
         self.followedBy = followedBy
         self.blocking = blocking

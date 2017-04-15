@@ -88,6 +88,15 @@ public struct Accounts {
         return RelationshipResource(path: "/api/v1/accounts/\(id)/unmute", httpMethod: .post, parse: RelationshipResource.parser)
     }
 
+    /// Gets an account's relationships.
+    ///
+    /// - Parameter id: The accound id.
+    /// - Returns: Resource for `[Relationship]`.
+    public static func relationships(id: Int) -> RelationshipsResource {
+        let parameters = [URLQueryItem(name: "id", value: String(id))]
+        return RelationshipsResource(path: "/api/v1/accounts/relationships", parameters: parameters, parse: RelationshipsResource.parser)
+    }
+
     /// Searches for accounts.
     ///
     /// - Parameters:
