@@ -24,7 +24,7 @@ class StatusesTests: XCTestCase {
         let resource = Statuses.status(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/statuses/42")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -33,7 +33,7 @@ class StatusesTests: XCTestCase {
         let resource = Statuses.context(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/context")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -42,7 +42,7 @@ class StatusesTests: XCTestCase {
         let resource = Statuses.card(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/card")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -51,7 +51,7 @@ class StatusesTests: XCTestCase {
         let resource = Statuses.rebloggedBy(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/reblogged_by")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -60,7 +60,7 @@ class StatusesTests: XCTestCase {
         let resource = Statuses.favouritedBy(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/favourited_by")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -72,7 +72,7 @@ class StatusesTests: XCTestCase {
         let expectedVisibility = URLQueryItem(name: "visibility", value: "public")
 
         XCTAssertEqual(resource.path, "/api/v1/statuses")
-        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertEqual(resource.httpMethod, .post)
 
         XCTAssertEqual(resource.parameters?.count, 2)
         XCTAssertTrue(resource.parameters!.contains(expectedStatus))
@@ -89,7 +89,7 @@ class StatusesTests: XCTestCase {
         let expectedVisibility = URLQueryItem(name: "visibility", value: "public")
 
         XCTAssertEqual(resource.path, "/api/v1/statuses")
-        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertEqual(resource.httpMethod, .post)
 
         XCTAssertEqual(resource.parameters?.count, 3)
         XCTAssertTrue(resource.parameters!.contains(expectedStatus))
@@ -107,7 +107,7 @@ class StatusesTests: XCTestCase {
         let expectedVisibility = URLQueryItem(name: "visibility", value: "public")
 
         XCTAssertEqual(resource.path, "/api/v1/statuses")
-        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertEqual(resource.httpMethod, .post)
 
         XCTAssertEqual(resource.parameters?.count, 3)
         XCTAssertTrue(resource.parameters!.contains(expectedStatus))
@@ -125,7 +125,7 @@ class StatusesTests: XCTestCase {
         let expectedVisibility = URLQueryItem(name: "visibility", value: "public")
 
         XCTAssertEqual(resource.path, "/api/v1/statuses")
-        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertEqual(resource.httpMethod, .post)
 
         XCTAssertEqual(resource.parameters?.count, 3)
         XCTAssertTrue(resource.parameters!.contains(expectedStatus))
@@ -142,7 +142,7 @@ class StatusesTests: XCTestCase {
         let expectedVisibility = URLQueryItem(name: "visibility", value: "unlisted")
 
         XCTAssertEqual(resource.path, "/api/v1/statuses")
-        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertEqual(resource.httpMethod, .post)
 
         XCTAssertEqual(resource.parameters?.count, 2)
         XCTAssertTrue(resource.parameters!.contains(expectedStatus))
@@ -155,7 +155,7 @@ class StatusesTests: XCTestCase {
         let resource = Statuses.delete(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/statuses/42")
-        XCTAssertEqual(resource.httpMethod, "DELETE")
+        XCTAssertEqual(resource.httpMethod, .delete)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -164,7 +164,7 @@ class StatusesTests: XCTestCase {
         let resource = Statuses.reblog(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/reblog")
-        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -173,7 +173,7 @@ class StatusesTests: XCTestCase {
         let resource = Statuses.unreblog(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/unreblog")
-        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -182,7 +182,7 @@ class StatusesTests: XCTestCase {
         let resource = Statuses.favourite(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/favourite")
-        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -191,7 +191,7 @@ class StatusesTests: XCTestCase {
         let resource = Statuses.unfavourite(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/unfavourite")
-        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }

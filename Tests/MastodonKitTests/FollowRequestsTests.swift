@@ -10,7 +10,7 @@ class FollowRequestsTests: XCTestCase {
         let resource = FollowRequests.all()
 
         XCTAssertEqual(resource.path, "/api/v1/follow_requests")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }

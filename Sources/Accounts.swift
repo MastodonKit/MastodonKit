@@ -61,7 +61,7 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Relationship?`.
     public static func block(id: Int) -> RelationshipResource {
-        return RelationshipResource(path: "/api/v1/accounts/\(id)/block", httpMethod: "POST", parse: RelationshipResource.parser)
+        return RelationshipResource(path: "/api/v1/accounts/\(id)/block", httpMethod: .post, parse: RelationshipResource.parser)
     }
 
     /// Unblocks an account.
@@ -69,7 +69,7 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Relationship?`.
     public static func unblock(id: Int) -> RelationshipResource {
-        return RelationshipResource(path: "/api/v1/accounts/\(id)/unblock", httpMethod: "POST", parse: RelationshipResource.parser)
+        return RelationshipResource(path: "/api/v1/accounts/\(id)/unblock", httpMethod: .post, parse: RelationshipResource.parser)
     }
 
     /// Mutes an account.
@@ -77,7 +77,7 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Relationship?`.
     public static func mute(id: Int) -> RelationshipResource {
-        return RelationshipResource(path: "/api/v1/accounts/\(id)/mute", httpMethod: "POST", parse: RelationshipResource.parser)
+        return RelationshipResource(path: "/api/v1/accounts/\(id)/mute", httpMethod: .post, parse: RelationshipResource.parser)
     }
 
     /// Unmutes an account.
@@ -85,7 +85,7 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Relationship?`.
     public static func unmute(id: Int) -> RelationshipResource {
-        return RelationshipResource(path: "/api/v1/accounts/\(id)/unmute", httpMethod: "POST", parse: RelationshipResource.parser)
+        return RelationshipResource(path: "/api/v1/accounts/\(id)/unmute", httpMethod: .post, parse: RelationshipResource.parser)
     }
 
     /// Searches for accounts.

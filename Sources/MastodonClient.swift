@@ -3,10 +3,10 @@ import Foundation
 public struct Resource<Model> {
     let path: String
     let parameters: [URLQueryItem]?
-    let httpMethod: String
+    let httpMethod: HTTPMethod
     let parse: (Any) -> Model
 
-    init(path: String, parameters: [URLQueryItem]? = nil, httpMethod: String = "GET", parse: @escaping (Any) -> Model) {
+    init(path: String, parameters: [URLQueryItem]? = nil, httpMethod: HTTPMethod = .get, parse: @escaping (Any) -> Model) {
         self.path = path
         self.parameters = parameters
         self.httpMethod = httpMethod
@@ -39,7 +39,7 @@ public final class MastodonClient {
         let components = URLComponents(baseURL: baseURL, resource: resource)
 
         var request = URLRequest(url: components.url!, timeoutInterval: 30)
-        request.httpMethod = resource.httpMethod
+        request.httpMethod = resource.httpMethod.toString()
         request.setValue("Bearer " + accessToken, forHTTPHeaderField: "Authorization")
 
         let task = URLSession.shared.dataTask(with: request) { (data, _, _) in

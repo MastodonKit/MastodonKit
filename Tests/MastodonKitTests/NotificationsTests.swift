@@ -11,7 +11,7 @@ class NotificationsTests: XCTestCase {
         let resource = Notifications.all()
 
         XCTAssertEqual(resource.path, "/api/v1/notifications")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -20,7 +20,7 @@ class NotificationsTests: XCTestCase {
         let resource = Notifications.notification(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/notifications/42")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }

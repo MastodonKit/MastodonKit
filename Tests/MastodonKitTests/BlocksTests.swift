@@ -10,7 +10,7 @@ class BlocksTests: XCTestCase {
         let resource = Blocks.all()
 
         XCTAssertEqual(resource.path, "/api/v1/blocks")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }

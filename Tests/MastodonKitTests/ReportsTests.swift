@@ -11,7 +11,7 @@ class ReportsTests: XCTestCase {
         let resource = Reports.all()
 
         XCTAssertEqual(resource.path, "/api/v1/reports")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -25,7 +25,7 @@ class ReportsTests: XCTestCase {
 
 
         XCTAssertEqual(resource.path, "/api/v1/reports")
-        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertEqual(resource.httpMethod, .post)
 
         XCTAssertEqual(resource.parameters?.count, 3)
         XCTAssertTrue(resource.parameters!.contains(expectedAccoundID))

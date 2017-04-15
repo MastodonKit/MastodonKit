@@ -61,7 +61,7 @@ public struct Statuses {
 
         let parameters = dictionary.flatMap(toQueryItem)
 
-        return StatusResource(path: "/api/v1/statuses", parameters: parameters, httpMethod: "POST", parse: StatusResource.parser)
+        return StatusResource(path: "/api/v1/statuses", parameters: parameters, httpMethod: .post, parse: StatusResource.parser)
     }
 
     /// Deletes a status.
@@ -69,7 +69,7 @@ public struct Statuses {
     /// - Parameter id: The status id.
     /// - Returns: Resource for `Status?`.
     public static func delete(id: Int) -> StatusResource {
-        return StatusResource(path: "/api/v1/statuses/\(id)", httpMethod: "DELETE", parse: StatusResource.parser)
+        return StatusResource(path: "/api/v1/statuses/\(id)", httpMethod: .delete, parse: StatusResource.parser)
     }
 
     /// Reblogs a status.
@@ -77,7 +77,7 @@ public struct Statuses {
     /// - Parameter id: The status id.
     /// - Returns: Resource for `Status?`.
     public static func reblog(id: Int) -> StatusResource {
-        return StatusResource(path: "/api/v1/statuses/\(id)/reblog", httpMethod: "POST", parse: StatusResource.parser)
+        return StatusResource(path: "/api/v1/statuses/\(id)/reblog", httpMethod: .post, parse: StatusResource.parser)
     }
 
     /// Unreblogs a status.
@@ -85,7 +85,7 @@ public struct Statuses {
     /// - Parameter id: The status id.
     /// - Returns: Resource for `Status?`.
     public static func unreblog(id: Int) -> StatusResource {
-        return StatusResource(path: "/api/v1/statuses/\(id)/unreblog", httpMethod: "POST", parse: StatusResource.parser)
+        return StatusResource(path: "/api/v1/statuses/\(id)/unreblog", httpMethod: .post, parse: StatusResource.parser)
     }
 
     /// Favourites a status.
@@ -93,7 +93,7 @@ public struct Statuses {
     /// - Parameter id: The status id.
     /// - Returns: Resource for `Status?`.
     public static func favourite(id: Int) -> StatusResource {
-        return StatusResource(path: "/api/v1/statuses/\(id)/favourite", httpMethod: "POST", parse: StatusResource.parser)
+        return StatusResource(path: "/api/v1/statuses/\(id)/favourite", httpMethod: .post, parse: StatusResource.parser)
     }
 
     /// Unfavourites a status.
@@ -101,6 +101,6 @@ public struct Statuses {
     /// - Parameter id: The status id.
     /// - Returns: Resource for `Status?`.
     public static func unfavourite(id: Int) -> StatusResource {
-        return StatusResource(path: "/api/v1/statuses/\(id)/unfavourite", httpMethod: "POST", parse: StatusResource.parser)
+        return StatusResource(path: "/api/v1/statuses/\(id)/unfavourite", httpMethod: .post, parse: StatusResource.parser)
     }
 }

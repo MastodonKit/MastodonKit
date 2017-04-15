@@ -22,7 +22,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.account(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -31,7 +31,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.currentUser()
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/verify_credentials")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -40,7 +40,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.followers(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/followers")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -49,7 +49,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.following(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/following")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -58,7 +58,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.statuses(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/statuses")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -67,7 +67,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.follow(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/follow")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -76,7 +76,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.unfollow(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/unfollow")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -85,7 +85,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.block(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/block")
-        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -94,7 +94,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.unblock(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/unblock")
-        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -103,7 +103,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.mute(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/mute")
-        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -112,7 +112,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.unmute(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/unmute")
-        XCTAssertEqual(resource.httpMethod, "POST")
+        XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -124,7 +124,7 @@ class AccountsTests: XCTestCase {
         let expectedLimit = URLQueryItem(name: "limit", value: "40")
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/search")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
 
         XCTAssertEqual(resource.parameters?.count, 2)
         XCTAssertTrue(resource.parameters!.contains(expectedQuery))
@@ -140,7 +140,7 @@ class AccountsTests: XCTestCase {
         let expectedLimit = URLQueryItem(name: "limit", value: "42")
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/search")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
 
         XCTAssertEqual(resource.parameters?.count, 2)
         XCTAssertTrue(resource.parameters!.contains(expectedQuery))

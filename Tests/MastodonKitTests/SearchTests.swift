@@ -14,7 +14,7 @@ class TimelinesTeSearchTestssts: XCTestCase {
         let expectedResolve = URLQueryItem(name: "resolve", value: "false")
 
         XCTAssertEqual(resource.path, "/api/v1/search")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
 
         XCTAssertEqual(resource.parameters?.count, 2)
         XCTAssertTrue(resource.parameters!.contains(expectedQuery))
@@ -30,7 +30,7 @@ class TimelinesTeSearchTestssts: XCTestCase {
         let expectedResolve = URLQueryItem(name: "resolve", value: "true")
 
         XCTAssertEqual(resource.path, "/api/v1/search")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
 
         XCTAssertEqual(resource.parameters?.count, 2)
         XCTAssertTrue(resource.parameters!.contains(expectedQuery))

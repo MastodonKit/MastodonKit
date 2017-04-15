@@ -12,7 +12,7 @@ class TimelinesTests: XCTestCase {
         let resource = Timelines.home()
 
         XCTAssertEqual(resource.path, "/api/v1/timelines/home")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -21,7 +21,7 @@ class TimelinesTests: XCTestCase {
         let resource = Timelines.public()
 
         XCTAssertEqual(resource.path, "/api/v1/timelines/public")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -30,7 +30,7 @@ class TimelinesTests: XCTestCase {
         let resource = Timelines.tag("mastodonkit")
 
         XCTAssertEqual(resource.path, "/api/v1/timelines/tag/mastodonkit")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
