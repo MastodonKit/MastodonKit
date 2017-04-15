@@ -3,8 +3,10 @@ import XCTest
 
 class FollowRequestsTests: XCTestCase {
     static var allTests = [
-        ("testAll", testAll)
-    ]
+        ("testAll", testAll),
+        ("testAuthorize", testAuthorize),
+        ("testReject", testReject),
+        ]
 
     func testAll() {
         let resource = FollowRequests.all()
@@ -12,6 +14,34 @@ class FollowRequestsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/follow_requests")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
+        XCTAssertNotNil(resource.parse)
+    }
+
+    func testAuthorize() {
+        let resource = FollowRequests.authorize(id: 42)
+
+        let expectedID = URLQueryItem(name: "id", value: "42")
+
+        XCTAssertEqual(resource.path, "/api/v1/follow_requests/authorize")
+        XCTAssertEqual(resource.httpMethod, .post)
+
+        XCTAssertEqual(resource.parameters?.count, 1)
+        XCTAssertTrue(resource.parameters!.contains(expectedID))
+
+        XCTAssertNotNil(resource.parse)
+    }
+
+    func testReject() {
+        let resource = FollowRequests.reject(id: 42)
+
+        let expectedID = URLQueryItem(name: "id", value: "42")
+
+        XCTAssertEqual(resource.path, "/api/v1/follow_requests/reject")
+        XCTAssertEqual(resource.httpMethod, .post)
+
+        XCTAssertEqual(resource.parameters?.count, 1)
+        XCTAssertTrue(resource.parameters!.contains(expectedID))
+
         XCTAssertNotNil(resource.parse)
     }
 }
