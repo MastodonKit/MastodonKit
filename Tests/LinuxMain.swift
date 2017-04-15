@@ -3,7 +3,11 @@ import XCTest
 
 XCTMain([
     testCase(AccountsTests.allTests),
+    testCase(AccountTests.allTests),
+    testCase(ApplicationTests.allTests),
+    testCase(AttachmentTests.allTests),
     testCase(BlocksTests.allTests),
+    testCase(CardTests.allTests),
     testCase(FavouritesTests.allTests),
     testCase(FollowRequestsTests.allTests),
     testCase(HTTPMethodTests.allTests),
