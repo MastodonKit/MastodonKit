@@ -85,7 +85,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.block(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/block")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, "POST")
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -94,7 +94,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.unblock(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/unblock")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, "POST")
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -103,7 +103,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.mute(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/mute")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, "POST")
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -112,7 +112,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.unmute(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/unmute")
-        XCTAssertEqual(resource.httpMethod, "GET")
+        XCTAssertEqual(resource.httpMethod, "POST")
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }

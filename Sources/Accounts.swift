@@ -59,33 +59,33 @@ public struct Accounts {
     /// Blocks an account.
     ///
     /// - Parameter id: The account id.
-    /// - Returns: Resource for `Account?`.
-    public static func block(id: Int) -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/\(id)/block", parse: AccountResource.parser)
+    /// - Returns: Resource for `Relationship?`.
+    public static func block(id: Int) -> RelationshipResource {
+        return RelationshipResource(path: "/api/v1/accounts/\(id)/block", httpMethod: "POST", parse: RelationshipResource.parser)
     }
 
     /// Unblocks an account.
     ///
     /// - Parameter id: The account id.
-    /// - Returns: Resource for `Account?`.
-    public static func unblock(id: Int) -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/\(id)/unblock", parse: AccountResource.parser)
+    /// - Returns: Resource for `Relationship?`.
+    public static func unblock(id: Int) -> RelationshipResource {
+        return RelationshipResource(path: "/api/v1/accounts/\(id)/unblock", httpMethod: "POST", parse: RelationshipResource.parser)
     }
 
     /// Mutes an account.
     ///
     /// - Parameter id: The account id.
-    /// - Returns: Resource for `Account?`.
-    public static func mute(id: Int) -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/\(id)/mute", parse: AccountResource.parser)
+    /// - Returns: Resource for `Relationship?`.
+    public static func mute(id: Int) -> RelationshipResource {
+        return RelationshipResource(path: "/api/v1/accounts/\(id)/mute", httpMethod: "POST", parse: RelationshipResource.parser)
     }
 
     /// Unmutes an account.
     ///
     /// - Parameter id: The account id.
-    /// - Returns: Resource for `Account?`.
-    public static func unmute(id: Int) -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/\(id)/unmute", parse: AccountResource.parser)
+    /// - Returns: Resource for `Relationship?`.
+    public static func unmute(id: Int) -> RelationshipResource {
+        return RelationshipResource(path: "/api/v1/accounts/\(id)/unmute", httpMethod: "POST", parse: RelationshipResource.parser)
     }
 
     /// Searches for accounts.
