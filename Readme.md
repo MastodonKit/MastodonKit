@@ -6,12 +6,13 @@ Please note there's a lot to do before MastodonKit can be used in production cod
 
 ## Building from source
 
-MastodonKit uses the Swift Package Manager and can be built using the following command:
+MastodonKit uses the Swift Package Manager and can be built and tested using the following commands:
 
 ```
 $ git clone https://github.com/ornithocoder/MastodonKit.git
 $ cd MastodonKit
 $ swift build
+$ swift test
 ```
 
 If you prefer, Swift Package Manager can create an Xcode Project:
