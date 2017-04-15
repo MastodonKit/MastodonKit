@@ -68,7 +68,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.follow(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/follow")
-        XCTAssertEqual(resource.httpMethod, .get)
+        XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }
@@ -77,7 +77,7 @@ class AccountsTests: XCTestCase {
         let resource = Accounts.unfollow(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/unfollow")
-        XCTAssertEqual(resource.httpMethod, .get)
+        XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
         XCTAssertNotNil(resource.parse)
     }

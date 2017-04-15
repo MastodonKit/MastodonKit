@@ -45,7 +45,7 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Account?`.
     public static func follow(id: Int) -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/\(id)/follow", parse: AccountResource.parser)
+        return AccountResource(path: "/api/v1/accounts/\(id)/follow", method: .post, parse: AccountResource.parser)
     }
 
     /// Unfollow an account.
@@ -53,7 +53,7 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Account?`.
     public static func unfollow(id: Int) -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/\(id)/unfollow", parse: AccountResource.parser)
+        return AccountResource(path: "/api/v1/accounts/\(id)/unfollow", method: .post, parse: AccountResource.parser)
     }
 
     /// Blocks an account.
