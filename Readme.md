@@ -206,7 +206,7 @@ public struct Statuses {
                               replyToID: Int? = default,
                               sensitive: Bool? = default,
                               spoilerText: String? = default,
-                              visibility: MastodonKit.VisibilityType = default) -> StatusResource
+                              visibility: VisibilityType = default) -> StatusResource
 
     /// Deletes a status.
     public static func delete(id: Int) -> StatusResource
