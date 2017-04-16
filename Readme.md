@@ -1,4 +1,4 @@
-# MastodonKit
+# MastodonKit [![Build Status](https://travis-ci.org/ornithocoder/MastodonKit.svg?branch=master)](https://travis-ci.org/ornithocoder/MastodonKit)
 
 MastodonKit is a Swift Framework that wraps the Mastodon API. Currently, it's a _work in progress_ but the goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
 
