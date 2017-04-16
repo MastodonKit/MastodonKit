@@ -12,6 +12,7 @@ class FavouritesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/favourites")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]>.self)
     }
 }

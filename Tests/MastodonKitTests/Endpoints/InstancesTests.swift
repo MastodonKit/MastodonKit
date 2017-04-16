@@ -12,6 +12,7 @@ class InstancesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/instance")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Instance?>.self)
     }
 }

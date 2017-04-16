@@ -14,7 +14,8 @@ class FollowRequestsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/follow_requests")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testAuthorize() {
@@ -28,7 +29,7 @@ class FollowRequestsTests: XCTestCase {
         XCTAssertEqual(resource.parameters?.count, 1)
         XCTAssertTrue(resource.parameters!.contains(expectedID))
 
-        XCTAssertNotNil(resource.parse)
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
     }
 
     func testReject() {
@@ -42,6 +43,6 @@ class FollowRequestsTests: XCTestCase {
         XCTAssertEqual(resource.parameters?.count, 1)
         XCTAssertTrue(resource.parameters!.contains(expectedID))
 
-        XCTAssertNotNil(resource.parse)
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
     }
 }

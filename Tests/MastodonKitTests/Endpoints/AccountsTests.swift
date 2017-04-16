@@ -1,6 +1,8 @@
 import XCTest
 @testable import MastodonKit
 
+typealias ParserFunctionType<Model> = (Any) -> Model
+
 class AccountsTests: XCTestCase {
     static var allTests = [
         ("testAccount", testAccount),
@@ -25,7 +27,8 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
     }
 
     func testCurrentUser() {
@@ -34,7 +37,8 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/verify_credentials")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
     }
 
     func testFollowers() {
@@ -43,7 +47,8 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/followers")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testFollowing() {
@@ -52,7 +57,8 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/following")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testStatuses() {
@@ -61,7 +67,8 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/statuses")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testFollow() {
@@ -70,7 +77,8 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/follow")
         XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
     }
 
     func testUnfollow() {
@@ -79,7 +87,8 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/unfollow")
         XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
     }
 
     func testBlock() {
@@ -88,7 +97,8 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/block")
         XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Relationship?>.self)
     }
 
     func testUnblock() {
@@ -97,7 +107,8 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/unblock")
         XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Relationship?>.self)
     }
 
     func testMute() {
@@ -106,7 +117,8 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/mute")
         XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Relationship?>.self)
     }
 
     func testUnmute() {
@@ -115,7 +127,8 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/unmute")
         XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Relationship?>.self)
     }
 
     func testRelationships() {
@@ -129,7 +142,7 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.parameters?.count, 1)
         XCTAssertTrue(resource.parameters!.contains(expectedID))
 
-        XCTAssertNotNil(resource.parse)
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Relationship]>.self)
     }
 
     func testSearchWithoutLimit() {
@@ -145,7 +158,7 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(resource.parameters!.contains(expectedQuery))
         XCTAssertTrue(resource.parameters!.contains(expectedLimit))
 
-        XCTAssertNotNil(resource.parse)
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testSearchWithLimit() {
@@ -161,6 +174,6 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(resource.parameters!.contains(expectedQuery))
         XCTAssertTrue(resource.parameters!.contains(expectedLimit))
 
-        XCTAssertNotNil(resource.parse)
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]>.self)
     }
 }

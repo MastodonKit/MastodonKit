@@ -13,7 +13,8 @@ class ReportsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/reports")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Report]>.self)
     }
 
     func testReport() {
@@ -23,7 +24,6 @@ class ReportsTests: XCTestCase {
         let expectedStatusID = URLQueryItem(name: "status_ids", value: "2")
         let expectedVisibility = URLQueryItem(name: "comment", value: "Westworld Spoiler!!!")
 
-
         XCTAssertEqual(resource.path, "/api/v1/reports")
         XCTAssertEqual(resource.httpMethod, .post)
 
@@ -32,6 +32,6 @@ class ReportsTests: XCTestCase {
         XCTAssertTrue(resource.parameters!.contains(expectedStatusID))
         XCTAssertTrue(resource.parameters!.contains(expectedVisibility))
 
-        XCTAssertNotNil(resource.parse)
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Report?>.self)
     }
 }

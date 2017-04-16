@@ -20,7 +20,7 @@ class TimelinesTeSearchTestssts: XCTestCase {
         XCTAssertTrue(resource.parameters!.contains(expectedQuery))
         XCTAssertTrue(resource.parameters!.contains(expectedResolve))
 
-        XCTAssertNotNil(resource.parse)
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Results?>.self)
     }
 
     func testSearchWithResolve() {
@@ -36,6 +36,6 @@ class TimelinesTeSearchTestssts: XCTestCase {
         XCTAssertTrue(resource.parameters!.contains(expectedQuery))
         XCTAssertTrue(resource.parameters!.contains(expectedResolve))
 
-        XCTAssertNotNil(resource.parse)
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Results?>.self)
     }
 }

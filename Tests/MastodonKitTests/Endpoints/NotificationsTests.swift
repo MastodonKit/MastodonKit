@@ -13,7 +13,8 @@ class NotificationsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/notifications")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[MastodonKit.Notification]>.self)
     }
 
     func testNotification() {
@@ -22,6 +23,7 @@ class NotificationsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/notifications/42")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<MastodonKit.Notification?>.self)
     }
 }

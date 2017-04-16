@@ -14,7 +14,8 @@ class TimelinesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/timelines/home")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testPublicTimeline() {
@@ -23,7 +24,8 @@ class TimelinesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/timelines/public")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testTagTimeline() {
@@ -32,6 +34,7 @@ class TimelinesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/timelines/tag/mastodonkit")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]>.self)
     }
 }

@@ -26,7 +26,8 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
     }
 
     func testContext() {
@@ -35,7 +36,8 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/context")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Context?>.self)
     }
 
     func testCard() {
@@ -44,7 +46,8 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/card")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Card?>.self)
     }
 
     func testRebloggedBy() {
@@ -53,7 +56,8 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/reblogged_by")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testFavouritedBy() {
@@ -62,7 +66,8 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/favourited_by")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testCreateWithMessage() {
@@ -78,7 +83,7 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(resource.parameters!.contains(expectedStatus))
         XCTAssertTrue(resource.parameters!.contains(expectedVisibility))
 
-        XCTAssertNotNil(resource.parse)
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
     }
 
     func testCreateWithMessageAndReplyID() {
@@ -96,7 +101,7 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(resource.parameters!.contains(expectedReplyToID))
         XCTAssertTrue(resource.parameters!.contains(expectedVisibility))
 
-        XCTAssertNotNil(resource.parse)
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
     }
 
     func testCreateWithSensitiveMessage() {
@@ -114,7 +119,7 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(resource.parameters!.contains(expectedSensitive))
         XCTAssertTrue(resource.parameters!.contains(expectedVisibility))
 
-        XCTAssertNotNil(resource.parse)
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
     }
 
     func testCreateWithSpoilerMessage() {
@@ -132,7 +137,7 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(resource.parameters!.contains(expectedSpoilerMessage))
         XCTAssertTrue(resource.parameters!.contains(expectedVisibility))
 
-        XCTAssertNotNil(resource.parse)
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
     }
 
     func testCreateWithUnlistedMessage() {
@@ -148,7 +153,7 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(resource.parameters!.contains(expectedStatus))
         XCTAssertTrue(resource.parameters!.contains(expectedVisibility))
 
-        XCTAssertNotNil(resource.parse)
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
     }
 
     func testDelete() {
@@ -157,7 +162,8 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42")
         XCTAssertEqual(resource.httpMethod, .delete)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
     }
 
     func testReblog() {
@@ -166,7 +172,8 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/reblog")
         XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
     }
 
     func testUnreblog() {
@@ -175,7 +182,8 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/unreblog")
         XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
     }
 
     func testFavourite() {
@@ -184,7 +192,8 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/favourite")
         XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
     }
 
     func testUnfavourite() {
@@ -193,6 +202,7 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/unfavourite")
         XCTAssertEqual(resource.httpMethod, .post)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
     }
 }

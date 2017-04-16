@@ -12,6 +12,7 @@ class BlocksTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/blocks")
         XCTAssertEqual(resource.httpMethod, .get)
         XCTAssertNil(resource.parameters)
-        XCTAssertNotNil(resource.parse)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]>.self)
     }
 }
