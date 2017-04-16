@@ -25,6 +25,7 @@ XCTMain([
     testCase(RelationshipTests.allTests),
     testCase(ReportTests.allTests),
     testCase(RequestErrorTests.allTests),
+    testCase(ResourcesTests.allTests),
     testCase(ResultsTests.allTests),
     testCase(StatusTests.allTests),
     testCase(TagTests.allTests)

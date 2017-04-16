@@ -1,8 +1,6 @@
 import XCTest
 @testable import MastodonKit
 
-typealias ParserFunctionType<Model> = (Any) -> Model
-
 class AccountsTests: XCTestCase {
     static var allTests = [
         ("testAccount", testAccount),

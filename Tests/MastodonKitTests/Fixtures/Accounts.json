@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "username": "ornithocoder",
+        "acct": "ornithocoder",
+        "display_name": "Ornithologist Coder",
+        "locked": false,
+        "note": "Developer of MastodonKit",
+        "url": "https://mastodon.technology/@ornithocoder",
+        "avatar": "http://lorempixel.com/200/200/cats/3/",
+        "header": "http://lorempixel.com/700/300/cats/1/",
+        "followers_count": 42,
+        "following_count": 52,
+        "statuses_count": 420
+    },
+    {
+        "id": 2,
+        "username": "ornithocoder",
+        "acct": "ornithocoder",
+        "display_name": "Ornithologist Coder",
+        "locked": false,
+        "note": "Developer of MastodonKit",
+        "url": "https://mastodon.technology/@ornithocoder",
+        "avatar": "http://lorempixel.com/200/200/cats/3/",
+        "header": "http://lorempixel.com/700/300/cats/1/",
+        "followers_count": 42,
+        "following_count": 52,
+        "statuses_count": 420
+    }
+]
