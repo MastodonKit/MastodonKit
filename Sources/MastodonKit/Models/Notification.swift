@@ -5,9 +5,16 @@ public enum NotificationType {
 }
 
 public struct Notification {
+    /// The notification ID.
     public let id: Int
+
+    /// The notification type.
     public let type: NotificationType
+
+    /// The Account sending the notification to the user.
     public let account: Account
+
+    /// The Status associated with the notification, if applicable.
     public let status: Status?
 }
 

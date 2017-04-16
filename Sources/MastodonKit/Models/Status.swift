@@ -5,23 +5,58 @@ public enum VisibilityType {
 }
 
 public struct Status {
+    /// The ID of the status.
     public let id: Int
+
+    /// A Fediverse-unique resource ID.
     public let uri: String
+
+    /// URL to the status page (can be remote).
     public let url: URL
+
+    /// The Account which posted the status.
     public let account: Account
+
+    /// null or the ID of the status it replies to.
     public let inReplyToID: Int?
+
+    /// null or the ID of the account it replies to.
     public let inReplyToAccountID: Int?
+
+    /// Body of the status; this will contain HTML (remote HTML already sanitized).
     public let content: String
+
+    /// The number of reblogs for the status.
     public let reblogsCount: Int
+
+    /// The number of favourites for the status.
     public let favouritesCount: Int
+
+    /// Whether the authenticated user has reblogged the status.
     public let reblogged: Bool?
+
+    /// Whether the authenticated user has favourited the status.
     public let favourited: Bool?
+
+    /// Whether media attachments should be hidden by default.
     public let sensitive: Bool?
+
+    /// If not empty, warning text that should be displayed before the actual content.
     public let spoilerText: String
+
+    /// The visibility type of the status.
     public let visibility: VisibilityType
+
+    /// An array of attachments.
     public let mediaAttachments: [Attachment]
+
+    /// An array of mentions.
     public let mentions: [Mention]
+
+    /// An array of tags.
     public let tags: [Tag]
+
+    /// Application from which the status was posted.
     public let application: Application?
 }
 

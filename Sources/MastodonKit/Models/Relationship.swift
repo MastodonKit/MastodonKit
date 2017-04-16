@@ -1,11 +1,22 @@
 import Foundation
 
 public struct Relationship {
+    /// Target account id.
     public let id: Int
+
+    /// Whether the user is currently following the account.
     public let following: Bool
+
+    /// Whether the user is currently being followed by the account.
     public let followedBy: Bool
+
+    /// Whether the user is currently blocking the account.
     public let blocking: Bool
+
+    /// Whether the user is currently muting the account.
     public let muting: Bool
+
+    /// Whether the user has requested to follow the account.
     public let requested: Bool
 }
 

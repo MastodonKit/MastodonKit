@@ -1,7 +1,10 @@
 import Foundation
 
 public struct Tag {
+    /// The hashtag, not including the preceding #.
     public let name: String
+
+    /// The URL of the hashtag.
     public let url: String
 }
 
