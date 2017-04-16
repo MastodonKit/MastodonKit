@@ -13,8 +13,7 @@ public struct FollowRequests {
     /// - Parameter id: The accound id.
     /// - Returns: Resource for `Account?`.
     public static func authorize(id: Int) -> AccountResource {
-        let parameters = [URLQueryItem(name: "id", value: String(id))]
-        return  AccountResource(path: "/api/v1/follow_requests/authorize", parameters: parameters, method: .post, parse: AccountResource.parser)
+        return  AccountResource(path: "/api/v1/follow_requests/\(id)/authorize", method: .post, parse: AccountResource.parser)
     }
 
     /// Rejects a follow request.
@@ -22,7 +21,6 @@ public struct FollowRequests {
     /// - Parameter id: The accound id.
     /// - Returns: Resource for `Account?`.
     public static func reject(id: Int) -> AccountResource {
-        let parameters = [URLQueryItem(name: "id", value: String(id))]
-        return  AccountResource(path: "/api/v1/follow_requests/reject", parameters: parameters, method: .post, parse: AccountResource.parser)
+        return  AccountResource(path: "/api/v1/follow_requests/\(id)/reject", method: .post, parse: AccountResource.parser)
     }
 }
