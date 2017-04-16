@@ -2,8 +2,6 @@
 
 MastodonKit is a Swift Framework that wraps the Mastodon API. Currently, it's a _work in progress_ but the goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
 
-Please note there's a lot to do before MastodonKit can be used in production code.
-
 ## Building from source
 
 MastodonKit uses the Swift Package Manager and can be built and tested using the following commands:
@@ -33,17 +31,21 @@ let client = MastodonClient(
 
 ## Making requests
 
-```swift
-// Getting the home timeline
+Create a resource and run it using the client.
 
+Getting the home timeline:
+
+```swift
 let resource = Timelines.home()
 
 client.run(resource) { statuses in
     // do something with 'statuses'
 }
+```
 
-// Posting a new status
+Posting a new status:
 
+```swift
 let resource = Statuses.create("Mastodon's API is awesome!")
 
 client.run(resource) { status in
@@ -51,7 +53,7 @@ client.run(resource) { status in
 }
 ```
 
-## Methods
+## List of Resources
 
 ### Accounts
 
