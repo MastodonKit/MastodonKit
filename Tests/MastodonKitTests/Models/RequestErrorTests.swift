@@ -3,7 +3,8 @@ import XCTest
 
 class RequestErrorTests: XCTestCase {
     static var allTests = [
-        ("testErrorFromJSON", testErrorFromJSON)
+        ("testErrorWithValidJSON", testErrorWithValidJSON),
+        ("testErrorWithInvalidJSON", testErrorWithInvalidJSON)
     ]
 
     var errorFixture: Any!
@@ -13,13 +14,23 @@ class RequestErrorTests: XCTestCase {
         errorFixture = try? Fixture.load(fileName: "Fixtures/RequestError.json")
     }
 
-    func testErrorFromJSON() {
+    func testErrorWithValidJSON() {
         let dictionary = errorFixture as! JSONDictionary
         let requestError = RequestError(json: dictionary)
 
         switch requestError {
         case .apiError(let reason):
             XCTAssertEqual(reason, "yes, it's an error.")
+            break
+        }
+    }
+
+    func testErrorWithInvalidJSON() {
+        let requestError = RequestError(json: [:])
+
+        switch requestError {
+        case .apiError(let reason):
+            XCTAssertNil(reason)
             break
         }
     }
