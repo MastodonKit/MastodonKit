@@ -51,6 +51,195 @@ client.run(resource) { status in
 }
 ```
 
+## Methods
+
+### Accounts
+
+```swift
+public struct Accounts {
+    /// Fetches an account.
+    public static func account(id: Int) -> AccountResource
+
+    /// Gets the current user.
+    public static func currentUser() -> AccountResource
+
+    /// Gets an account's followers.
+    public static func followers(id: Int) -> AccountsResource
+
+    /// Gets who account is following.
+    public static func following(id: Int) -> AccountsResource
+
+    /// Gets an account's statuses.
+    public static func statuses(id: Int) -> TimelineResource
+
+    /// Follows an account.
+    public static func follow(id: Int) -> AccountResource
+
+    /// Unfollow an account.
+    public static func unfollow(id: Int) -> AccountResource
+
+    /// Blocks an account.
+    public static func block(id: Int) -> RelationshipResource
+
+    /// Unblocks an account.
+    public static func unblock(id: Int) -> RelationshipResource
+
+    /// Mutes an account.
+    public static func mute(id: Int) -> RelationshipResource
+
+    /// Unmutes an account.
+    public static func unmute(id: Int) -> RelationshipResource
+
+    /// Gets an account's relationships.
+    public static func relationships(id: Int) -> RelationshipsResource
+
+    /// Searches for accounts.
+    public static func search(query: String, limit: Int = default) -> AccountsResource
+}
+```
+
+### Blocks
+
+```swift
+public struct Blocks {
+    /// Fetches a user's blocks.
+    public static func all() -> AccountsResource
+}
+```
+
+### Favourites
+
+```swift
+public struct Favourites {
+    /// Fetches a user's favourites.
+    public static func all() -> TimelineResource
+}
+```
+
+### Follow Requests
+
+```swift
+public struct FollowRequests {
+    /// Fetches a list of follow requests.
+    public static func all() -> AccountsResource
+
+    /// Authorizes a follow request.
+    public static func authorize(id: Int) -> AccountResource
+
+    /// Rejects a follow request.
+    public static func reject(id: Int) -> AccountResource
+}
+```
+
+### Instances
+
+```swift
+public struct Instances {
+    /// Gets instance information.
+    public static func current() -> InstanceResource
+}
+```
+
+### Mute
+
+```swift
+public struct Mutes {
+    /// Fetches a user's mutes.
+    public static func all() -> AccountsResource
+}
+```
+
+### Notifications
+
+```swift
+public struct Notifications {
+    /// Fetches a user's notifications.
+    public static func all() -> NotificationsResource
+
+    /// Gets a single notification.
+    public static func notification(id: Int) -> NotificationResource
+}
+```
+
+### Reports
+
+```swift
+public struct Reports {
+    /// Fetches a user's reports.
+    public static func all() -> ReportsResource
+
+    /// Reports a user.
+    public static func report(accountID: Int, statusID: Int, reason: String) -> ReportResource
+}
+```
+
+### Search
+
+```swift
+public struct Search {
+    /// Searches for content.
+    public static func search(query: String, resolve: Bool = default) -> ResultsResource
+}
+```
+
+### Statuses
+
+```swift
+public struct Statuses {
+    /// Fetches a status.
+    public static func status(id: Int) -> StatusResource
+
+    /// Gets a status context.
+    public static func context(id: Int) -> ContextResource
+
+    /// Gets a card associated with a status.
+    public static func card(id: Int) -> CardResource
+
+    /// Gets who reblogged a status.
+    public static func rebloggedBy(id: Int) -> AccountsResource
+
+    /// Gets who favourited a status.
+    public static func favouritedBy(id: Int) -> AccountsResource
+
+    /// Posts a new status.
+    public static func create(status: String,
+                              replyToID: Int? = default,
+                              sensitive: Bool? = default,
+                              spoilerText: String? = default,
+                              visibility: MastodonKit.VisibilityType = default) -> StatusResource
+
+    /// Deletes a status.
+    public static func delete(id: Int) -> StatusResource
+
+    /// Reblogs a status.
+    public static func reblog(id: Int) -> StatusResource
+
+    /// Unreblogs a status.
+    public static func unreblog(id: Int) -> StatusResource
+
+    /// Favourites a status.
+    public static func favourite(id: Int) -> StatusResource
+
+    /// Unfavourites a status.
+    public static func unfavourite(id: Int) -> StatusResource
+}
+```
+
+### Timelines
+
+```swift
+public struct Timelines {
+    /// Retrieves the home timeline.
+    public static func home() -> TimelineResource
+
+    /// Retrieves the public timeline.
+    public static func `public`() -> TimelineResource
+
+    /// Retrieves a tag timeline.
+    public static func tag(_ hashtag: String) -> TimelineResource
+}
+```
+
 # License
 
 Copyright (c) 2017 Ornithologist Coder and MastodonKit Contributors. All rights reserved.
