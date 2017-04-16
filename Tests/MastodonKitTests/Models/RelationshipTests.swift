@@ -6,15 +6,9 @@ class RelationshipTests: XCTestCase {
         ("testRelationshipFromJSON", testRelationshipFromJSON)
     ]
 
-    var relationshipFixture: Any!
-
-    override func setUp() {
-        super.setUp()
-        relationshipFixture = try? Fixture.load(fileName: "Fixtures/Relationship.json")
-    }
-
     func testRelationshipFromJSON() {
-        let dictionary = relationshipFixture as! JSONDictionary
+        let fixture = try? Fixture.load(fileName: "Fixtures/Relationship.json")
+        let dictionary = fixture as! JSONDictionary
         let relationship = Relationship(json: dictionary)
 
         XCTAssertEqual(relationship?.id, 42)

@@ -6,15 +6,9 @@ class TagTests: XCTestCase {
         ("testTagsFromJSON", testTagsFromJSON)
     ]
 
-    var tagsFixture: Any!
-
-    override func setUp() {
-        super.setUp()
-        tagsFixture = try? Fixture.load(fileName: "Fixtures/Tag.json")
-    }
-
     func testTagsFromJSON() {
-        let dictionary = tagsFixture as! JSONDictionary
+        let fixture = try? Fixture.load(fileName: "Fixtures/Tag.json")
+        let dictionary = fixture as! JSONDictionary
         let tag = Tag(json: dictionary)
 
         XCTAssertEqual(tag?.name, "mastodon")

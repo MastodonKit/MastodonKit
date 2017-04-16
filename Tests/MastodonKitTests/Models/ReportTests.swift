@@ -6,15 +6,9 @@ class ReportTests: XCTestCase {
         ("testReportFromJSON", testReportFromJSON)
     ]
 
-    var reportFixture: Any!
-
-    override func setUp() {
-        super.setUp()
-        reportFixture = try? Fixture.load(fileName: "Fixtures/Report.json")
-    }
-
     func testReportFromJSON() {
-        let dictionary = reportFixture as! JSONDictionary
+        let fixture = try? Fixture.load(fileName: "Fixtures/Report.json")
+        let dictionary = fixture as! JSONDictionary
         let report = Report(json: dictionary)
 
         XCTAssertEqual(report?.id, 42)

@@ -7,15 +7,9 @@ class RequestErrorTests: XCTestCase {
         ("testErrorWithInvalidJSON", testErrorWithInvalidJSON)
     ]
 
-    var errorFixture: Any!
-
-    override func setUp() {
-        super.setUp()
-        errorFixture = try? Fixture.load(fileName: "Fixtures/RequestError.json")
-    }
-
     func testErrorWithValidJSON() {
-        let dictionary = errorFixture as! JSONDictionary
+        let fixture = try? Fixture.load(fileName: "Fixtures/RequestError.json")
+        let dictionary = fixture as! JSONDictionary
         let requestError = RequestError(json: dictionary)
 
         switch requestError {

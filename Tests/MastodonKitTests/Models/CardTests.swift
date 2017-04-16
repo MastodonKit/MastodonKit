@@ -6,15 +6,9 @@ class CardTests: XCTestCase {
         ("testCardFromJSON", testCardFromJSON)
     ]
 
-    var cardFixture: Any!
-
-    override func setUp() {
-        super.setUp()
-        cardFixture = try? Fixture.load(fileName: "Fixtures/Card.json")
-    }
-
     func testCardFromJSON() {
-        let dictionary = cardFixture as! JSONDictionary
+        let fixture = try? Fixture.load(fileName: "Fixtures/Card.json")
+        let dictionary = fixture as! JSONDictionary
         let card = Card(json: dictionary)
 
         XCTAssertEqual(card?.url, URL(string: "http://lorempixel.com/200/200/cats/3/"))

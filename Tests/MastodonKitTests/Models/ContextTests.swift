@@ -6,15 +6,9 @@ class ContextTests: XCTestCase {
         ("testContextFromJSON", testContextFromJSON)
     ]
 
-    var contextFixture: Any!
-
-    override func setUp() {
-        super.setUp()
-        contextFixture = try? Fixture.load(fileName: "Fixtures/Context.json")
-    }
-
     func testContextFromJSON() {
-        let dictionary = contextFixture as! JSONDictionary
+        let fixture = try? Fixture.load(fileName: "Fixtures/Context.json")
+        let dictionary = fixture as! JSONDictionary
         let context = Context(json: dictionary)
 
         XCTAssertEqual(context?.ancestors.count, 1)

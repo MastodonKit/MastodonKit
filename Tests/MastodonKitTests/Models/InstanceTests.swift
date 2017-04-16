@@ -6,15 +6,9 @@ class InstanceTests: XCTestCase {
         ("testInstanceFromJSON", testInstanceFromJSON)
     ]
 
-    var instanceFixture: Any!
-
-    override func setUp() {
-        super.setUp()
-        instanceFixture = try? Fixture.load(fileName: "Fixtures/Instance.json")
-    }
-
     func testInstanceFromJSON() {
-        let dictionary = instanceFixture as! JSONDictionary
+        let fixture = try? Fixture.load(fileName: "Fixtures/Instance.json")
+        let dictionary = fixture as! JSONDictionary
         let instance = Instance(json: dictionary)
 
         XCTAssertEqual(instance?.uri, "instance's uri")

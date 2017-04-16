@@ -6,15 +6,9 @@ class MentionTests: XCTestCase {
         ("testMentionFromJSON", testMentionFromJSON)
     ]
 
-    var mentionFixture: Any!
-
-    override func setUp() {
-        super.setUp()
-        mentionFixture = try? Fixture.load(fileName: "Fixtures/Mention.json")
-    }
-
     func testMentionFromJSON() {
-        let dictionary = mentionFixture as! JSONDictionary
+        let fixture = try? Fixture.load(fileName: "Fixtures/Mention.json")
+        let dictionary = fixture as! JSONDictionary
         let mention = Mention(json: dictionary)
 
         XCTAssertEqual(mention?.id, 42)

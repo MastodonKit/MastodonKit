@@ -7,15 +7,9 @@ class AttachmentTests: XCTestCase {
         ("testeAttachmentType", testeAttachmentType)
     ]
 
-    var attachmentFixture: Any!
-
-    override func setUp() {
-        super.setUp()
-        attachmentFixture = try? Fixture.load(fileName: "Fixtures/Attachment.json")
-    }
-
     func testAttachmentFromJSON() {
-        let dictionary = attachmentFixture as! JSONDictionary
+        let fixture = try? Fixture.load(fileName: "Fixtures/Attachment.json")
+        let dictionary = fixture as! JSONDictionary
         let attachment = Attachment(json: dictionary)
 
         XCTAssertEqual(attachment?.id, 42)

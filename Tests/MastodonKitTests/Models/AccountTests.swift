@@ -6,15 +6,9 @@ class AccountTests: XCTestCase {
         ("testAccountFromJSON", testAccountFromJSON)
     ]
 
-    var accountFixture: Any!
-
-    override func setUp() {
-        super.setUp()
-        accountFixture = try? Fixture.load(fileName: "Fixtures/Account.json")
-    }
-
     func testAccountFromJSON() {
-        let dictionary = accountFixture as! JSONDictionary
+        let fixture = try? Fixture.load(fileName: "Fixtures/Account.json")
+        let dictionary = fixture as! JSONDictionary
         let account = Account(json: dictionary)
 
         XCTAssertEqual(account?.id, 1)
