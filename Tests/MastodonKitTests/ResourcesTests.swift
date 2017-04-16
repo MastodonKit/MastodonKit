@@ -72,7 +72,7 @@ class ResourcesTests: XCTestCase {
         let fixture = try! Fixture.load(fileName: "Fixtures/Accounts.json")
         let parsed = Resource<[Account]>.parser(jsonObject: fixture)
 
-        XCTAssertNotNil(parsed)
+        XCTAssertEqual(parsed.count, 2)
     }
 
     func testAccountsResourceWithInvalidArray() {
@@ -167,7 +167,7 @@ class ResourcesTests: XCTestCase {
         let fixture = try! Fixture.load(fileName: "Fixtures/Notifications.json")
         let parsed = Resource<[MastodonKit.Notification]>.parser(jsonObject: fixture)
 
-        XCTAssertNotNil(parsed)
+        XCTAssertEqual(parsed.count, 2)
     }
 
     func testNotificationsResourceWithInvalidArray() {
@@ -205,7 +205,7 @@ class ResourcesTests: XCTestCase {
         let fixture = try! Fixture.load(fileName: "Fixtures/Relationships.json")
         let parsed = Resource<[Relationship]>.parser(jsonObject: fixture)
 
-        XCTAssertNotNil(parsed)
+        XCTAssertEqual(parsed.count, 2)
     }
 
     func testRelationshipsResourceWithInvalidArray() {
@@ -243,7 +243,7 @@ class ResourcesTests: XCTestCase {
         let fixture = try! Fixture.load(fileName: "Fixtures/Reports.json")
         let parsed = Resource<[Report]>.parser(jsonObject: fixture)
 
-        XCTAssertNotNil(parsed)
+        XCTAssertEqual(parsed.count, 2)
     }
 
     func testReportsResourceWithInvalidArray() {
@@ -300,7 +300,7 @@ class ResourcesTests: XCTestCase {
         let fixture = try! Fixture.load(fileName: "Fixtures/Timeline.json")
         let parsed = Resource<[Status]>.parser(jsonObject: fixture)
 
-        XCTAssertNotNil(parsed)
+        XCTAssertEqual(parsed.count, 2)
     }
 
     func testTimelineResourceWithInvalidArray() {
