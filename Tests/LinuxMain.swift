@@ -21,6 +21,7 @@ XCTMain([
     testCase(ContextTests.allTests),
     testCase(InstanceTests.allTests),
     testCase(MentionTests.allTests),
+    testCase(MastodonClientTests.allTests),
     testCase(NotificationTests.allTests),
     testCase(RelationshipTests.allTests),
     testCase(ReportTests.allTests),
