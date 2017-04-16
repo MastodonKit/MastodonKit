@@ -1,5 +1,12 @@
 import Foundation
 
+/// Notification type.
+///
+/// - mention: Status mentioned.
+/// - reblog: Status reblogged.
+/// - favourite: Status favourited.
+/// - follow: User followed.
+/// - unkonwn: Unkown action.
 public enum NotificationType {
     case mention, reblog, favourite, follow, unkonwn
 }

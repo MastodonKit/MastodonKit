@@ -1,5 +1,11 @@
 import Foundation
 
+/// Visibility type.
+///
+/// - `public`: Default status of toots on most accounts and are visible to any other user on the public timelines.
+/// - unlisted: Public, except that they do not appear in the public timelines or search results.
+/// - `private`: Do not appear in the public timeline nor on your profile page to anyone viewing it unless they are on your Followers list.
+/// - direct: Are only visible to users you have @mentioned in them.
 public enum VisibilityType {
     case `public`, unlisted, `private`, direct
 }

@@ -1,5 +1,11 @@
 import Foundation
 
+/// Attachment type.
+///
+/// - image: Image file.
+/// - video: Video file.
+/// - gifv: Animated image file.
+/// - unknown: Unknown media format.
 public enum AttachmentType {
     case image, video, gifv, unknown
 }

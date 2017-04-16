@@ -1,5 +1,8 @@
 import Foundation
 
+/// Request error.
+///
+/// - apiError: Mastodon's API error.
 public enum RequestError: Error {
     case apiError(reason: String?)
 }
