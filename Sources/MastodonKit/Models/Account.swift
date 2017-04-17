@@ -19,6 +19,8 @@ public struct Account {
     public let header: String
     /// Boolean for when the account cannot be followed without waiting for approval first.
     public let locked: Bool
+    /// The time the account was created.
+    public let createdAt: Date
     /// The number of followers for the account.
     public let followersCount: Int
     /// The number of accounts the given account is following.
@@ -35,6 +37,8 @@ public struct Account {
             let acct = json["acct"] as? String,
             let displayName = json["display_name"] as? String,
             let locked = json["locked"] as? Bool,
+            let createdAtString = json["created_at"] as? String,
+            let createdAt = Date(fromMastodonJSON: createdAtString),
             let note = json["note"] as? String,
             let url = json["url"] as? String,
             let avatar = json["avatar"] as? String,
@@ -55,6 +59,7 @@ public struct Account {
         self.avatar = avatar
         self.header = header
         self.locked = locked
+        self.createdAt = createdAt
         self.followersCount = followersCount
         self.followingCount = followingCount
         self.statusesCount = statusesCount

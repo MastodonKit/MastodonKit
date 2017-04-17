@@ -13,6 +13,7 @@ class NotificationTests: XCTestCase {
 
         XCTAssertEqual(notification?.id, 42)
         XCTAssertEqual(notification?.type, NotificationType.favourite)
+        XCTAssertEqual(notification?.createdAt.timeIntervalSince1970, 1482239655.132)
         XCTAssertNotNil(notification?.account)
         XCTAssertNotNil(notification?.status)
     }

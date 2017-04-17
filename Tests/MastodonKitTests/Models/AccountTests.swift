@@ -20,6 +20,7 @@ class AccountTests: XCTestCase {
         XCTAssertEqual(account?.avatar, "http://lorempixel.com/200/200/cats/3/")
         XCTAssertEqual(account?.header, "http://lorempixel.com/700/300/cats/1/")
         XCTAssertEqual(account?.locked, false)
+        XCTAssertEqual(account?.createdAt.timeIntervalSince1970, 1482239655.132)
         XCTAssertEqual(account?.followersCount, 42)
         XCTAssertEqual(account?.followingCount, 52)
         XCTAssertEqual(account?.statusesCount, 420)
