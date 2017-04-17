@@ -19,7 +19,7 @@ public struct Notification {
             let id = json["id"] as? Int,
             let typeString = json["type"] as? String,
             let createdAtString = json["created_at"] as? String,
-            let createdAt = Date(fromMastodonJSON: createdAtString),
+            let createdAt = DateFormatter.mastodonFormatter.date(from: createdAtString),
             let accountDictionary = json["account"] as? JSONDictionary,
             let account = Account(json: accountDictionary)
             else {

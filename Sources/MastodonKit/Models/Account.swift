@@ -38,7 +38,7 @@ public struct Account {
             let displayName = json["display_name"] as? String,
             let locked = json["locked"] as? Bool,
             let createdAtString = json["created_at"] as? String,
-            let createdAt = Date(fromMastodonJSON: createdAtString),
+            let createdAt = DateFormatter.mastodonFormatter.date(from: createdAtString),
             let note = json["note"] as? String,
             let url = json["url"] as? String,
             let avatar = json["avatar"] as? String,

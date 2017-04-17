@@ -23,15 +23,3 @@ extension DateFormatter {
         return dateFormatter
     }()
 }
-
-extension Date {
-    init?(fromMastodonJSON dateString: String) {
-        let formatter = DateFormatter.mastodonFormatter
-
-        guard let date = formatter.date(from: dateString) else {
-            return nil
-        }
-
-        self.init(timeInterval: 0, since: date)
-    }
-}

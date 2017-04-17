@@ -52,7 +52,7 @@ public struct Status {
             let account = Account(json: accountDictionary),
             let content = json["content"] as? String,
             let createdAtString = json["created_at"] as? String,
-            let createdAt = Date(fromMastodonJSON: createdAtString),
+            let createdAt = DateFormatter.mastodonFormatter.date(from: createdAtString),
             let reblogsCount = json["reblogs_count"] as? Int,
             let favouritesCount = json["favourites_count"] as? Int,
             let spoilerText = json["spoiler_text"] as? String,

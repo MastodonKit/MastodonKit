@@ -25,13 +25,13 @@ class FoundationTests: XCTestCase {
     }
 
     func testDateFromMastodonWithValidDate() {
-        let date = Date(fromMastodonJSON: "2016-12-20T13:14:15.132Z")
+        let date = DateFormatter.mastodonFormatter.date(from: "2016-12-20T13:14:15.132Z")
 
         XCTAssertEqual(date?.timeIntervalSince1970, 1482239655.132)
     }
 
     func testDateFromMastodonWithInvalidDate() {
-        let date = Date(fromMastodonJSON: "2016-12-20")
+        let date = DateFormatter.mastodonFormatter.date(from: "2016-12-20")
         
         XCTAssertNil(date)
     }
