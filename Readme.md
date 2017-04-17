@@ -22,12 +22,45 @@ $ open MastodonKit.xcodeproj
 
 ## Initializing the client
 
+Assuming that you already have an access token for a user on the given Mastodon instance:
+
 ```swift
 let client = MastodonClient(
     baseURL: "https://mastodon.technology",
     accessToken: "user access token (after OAuth login)"
 )
 ```
+
+If you need to get an access token, you must first register the application against the given Mastodon instance. Registering an application returns the Client ID and Client Secret needed to perform the OAuth call. Remember to store the Client ID and Client Secret locally in your application for future OAuth logins:
+
+```swift
+let client = MastodonClient(baseURL: "https://mastodon.technology")
+
+let resource = Applications.registerClient(
+    name: "MastodonKit Test Client",
+    scopes: [.read, .write, .follow],
+    website: "https://github.com/ornithocoder/MastodonKit"
+)
+
+client.run(resource) { application in
+    if let application = application {
+        print("id: \(application.id)")
+        print("redirect uri: \(application.redirectURI)")
+        print("client id: \(application.clientID)")
+        print("client secret: \(application.clientSecret)")
+    }
+}
+```
+
+After retrieving the access token (via standard OAuth 2 authorization flow), update the MastodonKit client with the returned accessToken:
+
+```swift
+client.accessToken = "user access token (after OAuth login)"
+```
+
+Side note: Mastodon's API offers a way to log a user in programatically, but this method isn't implemented by MastodonKit since the [API documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Testing-with-cURL.md) recommends using the standard OAuth 2 authorization flow: 
+
+> _"Please note that the password-based approach is not recommended especially if you're dealing with other user's accounts and not just your own. Usually you would use the authorization grant approach where you redirect the user to a web page on the original site where they can login and authorize the application and are then redirected back to your application with an access code."_ - Mastodon's API Documentation
 
 ## Making requests
 
@@ -97,6 +130,18 @@ public struct Accounts {
 
     /// Searches for accounts.
     public static func search(query: String, limit: Int = default) -> AccountsResource
+}
+```
+
+### Applications
+
+```swift
+public struct Applications {
+    /// Registers an application.
+    public static func registerClient(name: String,
+                                      redirectURI: String = default,
+                                      scopes: [AccessScope],
+                                      website: String? = default) -> RegisteredApplicationResource
 }
 ```
 

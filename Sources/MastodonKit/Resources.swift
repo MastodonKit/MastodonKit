@@ -9,6 +9,7 @@ public typealias NotificationResource = Resource<Notification?>
 public typealias NotificationsResource = Resource<[Notification]>
 public typealias RelationshipResource = Resource<Relationship?>
 public typealias RelationshipsResource = Resource<[Relationship]>
+public typealias RegisteredApplicationResource = Resource<RegisteredApplication?>
 public typealias ReportResource = Resource<Report?>
 public typealias ReportsResource = Resource<[Report]>
 public typealias ResultsResource = Resource<Results?>
@@ -95,6 +96,15 @@ extension Resource where Model == [Relationship] {
     static func parser(jsonObject: Any) -> [Relationship] {
         guard let array = jsonObject as? [JSONDictionary] else { return [] }
         return array.flatMap(Relationship.init)
+    }
+}
+
+// MARK: RegisteredApplicationResource
+
+extension Resource where Model == RegisteredApplication? {
+    static func parser(jsonObject: Any) -> RegisteredApplication? {
+        guard let json = jsonObject as? JSONDictionary else { return nil }
+        return RegisteredApplication(json: json)
     }
 }
 
