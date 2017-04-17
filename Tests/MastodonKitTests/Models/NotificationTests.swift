@@ -3,8 +3,7 @@ import XCTest
 
 class NotificationTests: XCTestCase {
     static var allTests = [
-        ("testNotificationFromJSON", testNotificationFromJSON),
-        ("testNotificationType", testNotificationType)
+        ("testNotificationFromJSON", testNotificationFromJSON)
     ]
 
     func testNotificationFromJSON() {
@@ -16,13 +15,5 @@ class NotificationTests: XCTestCase {
         XCTAssertEqual(notification?.type, NotificationType.favourite)
         XCTAssertNotNil(notification?.account)
         XCTAssertNotNil(notification?.status)
-    }
-
-    func testNotificationType() {
-        XCTAssertEqual(NotificationType(string: "mention"), NotificationType.mention)
-        XCTAssertEqual(NotificationType(string: "reblog"), NotificationType.reblog)
-        XCTAssertEqual(NotificationType(string: "favourite"), NotificationType.favourite)
-        XCTAssertEqual(NotificationType(string: "follow"), NotificationType.follow)
-        XCTAssertEqual(NotificationType(string: "foobar"), NotificationType.unkonwn)
     }
 }

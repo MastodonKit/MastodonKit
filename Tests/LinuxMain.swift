@@ -17,12 +17,14 @@ XCTMain([
     testCase(AccountTests.allTests),
     testCase(ApplicationTests.allTests),
     testCase(AttachmentTests.allTests),
+    testCase(AttachmentTypeTests.allTests),
     testCase(CardTests.allTests),
     testCase(ContextTests.allTests),
     testCase(InstanceTests.allTests),
     testCase(MentionTests.allTests),
     testCase(MastodonClientTests.allTests),
     testCase(NotificationTests.allTests),
+    testCase(NotificationTypeTests.allTests),
     testCase(RelationshipTests.allTests),
     testCase(ReportTests.allTests),
     testCase(RequestErrorTests.allTests),
@@ -30,4 +32,5 @@ XCTMain([
     testCase(ResultsTests.allTests),
     testCase(StatusTests.allTests),
     testCase(TagTests.allTests)
+    testCase(VisibilityTypeTests.allTests)
 ])

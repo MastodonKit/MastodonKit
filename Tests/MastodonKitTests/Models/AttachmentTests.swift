@@ -3,8 +3,7 @@ import XCTest
 
 class AttachmentTests: XCTestCase {
     static var allTests = [
-        ("testAttachmentFromJSON", testAttachmentFromJSON),
-        ("testeAttachmentType", testeAttachmentType)
+        ("testAttachmentFromJSON", testAttachmentFromJSON)
     ]
 
     func testAttachmentFromJSON() {
@@ -17,12 +16,5 @@ class AttachmentTests: XCTestCase {
         XCTAssertEqual(attachment?.url, "http://lorempixel.com/200/200/cats/3/")
         XCTAssertEqual(attachment?.previewURL, "http://lorempixel.com/200/200/cats/4/")
         XCTAssertEqual(attachment?.textURL, "https://mastodon.technology/@ornithocoder")
-    }
-
-    func testeAttachmentType() {
-        XCTAssertEqual(AttachmentType(string: "image"), AttachmentType.image)
-        XCTAssertEqual(AttachmentType(string: "video"), AttachmentType.video)
-        XCTAssertEqual(AttachmentType(string: "gifv"), AttachmentType.gifv)
-        XCTAssertEqual(AttachmentType(string: "foobar"), AttachmentType.unknown)
     }
 }

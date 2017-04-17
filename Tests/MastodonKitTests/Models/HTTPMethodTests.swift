@@ -10,22 +10,18 @@ class HTTPMethodTests: XCTestCase {
     ]
 
     func testGet() {
-        let method = HTTPMethod.get
-        XCTAssertEqual(method.toString(), "GET")
+        XCTAssertEqual(HTTPMethod.get.stringValue, "GET")
     }
 
     func testPost() {
-        let method = HTTPMethod.post
-        XCTAssertEqual(method.toString(), "POST")
+        XCTAssertEqual(HTTPMethod.post.stringValue, "POST")
     }
 
     func testDelete() {
-        let method = HTTPMethod.delete
-        XCTAssertEqual(method.toString(), "DELETE")
+        XCTAssertEqual(HTTPMethod.delete.stringValue, "DELETE")
     }
 
     func testPatch() {
-        let method = HTTPMethod.patch
-        XCTAssertEqual(method.toString(), "PATCH")
+        XCTAssertEqual(HTTPMethod.patch.stringValue, "PATCH")
     }
 }

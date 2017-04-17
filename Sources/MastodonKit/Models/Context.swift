@@ -3,12 +3,11 @@ import Foundation
 public struct Context {
     /// The ancestors of the status in the conversation, as a list of statuses.
     public let ancestors: [Status]
-
     /// The descendants of the status in the conversation, as a list of statuses.
     public let descendants: [Status]
-}
 
-extension Context {
+    // MARK: - Private
+
     init?(json: JSONDictionary) {
         guard
             let ancestorsArray = json["ancestors"] as? [JSONDictionary],

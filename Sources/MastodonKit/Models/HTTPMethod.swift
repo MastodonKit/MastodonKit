@@ -1,11 +1,9 @@
 import Foundation
 
-typealias JSONDictionary = [String: Any]
-
 enum HTTPMethod {
     case get, post, delete, patch
 
-    func toString() -> String {
+    var stringValue: String {
         switch self {
         case .get:
             return "GET"

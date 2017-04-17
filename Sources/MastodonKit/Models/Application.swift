@@ -3,12 +3,11 @@ import Foundation
 public struct Application {
     /// Name of the app.
     public let name: String
-
     /// Homepage URL of the app.
     public let website: String?
-}
 
-extension Application {
+    // MARK: - Private
+
     init?(json: JSONDictionary) {
         guard
             let name = json["name"] as? String

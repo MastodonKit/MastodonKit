@@ -15,6 +15,8 @@ public typealias ResultsResource = Resource<Results?>
 public typealias StatusResource = Resource<Status?>
 public typealias TimelineResource = Resource<[Status]>
 
+typealias JSONDictionary = [String: Any]
+
 // MARK: AccountResource
 
 extension Resource where Model == Account? {

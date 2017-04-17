@@ -4,8 +4,7 @@ import XCTest
 class StatusTests: XCTestCase {
     static var allTests = [
         ("testStatusWithNullFromJSON", testStatusWithNullFromJSON),
-        ("testStatusWithoutNullFromJSON", testStatusWithoutNullFromJSON),
-        ("testVisibilityType", testVisibilityType)
+        ("testStatusWithoutNullFromJSON", testStatusWithoutNullFromJSON)
     ]
 
     func testStatusWithNullFromJSON() {
@@ -56,22 +55,5 @@ class StatusTests: XCTestCase {
         XCTAssertEqual(status?.mentions.count, 0)
         XCTAssertEqual(status?.tags.count, 0)
         XCTAssertNotNil(status?.application)
-    }
-
-    func testVisibilityType() {
-        XCTAssertEqual(VisibilityType(string: "public"), VisibilityType.public)
-        XCTAssertEqual(VisibilityType(string: "public").stringValue, "public")
-
-        XCTAssertEqual(VisibilityType(string: "unlisted"), VisibilityType.unlisted)
-        XCTAssertEqual(VisibilityType(string: "unlisted").stringValue, "unlisted")
-
-        XCTAssertEqual(VisibilityType(string: "private"), VisibilityType.private)
-        XCTAssertEqual(VisibilityType(string: "private").stringValue, "private")
-
-        XCTAssertEqual(VisibilityType(string: "direct"), VisibilityType.direct)
-        XCTAssertEqual(VisibilityType(string: "direct").stringValue, "direct")
-
-        XCTAssertEqual(VisibilityType(string: "foobar"), VisibilityType.unlisted)
-        XCTAssertEqual(VisibilityType(string: "foobar").stringValue, "unlisted")
     }
 }
