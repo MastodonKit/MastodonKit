@@ -13,7 +13,7 @@ extension URLComponents {
 }
 
 extension DateFormatter {
-    static func mastodonDateFormatter() -> DateFormatter {
+    static let mastodonFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
 
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SZ"
@@ -21,12 +21,12 @@ extension DateFormatter {
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
 
         return dateFormatter
-    }
+    }()
 }
 
 extension Date {
     init?(fromMastodonJSON dateString: String) {
-        let formatter = DateFormatter.mastodonDateFormatter()
+        let formatter = DateFormatter.mastodonFormatter
 
         guard let date = formatter.date(from: dateString) else {
             return nil
