@@ -10,4 +10,10 @@ class ApplicationTests: XCTestCase {
         XCTAssertEqual(application?.name, "MastodonKitTestClient")
         XCTAssertEqual(application?.website, "https://github.com/ornithocoder/MastodonKit")
     }
+
+    func testApplicationWithInvalidData() {
+        let application = Application(json: [:])
+
+        XCTAssertNil(application)
+    }
 }

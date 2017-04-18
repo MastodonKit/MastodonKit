@@ -12,4 +12,10 @@ class MentionTests: XCTestCase {
         XCTAssertEqual(mention?.acct,"ornithocoder")
         XCTAssertEqual(mention?.url, "https://mastodon.technology/@ornithocoder")
     }
+
+    func testMentionWithInvalidData() {
+        let mention = Mention(json: [:])
+
+        XCTAssertNil(mention)
+    }
 }

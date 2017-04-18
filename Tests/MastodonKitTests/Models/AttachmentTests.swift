@@ -13,4 +13,10 @@ class AttachmentTests: XCTestCase {
         XCTAssertEqual(attachment?.previewURL, "http://lorempixel.com/200/200/cats/4/")
         XCTAssertEqual(attachment?.textURL, "https://mastodon.technology/@ornithocoder")
     }
+
+    func testAttachmentWithInvalidData() {
+        let attachment = Attachment(json: [:])
+
+        XCTAssertNil(attachment)
+    }
 }
