@@ -5,6 +5,7 @@ public typealias AccountsResource = Resource<[Account]>
 public typealias CardResource = Resource<Card?>
 public typealias ContextResource = Resource<Context?>
 public typealias InstanceResource = Resource<Instance?>
+public typealias LoginSettingsResource = Resource<LoginSettings?>
 public typealias NotificationResource = Resource<Notification?>
 public typealias NotificationsResource = Resource<[Notification]>
 public typealias RelationshipResource = Resource<Relationship?>
@@ -60,6 +61,15 @@ extension Resource where Model == Instance? {
     static func parser(jsonObject: Any) -> Instance? {
         guard let json = jsonObject as? JSONDictionary else { return nil }
         return Instance(json: json)
+    }
+}
+
+// MARK: LoginSettingsResource
+
+extension Resource where Model == LoginSettings? {
+    static func parser(jsonObject: Any) -> LoginSettings? {
+        guard let json = jsonObject as? JSONDictionary else { return nil }
+        return LoginSettings(json: json)
     }
 }
 

@@ -20,6 +20,9 @@ class ResourcesTests: XCTestCase {
         ("testInstanceResource", testInstanceResource),
         ("testInstanceResourceWithInvalidArray", testInstanceResourceWithInvalidArray),
         ("testInstanceResourceWithInvalidDictionary", testInstanceResourceWithInvalidDictionary),
+        ("testLoginSettingsResource", testLoginSettingsResource),
+        ("testLoginSettingsResourceWithInvalidArray", testLoginSettingsResourceWithInvalidArray),
+        ("testLoginSettingsResourceWithInvalidDictionary", testLoginSettingsResourceWithInvalidDictionary),
         ("testNotificationResource", testNotificationResource),
         ("testNotificationResourceWithInvalidArray", testNotificationResourceWithInvalidArray),
         ("testNotificationResourceWithInvalidDictionary", testNotificationResourceWithInvalidDictionary),
@@ -143,6 +146,25 @@ class ResourcesTests: XCTestCase {
 
     func testInstanceResourceWithInvalidDictionary() {
         let parsed = Resource<Instance?>.parser(jsonObject: [:])
+
+        XCTAssertNil(parsed)
+    }
+
+    func testLoginSettingsResource() {
+        let fixture = try! Fixture.load(fileName: "Fixtures/LoginSettings.json")
+        let parsed = Resource<LoginSettings?>.parser(jsonObject: fixture)
+
+        XCTAssertNotNil(parsed)
+    }
+
+    func testLoginSettingsResourceWithInvalidArray() {
+        let parsed = Resource<LoginSettings?>.parser(jsonObject: [])
+
+        XCTAssertNil(parsed)
+    }
+
+    func testLoginSettingsResourceWithInvalidDictionary() {
+        let parsed = Resource<LoginSettings?>.parser(jsonObject: [:])
 
         XCTAssertNil(parsed)
     }
