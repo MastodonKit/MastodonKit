@@ -2,12 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class FollowRequestsTests: XCTestCase {
-    static var allTests = [
-        ("testAll", testAll),
-        ("testAuthorize", testAuthorize),
-        ("testReject", testReject)
-    ]
-
     func testAll() {
         let resource = FollowRequests.all()
 

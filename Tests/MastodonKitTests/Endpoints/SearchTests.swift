@@ -2,11 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class TimelinesTeSearchTestssts: XCTestCase {
-    static var allTests = [
-        ("testSearchWithoutResolve", testSearchWithoutResolve),
-        ("testSearchWithResolve", testSearchWithResolve)
-    ]
-
     func testSearchWithoutResolve() {
         let resource = Search.search(query: "mastodonkit")
 

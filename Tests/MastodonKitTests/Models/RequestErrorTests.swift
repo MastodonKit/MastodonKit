@@ -2,11 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class RequestErrorTests: XCTestCase {
-    static var allTests = [
-        ("testErrorWithValidJSON", testErrorWithValidJSON),
-        ("testErrorWithInvalidJSON", testErrorWithInvalidJSON)
-    ]
-
     func testErrorWithValidJSON() {
         let fixture = try? Fixture.load(fileName: "Fixtures/RequestError.json")
         let dictionary = fixture as! JSONDictionary

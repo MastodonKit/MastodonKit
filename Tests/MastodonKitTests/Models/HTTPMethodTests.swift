@@ -2,13 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class HTTPMethodTests: XCTestCase {
-    static var allTests = [
-        ("testGet", testGet),
-        ("testPost", testPost),
-        ("testDelete", testDelete),
-        ("testPatch", testPatch)
-    ]
-
     func testGet() {
         XCTAssertEqual(HTTPMethod.get.stringValue, "GET")
     }

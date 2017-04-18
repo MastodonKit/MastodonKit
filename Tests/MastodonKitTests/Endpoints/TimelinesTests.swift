@@ -2,12 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class TimelinesTests: XCTestCase {
-    static var allTests = [
-        ("testHomeTimeline", testHomeTimeline),
-        ("testPublicTimeline", testPublicTimeline),
-        ("testTagTimeline", testTagTimeline)
-    ]
-
     func testHomeTimeline() {
         let resource = Timelines.home()
 

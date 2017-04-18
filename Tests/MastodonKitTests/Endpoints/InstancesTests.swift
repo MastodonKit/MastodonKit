@@ -2,10 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class InstancesTests: XCTestCase {
-    static var allTests = [
-        ("testCurrent", testCurrent)
-    ]
-
     func testCurrent() {
         let resource = Instances.current()
 

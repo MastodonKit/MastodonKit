@@ -2,13 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class FoundationTests: XCTestCase {
-    static var allTests = [
-        ("testURLComponentsWithBaseURL", testURLComponentsWithBaseURL),
-        ("testURLComponentsWithBaseURLAndQueryItems", testURLComponentsWithBaseURLAndQueryItems),
-        ("testDateFromMastodonWithValidDate", testDateFromMastodonWithValidDate),
-        ("testDateFromMastodonWithInvalidDate", testDateFromMastodonWithInvalidDate)
-    ]
-
     func testURLComponentsWithBaseURL() {
         let resource = Resource<String>(path: "/string") { _ in return "string" }
         let components = URLComponents(baseURL: "https://mastodon.technology", resource: resource)

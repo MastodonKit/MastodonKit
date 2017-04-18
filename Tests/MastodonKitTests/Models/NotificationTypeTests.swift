@@ -2,14 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class NotificationTypeTests: XCTestCase {
-    static var allTests = [
-        ("testMention", testMention),
-        ("testReblog", testReblog),
-        ("testFavourite", testFavourite),
-        ("testFollow", testFollow),
-        ("testUnknown", testUnknown)
-    ]
-
     func testMention() {
         XCTAssertEqual(NotificationType(string: "mention"), NotificationType.mention)
     }

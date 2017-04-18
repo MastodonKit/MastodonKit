@@ -2,11 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class ReportsTests: XCTestCase {
-    static var allTests = [
-        ("testAll", testAll),
-        ("testReport", testReport)
-    ]
-
     func testAll() {
         let resource = Reports.all()
 

@@ -2,10 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class LoginTests: XCTestCase {
-    static var allTests = [
-        ("testSilentLogin", testSilentLogin)
-    ]
-
     func testSilentLogin() {
         let resource = Login.silent(clientID: "client id", clientSecret: "client secret", scope: .read, username: "foo", password: "123")
 

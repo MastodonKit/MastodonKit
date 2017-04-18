@@ -2,24 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class StatusesTests: XCTestCase {
-    static var allTests = [
-        ("testStatusByID", testStatus),
-        ("testContext", testContext),
-        ("testCard", testCard),
-        ("testRebloggedBy", testRebloggedBy),
-        ("testFavouritedBy", testFavouritedBy),
-        ("testCreateWithMessage", testCreateWithMessage),
-        ("testCreateWithMessageAndReplyID", testCreateWithMessageAndReplyID),
-        ("testCreateWithSensitiveMessage", testCreateWithSensitiveMessage),
-        ("testCreateWithSpoilerMessage", testCreateWithSpoilerMessage),
-        ("testCreateWithUnlistedMessage", testCreateWithUnlistedMessage),
-        ("testDelete", testDelete),
-        ("testReblog", testReblog),
-        ("testUnreblog", testUnreblog),
-        ("testFavourite", testFavourite),
-        ("testUnfavourite", testUnfavourite)
-    ]
-
     func testStatus() {
         let resource = Statuses.status(id: 42)
 

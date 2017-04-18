@@ -4,57 +4,6 @@ import XCTest
 typealias ParserFunctionType<Model> = (Any) -> Model
 
 class ResourcesTests: XCTestCase {
-    static var allTests = [
-        ("testAccountResource", testAccountResource),
-        ("testAccountResourceWithInvalidArray", testAccountResourceWithInvalidArray),
-        ("testAccountResourceWithInvalidDictionary", testAccountResourceWithInvalidDictionary),
-        ("testAccountsResource", testAccountsResource),
-        ("testAccountsResourceWithInvalidArray", testAccountsResourceWithInvalidArray),
-        ("testAccountsResourceWithInvalidDictionary", testAccountsResourceWithInvalidDictionary),
-        ("testCardResource", testCardResource),
-        ("testCardResourceWithInvalidArray", testCardResourceWithInvalidArray),
-        ("testCardResourceWithInvalidDictionary", testCardResourceWithInvalidDictionary),
-        ("testContextResource", testContextResource),
-        ("testContextResourceWithInvalidArray", testContextResourceWithInvalidArray),
-        ("testContextResourceWithInvalidDictionary", testContextResourceWithInvalidDictionary),
-        ("testInstanceResource", testInstanceResource),
-        ("testInstanceResourceWithInvalidArray", testInstanceResourceWithInvalidArray),
-        ("testInstanceResourceWithInvalidDictionary", testInstanceResourceWithInvalidDictionary),
-        ("testLoginSettingsResource", testLoginSettingsResource),
-        ("testLoginSettingsResourceWithInvalidArray", testLoginSettingsResourceWithInvalidArray),
-        ("testLoginSettingsResourceWithInvalidDictionary", testLoginSettingsResourceWithInvalidDictionary),
-        ("testNotificationResource", testNotificationResource),
-        ("testNotificationResourceWithInvalidArray", testNotificationResourceWithInvalidArray),
-        ("testNotificationResourceWithInvalidDictionary", testNotificationResourceWithInvalidDictionary),
-        ("testNotificationsResource", testNotificationsResource),
-        ("testNotificationsResourceWithInvalidArray", testNotificationsResourceWithInvalidArray),
-        ("testNotificationsResourceWithInvalidDictionary", testNotificationsResourceWithInvalidDictionary),
-        ("testRelationshipResource", testRelationshipResource),
-        ("testRelationshipResourceWithInvalidArray", testRelationshipResourceWithInvalidArray),
-        ("testRelationshipResourceWithInvalidDictionary", testRelationshipResourceWithInvalidDictionary),
-        ("testRelationshipsResource", testRelationshipsResource),
-        ("testRelationshipsResourceWithInvalidArray", testRelationshipsResourceWithInvalidArray),
-        ("testRelationshipsResourceWithInvalidDictionary", testRelationshipsResourceWithInvalidDictionary),
-        ("testReportResource", testReportResource),
-        ("testReportResourceWithInvalidArray", testReportResourceWithInvalidArray),
-        ("testReportResourceWithInvalidDictionary", testReportResourceWithInvalidDictionary),
-        ("testReportsResource", testReportsResource),
-        ("testReportsResourceWithInvalidArray", testReportsResourceWithInvalidArray),
-        ("testReportsResourceWithInvalidDictionary", testReportsResourceWithInvalidDictionary),
-        ("testResultsResource", testResultsResource),
-        ("testResultsResourceWithInvalidArray", testResultsResourceWithInvalidArray),
-        ("testResultsResourceWithEmptyDictionary", testResultsResourceWithEmptyDictionary),
-        ("testRegisteredApplicationResource", testRegisteredApplicationResource),
-        ("testRegisteredApplicationResourceWithInvalidArray", testRegisteredApplicationResourceWithInvalidArray),
-        ("testRegisteredApplicationResourceWithInvalidDictionary", testRegisteredApplicationResourceWithInvalidDictionary),
-        ("testStatusResource", testStatusResource),
-        ("testStatusResourceWithInvalidArray", testStatusResourceWithInvalidArray),
-        ("testStatusResourceWithInvalidDictionary", testStatusResourceWithInvalidDictionary),
-        ("testTimelineResource", testTimelineResource),
-        ("testTimelineResourceWithInvalidArray", testTimelineResourceWithInvalidArray),
-        ("testTimelineResourceWithInvalidDictionary", testTimelineResourceWithInvalidDictionary)
-    ]
-
     func testAccountResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Account.json")
         let parsed = Resource<Account?>.parser(jsonObject: fixture)

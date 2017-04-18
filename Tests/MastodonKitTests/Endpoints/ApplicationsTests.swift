@@ -2,10 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class ApplicationsTests: XCTestCase {
-    static var allTests = [
-        ("testRegisterApplication", testRegisterApplication)
-    ]
-
     func testRegisterApplication() {
         let resource = Applications.registerClient(name: "MastodonKitTestApplication", scopes: [])
 

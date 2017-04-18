@@ -2,11 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class StatusTests: XCTestCase {
-    static var allTests = [
-        ("testStatusWithNullFromJSON", testStatusWithNullFromJSON),
-        ("testStatusWithoutNullFromJSON", testStatusWithoutNullFromJSON)
-    ]
-
     func testStatusWithNullFromJSON() {
         let statusFixture = try? Fixture.load(fileName: "Fixtures/StatusWithNull.json")
         let dictionary = statusFixture as! JSONDictionary

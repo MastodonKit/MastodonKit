@@ -2,10 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class FavouritesTests: XCTestCase {
-    static var allTests = [
-        ("testAll", testAll)
-    ]
-
     func testAll() {
         let resource = Favourites.all()
 

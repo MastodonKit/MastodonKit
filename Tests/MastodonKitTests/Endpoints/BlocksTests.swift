@@ -2,10 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class BlocksTests: XCTestCase {
-    static var allTests = [
-        ("testAll", testAll)
-    ]
-
     func testAll() {
         let resource = Blocks.all()
 

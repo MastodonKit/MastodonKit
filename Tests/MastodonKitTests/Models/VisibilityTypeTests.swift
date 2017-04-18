@@ -2,14 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class VisibilityTypeTests: XCTestCase {
-    static var allTests = [
-        ("testPublic", testPublic),
-        ("testUnlisted", testUnlisted),
-        ("testPrivate", testPrivate),
-        ("testDirect", testDirect),
-        ("testInvalidType", testInvalidType)
-    ]
-
     func testPublic() {
         let type = VisibilityType(string: "public")
 

@@ -2,23 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class AccountsTests: XCTestCase {
-    static var allTests = [
-        ("testAccount", testAccount),
-        ("testCurrentUser", testCurrentUser),
-        ("testFollowers", testFollowers),
-        ("testFollowing", testFollowing),
-        ("testStatuses", testStatuses),
-        ("testFollow", testFollow),
-        ("testUnfollow", testUnfollow),
-        ("testBlock", testBlock),
-        ("testUnblock", testUnblock),
-        ("testMute", testMute),
-        ("testUnmute", testUnmute),
-        ("testRelationships", testRelationships),
-        ("testSearchWithoutLimit", testSearchWithoutLimit),
-        ("testSearchWithLimit", testSearchWithLimit)
-    ]
-
     func testAccount() {
         let resource = Accounts.account(id: 42)
 

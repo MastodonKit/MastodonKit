@@ -2,13 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class AccessScopeTests: XCTestCase {
-    static var allTests = [
-        ("testRead", testRead),
-        ("testWrite", testWrite),
-        ("testFollow", testFollow),
-        ("testInvalidType", testInvalidType)
-    ]
-
     func testRead() {
         let type = AccessScope(string: "read")
 

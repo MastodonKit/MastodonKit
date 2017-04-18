@@ -2,10 +2,6 @@ import XCTest
 @testable import MastodonKit
 
 class AttachmentTests: XCTestCase {
-    static var allTests = [
-        ("testAttachmentFromJSON", testAttachmentFromJSON)
-    ]
-
     func testAttachmentFromJSON() {
         let fixture = try? Fixture.load(fileName: "Fixtures/Attachment.json")
         let dictionary = fixture as! JSONDictionary
