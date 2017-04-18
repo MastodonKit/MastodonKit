@@ -58,9 +58,28 @@ After retrieving the access token (via standard OAuth 2 authorization flow), upd
 client.accessToken = "user access token (after OAuth login)"
 ```
 
-Side note: Mastodon's API offers a way to log a user in programatically, but this method isn't implemented by MastodonKit since the [API documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Testing-with-cURL.md) recommends using the standard OAuth 2 authorization flow: 
+**Side note**: Mastodon's API and MastodonKit offer a way to silently log a user in, but the method is discouraged since the [API documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Testing-with-cURL.md) recommends using the standard OAuth 2 authorization flow.
 
 > _"Please note that the password-based approach is not recommended especially if you're dealing with other user's accounts and not just your own. Usually you would use the authorization grant approach where you redirect the user to a web page on the original site where they can login and authorize the application and are then redirected back to your application with an access code."_ - Mastodon's API Documentation
+
+In case you want to test it with your own account, here is how:
+
+```swift
+let loginResource = Login.silent(
+    clientID: "very long client id",
+    clientSecret: "very long client secret",
+    scope: .read,
+    username: "foo",
+    password: "bar")
+
+client.run(loginResource) { loginSettings in
+    if let loginSettings = loginSettings {
+        print("access token: \(loginSettings.accessToken)")
+    }
+}
+```
+
+But keep in mind the method above should not be used when deadling with other user's accounts.
 
 ## Making requests
 
