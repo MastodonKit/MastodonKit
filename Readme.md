@@ -1,6 +1,8 @@
 # MastodonKit [![Build Status](https://travis-ci.org/ornithocoder/MastodonKit.svg?branch=master)](https://travis-ci.org/ornithocoder/MastodonKit)
 
-MastodonKit is a Swift Framework that wraps the Mastodon API. Currently, it's a _work in progress_ but the goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
+MastodonKit is a Swift Framework that wraps the Mastodon API. Its goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
+
+## Table of content
 
 - [Building from source](#building-from-source)
 - [Initializing the client](#initializing-the-client)
@@ -20,7 +22,7 @@ MastodonKit is a Swift Framework that wraps the Mastodon API. Currently, it's a 
     - [Timelines](#timelines)
 - [License](#license)
 
-## Building from source
+## Building it from source
 
 MastodonKit uses the Swift Package Manager and can be built and tested using the following commands:
 
@@ -97,7 +99,7 @@ client.run(loginResource) { loginSettings in
 }
 ```
 
-But keep in mind the method above should not be used when deadling with other user's accounts.
+But bear in mind the method above should never be used when deadling with other user's accounts.
 
 ## Making requests
 
@@ -124,6 +126,10 @@ client.run(resource) { status in
 ```
 
 ## List of resources
+
+Below a list of resources implemented by MastodonKit. All the methods are documented and their descriptions are available via option+click on Xcode:
+
+![documentation](https://cloud.githubusercontent.com/assets/19753339/25175832/83191756-24fc-11e7-9ca8-8f63e0c76b3c.png)
 
 ### Accounts
 
