@@ -53,8 +53,8 @@ public struct Statuses {
     public static func create(status: String, replyToID: Int? = nil, sensitive: Bool? = nil, spoilerText: String? = nil, visibility: VisibilityType = .public) -> StatusResource {
         let dictionary: [String : String?] = [
             "status": status,
-            "in_reply_to_id": replyToID != nil ? String(replyToID!) : nil,
-            "sensitive": sensitive != nil ? String(sensitive!) : nil,
+            "in_reply_to_id": String(optional: replyToID),
+            "sensitive": String(optional: sensitive),
             "spoiler_text": spoilerText,
             "visibility": visibility.stringValue
         ]
