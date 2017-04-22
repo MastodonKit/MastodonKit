@@ -9,7 +9,7 @@ MastodonKit is a Swift Framework that wraps the Mastodon API. Its goal is to cov
 - [Making requests](#making-requests)
 - [List of resources](#list-of-resources)
     - [Accounts](#accounts)
-    - [Applications](#applications)
+    - [Clients](#clients)
     - [Blocks](#blocks)
     - [Favourites](#favourites)
     - [Follow Requests](#follow-requests)
@@ -56,7 +56,7 @@ If you need to get an access token, you must first register the application agai
 ```swift
 let client = Client(baseURL: "https://mastodon.technology")
 
-let resource = Applications.registerClient(
+let resource = Clients.registerClient(
     name: "MastodonKit Test Client",
     scopes: [.read, .write, .follow],
     website: "https://github.com/ornithocoder/MastodonKit"
@@ -237,12 +237,12 @@ public struct Accounts {
 }
 ```
 
-### Applications
+### Clients
 
 Registers an application:
 
 ```swift
-public struct Applications {
+public struct Clients {
     public static func registerClient(name: String,
                                       redirectURI: String = default,
                                       scopes: [AccessScope],

@@ -61,6 +61,25 @@ class ResourcesTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
+    func testClientApplicationResource() {
+        let fixture = try! Fixture.load(fileName: "Fixtures/ClientApplication.json")
+        let parsed = Resource<ClientApplication>.parser(jsonObject: fixture)
+
+        XCTAssertNotNil(parsed)
+    }
+
+    func testClientApplicationResourceWithInvalidArray() {
+        let parsed = Resource<ClientApplication>.parser(jsonObject: [])
+
+        XCTAssertNil(parsed)
+    }
+
+    func testClientApplicationResourceWithInvalidDictionary() {
+        let parsed = Resource<ClientApplication>.parser(jsonObject: [:])
+
+        XCTAssertNil(parsed)
+    }
+
     func testContextResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Context.json")
         let parsed = Resource<Context>.parser(jsonObject: fixture)
@@ -192,25 +211,6 @@ class ResourcesTests: XCTestCase {
         let parsed = Resource<[Relationship]>.parser(jsonObject: [:])
 
         XCTAssertEqual(parsed.count, 0)
-    }
-
-    func testClientApplicationResource() {
-        let fixture = try! Fixture.load(fileName: "Fixtures/ClientApplication.json")
-        let parsed = Resource<ClientApplication>.parser(jsonObject: fixture)
-
-        XCTAssertNotNil(parsed)
-    }
-
-    func testClientApplicationResourceWithInvalidArray() {
-        let parsed = Resource<ClientApplication>.parser(jsonObject: [])
-
-        XCTAssertNil(parsed)
-    }
-
-    func testClientApplicationResourceWithInvalidDictionary() {
-        let parsed = Resource<ClientApplication>.parser(jsonObject: [:])
-
-        XCTAssertNil(parsed)
     }
 
     func testReportResource() {

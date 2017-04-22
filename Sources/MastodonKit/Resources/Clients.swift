@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Applications {
+public struct Clients {
     /// Registers an application.
     ///
     /// - Parameters:

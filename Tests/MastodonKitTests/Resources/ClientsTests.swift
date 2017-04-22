@@ -1,9 +1,9 @@
 import XCTest
 @testable import MastodonKit
 
-class ApplicationsTests: XCTestCase {
+class ClientsTests: XCTestCase {
     func testRegisterApplication() {
-        let resource = Applications.registerClient(name: "MastodonKitTestApplication", scopes: [])
+        let resource = Clients.registerClient(name: "MastodonKitTestApplication", scopes: [])
 
         let expectedClientName = URLQueryItem(name: "client_name", value: "MastodonKitTestApplication")
         let expectedRedirectURI = URLQueryItem(name: "redirect_uris", value: "urn:ietf:wg:oauth:2.0:oob")
@@ -21,7 +21,7 @@ class ApplicationsTests: XCTestCase {
     }
 
     func testRegisterApplicationWithRedirectURI() {
-        let resource = Applications.registerClient(name: "MastodonKitTestApplication", redirectURI: "my-awesome-app://", scopes: [.read, .follow])
+        let resource = Clients.registerClient(name: "MastodonKitTestApplication", redirectURI: "my-awesome-app://", scopes: [.read, .follow])
 
         let expectedClientName = URLQueryItem(name: "client_name", value: "MastodonKitTestApplication")
         let expectedRedirectURI = URLQueryItem(name: "redirect_uris", value: "my-awesome-app://")
@@ -39,7 +39,7 @@ class ApplicationsTests: XCTestCase {
     }
 
     func testRegisterApplicationWithStatusAndWebsite() {
-        let resource = Applications.registerClient(name: "MastodonKitTestApplication", scopes: [.read, .write, .follow], website: "https://github.com/ornithocoder/MastodonKit")
+        let resource = Clients.registerClient(name: "MastodonKitTestApplication", scopes: [.read, .write, .follow], website: "https://github.com/ornithocoder/MastodonKit")
 
         let expectedClientName = URLQueryItem(name: "client_name", value: "MastodonKitTestApplication")
         let expectedRedirectURI = URLQueryItem(name: "redirect_uris", value: "urn:ietf:wg:oauth:2.0:oob")

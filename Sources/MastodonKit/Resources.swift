@@ -3,6 +3,7 @@ import Foundation
 public typealias AccountResource = Resource<Account>
 public typealias AccountsResource = Resource<[Account]>
 public typealias CardResource = Resource<Card>
+public typealias ClientApplicationResource = Resource<ClientApplication>
 public typealias ContextResource = Resource<Context>
 public typealias InstanceResource = Resource<Instance>
 public typealias LoginSettingsResource = Resource<LoginSettings>
@@ -10,7 +11,6 @@ public typealias NotificationResource = Resource<Notification>
 public typealias NotificationsResource = Resource<[Notification]>
 public typealias RelationshipResource = Resource<Relationship>
 public typealias RelationshipsResource = Resource<[Relationship]>
-public typealias ClientApplicationResource = Resource<ClientApplication>
 public typealias ReportResource = Resource<Report>
 public typealias ReportsResource = Resource<[Report]>
 public typealias ResultsResource = Resource<Results>
