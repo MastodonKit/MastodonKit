@@ -28,3 +28,8 @@ func toQueryItem(key: String, value: String?) -> URLQueryItem? {
 func toURL(string: String) -> URL? {
     return URL(string: string)
 }
+
+func toOptionalString<A>(optional: A?) -> String? {
+    guard let value = optional else { return nil }
+    return String(describing: value)
+}

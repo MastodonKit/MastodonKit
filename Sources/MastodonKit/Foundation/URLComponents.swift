@@ -5,9 +5,6 @@ extension URLComponents {
         self.init(string: baseURL)!
 
         path = resource.path
-
-        if let parameters = resource.parameters {
-            queryItems = parameters
-        }
+        queryItems = resource.parameters
     }
 }
