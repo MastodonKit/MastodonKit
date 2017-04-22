@@ -1,5 +1,11 @@
 import Foundation
 
+// MARK: - Map
+
+func toString(scope: AccessScope) -> String {
+    return scope.rawValue
+}
+
 // MARK: - Flat-map
 
 func toQueryItem(key: String, value: String?) -> URLQueryItem? {
@@ -7,6 +13,14 @@ func toQueryItem(key: String, value: String?) -> URLQueryItem? {
     return URLQueryItem(name: key, value: value)
 }
 
-func toString(scope: AccessScope) -> String {
-    return scope.rawValue
+func toString(any: Any) -> String? {
+    return any as? String
+}
+
+func toJSONDictionary(any: Any) -> JSONDictionary? {
+    return any as? JSONDictionary
+}
+
+func toURL(string: String) -> URL? {
+    return URL(string: string)
 }

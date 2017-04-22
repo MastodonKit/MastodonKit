@@ -25,8 +25,6 @@ extension Card {
         self.url = url
         self.title = title
         self.description = description
-
-        let imageURLString = json["image"] as? String
-        self.image = imageURLString != nil ? URL(string: imageURLString!) : nil
+        self.image = json["image"].flatMap(toString).flatMap(toURL)
     }
 }

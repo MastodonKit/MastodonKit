@@ -79,10 +79,7 @@ extension Status {
         self.sensitive = json["sensitive"] as? Bool
         self.spoilerText = spoilerText
         self.visibility = Visibility(string: visibilityString)
-
-        let applicationDictionary = json["application"] as? JSONDictionary
-        self.application = applicationDictionary != nil ? Application(json: applicationDictionary!) : nil
-
+        self.application = json["application"].flatMap(toJSONDictionary).flatMap(Application.init)
         self.mediaAttachments = attachmentsArray.flatMap(Attachment.init)
         self.mentions = mentionsArray.flatMap(Mention.init)
         self.tags = tagsArray.flatMap(Tag.init)
