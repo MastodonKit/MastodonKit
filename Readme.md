@@ -1,6 +1,6 @@
 # MastodonKit [![Build Status](https://travis-ci.org/ornithocoder/MastodonKit.svg?branch=master)](https://travis-ci.org/ornithocoder/MastodonKit) [![Code Coverage](http://codecov.io/github/ornithocoder/MastodonKit/branch/master/graphs/badge.svg)](http://codecov.io/github/ornithocoder/MastodonKit)
 
-MastodonKit is a Swift Framework that wraps the Mastodon API. Its goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
+MastodonKit is a Swift Framework built using Swift Package Manager that wraps the Mastodon API. Its goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
 
 ## Table of content
 
@@ -42,7 +42,7 @@ $ open MastodonKit.xcodeproj
 
 ## Initializing the client
 
-Assuming that you already have an access token for a user on the given Mastodon instance:
+Assuming you already have an access token for a user on the given Mastodon instance:
 
 ```swift
 let client = Client(
@@ -51,7 +51,7 @@ let client = Client(
 )
 ```
 
-If you need to get an access token, you must first register the application against the given Mastodon instance. Registering an application returns the Client ID and Client Secret needed to perform the OAuth call. Remember to store the Client ID and Client Secret locally in your application for future OAuth logins:
+Shall you need to get an access token, you must first register the application against the given Mastodon instance. Registering an application returns the Client ID and Client Secret needed to perform the OAuth call. Remember to store the Client ID and Client Secret locally in your application for future OAuth logins:
 
 ```swift
 let client = Client(baseURL: "https://mastodon.technology")
@@ -78,11 +78,11 @@ After retrieving the access token (via standard OAuth 2 authorization flow), upd
 client.accessToken = "user access token (after OAuth login)"
 ```
 
-**Side note**: Mastodon's API and MastodonKit offer a way to silently log a user in, but the method is discouraged since the [API documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Testing-with-cURL.md) recommends using the standard OAuth 2 authorization flow.
+**Side note**: Mastodon's API and MastodonKit offer a way to silently log a user in, but the method is discouraged. The [API documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Testing-with-cURL.md) recommends using the standard OAuth 2 authorization flow instead.
 
 > _"Please note that the password-based approach is not recommended especially if you're dealing with other user's accounts and not just your own. Usually you would use the authorization grant approach where you redirect the user to a web page on the original site where they can login and authorize the application and are then redirected back to your application with an access code."_ - Mastodon's API Documentation
 
-In case you want to test it with your own account, here is how:
+But in case you want to test it with your own account, here is how:
 
 ```swift
 let loginResource = Login.silent(
@@ -99,7 +99,7 @@ client.run(loginResource) { loginSettings, error in
 }
 ```
 
-But bear in mind the method above should never be used when deadling with other user's accounts.
+Bear in mind the method above should never be used when deadling with other user's accounts.
 
 ## Making requests
 
@@ -127,13 +127,11 @@ client.run(resource) { status, error in
 
 ## List of resources
 
-Below a list of resources implemented by MastodonKit. All the methods are documented and their descriptions are available via option+click on Xcode:
-
-![documentation](https://cloud.githubusercontent.com/assets/19753339/25175832/83191756-24fc-11e7-9ca8-8f63e0c76b3c.png)
+Below a list of resources implemented by MastodonKit. All the methods are documented and their descriptions are available via option+click on Xcode.
 
 ### Accounts
 
-Fetches an account:
+Fetching an account:
 
 ```swift
 public struct Accounts {
@@ -141,7 +139,7 @@ public struct Accounts {
 }
 ```
 
-Gets the current user:
+Getting the current user:
 
 ```swift
 public struct Accounts {
@@ -149,7 +147,7 @@ public struct Accounts {
 }
 ```
 
-Gets an account's followers:
+Getting an account's followers:
 
 ```swift
 public struct Accounts {
@@ -157,7 +155,7 @@ public struct Accounts {
 }
 ```
 
-Gets who account is following:
+Getting who account is following:
 
 ```swift
 public struct Accounts {
@@ -165,7 +163,7 @@ public struct Accounts {
 }
 ```
 
-Gets an account's statuses:
+Getting an account's statuses:
 
 ```swift
 public struct Accounts {
@@ -173,7 +171,7 @@ public struct Accounts {
 }
 ```
 
-Follows an account:
+Following an account:
 
 ```swift
 public struct Accounts {
@@ -181,7 +179,7 @@ public struct Accounts {
 }
 ```
 
-Unfollow an account:
+Unfollowing an account:
 
 ```swift
 public struct Accounts {
@@ -189,7 +187,7 @@ public struct Accounts {
 }
 ```
 
-Blocks an account:
+Blocking an account:
 
 ```swift
 public struct Accounts {
@@ -197,7 +195,7 @@ public struct Accounts {
 }
 ```
 
-Unblocks an account:
+Unblocking an account:
 
 ```swift
 public struct Accounts {
@@ -205,7 +203,7 @@ public struct Accounts {
 }
 ```
 
-Mutes an account:
+Muting an account:
 
 ```swift
 public struct Accounts {
@@ -213,7 +211,7 @@ public struct Accounts {
 }
 ```
 
-Unmutes an account:
+Unmuting an account:
 
 ```swift
 public struct Accounts {
@@ -221,7 +219,7 @@ public struct Accounts {
 }
 ```
 
-Gets an account's relationships:
+Getting an account's relationships:
 
 ```swift
 public struct Accounts {
@@ -229,7 +227,7 @@ public struct Accounts {
 }
 ```
 
-Searches for accounts:
+Searching for accounts:
 
 ```swift
 public struct Accounts {
@@ -239,7 +237,7 @@ public struct Accounts {
 
 ### Clients
 
-Registers an application:
+Registering an application:
 
 ```swift
 public struct Clients {
@@ -252,7 +250,7 @@ public struct Clients {
 
 ### Blocks
 
-Fetches a user's blocks:
+Fetching a user's blocks:
 
 ```swift
 public struct Blocks {
@@ -262,7 +260,7 @@ public struct Blocks {
 
 ### Favourites
 
-Fetches a user's favourites:
+Fetching a user's favourites:
 
 ```swift
 public struct Favourites {
@@ -272,7 +270,7 @@ public struct Favourites {
 
 ### Follow Requests
 
-Fetches a list of follow requests:
+Fetching a list of follow requests:
 
 ```swift
 public struct FollowRequests {
@@ -280,7 +278,7 @@ public struct FollowRequests {
 }
 ```
 
-Authorizes a follow request:
+Authorizing a follow request:
 
 ```swift
 public struct FollowRequests {
@@ -288,7 +286,7 @@ public struct FollowRequests {
 }
 ```
 
-Rejects a follow request:
+Rejecting a follow request:
 
 ```swift
 public struct FollowRequests {
@@ -298,7 +296,7 @@ public struct FollowRequests {
 
 ### Instances
 
-Gets instance information:
+Getting instance information:
 
 ```swift
 public struct Instances {
@@ -308,7 +306,7 @@ public struct Instances {
 
 ### Mute
 
-Fetches a user's mute:
+Fetching a user's mute:
 
 ```swift
 public struct Mutes {
@@ -318,7 +316,7 @@ public struct Mutes {
 
 ### Notifications
 
-Fetches a user's notifications:
+Fetching a user's notifications:
 
 ```swift
 public struct Notifications {
@@ -326,7 +324,7 @@ public struct Notifications {
 }
 ```
 
-Gets a single notification:
+Getting a single notification:
 
 ```swift
 public struct Notifications {
@@ -336,7 +334,7 @@ public struct Notifications {
 
 ### Reports
 
-Fetches a user's reports:
+Fetching a user's reports:
 
 ```swift
 public struct Reports {
@@ -344,7 +342,7 @@ public struct Reports {
 }
 ```
 
-Reports a user:
+Reporting a user:
 
 ```swift
 public struct Reports {
@@ -354,7 +352,7 @@ public struct Reports {
 
 ### Search
 
-Searches for content:
+Searching for content:
 
 ```swift
 public struct Search {
@@ -364,7 +362,7 @@ public struct Search {
 
 ### Statuses
 
-Fetches a status:
+Fetching a status:
 
 ```swift
 public struct Statuses {
@@ -372,7 +370,7 @@ public struct Statuses {
 }
 ```
 
-Gets a status context:
+Getting a status context:
 
 ```swift
 public struct Statuses {
@@ -380,7 +378,7 @@ public struct Statuses {
 }
 ```
 
-Gets a card associated with a status:
+Getting a card associated with a status:
 
 ```swift
 public struct Statuses {
@@ -388,7 +386,7 @@ public struct Statuses {
 }
 ```
 
-Gets who reblogged a status:
+Getting who reblogged a status:
 
 ```swift
 public struct Statuses {
@@ -396,7 +394,7 @@ public struct Statuses {
 }
 ```
 
-Gets who favourited a status:
+Getting who favourited a status:
 
 ```swift
 public struct Statuses {
@@ -404,7 +402,7 @@ public struct Statuses {
 }
 ```
 
-Posts a new status:
+Posting a new status:
 
 ```swift
 public struct Statuses {
@@ -416,7 +414,7 @@ public struct Statuses {
 }
 ```
 
-Deletes a status:
+Deleting a status:
 
 ```swift
 public struct Statuses {
@@ -424,7 +422,7 @@ public struct Statuses {
 }
 ```
 
-Reblogs a status:
+Reblogging a status:
 
 ```swift
 public struct Statuses {
@@ -432,7 +430,7 @@ public struct Statuses {
 }
 ```
 
-Unreblogs a status:
+Unreblogging a status:
 
 ```swift
 public struct Statuses {
@@ -440,7 +438,7 @@ public struct Statuses {
 }
 ```
 
-Favourites a status:
+Favouriting a status:
 
 ```swift
 public struct Statuses {
@@ -448,7 +446,7 @@ public struct Statuses {
 }
 ```
 
-Unfavourites a status:
+Unfavouriting a status:
 
 ```swift
 public struct Statuses {
@@ -458,7 +456,7 @@ public struct Statuses {
 
 ### Timelines
 
-Retrieves the home timeline:
+Retrieving the home timeline:
 
 ```swift
 public struct Timelines {
@@ -466,7 +464,7 @@ public struct Timelines {
 }
 ```
 
-Retrieves the public timeline:
+Retrieving the public timeline:
 
 ```swift
 public struct Timelines {
@@ -474,7 +472,7 @@ public struct Timelines {
 }
 ```
 
-Retrieves a tag timeline:
+Retrieving a tag timeline:
 
 ```swift
 public struct Timelines {
