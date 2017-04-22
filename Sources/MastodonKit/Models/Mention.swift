@@ -9,9 +9,9 @@ public struct Mention {
     public let acct: String
     /// URL of user's profile (can be remote).
     public let url: String
+}
 
-    // MARK: - Private
-
+extension Mention {
     init?(json: JSONDictionary) {
         guard
             let id = json["id"] as? Int,

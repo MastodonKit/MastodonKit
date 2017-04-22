@@ -29,8 +29,8 @@ public struct Status {
     public let sensitive: Bool?
     /// If not empty, warning text that should be displayed before the actual content.
     public let spoilerText: String
-    /// The visibility type of the status.
-    public let visibility: VisibilityType
+    /// The visibility of the status.
+    public let visibility: Visibility
     /// An array of attachments.
     public let mediaAttachments: [Attachment]
     /// An array of mentions.
@@ -39,9 +39,9 @@ public struct Status {
     public let tags: [Tag]
     /// Application from which the status was posted.
     public let application: Application?
+}
 
-    // MARK: - Private
-
+extension Status {
     init?(json: JSONDictionary) {
         guard
             let id = json["id"] as? Int,
@@ -78,7 +78,7 @@ public struct Status {
         self.favourited = json["favourited"] as? Bool
         self.sensitive = json["sensitive"] as? Bool
         self.spoilerText = spoilerText
-        self.visibility = VisibilityType(string: visibilityString)
+        self.visibility = Visibility(string: visibilityString)
 
         let applicationDictionary = json["application"] as? JSONDictionary
         self.application = applicationDictionary != nil ? Application(json: applicationDictionary!) : nil

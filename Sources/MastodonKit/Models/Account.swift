@@ -27,9 +27,9 @@ public struct Account {
     public let followingCount: Int
     /// The number of statuses the account has made.
     public let statusesCount: Int
+}
 
-    // MARK: - Private
-
+extension Account {
     init?(json: JSONDictionary) {
         guard
             let id = json["id"] as? Int,

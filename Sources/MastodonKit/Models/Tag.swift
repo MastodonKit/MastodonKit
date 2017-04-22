@@ -5,9 +5,9 @@ public struct Tag {
     public let name: String
     /// The URL of the hashtag.
     public let url: String
+}
 
-    // MARK: - Private
-
+extension Tag {
     init?(json: JSONDictionary) {
         guard
             let name = json["name"] as? String,

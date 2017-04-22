@@ -1,31 +1,18 @@
 import Foundation
 
-public enum AccessScope {
-    case read, write, follow
+public enum AccessScope: String {
+    case read = "read"
+    case write = "write"
+    case follow = "follow"
+}
 
-    // MARK: - Private
-
-    var stringValue: String {
-        switch self {
-        case .read:
-            return "read"
-        case .write:
-            return "write"
-        case .follow:
-            return "follow"
-        }
-    }
-
+extension AccessScope {
     init(string: String) {
         switch string {
-        case "read":
-            self = .read
-        case "write":
-            self = .write
-        case "follow":
-            self = .follow
-        default:
-            self = .read
+        case "read": self = .read
+        case "write": self = .write
+        case "follow": self = .follow
+        default: self = .read
         }
     }
 }

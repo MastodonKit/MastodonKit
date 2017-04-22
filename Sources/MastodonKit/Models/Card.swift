@@ -9,9 +9,9 @@ public struct Card {
     public let description: String
     /// The image associated with the card, if any.
     public let image: URL?
+}
 
-    // MARK: - Private
-
+extension Card {
     init?(json: JSONDictionary) {
         guard
             let urlString = json["url"] as? String,

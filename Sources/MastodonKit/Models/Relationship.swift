@@ -13,9 +13,9 @@ public struct Relationship {
     public let muting: Bool
     /// Whether the user has requested to follow the account.
     public let requested: Bool
+}
 
-    // MARK: - Private
-
+extension Relationship {
     init?(json: JSONDictionary) {
         guard
             let id = json["id"] as? Int,

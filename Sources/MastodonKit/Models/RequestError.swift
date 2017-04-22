@@ -1,15 +1,14 @@
 import Foundation
 
-public enum RequestError: Error {
-    case apiError(reason: String?)
+public struct MastodonError {
+    public let description: String
+}
 
-    // MARK: - Private
+extension MastodonError {
+    init(jsonObject: Any) {
+        let json = jsonObject as? JSONDictionary
+        let description = json?["error"] as? String
 
-    init(json: JSONDictionary) {
-        if let description = json["error"] as? String {
-            self = .apiError(reason: description)
-        } else {
-            self = .apiError(reason: nil)
-        }
+        self.description = description ?? ""
     }
 }

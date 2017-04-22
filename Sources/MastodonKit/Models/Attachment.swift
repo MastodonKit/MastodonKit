@@ -13,9 +13,9 @@ public struct Attachment {
     public let previewURL: String
     /// Shorter URL for the image, for insertion into text (only present on local images).
     public let textURL: String
+}
 
-    // MARK: - Private
-
+extension Attachment {
     init?(json: JSONDictionary) {
         guard
             let id = json["id"] as? Int,

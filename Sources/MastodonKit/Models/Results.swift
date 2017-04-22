@@ -7,9 +7,9 @@ public struct Results {
     public let statuses: [Status]?
     /// An array of matched hashtags, as strings.
     public let hashtags: [String]?
+}
 
-    // MARK: - Private
-
+extension Results {
     init?(json: JSONDictionary) {
         let accountsArray = json["accounts"] as? [JSONDictionary]
         self.accounts = accountsArray?.flatMap(Account.init)

@@ -1,6 +1,8 @@
-# MastodonKit [![Build Status](https://travis-ci.org/ornithocoder/MastodonKit.svg?branch=master)](https://travis-ci.org/ornithocoder/MastodonKit)
+# MastodonKit [![Build Status](https://travis-ci.org/ornithocoder/MastodonKit.svg?branch=master)](https://travis-ci.org/ornithocoder/MastodonKit) [![Code Coverage](http://codecov.io/github/ornithocoder/MastodonKit/branch/master/graphs/badge.svg)](http://codecov.io/github/ornithocoder/MastodonKit)
 
-MastodonKit is a Swift Framework that wraps the Mastodon API. Currently, it's a _work in progress_ but the goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
+MastodonKit is a Swift Framework that wraps the Mastodon API. Its goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
+
+## Table of content
 
 - [Building from source](#building-from-source)
 - [Initializing the client](#initializing-the-client)
@@ -20,7 +22,7 @@ MastodonKit is a Swift Framework that wraps the Mastodon API. Currently, it's a 
     - [Timelines](#timelines)
 - [License](#license)
 
-## Building from source
+## Building it from source
 
 MastodonKit uses the Swift Package Manager and can be built and tested using the following commands:
 
@@ -43,7 +45,7 @@ $ open MastodonKit.xcodeproj
 Assuming that you already have an access token for a user on the given Mastodon instance:
 
 ```swift
-let client = MastodonClient(
+let client = Client(
     baseURL: "https://mastodon.technology",
     accessToken: "user access token (after OAuth login)"
 )
@@ -52,7 +54,7 @@ let client = MastodonClient(
 If you need to get an access token, you must first register the application against the given Mastodon instance. Registering an application returns the Client ID and Client Secret needed to perform the OAuth call. Remember to store the Client ID and Client Secret locally in your application for future OAuth logins:
 
 ```swift
-let client = MastodonClient(baseURL: "https://mastodon.technology")
+let client = Client(baseURL: "https://mastodon.technology")
 
 let resource = Applications.registerClient(
     name: "MastodonKit Test Client",
@@ -60,7 +62,7 @@ let resource = Applications.registerClient(
     website: "https://github.com/ornithocoder/MastodonKit"
 )
 
-client.run(resource) { application in
+client.run(resource) { application, error in
     if let application = application {
         print("id: \(application.id)")
         print("redirect uri: \(application.redirectURI)")
@@ -90,14 +92,14 @@ let loginResource = Login.silent(
     username: "foo",
     password: "bar")
 
-client.run(loginResource) { loginSettings in
+client.run(loginResource) { loginSettings, error in
     if let loginSettings = loginSettings {
         print("access token: \(loginSettings.accessToken)")
     }
 }
 ```
 
-But keep in mind the method above should not be used when deadling with other user's accounts.
+But bear in mind the method above should never be used when deadling with other user's accounts.
 
 ## Making requests
 
@@ -108,7 +110,7 @@ Getting the home timeline:
 ```swift
 let resource = Timelines.home()
 
-client.run(resource) { statuses in
+client.run(resource) { statuses, error in
     // do something with 'statuses'
 }
 ```
@@ -118,12 +120,16 @@ Posting a new status:
 ```swift
 let resource = Statuses.create("Mastodon's API is awesome!")
 
-client.run(resource) { status in
+client.run(resource) { status, error in
     // do something with 'status'
 }
 ```
 
 ## List of resources
+
+Below a list of resources implemented by MastodonKit. All the methods are documented and their descriptions are available via option+click on Xcode:
+
+![documentation](https://cloud.githubusercontent.com/assets/19753339/25175832/83191756-24fc-11e7-9ca8-8f63e0c76b3c.png)
 
 ### Accounts
 
