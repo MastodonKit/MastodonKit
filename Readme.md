@@ -56,8 +56,8 @@ If you need to get an access token, you must first register the application agai
 ```swift
 let client = Client(baseURL: "https://mastodon.technology")
 
-let resource = Clients.registerClient(
-    name: "MastodonKit Test Client",
+let resource = Clients.register(
+    clientName: "MastodonKit Test Client",
     scopes: [.read, .write, .follow],
     website: "https://github.com/ornithocoder/MastodonKit"
 )
@@ -243,10 +243,10 @@ Registers an application:
 
 ```swift
 public struct Clients {
-    public static func registerClient(name: String,
-                                      redirectURI: String = default,
-                                      scopes: [AccessScope],
-                                      website: String? = default) -> RegisteredApplicationResource
+    public static func register(clietName: String,
+                                redirectURI: String = default,
+                                scopes: [AccessScope],
+                                website: String? = default) -> RegisteredApplicationResource
 }
 ```
 

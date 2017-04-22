@@ -9,9 +9,9 @@ public struct Clients {
     ///   - scopes: Application's access scopes.
     ///   - website: URL to the homepage of your app.
     /// - Returns: Resource for `ClientApplication`.
-    public static func registerClient(name: String, redirectURI: String = "urn:ietf:wg:oauth:2.0:oob", scopes: [AccessScope], website: String? = nil) -> ClientApplicationResource {
+    public static func register(clientName: String, redirectURI: String = "urn:ietf:wg:oauth:2.0:oob", scopes: [AccessScope], website: String? = nil) -> ClientApplicationResource {
         let dictionary: [String : String?] = [
-            "client_name": name,
+            "client_name": clientName,
             "redirect_uris": redirectURI,
             "website": website,
             "scopes": scopes.map(toString).joined(separator: "+")
