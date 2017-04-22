@@ -8,17 +8,21 @@ func toString(scope: AccessScope) -> String {
 
 // MARK: - Flat-map
 
-func toQueryItem(key: String, value: String?) -> URLQueryItem? {
-    guard let value = value else { return nil }
-    return URLQueryItem(name: key, value: value)
-}
-
-func toString(any: Any) -> String? {
+func asString(any: Any) -> String? {
     return any as? String
 }
 
-func toJSONDictionary(any: Any) -> JSONDictionary? {
+func asJSONDictionary(any: Any) -> JSONDictionary? {
     return any as? JSONDictionary
+}
+
+func asJSONDictionaries(any: Any) -> [JSONDictionary]? {
+    return any as? [JSONDictionary]
+}
+
+func toQueryItem(key: String, value: String?) -> URLQueryItem? {
+    guard let value = value else { return nil }
+    return URLQueryItem(name: key, value: value)
 }
 
 func toURL(string: String) -> URL? {

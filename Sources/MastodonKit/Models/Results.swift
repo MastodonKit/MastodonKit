@@ -11,12 +11,8 @@ public struct Results {
 
 extension Results {
     init?(json: JSONDictionary) {
-        let accountsArray = json["accounts"] as? [JSONDictionary]
-        self.accounts = accountsArray?.flatMap(Account.init)
-
-        let statusesArray = json["statuses"] as? [JSONDictionary]
-        self.statuses = statusesArray?.flatMap(Status.init)
-
+        self.accounts = json["accounts"].flatMap(asJSONDictionaries)?.flatMap(Account.init)
+        self.statuses = json["statuses"].flatMap(asJSONDictionaries)?.flatMap(Status.init)
         self.hashtags = json["hashtags"] as? [String]
     }
 }

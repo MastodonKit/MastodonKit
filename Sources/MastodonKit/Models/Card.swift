@@ -25,6 +25,6 @@ extension Card {
         self.url = url
         self.title = title
         self.description = description
-        self.image = json["image"].flatMap(toString).flatMap(toURL)
+        self.image = json["image"].flatMap(asString).flatMap(toURL)
     }
 }

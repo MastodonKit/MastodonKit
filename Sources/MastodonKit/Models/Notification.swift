@@ -30,6 +30,6 @@ extension Notification {
         self.type = NotificationType(string: typeString)
         self.createdAt = createdAt
         self.account = account
-        self.status = json["status"].flatMap(toJSONDictionary).flatMap(Status.init)
+        self.status = json["status"].flatMap(asJSONDictionary).flatMap(Status.init)
     }
 }
