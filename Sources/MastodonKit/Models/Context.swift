@@ -5,9 +5,9 @@ public struct Context {
     public let ancestors: [Status]
     /// The descendants of the status in the conversation, as a list of statuses.
     public let descendants: [Status]
+}
 
-    // MARK: - Private
-
+extension Context {
     init?(json: JSONDictionary) {
         guard
             let ancestorsArray = json["ancestors"] as? [JSONDictionary],

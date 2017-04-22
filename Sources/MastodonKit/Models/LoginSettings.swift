@@ -5,9 +5,9 @@ public struct LoginSettings {
     public let accessTokenType: String
     public let scope: AccessScope
     public let createdAt: TimeInterval
+}
 
-    // MARK: - Private
-
+extension LoginSettings {
     init?(json: JSONDictionary) {
         guard
             let accessToken = json["access_token"] as? String,

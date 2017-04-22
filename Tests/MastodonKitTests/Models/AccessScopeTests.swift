@@ -6,27 +6,27 @@ class AccessScopeTests: XCTestCase {
         let type = AccessScope(string: "read")
 
         XCTAssertEqual(type, AccessScope.read)
-        XCTAssertEqual(type.stringValue, "read")
+        XCTAssertEqual(type.rawValue, "read")
     }
 
     func testWrite() {
         let type = AccessScope(string: "write")
 
         XCTAssertEqual(type, AccessScope.write)
-        XCTAssertEqual(type.stringValue, "write")
+        XCTAssertEqual(type.rawValue, "write")
     }
 
     func testFollow() {
         let type = AccessScope(string: "follow")
 
         XCTAssertEqual(type, AccessScope.follow)
-        XCTAssertEqual(type.stringValue, "follow")
+        XCTAssertEqual(type.rawValue, "follow")
     }
 
     func testInvalidType() {
         let type = AccessScope(string: "foobar")
 
         XCTAssertEqual(type, AccessScope.read)
-        XCTAssertEqual(type.stringValue, "read")
+        XCTAssertEqual(type.rawValue, "read")
     }
 }

@@ -5,9 +5,9 @@ public struct Application {
     public let name: String
     /// Homepage URL of the app.
     public let website: String?
+}
 
-    // MARK: - Private
-
+extension Application {
     init?(json: JSONDictionary) {
         guard
             let name = json["name"] as? String

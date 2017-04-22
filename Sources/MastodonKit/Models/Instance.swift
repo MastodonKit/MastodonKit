@@ -9,9 +9,9 @@ public struct Instance {
     public let description: String
     /// An email address which can be used to contact the instance administrator.
     public let email: String
+}
 
-    // MARK: - Private
-
+extension Instance {
     init?(json: JSONDictionary) {
         guard
             let uri = json["uri"] as? String,

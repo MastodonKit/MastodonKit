@@ -8,5 +8,5 @@ func toQueryItem(key: String, value: String?) -> URLQueryItem? {
 }
 
 func toString(scope: AccessScope) -> String {
-    return scope.stringValue
+    return scope.rawValue
 }

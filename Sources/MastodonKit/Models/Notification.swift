@@ -11,9 +11,9 @@ public struct Notification {
     public let account: Account
     /// The Status associated with the notification, if applicable.
     public let status: Status?
+}
 
-    // MARK: - Private
-
+extension Notification {
     init?(json: JSONDictionary) {
         guard
             let id = json["id"] as? Int,
