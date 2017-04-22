@@ -4,7 +4,7 @@ MastodonKit is a Swift Framework that wraps the Mastodon API. Its goal is to cov
 
 ## Table of content
 
-- [Building from source](#building-from-source)
+- [Building from source](#building-it-from-source)
 - [Initializing the client](#initializing-the-client)
 - [Making requests](#making-requests)
 - [List of resources](#list-of-resources)
