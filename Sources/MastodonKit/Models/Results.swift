@@ -10,9 +10,9 @@ public struct Results {
 }
 
 extension Results {
-    init?(json: JSONDictionary) {
-        self.accounts = json["accounts"].flatMap(asJSONDictionaries)?.flatMap(Account.init)
-        self.statuses = json["statuses"].flatMap(asJSONDictionaries)?.flatMap(Status.init)
-        self.hashtags = json["hashtags"] as? [String]
+    init?(from dictionary: JSONDictionary) {
+        self.accounts = dictionary["accounts"].flatMap(asJSONDictionaries)?.flatMap(Account.init)
+        self.statuses = dictionary["statuses"].flatMap(asJSONDictionaries)?.flatMap(Status.init)
+        self.hashtags = dictionary["hashtags"] as? [String]
     }
 }

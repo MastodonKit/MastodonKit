@@ -8,14 +8,14 @@ public struct Application {
 }
 
 extension Application {
-    init?(json: JSONDictionary) {
+    init?(from dictionary: JSONDictionary) {
         guard
-            let name = json["name"] as? String
+            let name = dictionary["name"] as? String
             else {
                 return nil
         }
 
         self.name = name
-        self.website = json["website"] as? String
+        self.website = dictionary["website"] as? String
     }
 }

@@ -5,7 +5,7 @@ class RelationshipTests: XCTestCase {
     func testRelationshipFromJSON() {
         let fixture = try? Fixture.load(fileName: "Fixtures/Relationship.json")
         let dictionary = fixture as! JSONDictionary
-        let relationship = Relationship(json: dictionary)
+        let relationship = Relationship(from: dictionary)
 
         XCTAssertEqual(relationship?.id, 42)
         XCTAssertFalse((relationship?.following)!)

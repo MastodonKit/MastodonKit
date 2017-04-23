@@ -12,12 +12,12 @@ public struct Card {
 }
 
 extension Card {
-    init?(json: JSONDictionary) {
+    init?(from dictionary: JSONDictionary) {
         guard
-            let urlString = json["url"] as? String,
+            let urlString = dictionary["url"] as? String,
             let url = URL(string: urlString),
-            let title = json["title"] as? String,
-            let description = json["description"] as? String
+            let title = dictionary["title"] as? String,
+            let description = dictionary["description"] as? String
             else {
                 return nil
         }
@@ -25,6 +25,6 @@ extension Card {
         self.url = url
         self.title = title
         self.description = description
-        self.image = json["image"].flatMap(asString).flatMap(toURL)
+        self.image = dictionary["image"].flatMap(asString).flatMap(toURL)
     }
 }

@@ -5,7 +5,7 @@ class ResultsTests: XCTestCase {
     func testResultsWithNullFromJSON() {
         let resultsFixture = try? Fixture.load(fileName: "Fixtures/ResultsWithNull.json")
         let dictionary = resultsFixture as! JSONDictionary
-        let results = Results(json: dictionary)
+        let results = Results(from: dictionary)
 
         XCTAssertNil(results?.accounts)
         XCTAssertNil(results?.hashtags)
@@ -15,7 +15,7 @@ class ResultsTests: XCTestCase {
     func testResultsWithoutNullFromJSON() {
         let resultsFixture = try? Fixture.load(fileName: "Fixtures/ResultsWithoutNull.json")
         let dictionary = resultsFixture as! JSONDictionary
-        let results = Results(json: dictionary)
+        let results = Results(from: dictionary)
 
         XCTAssertEqual(results?.accounts?.count, 1)
         XCTAssertEqual(results?.statuses?.count, 1)

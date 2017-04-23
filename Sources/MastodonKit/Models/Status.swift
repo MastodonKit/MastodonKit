@@ -42,24 +42,24 @@ public struct Status {
 }
 
 extension Status {
-    init?(json: JSONDictionary) {
+    init?(from dictionary: JSONDictionary) {
         guard
-            let id = json["id"] as? Int,
-            let uri = json["uri"] as? String,
-            let urlString = json["url"] as? String,
+            let id = dictionary["id"] as? Int,
+            let uri = dictionary["uri"] as? String,
+            let urlString = dictionary["url"] as? String,
             let url = URL(string: urlString),
-            let accountDictionary = json["account"] as? JSONDictionary,
-            let account = Account(json: accountDictionary),
-            let content = json["content"] as? String,
-            let createdAtString = json["created_at"] as? String,
+            let accountDictionary = dictionary["account"] as? JSONDictionary,
+            let account = Account(from: accountDictionary),
+            let content = dictionary["content"] as? String,
+            let createdAtString = dictionary["created_at"] as? String,
             let createdAt = DateFormatter.mastodonFormatter.date(from: createdAtString),
-            let reblogsCount = json["reblogs_count"] as? Int,
-            let favouritesCount = json["favourites_count"] as? Int,
-            let spoilerText = json["spoiler_text"] as? String,
-            let visibilityString = json["visibility"] as? String,
-            let attachmentsArray = json["media_attachments"] as? [JSONDictionary],
-            let mentionsArray = json["mentions"] as? [JSONDictionary],
-            let tagsArray = json["tags"] as? [JSONDictionary]
+            let reblogsCount = dictionary["reblogs_count"] as? Int,
+            let favouritesCount = dictionary["favourites_count"] as? Int,
+            let spoilerText = dictionary["spoiler_text"] as? String,
+            let visibilityString = dictionary["visibility"] as? String,
+            let attachmentsArray = dictionary["media_attachments"] as? [JSONDictionary],
+            let mentionsArray = dictionary["mentions"] as? [JSONDictionary],
+            let tagsArray = dictionary["tags"] as? [JSONDictionary]
             else {
                 return nil
         }
@@ -68,18 +68,18 @@ extension Status {
         self.uri = uri
         self.url = url
         self.account = account
-        self.inReplyToID = json["in_reply_to_id"] as? Int
-        self.inReplyToAccountID = json["in_reply_to_account_id"] as? Int
+        self.inReplyToID = dictionary["in_reply_to_id"] as? Int
+        self.inReplyToAccountID = dictionary["in_reply_to_account_id"] as? Int
         self.content = content
         self.createdAt = createdAt
         self.reblogsCount = reblogsCount
         self.favouritesCount = favouritesCount
-        self.reblogged = json["reblogged"] as? Bool
-        self.favourited = json["favourited"] as? Bool
-        self.sensitive = json["sensitive"] as? Bool
+        self.reblogged = dictionary["reblogged"] as? Bool
+        self.favourited = dictionary["favourited"] as? Bool
+        self.sensitive = dictionary["sensitive"] as? Bool
         self.spoilerText = spoilerText
         self.visibility = Visibility(string: visibilityString)
-        self.application = json["application"].flatMap(asJSONDictionary).flatMap(Application.init)
+        self.application = dictionary["application"].flatMap(asJSONDictionary).flatMap(Application.init)
         self.mediaAttachments = attachmentsArray.flatMap(Attachment.init)
         self.mentions = mentionsArray.flatMap(Mention.init)
         self.tags = tagsArray.flatMap(Tag.init)

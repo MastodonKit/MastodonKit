@@ -12,12 +12,12 @@ public struct Instance {
 }
 
 extension Instance {
-    init?(json: JSONDictionary) {
+    init?(from dictionary: JSONDictionary) {
         guard
-            let uri = json["uri"] as? String,
-            let title = json["title"] as? String,
-            let description = json["description"] as? String,
-            let email = json["email"] as? String
+            let uri = dictionary["uri"] as? String,
+            let title = dictionary["title"] as? String,
+            let description = dictionary["description"] as? String,
+            let email = dictionary["email"] as? String
             else {
                 return nil
         }

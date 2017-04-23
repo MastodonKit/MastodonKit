@@ -12,12 +12,12 @@ public struct Mention {
 }
 
 extension Mention {
-    init?(json: JSONDictionary) {
+    init?(from dictionary: JSONDictionary) {
         guard
-            let id = json["id"] as? Int,
-            let username = json["username"] as? String,
-            let acct = json["acct"] as? String,
-            let url = json["url"] as? String
+            let id = dictionary["id"] as? Int,
+            let username = dictionary["username"] as? String,
+            let acct = dictionary["acct"] as? String,
+            let url = dictionary["url"] as? String
             else {
                 return nil
         }

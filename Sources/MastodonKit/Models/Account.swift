@@ -30,22 +30,22 @@ public struct Account {
 }
 
 extension Account {
-    init?(json: JSONDictionary) {
+    init?(from dictionary: JSONDictionary) {
         guard
-            let id = json["id"] as? Int,
-            let username = json["username"] as? String,
-            let acct = json["acct"] as? String,
-            let displayName = json["display_name"] as? String,
-            let locked = json["locked"] as? Bool,
-            let createdAtString = json["created_at"] as? String,
+            let id = dictionary["id"] as? Int,
+            let username = dictionary["username"] as? String,
+            let acct = dictionary["acct"] as? String,
+            let displayName = dictionary["display_name"] as? String,
+            let locked = dictionary["locked"] as? Bool,
+            let createdAtString = dictionary["created_at"] as? String,
             let createdAt = DateFormatter.mastodonFormatter.date(from: createdAtString),
-            let note = json["note"] as? String,
-            let url = json["url"] as? String,
-            let avatar = json["avatar"] as? String,
-            let header = json["header"] as? String,
-            let followersCount = json["followers_count"] as? Int,
-            let followingCount = json["following_count"] as? Int,
-            let statusesCount = json["statuses_count"] as? Int
+            let note = dictionary["note"] as? String,
+            let url = dictionary["url"] as? String,
+            let avatar = dictionary["avatar"] as? String,
+            let header = dictionary["header"] as? String,
+            let followersCount = dictionary["followers_count"] as? Int,
+            let followingCount = dictionary["following_count"] as? Int,
+            let statusesCount = dictionary["statuses_count"] as? Int
             else {
                 return nil
         }

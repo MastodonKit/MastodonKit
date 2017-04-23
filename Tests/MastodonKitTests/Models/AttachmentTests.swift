@@ -5,7 +5,7 @@ class AttachmentTests: XCTestCase {
     func testAttachmentFromJSON() {
         let fixture = try? Fixture.load(fileName: "Fixtures/Attachment.json")
         let dictionary = fixture as! JSONDictionary
-        let attachment = Attachment(json: dictionary)
+        let attachment = Attachment(from: dictionary)
 
         XCTAssertEqual(attachment?.id, 42)
         XCTAssertEqual(attachment?.type, AttachmentType.image)
@@ -15,7 +15,7 @@ class AttachmentTests: XCTestCase {
     }
 
     func testAttachmentWithInvalidData() {
-        let attachment = Attachment(json: [:])
+        let attachment = Attachment(from: [:])
 
         XCTAssertNil(attachment)
     }

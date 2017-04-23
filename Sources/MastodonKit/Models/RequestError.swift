@@ -5,9 +5,9 @@ public struct MastodonError {
 }
 
 extension MastodonError {
-    init(jsonObject: Any) {
-        let json = jsonObject as? JSONDictionary
-        let description = json?["error"] as? String
+    init(json: JSONObject) {
+        let jsonDictionary = json as? JSONDictionary
+        let description = jsonDictionary?["error"] as? String
 
         self.description = description ?? ""
     }

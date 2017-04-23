@@ -5,7 +5,7 @@ class NotificationTests: XCTestCase {
     func testNotificationFromJSON() {
         let fixture = try? Fixture.load(fileName: "Fixtures/Notification.json")
         let dictionary = fixture as! JSONDictionary
-        let notification = Notification(json: dictionary)
+        let notification = Notification(from: dictionary)
 
         XCTAssertEqual(notification?.id, 42)
         XCTAssertEqual(notification?.type, NotificationType.favourite)

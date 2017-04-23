@@ -16,14 +16,14 @@ public struct Relationship {
 }
 
 extension Relationship {
-    init?(json: JSONDictionary) {
+    init?(from dictionary: JSONDictionary) {
         guard
-            let id = json["id"] as? Int,
-            let following = json["following"] as? Bool,
-            let followedBy = json["followed_by"] as? Bool,
-            let blocking = json["blocking"] as? Bool,
-            let muting = json["muting"] as? Bool,
-            let requested = json["requested"] as? Bool
+            let id = dictionary["id"] as? Int,
+            let following = dictionary["following"] as? Bool,
+            let followedBy = dictionary["followed_by"] as? Bool,
+            let blocking = dictionary["blocking"] as? Bool,
+            let muting = dictionary["muting"] as? Bool,
+            let requested = dictionary["requested"] as? Bool
             else {
                 return nil
         }

@@ -5,14 +5,14 @@ class TagTests: XCTestCase {
     func testTagFromJSON() {
         let fixture = try? Fixture.load(fileName: "Fixtures/Tag.json")
         let dictionary = fixture as! JSONDictionary
-        let tag = Tag(json: dictionary)
+        let tag = Tag(from: dictionary)
 
         XCTAssertEqual(tag?.name, "mastodon")
         XCTAssertEqual(tag?.url, "https://mastodon.technology/web/timelines/tag/mastodonkit")
     }
 
     func testTagWithInvalidData() {
-        let tag = Tag(json: [:])
+        let tag = Tag(from: [:])
 
         XCTAssertNil(tag)
     }

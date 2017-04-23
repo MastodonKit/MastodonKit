@@ -8,10 +8,10 @@ public struct Tag {
 }
 
 extension Tag {
-    init?(json: JSONDictionary) {
+    init?(from dictionary: JSONDictionary) {
         guard
-            let name = json["name"] as? String,
-            let url = json["url"] as? String
+            let name = dictionary["name"] as? String,
+            let url = dictionary["url"] as? String
             else {
                 return nil
         }

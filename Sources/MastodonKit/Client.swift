@@ -38,7 +38,7 @@ public final class Client {
                 let httpResponse = response as? HTTPURLResponse,
                 httpResponse.statusCode == 200
                 else {
-                    let mastodonError = MastodonError(jsonObject: jsonObject)
+                    let mastodonError = MastodonError(json: jsonObject)
                     completion(nil, ClientError.mastodonError(mastodonError.description))
                     return
             }

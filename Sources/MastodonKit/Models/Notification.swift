@@ -14,14 +14,14 @@ public struct Notification {
 }
 
 extension Notification {
-    init?(json: JSONDictionary) {
+    init?(from dictionary: JSONDictionary) {
         guard
-            let id = json["id"] as? Int,
-            let typeString = json["type"] as? String,
-            let createdAtString = json["created_at"] as? String,
+            let id = dictionary["id"] as? Int,
+            let typeString = dictionary["type"] as? String,
+            let createdAtString = dictionary["created_at"] as? String,
             let createdAt = DateFormatter.mastodonFormatter.date(from: createdAtString),
-            let accountDictionary = json["account"] as? JSONDictionary,
-            let account = Account(json: accountDictionary)
+            let accountDictionary = dictionary["account"] as? JSONDictionary,
+            let account = Account(from: accountDictionary)
             else {
                 return nil
         }
@@ -30,6 +30,6 @@ extension Notification {
         self.type = NotificationType(string: typeString)
         self.createdAt = createdAt
         self.account = account
-        self.status = json["status"].flatMap(asJSONDictionary).flatMap(Status.init)
+        self.status = dictionary["status"].flatMap(asJSONDictionary).flatMap(Status.init)
     }
 }

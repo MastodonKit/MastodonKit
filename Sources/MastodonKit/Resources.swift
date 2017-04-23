@@ -17,22 +17,23 @@ public typealias ResultsResource = Resource<Results>
 public typealias StatusResource = Resource<Status>
 public typealias TimelineResource = Resource<[Status]>
 
-typealias JSONDictionary = [String: Any]
+typealias JSONObject = Any
+typealias JSONDictionary = [String: JSONObject]
 
 // MARK: AccountResource
 
 extension Resource where Model == Account {
-    static func parser(jsonObject: Any) -> Account? {
-        guard let json = jsonObject as? JSONDictionary else { return nil }
-        return Account(json: json)
+    static func parser(json: JSONObject) -> Account? {
+        guard let dictionary = json as? JSONDictionary else { return nil }
+        return Account(from: dictionary)
     }
 }
 
 // MARK: AccountsResource
 
 extension Resource where Model == [Account] {
-    static func parser(jsonObject: Any) -> [Account] {
-        guard let array = jsonObject as? [JSONDictionary] else { return [] }
+    static func parser(json: JSONObject) -> [Account] {
+        guard let array = json as? [JSONDictionary] else { return [] }
         return array.flatMap(Account.init)
     }
 }
@@ -40,53 +41,53 @@ extension Resource where Model == [Account] {
 // MARK: CardResource
 
 extension Resource where Model == Card {
-    static func parser(jsonObject: Any) -> Card? {
-        guard let json = jsonObject as? JSONDictionary else { return nil }
-        return Card(json: json)
+    static func parser(json: JSONObject) -> Card? {
+        guard let dictionary = json as? JSONDictionary else { return nil }
+        return Card(from: dictionary)
     }
 }
 
 // MARK: ContextResource
 
 extension Resource where Model == Context {
-    static func parser(jsonObject: Any) -> Context? {
-        guard let json = jsonObject as? JSONDictionary else { return nil }
-        return Context(json: json)
+    static func parser(json: JSONObject) -> Context? {
+        guard let dictionary = json as? JSONDictionary else { return nil }
+        return Context(from: dictionary)
     }
 }
 
 // MARK: InstanceResource
 
 extension Resource where Model == Instance {
-    static func parser(jsonObject: Any) -> Instance? {
-        guard let json = jsonObject as? JSONDictionary else { return nil }
-        return Instance(json: json)
+    static func parser(json: JSONObject) -> Instance? {
+        guard let dictionary = json as? JSONDictionary else { return nil }
+        return Instance(from: dictionary)
     }
 }
 
 // MARK: LoginSettingsResource
 
 extension Resource where Model == LoginSettings {
-    static func parser(jsonObject: Any) -> LoginSettings? {
-        guard let json = jsonObject as? JSONDictionary else { return nil }
-        return LoginSettings(json: json)
+    static func parser(json: JSONObject) -> LoginSettings? {
+        guard let dictionary = json as? JSONDictionary else { return nil }
+        return LoginSettings(from: dictionary)
     }
 }
 
 // MARK:  NotificationResource
 
 extension Resource where Model == Notification {
-    static func parser(jsonObject: Any) -> Notification? {
-        guard let json = jsonObject as? JSONDictionary else { return nil }
-        return Notification(json: json)
+    static func parser(json: JSONObject) -> Notification? {
+        guard let dictionary = json as? JSONDictionary else { return nil }
+        return Notification(from: dictionary)
     }
 }
 
 // MARK:  NotificationsResource
 
 extension Resource where Model == [Notification] {
-    static func parser(jsonObject: Any) -> [Notification] {
-        guard let array = jsonObject as? [JSONDictionary] else { return [] }
+    static func parser(json: JSONObject) -> [Notification] {
+        guard let array = json as? [JSONDictionary] else { return [] }
         return array.flatMap(Notification.init)
     }
 }
@@ -94,17 +95,17 @@ extension Resource where Model == [Notification] {
 // MARK: RelationshipResource
 
 extension Resource where Model == Relationship {
-    static func parser(jsonObject: Any) -> Relationship? {
-        guard let json = jsonObject as? JSONDictionary else { return nil }
-        return Relationship(json: json)
+    static func parser(json: JSONObject) -> Relationship? {
+        guard let dictionary = json as? JSONDictionary else { return nil }
+        return Relationship(from: dictionary)
     }
 }
 
 // MARK: RelationshipsResource
 
 extension Resource where Model == [Relationship] {
-    static func parser(jsonObject: Any) -> [Relationship] {
-        guard let array = jsonObject as? [JSONDictionary] else { return [] }
+    static func parser(json: JSONObject) -> [Relationship] {
+        guard let array = json as? [JSONDictionary] else { return [] }
         return array.flatMap(Relationship.init)
     }
 }
@@ -112,26 +113,26 @@ extension Resource where Model == [Relationship] {
 // MARK: ClientApplicationResource
 
 extension Resource where Model == ClientApplication {
-    static func parser(jsonObject: Any) -> ClientApplication? {
-        guard let json = jsonObject as? JSONDictionary else { return nil }
-        return ClientApplication(json: json)
+    static func parser(json: JSONObject) -> ClientApplication? {
+        guard let dictionary = json as? JSONDictionary else { return nil }
+        return ClientApplication(from: dictionary)
     }
 }
 
 // MARK: ReportResource
 
 extension Resource where Model == Report {
-    static func parser(jsonObject: Any) -> Report? {
-        guard let json = jsonObject as? JSONDictionary else { return nil }
-        return Report(json: json)
+    static func parser(json: JSONObject) -> Report? {
+        guard let dictionary = json as? JSONDictionary else { return nil }
+        return Report(from: dictionary)
     }
 }
 
 // MARK: ReportsResource
 
 extension Resource where Model == [Report] {
-    static func parser(jsonObject: Any) -> [Report] {
-        guard let array = jsonObject as? [JSONDictionary] else { return [] }
+    static func parser(json: JSONObject) -> [Report] {
+        guard let array = json as? [JSONDictionary] else { return [] }
         return array.flatMap(Report.init)
     }
 }
@@ -139,26 +140,26 @@ extension Resource where Model == [Report] {
 // MARK: ResultsResource
 
 extension Resource where Model == Results {
-    static func parser(jsonObject: Any) -> Results? {
-        guard let json = jsonObject as? JSONDictionary else { return nil }
-        return Results(json: json)
+    static func parser(json: JSONObject) -> Results? {
+        guard let dictionary = json as? JSONDictionary else { return nil }
+        return Results(from: dictionary)
     }
 }
 
 // MARK: StatusResource
 
 extension Resource where Model == Status {
-    static func parser(jsonObject: Any) -> Status? {
-        guard let json = jsonObject as? JSONDictionary else { return nil }
-        return Status(json: json)
+    static func parser(json: JSONObject) -> Status? {
+        guard let dictionary = json as? JSONDictionary else { return nil }
+        return Status(from: dictionary)
     }
 }
 
 // MARK: TimelineResource
 
 extension Resource where Model == [Status] {
-    static func parser(jsonObject: Any) -> [Status] {
-        guard let array = jsonObject as? [JSONDictionary] else { return [] }
+    static func parser(json: JSONObject) -> [Status] {
+        guard let array = json as? [JSONDictionary] else { return [] }
         return array.flatMap(Status.init)
     }
 }

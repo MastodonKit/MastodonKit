@@ -8,10 +8,10 @@ public struct Report {
 }
 
 extension Report {
-    init?(json: JSONDictionary) {
+    init?(from dictionary: JSONDictionary) {
         guard
-            let id = json["id"] as? Int,
-            let actionTaken = json["action_taken"] as? String
+            let id = dictionary["id"] as? Int,
+            let actionTaken = dictionary["action_taken"] as? String
             else {
                 return nil
         }

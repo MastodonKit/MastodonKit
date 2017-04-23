@@ -8,10 +8,10 @@ public struct Context {
 }
 
 extension Context {
-    init?(json: JSONDictionary) {
+    init?(from dictionary: JSONDictionary) {
         guard
-            let ancestorsArray = json["ancestors"] as? [JSONDictionary],
-            let descendantsArray = json["descendants"] as? [JSONDictionary]
+            let ancestorsArray = dictionary["ancestors"] as? [JSONDictionary],
+            let descendantsArray = dictionary["descendants"] as? [JSONDictionary]
             else {
                 return nil
         }

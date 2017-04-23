@@ -16,13 +16,13 @@ public struct Attachment {
 }
 
 extension Attachment {
-    init?(json: JSONDictionary) {
+    init?(from dictionary: JSONDictionary) {
         guard
-            let id = json["id"] as? Int,
-            let typeString = json["type"] as? String,
-            let url = json["url"] as? String,
-            let previewURL = json["preview_url"] as? String,
-            let textURL = json["text_url"] as? String
+            let id = dictionary["id"] as? Int,
+            let typeString = dictionary["type"] as? String,
+            let url = dictionary["url"] as? String,
+            let previewURL = dictionary["preview_url"] as? String,
+            let textURL = dictionary["text_url"] as? String
             else {
                 return nil
         }
@@ -30,7 +30,7 @@ extension Attachment {
         self.id = id
         self.type = AttachmentType(string: typeString)
         self.url = url
-        self.remoteURL = json["remote_url"] as? String
+        self.remoteURL = dictionary["remote_url"] as? String
         self.previewURL = previewURL
         self.textURL = textURL
     }

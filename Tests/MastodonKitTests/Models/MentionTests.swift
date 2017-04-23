@@ -5,7 +5,7 @@ class MentionTests: XCTestCase {
     func testMentionFromJSON() {
         let fixture = try? Fixture.load(fileName: "Fixtures/Mention.json")
         let dictionary = fixture as! JSONDictionary
-        let mention = Mention(json: dictionary)
+        let mention = Mention(from: dictionary)
 
         XCTAssertEqual(mention?.id, 42)
         XCTAssertEqual(mention?.username, "ornithocoder")
@@ -14,7 +14,7 @@ class MentionTests: XCTestCase {
     }
 
     func testMentionWithInvalidData() {
-        let mention = Mention(json: [:])
+        let mention = Mention(from: [:])
 
         XCTAssertNil(mention)
     }

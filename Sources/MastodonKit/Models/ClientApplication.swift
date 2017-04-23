@@ -12,12 +12,12 @@ public struct ClientApplication {
 }
 
 extension ClientApplication {
-    init?(json: JSONDictionary) {
+    init?(from dictionary: JSONDictionary) {
         guard
-            let id = json["id"] as? Int,
-            let redirectURI = json["redirect_uri"] as? String,
-            let clientID = json["client_id"] as? String,
-            let clientSecret = json["client_secret"] as? String
+            let id = dictionary["id"] as? Int,
+            let redirectURI = dictionary["redirect_uri"] as? String,
+            let clientID = dictionary["client_id"] as? String,
+            let clientSecret = dictionary["client_secret"] as? String
             else {
                 return nil
         }

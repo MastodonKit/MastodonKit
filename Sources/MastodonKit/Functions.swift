@@ -8,16 +8,16 @@ func toString(scope: AccessScope) -> String {
 
 // MARK: - Flat-map
 
-func asString(any: Any) -> String? {
-    return any as? String
+func asString(json: JSONObject) -> String? {
+    return json as? String
 }
 
-func asJSONDictionary(any: Any) -> JSONDictionary? {
-    return any as? JSONDictionary
+func asJSONDictionary(json: JSONObject) -> JSONDictionary? {
+    return json as? JSONDictionary
 }
 
-func asJSONDictionaries(any: Any) -> [JSONDictionary]? {
-    return any as? [JSONDictionary]
+func asJSONDictionaries(json: JSONObject) -> [JSONDictionary]? {
+    return json as? [JSONDictionary]
 }
 
 func toQueryItem(key: String, value: String?) -> URLQueryItem? {

@@ -5,7 +5,7 @@ class StatusTests: XCTestCase {
     func testStatusWithNullFromJSON() {
         let statusFixture = try? Fixture.load(fileName: "Fixtures/StatusWithNull.json")
         let dictionary = statusFixture as! JSONDictionary
-        let status = Status(json: dictionary)
+        let status = Status(from: dictionary)
 
         XCTAssertEqual(status?.id, 1)
         XCTAssertEqual(status?.uri, "tag_uri")
@@ -31,7 +31,7 @@ class StatusTests: XCTestCase {
     func testStatusWithoutNullFromJSON() {
         let statusFixture = try? Fixture.load(fileName: "Fixtures/StatusWithoutNull.json")
         let dictionary = statusFixture as! JSONDictionary
-        let status = Status(json: dictionary)
+        let status = Status(from: dictionary)
 
         XCTAssertEqual(status?.id, 1)
         XCTAssertEqual(status?.uri, "tag_uri")

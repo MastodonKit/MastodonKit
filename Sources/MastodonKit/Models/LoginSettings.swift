@@ -8,12 +8,12 @@ public struct LoginSettings {
 }
 
 extension LoginSettings {
-    init?(json: JSONDictionary) {
+    init?(from dictionary: JSONDictionary) {
         guard
-            let accessToken = json["access_token"] as? String,
-            let accessTokenType = json["token_type"] as? String,
-            let accessScopeString = json["scope"] as? String,
-            let createdAt = json["created_at"] as? TimeInterval
+            let accessToken = dictionary["access_token"] as? String,
+            let accessTokenType = dictionary["token_type"] as? String,
+            let accessScopeString = dictionary["scope"] as? String,
+            let createdAt = dictionary["created_at"] as? TimeInterval
             else {
                 return nil
         }

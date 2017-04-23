@@ -5,7 +5,7 @@ class ClientApplicationTests: XCTestCase {
     func testClientApplicationFromJSON() {
         let fixture = try? Fixture.load(fileName: "Fixtures/ClientApplication.json")
         let dictionary = fixture as! JSONDictionary
-        let application = ClientApplication(json: dictionary)
+        let application = ClientApplication(from: dictionary)
 
         XCTAssertEqual(application?.id, 42)
         XCTAssertEqual(application?.redirectURI, "urn:ietf:wg:oauth:2.0:oob")
