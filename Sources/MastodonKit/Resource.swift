@@ -11,7 +11,7 @@ public struct Resource<Model> {
     let path: String
     let parameters: [URLQueryItem]?
     let httpMethod: HTTPMethod
-    let parse: (Any) -> Model?
+    let parse: (JSONObject) -> Model?
 
     init(path: String, parameters: [URLQueryItem]? = nil, method: HTTPMethod = .get, parse: @escaping (Any) -> Model?) {
         self.path = path
