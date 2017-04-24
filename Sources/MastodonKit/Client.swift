@@ -15,10 +15,7 @@ public final class Client {
 
         var request = URLRequest(url: components.url!, timeoutInterval: 30)
         request.httpMethod = resource.httpMethod.rawValue
-
-        if let accessToken = accessToken {
-            request.setValue("Bearer " + accessToken, forHTTPHeaderField: "Authorization")
-        }
+        request.setValue(accessToken.flatMap { "Bearer \($0)" }, forHTTPHeaderField: "Authorization")
 
         let task = session.dataTask(with: request) { data, response, error in
             if let error = error {

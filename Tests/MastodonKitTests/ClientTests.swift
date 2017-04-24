@@ -96,3 +96,32 @@ class ClientRunTests: XCTestCase {
         XCTAssertNil(passedError)
     }
 }
+
+class ClientRunWithoutAccessTokenTests: XCTestCase {
+    var client: Client?
+    var fakeSession: URLSessionFake?
+
+    override func setUp() {
+        super.setUp()
+
+        client = Client(baseURL: "https://my.mastodon.instance/")
+
+        fakeSession = URLSessionFake()
+        client?.session = fakeSession!
+
+        client?.run(Timelines.public()) { _, _ in }
+    }
+
+    func testCallsResume() {
+        XCTAssertTrue(fakeSession!.lastReturnedDataTask!.didCallResume)
+    }
+
+    func testPassedRequest() {
+        let request = fakeSession?.lastRequest
+
+        XCTAssertEqual(request?.url?.absoluteString, "https://my.mastodon.instance/api/v1/timelines/public")
+        XCTAssertEqual(request?.timeoutInterval, 30)
+        XCTAssertEqual(request?.httpMethod, "GET")
+        XCTAssertNil(request?.value(forHTTPHeaderField: "Authorization"))
+    }
+}
