@@ -1,7 +1,8 @@
 import Foundation
 
 struct MastodonError {
-    public let description: String
+    /// Reason why Mastodon returned an error.
+    let description: String
 }
 
 extension MastodonError {

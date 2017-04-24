@@ -1,9 +1,13 @@
 import Foundation
 
 public struct LoginSettings {
+    /// The user's access token.
     public let accessToken: String
+    /// Access token type.
     public let accessTokenType: String
+    /// Access scope.
     public let scope: AccessScope
+    /// Date when the access token was retrieved.
     public let createdAt: TimeInterval
 }
 
