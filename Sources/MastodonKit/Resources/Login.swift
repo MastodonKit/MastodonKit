@@ -11,7 +11,7 @@ public struct Login {
     ///   - password: The user's password.
     /// - Returns: Resource for `LoginSettings`.
     public static func silent(clientID: String, clientSecret: String, scope: AccessScope, username: String, password: String) -> LoginSettingsResource {
-        let dictionary: [String : String?] = [
+        let dictionary: Parameters = [
             "client_id": clientID,
             "client_secret": clientSecret,
             "scope": scope.rawValue,
@@ -20,8 +20,7 @@ public struct Login {
             "password": password
         ]
 
-        let parameters = dictionary.flatMap(toQueryItem)
-
-        return LoginSettingsResource(path: "/oauth/token", parameters: parameters, method: .post, parse: LoginSettingsResource.parser)
+        let method = HTTPMethod.post(Payload.parameters(dictionary))
+        return LoginSettingsResource(path: "/oauth/token", method: method, parse: LoginSettingsResource.parser)
     }
 }

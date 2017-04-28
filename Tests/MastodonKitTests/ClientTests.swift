@@ -18,13 +18,29 @@ class ClientInitializationTests: XCTestCase {
         let client = Client(baseURL: "https://my.mastodon.instance/")
 
         XCTAssertNil(client.accessToken)
+
         client.accessToken = "bar"
         XCTAssertEqual(client.accessToken, "bar")
     }
 }
 
+class ClientInitializationWithInvalidURLTests: XCTestCase {
+    func testClientInitializationWithAccessToken() {
+        let client = Client(baseURL: "42 is the answer but isn't a valid URL")
+        var passedError: Error?
+
+        let fakeSession = URLSessionFake()
+        client.session = fakeSession
+
+        client.run(Timelines.home()) { _, error in
+            passedError = error
+        }
+
+        XCTAssertEqual(passedError?.localizedDescription, ClientError.malformedURL.localizedDescription)
+    }
+}
+
 class ClientRunTests: XCTestCase {
-    var client: Client?
     var fakeSession: URLSessionFake?
     var passedModel: [Status]?
     var passedError: Error?
@@ -32,12 +48,12 @@ class ClientRunTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        client = Client(baseURL: "https://my.mastodon.instance/", accessToken: "foo")
+        let client = Client(baseURL: "https://my.mastodon.instance/", accessToken: "foo")
 
         fakeSession = URLSessionFake()
-        client?.session = fakeSession!
+        client.session = fakeSession!
 
-        client?.run(Timelines.home()) { model, error in
+        client.run(Timelines.home()) { model, error in
             self.passedModel = model
             self.passedError = error
         }
@@ -51,6 +67,8 @@ class ClientRunTests: XCTestCase {
         let request = fakeSession?.lastRequest
 
         XCTAssertEqual(request?.url?.absoluteString, "https://my.mastodon.instance/api/v1/timelines/home")
+        XCTAssertEqual(request?.url?.host, "my.mastodon.instance")
+        XCTAssertEqual(request?.url?.path, "/api/v1/timelines/home")
         XCTAssertEqual(request?.timeoutInterval, 30)
         XCTAssertEqual(request?.httpMethod, "GET")
         XCTAssertEqual(request?.value(forHTTPHeaderField: "Authorization"), "Bearer foo")
@@ -77,7 +95,11 @@ class ClientRunTests: XCTestCase {
     func testDataTaskCompletionBlockWithkMastodonError() {
         let fixture = try! Fixture.load(fileName: "Fixtures/RequestError.json")
         let data = try! JSONSerialization.data(withJSONObject: fixture, options: .prettyPrinted)
-        let response = HTTPURLResponse(url: URL(string: "https://my.mastodon.instance/api/v1/timelines/home")!, statusCode: 401, httpVersion: nil, headerFields: nil)
+        let response = HTTPURLResponse(
+            url:URL(string: "https://my.mastodon.instance/api/v1/timelines/home")!,
+            statusCode: 401,
+            httpVersion: nil,
+            headerFields: nil)
 
         fakeSession?.lastCompletionHandler?(data, response, nil)
 
@@ -88,7 +110,12 @@ class ClientRunTests: XCTestCase {
     func testDataTaskCompletionBlockWithSuccess() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Timeline.json")
         let data = try! JSONSerialization.data(withJSONObject: fixture, options: .prettyPrinted)
-        let response = HTTPURLResponse(url: URL(string: "https://my.mastodon.instance/api/v1/timelines/home")!, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let response = HTTPURLResponse(
+            url: URL(string: "https://my.mastodon.instance/api/v1/timelines/home")!,
+            statusCode: 200,
+            httpVersion: nil,
+            headerFields: nil
+        )
 
         fakeSession?.lastCompletionHandler?(data, response, nil)
 
@@ -98,18 +125,17 @@ class ClientRunTests: XCTestCase {
 }
 
 class ClientRunWithoutAccessTokenTests: XCTestCase {
-    var client: Client?
     var fakeSession: URLSessionFake?
 
     override func setUp() {
         super.setUp()
 
-        client = Client(baseURL: "https://my.mastodon.instance/")
+        let client = Client(baseURL: "https://my.mastodon.instance/")
 
         fakeSession = URLSessionFake()
-        client?.session = fakeSession!
+        client.session = fakeSession!
 
-        client?.run(Timelines.public()) { _, _ in }
+        client.run(Timelines.public()) { _, _ in }
     }
 
     func testCallsResume() {
@@ -120,8 +146,74 @@ class ClientRunWithoutAccessTokenTests: XCTestCase {
         let request = fakeSession?.lastRequest
 
         XCTAssertEqual(request?.url?.absoluteString, "https://my.mastodon.instance/api/v1/timelines/public")
+        XCTAssertEqual(request?.url?.host, "my.mastodon.instance")
+        XCTAssertEqual(request?.url?.path, "/api/v1/timelines/public")
         XCTAssertEqual(request?.timeoutInterval, 30)
         XCTAssertEqual(request?.httpMethod, "GET")
         XCTAssertNil(request?.value(forHTTPHeaderField: "Authorization"))
+    }
+}
+
+class ClientRunWithPostAndHTTPBodyTests: XCTestCase {
+    var fakeSession: URLSessionFake?
+
+    override func setUp() {
+        super.setUp()
+
+        let client = Client(baseURL: "https://my.mastodon.instance/", accessToken: "foo")
+
+        fakeSession = URLSessionFake()
+        client.session = fakeSession!
+
+        client.run(Statuses.create(status: "Hi there!", replyToID: 42, sensitive: false, visibility: .public) ) { _, _ in }
+    }
+
+    func testPassedRequest() {
+        let request = fakeSession?.lastRequest
+
+        XCTAssertEqual(request?.url?.absoluteString, "https://my.mastodon.instance/api/v1/statuses")
+        XCTAssertEqual(request?.url?.host, "my.mastodon.instance")
+        XCTAssertEqual(request?.url?.path, "/api/v1/statuses")
+        XCTAssertEqual(request?.timeoutInterval, 30)
+        XCTAssertEqual(request?.value(forHTTPHeaderField: "Authorization"), "Bearer foo")
+
+        XCTAssertEqual(request?.httpMethod, "POST")
+        XCTAssertNil(request?.url?.query)
+
+        let httyBodyString = String(data: request!.httpBody!, encoding: .utf8)!
+
+        XCTAssertTrue(httyBodyString.contains("sensitive=false"))
+        XCTAssertTrue(httyBodyString.contains("status=Hi there!"))
+        XCTAssertTrue(httyBodyString.contains("visibility=public"))
+        XCTAssertTrue(httyBodyString.contains("in_reply_to_id=42"))
+    }
+}
+
+class ClientRunWithGetAndQueryItemsTests: XCTestCase {
+    var fakeSession: URLSessionFake?
+
+    override func setUp() {
+        super.setUp()
+
+        let client = Client(baseURL: "https://my.mastodon.instance/", accessToken: "bär")
+
+        fakeSession = URLSessionFake()
+        client.session = fakeSession!
+
+        client.run(Search.search(query: "MastodonKit", resolve: false)) { _, _ in }
+    }
+
+    func testPassedRequest() {
+        let request = fakeSession?.lastRequest!
+
+        XCTAssertEqual(request?.url?.absoluteString, "https://my.mastodon.instance/api/v1/search?q=MastodonKit&resolve=false")
+        XCTAssertEqual(request?.url?.host, "my.mastodon.instance")
+        XCTAssertEqual(request?.url?.path, "/api/v1/search")
+        XCTAssertEqual(request?.timeoutInterval, 30)
+        XCTAssertEqual(request?.value(forHTTPHeaderField: "Authorization"), "Bearer bär")
+
+        XCTAssertEqual(request?.httpMethod, "GET")
+        XCTAssertNotNil(request?.url?.query)
+        XCTAssertNil(request!.httpBody)
     }
 }

@@ -6,8 +6,10 @@ class InstancesTests: XCTestCase {
         let resource = Instances.current()
 
         XCTAssertEqual(resource.path, "/api/v1/instance")
-        XCTAssertEqual(resource.httpMethod, .get)
-        XCTAssertNil(resource.parameters)
+
+        XCTAssertEqual(resource.httpMethod.name, "GET")
+        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertNil(resource.httpMethod.queryItems)
 
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Instance?>.self)
     }

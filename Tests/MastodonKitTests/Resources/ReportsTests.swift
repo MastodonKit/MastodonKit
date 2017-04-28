@@ -6,8 +6,10 @@ class ReportsTests: XCTestCase {
         let resource = Reports.all()
 
         XCTAssertEqual(resource.path, "/api/v1/reports")
-        XCTAssertEqual(resource.httpMethod, .get)
-        XCTAssertNil(resource.parameters)
+
+        XCTAssertEqual(resource.httpMethod.name, "GET")
+        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertNil(resource.httpMethod.httpBody)
 
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Report]?>.self)
     }
@@ -15,17 +17,17 @@ class ReportsTests: XCTestCase {
     func testReport() {
         let resource = Reports.report(accountID: 40, statusID: 2, reason: "Westworld Spoiler!!!")
 
-        let expectedAccoundID = URLQueryItem(name: "account_id", value: "40")
-        let expectedStatusID = URLQueryItem(name: "status_ids", value: "2")
-        let expectedVisibility = URLQueryItem(name: "comment", value: "Westworld Spoiler!!!")
-
         XCTAssertEqual(resource.path, "/api/v1/reports")
-        XCTAssertEqual(resource.httpMethod, .post)
 
-        XCTAssertEqual(resource.parameters?.count, 3)
-        XCTAssertTrue(resource.parameters!.contains(expectedAccoundID))
-        XCTAssertTrue(resource.parameters!.contains(expectedStatusID))
-        XCTAssertTrue(resource.parameters!.contains(expectedVisibility))
+        XCTAssertEqual(resource.httpMethod.name, "POST")
+        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertNotNil(resource.httpMethod.httpBody)
+
+        let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
+        XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
+        XCTAssertTrue(payload.contains("account_id=40"))
+        XCTAssertTrue(payload.contains("status_ids=2"))
+        XCTAssertTrue(payload.contains("comment=Westworld Spoiler!!!"))
 
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Report?>.self)
     }

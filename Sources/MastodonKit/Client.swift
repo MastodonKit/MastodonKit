@@ -11,11 +11,15 @@ public final class Client {
     }
 
     public func run<Model>(_ resource: Resource<Model>, completion: @escaping (Model?, Error?) -> Void) {
-        let components = URLComponents(baseURL: baseURL, resource: resource)
+        guard
+            let components = URLComponents(baseURL: baseURL, resource: resource),
+            let requestURL = components.url
+            else {
+                completion(nil, ClientError.malformedURL)
+                return
+        }
 
-        var request = URLRequest(url: components.url!, timeoutInterval: 30)
-        request.httpMethod = resource.httpMethod.rawValue
-        request.setValue(accessToken.flatMap { "Bearer \($0)" }, forHTTPHeaderField: "Authorization")
+        let request = URLRequest(url: requestURL, resource: resource, accessToken: accessToken)
 
         let task = session.dataTask(with: request) { data, response, error in
             if let error = error {

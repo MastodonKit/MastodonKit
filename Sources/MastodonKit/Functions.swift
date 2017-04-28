@@ -20,16 +20,24 @@ func asJSONDictionaries(json: JSONObject) -> [JSONDictionary]? {
     return json as? [JSONDictionary]
 }
 
-func toQueryItem(key: String, value: String?) -> URLQueryItem? {
+func toQueryItem(name: String, value: String?) -> URLQueryItem? {
     guard let value = value else { return nil }
-    return URLQueryItem(name: key, value: value)
-}
-
-func toURL(string: String) -> URL? {
-    return URL(string: string)
+    return URLQueryItem(name: name, value: value)
 }
 
 func toOptionalString<A>(optional: A?) -> String? {
     guard let value = optional else { return nil }
     return String(describing: value)
+}
+
+func toString(name: String, value: String?) -> String? {
+    return value.flatMap { value in "\(name)=\(value)" }
+}
+
+func toQueryItems(parameter: Parameters) -> [URLQueryItem]? {
+    return parameter.flatMap(toQueryItem)
+}
+
+func toData(parameter: Parameters) -> Data? {
+    return parameter.flatMap(toString).joined(separator: "&").data(using: .utf8)
 }

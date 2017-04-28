@@ -16,14 +16,13 @@ public struct Reports {
     ///   - reason: A comment to associate with the report.
     /// - Returns: Resource for `Report`.
     public static func report(accountID: Int, statusID: Int, reason: String) -> ReportResource {
-        let dictionary = [
+        let dictionary: Parameters = [
             "account_id": String(accountID),
             "status_ids": String(statusID),
             "comment": reason
         ]
 
-        let parameters = dictionary.flatMap(toQueryItem)
-
-        return ReportResource(path: "/api/v1/reports", parameters: parameters, method: .post, parse: ReportResource.parser)
+        let method = HTTPMethod.post(Payload.parameters(dictionary))
+        return ReportResource(path: "/api/v1/reports", method: method, parse: ReportResource.parser)
     }
 }

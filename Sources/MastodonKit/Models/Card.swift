@@ -25,6 +25,6 @@ extension Card {
         self.url = url
         self.title = title
         self.description = description
-        self.image = dictionary["image"].flatMap(asString).flatMap(toURL)
+        self.image = dictionary["image"].flatMap(asString).flatMap(URL.init)
     }
 }

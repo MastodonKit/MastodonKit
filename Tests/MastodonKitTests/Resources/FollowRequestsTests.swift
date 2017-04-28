@@ -6,8 +6,10 @@ class FollowRequestsTests: XCTestCase {
         let resource = FollowRequests.all()
 
         XCTAssertEqual(resource.path, "/api/v1/follow_requests")
-        XCTAssertEqual(resource.httpMethod, .get)
-        XCTAssertNil(resource.parameters)
+
+        XCTAssertEqual(resource.httpMethod.name, "GET")
+        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertNil(resource.httpMethod.httpBody)
 
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
     }
@@ -16,7 +18,10 @@ class FollowRequestsTests: XCTestCase {
         let resource = FollowRequests.authorize(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/follow_requests/42/authorize")
-        XCTAssertEqual(resource.httpMethod, .post)
+
+        XCTAssertEqual(resource.httpMethod.name, "POST")
+        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertNil(resource.httpMethod.httpBody)
 
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
     }
@@ -25,7 +30,10 @@ class FollowRequestsTests: XCTestCase {
         let resource = FollowRequests.reject(id: 42)
 
         XCTAssertEqual(resource.path, "/api/v1/follow_requests/42/reject")
-        XCTAssertEqual(resource.httpMethod, .post)
+
+        XCTAssertEqual(resource.httpMethod.name, "POST")
+        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertNil(resource.httpMethod.httpBody)
 
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
     }
