@@ -16,6 +16,26 @@ public struct Accounts {
         return AccountResource(path: "/api/v1/accounts/verify_credentials", parse: AccountResource.parser)
     }
 
+    /// Updates the current user.
+    ///
+    /// - Parameters:
+    ///   - displayName: The name to display in the user's profile.
+    ///   - note: A new biography for the user.
+    ///   - avatar: A base64 encoded image to display as the user's avatar (e.g. data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAU...).
+    ///   - header: A base64 encoded image to display as the user's header image (e.g. data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAU...).
+    /// - Returns: Resource for `Account`.
+    public static func updateCurrentUser(displayName: String? = nil, note: String? = nil, avatar: String? = nil, header: String? = nil) -> AccountResource {
+        let dictionary: Parameters = [
+            "display_name": displayName,
+            "note": note,
+            "avatar": avatar,
+            "header": header
+        ]
+
+        let method = HTTPMethod.patch(Payload.parameters(dictionary))
+        return AccountResource(path: "/api/v1/accounts/update_credentials", method: method, parse: AccountResource.parser)
+    }
+
     /// Gets an account's followers.
     ///
     /// - Parameter id: The account id.

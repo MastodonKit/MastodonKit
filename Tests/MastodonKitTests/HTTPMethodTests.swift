@@ -33,6 +33,20 @@ class HTTPMethodTests: XCTestCase {
         XCTAssertEqual(method.httpBody, expectedData)
     }
 
+    func testPatch()  {
+        let dictionary: Parameters = ["number": String(42), "url": "https://mastodon.technology", "nilValue": nil]
+        let payload = Payload.parameters(dictionary)
+        let method = HTTPMethod.patch(payload)
+
+        let expectedData = "number=42&url=https://mastodon.technology".data(using: .utf8)
+
+        XCTAssertEqual(method.name, "PATCH")
+
+        XCTAssertNil(method.queryItems)
+
+        XCTAssertEqual(method.httpBody, expectedData)
+    }
+
     func testDelete()  {
         let method = HTTPMethod.delete
 

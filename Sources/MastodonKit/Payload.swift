@@ -4,7 +4,9 @@ enum Payload {
     case parameters(Parameters?)
     case image(Data?)
     case empty
+}
 
+extension Payload {
     var items: [URLQueryItem]? {
         switch self {
         case .parameters(let parameters): return parameters.flatMap(toQueryItems)

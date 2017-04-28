@@ -26,6 +26,42 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
     }
 
+    func testUpdateCurrentUserWithAllFields() {
+        let resource = Accounts.updateCurrentUser(displayName: "Ornithologist Coder", note: "Creator of MastodonKit", avatar: "base64 avatar", header: "base64 header")
+
+        XCTAssertEqual(resource.path, "/api/v1/accounts/update_credentials")
+
+        XCTAssertEqual(resource.httpMethod.name, "PATCH")
+        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertNotNil(resource.httpMethod.httpBody)
+
+        let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
+        XCTAssertEqual(payload.components(separatedBy: "&").count, 4)
+        XCTAssertTrue(payload.contains("display_name=Ornithologist Coder"))
+        XCTAssertTrue(payload.contains("note=Creator of MastodonKit"))
+        XCTAssertTrue(payload.contains("avatar=base64 avatar"))
+        XCTAssertTrue(payload.contains("header=base64 header"))
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
+    }
+
+    func testUpdateCurrentUserWithSomeFields() {
+        let resource = Accounts.updateCurrentUser(displayName: "Ornithologist Coder", header: "base64 header")
+
+        XCTAssertEqual(resource.path, "/api/v1/accounts/update_credentials")
+
+        XCTAssertEqual(resource.httpMethod.name, "PATCH")
+        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertNotNil(resource.httpMethod.httpBody)
+
+        let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
+        XCTAssertEqual(payload.components(separatedBy: "&").count, 2)
+        XCTAssertTrue(payload.contains("display_name=Ornithologist Coder"))
+        XCTAssertTrue(payload.contains("header=base64 header"))
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
+    }
+
     func testFollowers() {
         let resource = Accounts.followers(id: 42)
 
