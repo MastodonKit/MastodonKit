@@ -80,4 +80,9 @@ class FunctionsTests: XCTestCase {
         let paramtersData = toData(parameter: paramters)
         XCTAssertEqual(paramtersData?.count, 14)
     }
+
+    func testNilOrTrue() {
+        XCTAssertNil(nilOrTrue(false))
+        XCTAssertEqual(nilOrTrue(true), "true")
+    }
 }

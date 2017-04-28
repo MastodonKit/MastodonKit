@@ -54,7 +54,7 @@ public struct Statuses {
         let dictionary: Parameters = [
             "status": status,
             "in_reply_to_id": replyToID.flatMap(toOptionalString),
-            "sensitive": sensitive.flatMap(toOptionalString),
+            "sensitive": sensitive.flatMap(nilOrTrue),
             "spoiler_text": spoilerText,
             "visibility": visibility.rawValue
         ]

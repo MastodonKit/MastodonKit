@@ -41,3 +41,7 @@ func toQueryItems(parameter: Parameters) -> [URLQueryItem]? {
 func toData(parameter: Parameters) -> Data? {
     return parameter.flatMap(toString).joined(separator: "&").data(using: .utf8)
 }
+
+func nilOrTrue(_ flag: Bool) -> String? {
+    return flag ? "true" : nil
+}

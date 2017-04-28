@@ -135,7 +135,7 @@ class ClientRunWithoutAccessTokenTests: XCTestCase {
         fakeSession = URLSessionFake()
         client.session = fakeSession!
 
-        client.run(Timelines.public()) { _, _ in }
+        client.run(Timelines.public(local: true)) { _, _ in }
     }
 
     func testCallsResume() {
@@ -145,7 +145,7 @@ class ClientRunWithoutAccessTokenTests: XCTestCase {
     func testPassedRequest() {
         let request = fakeSession?.lastRequest
 
-        XCTAssertEqual(request?.url?.absoluteString, "https://my.mastodon.instance/api/v1/timelines/public")
+        XCTAssertEqual(request?.url?.absoluteString, "https://my.mastodon.instance/api/v1/timelines/public?local=true")
         XCTAssertEqual(request?.url?.host, "my.mastodon.instance")
         XCTAssertEqual(request?.url?.path, "/api/v1/timelines/public")
         XCTAssertEqual(request?.timeoutInterval, 30)
@@ -182,7 +182,6 @@ class ClientRunWithPostAndHTTPBodyTests: XCTestCase {
 
         let httyBodyString = String(data: request!.httpBody!, encoding: .utf8)!
 
-        XCTAssertTrue(httyBodyString.contains("sensitive=false"))
         XCTAssertTrue(httyBodyString.contains("status=Hi there!"))
         XCTAssertTrue(httyBodyString.contains("visibility=public"))
         XCTAssertTrue(httyBodyString.contains("in_reply_to_id=42"))
@@ -206,7 +205,7 @@ class ClientRunWithGetAndQueryItemsTests: XCTestCase {
     func testPassedRequest() {
         let request = fakeSession?.lastRequest!
 
-        XCTAssertEqual(request?.url?.absoluteString, "https://my.mastodon.instance/api/v1/search?q=MastodonKit&resolve=false")
+        XCTAssertEqual(request?.url?.absoluteString, "https://my.mastodon.instance/api/v1/search?q=MastodonKit")
         XCTAssertEqual(request?.url?.host, "my.mastodon.instance")
         XCTAssertEqual(request?.url?.path, "/api/v1/search")
         XCTAssertEqual(request?.timeoutInterval, 30)
