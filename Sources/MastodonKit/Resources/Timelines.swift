@@ -10,6 +10,7 @@ public struct Timelines {
 
     /// Retrieves the public timeline.
     ///
+    /// - Parameter local: Only return statuses originating from this instance.
     /// - Returns: Resource for `[Status]`.
     public static func `public`(local: Bool? = nil) -> TimelineResource {
         let dictionary: Parameters = ["local": local.flatMap(nilOrTrue)]
@@ -20,7 +21,9 @@ public struct Timelines {
 
     /// Retrieves a tag timeline.
     ///
-    /// - Parameter hashtag: The hashtag.
+    /// - Parameters:
+    ///   - hashtag: The hashtag.
+    ///   - local: Only return statuses originating from this instance.
     /// - Returns: Resource for `[Status]`.
     public static func tag(_ hashtag: String, local: Bool? = nil) -> TimelineResource {
         let dictionary: Parameters = ["local": local.flatMap(nilOrTrue)]

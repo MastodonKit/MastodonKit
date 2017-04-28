@@ -54,10 +54,19 @@ public struct Accounts {
 
     /// Gets an account's statuses.
     ///
-    /// - Parameter id: The account id.
+    /// - Parameters:
+    ///   - id: The account id.
+    ///   - mediaOnly: Only return statuses that have media attachments.
+    ///   - showReplies: Skip statuses that reply to other statuses.
     /// - Returns: Resource for `[Status]`.
-    public static func statuses(id: Int) -> TimelineResource {
-        return TimelineResource(path: "/api/v1/accounts/\(id)/statuses", parse: TimelineResource.parser)
+    public static func statuses(id: Int, mediaOnly: Bool? = nil, excludeReplies: Bool? = nil) -> TimelineResource {
+        let dictionary: Parameters = [
+            "only_media": mediaOnly.flatMap(nilOrTrue),
+            "exclude_replies": excludeReplies.flatMap(nilOrTrue)
+        ]
+
+        let method = HTTPMethod.get(Payload.parameters(dictionary))
+        return TimelineResource(path: "/api/v1/accounts/\(id)/statuses", method: method, parse: TimelineResource.parser)
     }
 
     /// Follows an account.

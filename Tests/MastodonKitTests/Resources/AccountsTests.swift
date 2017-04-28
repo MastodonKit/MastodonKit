@@ -92,7 +92,35 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/statuses")
 
         XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertEqual(resource.httpMethod.queryItems?.count, 0)
+        XCTAssertNil(resource.httpMethod.httpBody)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]?>.self)
+    }
+
+    func testStatusesWithMediaOnly() {
+        let resource = Accounts.statuses(id: 42, mediaOnly: true)
+
+        let expectedFlag = URLQueryItem(name: "only_media", value: "true")
+
+        XCTAssertEqual(resource.path, "/api/v1/accounts/42/statuses")
+
+        XCTAssertEqual(resource.httpMethod.name, "GET")
+        XCTAssertTrue(resource.httpMethod.queryItems!.contains(expectedFlag))
+        XCTAssertNil(resource.httpMethod.httpBody)
+
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]?>.self)
+    }
+
+    func testStatusesWithoutReplies() {
+        let resource = Accounts.statuses(id: 42, excludeReplies: true)
+
+        let expectedFlag = URLQueryItem(name: "exclude_replies", value: "true")
+
+        XCTAssertEqual(resource.path, "/api/v1/accounts/42/statuses")
+
+        XCTAssertEqual(resource.httpMethod.name, "GET")
+        XCTAssertTrue(resource.httpMethod.queryItems!.contains(expectedFlag))
         XCTAssertNil(resource.httpMethod.httpBody)
 
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]?>.self)
