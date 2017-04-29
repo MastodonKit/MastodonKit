@@ -11,5 +11,6 @@ class InstanceTests: XCTestCase {
         XCTAssertEqual(instance?.title, "nice title")
         XCTAssertEqual(instance?.description,"sweet description")
         XCTAssertEqual(instance?.email, "wunderbar email")
+        XCTAssertEqual(instance?.version, "1.2.3")
     }
 }

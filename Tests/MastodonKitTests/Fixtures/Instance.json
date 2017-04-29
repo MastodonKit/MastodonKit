@@ -2,5 +2,6 @@
     "uri": "instance's uri",
     "title": "nice title",
     "description": "sweet description",
-    "email": "wunderbar email"
+    "email": "wunderbar email",
+    "version": "1.2.3"
 }

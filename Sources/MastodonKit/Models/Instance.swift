@@ -9,6 +9,8 @@ public struct Instance {
     public let description: String
     /// An email address which can be used to contact the instance administrator.
     public let email: String
+    /// The Mastodon version used by instance.
+    public let version: String
 }
 
 extension Instance {
@@ -17,7 +19,8 @@ extension Instance {
             let uri = dictionary["uri"] as? String,
             let title = dictionary["title"] as? String,
             let description = dictionary["description"] as? String,
-            let email = dictionary["email"] as? String
+            let email = dictionary["email"] as? String,
+            let version = dictionary["version"] as? String
             else {
                 return nil
         }
@@ -26,5 +29,6 @@ extension Instance {
         self.title = title
         self.description = description
         self.email = email
+        self.version = version
     }
 }
