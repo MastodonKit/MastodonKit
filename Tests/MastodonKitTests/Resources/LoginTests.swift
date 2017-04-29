@@ -5,8 +5,12 @@ class LoginTests: XCTestCase {
     func testSilentLogin() {
         let resource = Login.silent(clientID: "client id", clientSecret: "client secret", scope: .read, username: "foo", password: "123")
 
+        // Endpoint
         XCTAssertEqual(resource.path, "/oauth/token")
+
+        // Method
         XCTAssertEqual(resource.httpMethod.name, "POST")
+        XCTAssertNil(resource.httpMethod.queryItems)
 
         let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 6)
@@ -17,6 +21,7 @@ class LoginTests: XCTestCase {
         XCTAssertTrue(payload.contains("username=foo"))
         XCTAssertTrue(payload.contains("password=123"))
 
+        // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<LoginSettings?>.self)
     }
 }

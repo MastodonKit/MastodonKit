@@ -3,16 +3,24 @@ import XCTest
 
 class PayloadTests: XCTestCase {
     func testParametersWithValidValue() {
-        let dictionary: Parameters = ["number": String(42), "url": "https://mastodon.technology", "nilValue": nil]
+        let dictionary: Parameters = [
+            "number": String(42),
+            "url": "https://mastodon.technology",
+            "nilValue": nil
+        ]
+
         let payload = Payload.parameters(dictionary)
 
+        // Items
         let expectedNumber = URLQueryItem(name: "number", value: "42")
         let expectedURL = URLQueryItem(name: "url", value: "https://mastodon.technology")
-        let expectedData = "number=42&url=https://mastodon.technology".data(using: .utf8)
 
         XCTAssertEqual(payload.items?.count, 2)
         XCTAssertTrue(payload.items!.contains(expectedNumber))
         XCTAssertTrue(payload.items!.contains(expectedURL))
+
+        // Data
+        let expectedData = "number=42&url=https://mastodon.technology".data(using: .utf8)
 
         XCTAssertEqual(payload.data, expectedData)
     }
