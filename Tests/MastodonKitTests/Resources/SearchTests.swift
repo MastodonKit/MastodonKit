@@ -10,11 +10,11 @@ class TimelinesTeSearchTestssts: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/search")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertNotNil(resource.httpMethod.queryItems)
-        XCTAssertEqual(resource.httpMethod.queryItems?.count, 1)
-        XCTAssertTrue(resource.httpMethod.queryItems!.contains(expectedQuery))
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNotNil(resource.method.queryItems)
+        XCTAssertEqual(resource.method.queryItems?.count, 1)
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedQuery))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Results?>.self)
@@ -29,12 +29,12 @@ class TimelinesTeSearchTestssts: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/search")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertNotNil(resource.httpMethod.queryItems)
-        XCTAssertEqual(resource.httpMethod.queryItems?.count, 2)
-        XCTAssertTrue(resource.httpMethod.queryItems!.contains(expectedQuery))
-        XCTAssertTrue(resource.httpMethod.queryItems!.contains(expectedResolve))
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNotNil(resource.method.queryItems)
+        XCTAssertEqual(resource.method.queryItems?.count, 2)
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedQuery))
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedResolve))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Results?>.self)

@@ -9,9 +9,9 @@ class MutesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/mutes")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)

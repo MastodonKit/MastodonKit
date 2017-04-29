@@ -9,11 +9,11 @@ class ClientsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/apps")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNotNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNotNil(resource.method.httpBody)
 
-        let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
+        let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
         XCTAssertTrue(payload.contains("client_name=MastodonKitTestApplication"))
         XCTAssertTrue(payload.contains("redirect_uris=urn:ietf:wg:oauth:2.0:oob"))
@@ -30,11 +30,11 @@ class ClientsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/apps")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNotNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNotNil(resource.method.httpBody)
 
-        let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
+        let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
         XCTAssertTrue(payload.contains("client_name=MastodonKitTestApplication"))
         XCTAssertTrue(payload.contains("redirect_uris=my-awesome-app://"))
@@ -51,11 +51,11 @@ class ClientsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/apps")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNotNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNotNil(resource.method.httpBody)
 
-        let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
+        let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 4)
         XCTAssertTrue(payload.contains("client_name=MastodonKitTestApplication"))
         XCTAssertTrue(payload.contains("redirect_uris=urn:ietf:wg:oauth:2.0:oob"))

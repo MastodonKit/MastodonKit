@@ -9,9 +9,9 @@ class NotificationsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/notifications")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[MastodonKit.Notification]?>.self)
@@ -24,9 +24,9 @@ class NotificationsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/notifications/42")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<MastodonKit.Notification?>.self)
@@ -39,9 +39,9 @@ class NotificationsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/notifications/clear")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<MastodonKit.Notification?>.self)
@@ -54,9 +54,9 @@ class NotificationsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/notifications/dismiss/42")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<MastodonKit.Notification?>.self)

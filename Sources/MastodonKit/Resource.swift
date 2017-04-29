@@ -4,14 +4,12 @@ typealias Parameters = [String : String?]
 
 public struct Resource<Model> {
     let path: String
-    let httpMethod: HTTPMethod
+    let method: HTTPMethod
     let parse: (JSONObject) -> Model?
-}
 
-extension Resource {
-    init(path: String, method: HTTPMethod = .get(Payload.empty), parse: @escaping (Any) -> Model?) {
+    init(path: String, method: HTTPMethod = .get(Payload.empty), parse: @escaping (JSONObject) -> Model?) {
         self.path = path
-        self.httpMethod = method
+        self.method = method
         self.parse = parse
     }
 }

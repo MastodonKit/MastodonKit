@@ -9,9 +9,9 @@ class TimelinesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/timelines/home")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]?>.self)
@@ -24,9 +24,9 @@ class TimelinesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/timelines/public")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertTrue(resource.httpMethod.queryItems!.contains(URLQueryItem(name: "local", value: "true")))
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertTrue(resource.method.queryItems!.contains(URLQueryItem(name: "local", value: "true")))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]?>.self)
@@ -39,9 +39,9 @@ class TimelinesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/timelines/public")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertEqual(resource.httpMethod.queryItems?.count, 0)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertEqual(resource.method.queryItems?.count, 0)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]?>.self)
@@ -54,9 +54,9 @@ class TimelinesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/timelines/tag/mastodonkit")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertTrue(resource.httpMethod.queryItems!.contains(URLQueryItem(name: "local", value: "true")))
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertTrue(resource.method.queryItems!.contains(URLQueryItem(name: "local", value: "true")))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]?>.self)
@@ -69,9 +69,9 @@ class TimelinesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/timelines/tag/mastodonkit")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertEqual(resource.httpMethod.queryItems?.count, 0)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertEqual(resource.method.queryItems?.count, 0)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]?>.self)

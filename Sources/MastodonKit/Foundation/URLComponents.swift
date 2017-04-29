@@ -12,6 +12,6 @@ extension URLComponents {
         self.init(url: completeURL, resolvingAgainstBaseURL: true)
 
         path = resource.path
-        queryItems = resource.httpMethod.queryItems
+        queryItems = resource.method.queryItems
     }
 }

@@ -9,9 +9,9 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
@@ -24,9 +24,9 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/verify_credentials")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
@@ -39,11 +39,11 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/update_credentials")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "PATCH")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNotNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "PATCH")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNotNil(resource.method.httpBody)
 
-        let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
+        let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 4)
         XCTAssertTrue(payload.contains("display_name=Ornithologist Coder"))
         XCTAssertTrue(payload.contains("note=Creator of MastodonKit"))
@@ -61,11 +61,11 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/update_credentials")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "PATCH")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNotNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "PATCH")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNotNil(resource.method.httpBody)
 
-        let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
+        let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 2)
         XCTAssertTrue(payload.contains("display_name=Ornithologist Coder"))
         XCTAssertTrue(payload.contains("header=base64 header"))
@@ -81,9 +81,9 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/followers")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
@@ -96,9 +96,9 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/following")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
@@ -111,9 +111,9 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/statuses")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertEqual(resource.httpMethod.queryItems?.count, 0)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertEqual(resource.method.queryItems?.count, 0)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]?>.self)
@@ -127,9 +127,9 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/statuses")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertTrue(resource.httpMethod.queryItems!.contains(expectedFlag))
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedFlag))
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]?>.self)
@@ -143,9 +143,9 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/statuses")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertTrue(resource.httpMethod.queryItems!.contains(expectedFlag))
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedFlag))
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]?>.self)
@@ -158,9 +158,9 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/follow")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Paser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
@@ -173,9 +173,9 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/unfollow")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
@@ -188,9 +188,9 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/block")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Relationship?>.self)
@@ -203,9 +203,9 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/unblock")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Relationship?>.self)
@@ -218,9 +218,9 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/mute")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Relationship?>.self)
@@ -233,9 +233,9 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/42/unmute")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Relationship?>.self)
@@ -249,11 +249,11 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/relationships")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertNotNil(resource.httpMethod.queryItems)
-        XCTAssertEqual(resource.httpMethod.queryItems?.count, 1)
-        XCTAssertTrue(resource.httpMethod.queryItems!.contains(expectedID))
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNotNil(resource.method.queryItems)
+        XCTAssertEqual(resource.method.queryItems?.count, 1)
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedID))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Relationship]?>.self)
@@ -268,12 +268,12 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/search")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertNotNil(resource.httpMethod.queryItems)
-        XCTAssertEqual(resource.httpMethod.queryItems?.count, 2)
-        XCTAssertTrue(resource.httpMethod.queryItems!.contains(expectedQuery))
-        XCTAssertTrue(resource.httpMethod.queryItems!.contains(expectedLimit))
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNotNil(resource.method.queryItems)
+        XCTAssertEqual(resource.method.queryItems?.count, 2)
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedQuery))
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedLimit))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
@@ -288,12 +288,12 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/accounts/search")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertNotNil(resource.httpMethod.queryItems)
-        XCTAssertEqual(resource.httpMethod.queryItems?.count, 2)
-        XCTAssertTrue(resource.httpMethod.queryItems!.contains(expectedQuery))
-        XCTAssertTrue(resource.httpMethod.queryItems!.contains(expectedLimit))
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNotNil(resource.method.queryItems)
+        XCTAssertEqual(resource.method.queryItems?.count, 2)
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedQuery))
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedLimit))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)

@@ -9,9 +9,9 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNil(resource.method.queryItems)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
@@ -24,9 +24,9 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/context")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNil(resource.method.queryItems)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Context?>.self)
@@ -39,9 +39,9 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/card")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNil(resource.method.queryItems)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Card?>.self)
@@ -54,9 +54,9 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/reblogged_by")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNil(resource.method.queryItems)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
@@ -69,9 +69,9 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/favourited_by")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNil(resource.method.queryItems)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
@@ -84,11 +84,11 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNotNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNotNil(resource.method.httpBody)
 
-        let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
+        let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 2)
         XCTAssertTrue(payload.contains("status=The most awesome status message ever!"))
         XCTAssertTrue(payload.contains("visibility=public"))
@@ -104,11 +104,11 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNotNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNotNil(resource.method.httpBody)
 
-        let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
+        let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
         XCTAssertTrue(payload.contains("status=The most awesome status message ever!"))
         XCTAssertTrue(payload.contains("in_reply_to_id=42"))
@@ -125,11 +125,11 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNotNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNotNil(resource.method.httpBody)
 
-        let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
+        let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
         XCTAssertTrue(payload.contains("status=The most awesome status message ever!"))
         XCTAssertTrue(payload.contains("sensitive=true"))
@@ -146,11 +146,11 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNotNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNotNil(resource.method.httpBody)
 
-        let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
+        let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
         XCTAssertTrue(payload.contains("status=Can't believe it's an amusement park like Westworld!"))
         XCTAssertTrue(payload.contains("spoiler_text=Last night's GoT!!!"))
@@ -167,11 +167,11 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNotNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNotNil(resource.method.httpBody)
 
-        let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
+        let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 2)
         XCTAssertTrue(payload.contains("status=The most awesome status message ever!"))
         XCTAssertTrue(payload.contains("visibility=unlisted"))
@@ -187,9 +187,9 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "DELETE")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertEqual(resource.method.name, "DELETE")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNil(resource.method.queryItems)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
@@ -202,9 +202,9 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/reblog")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNil(resource.method.queryItems)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
@@ -217,9 +217,9 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/unreblog")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNil(resource.method.queryItems)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
@@ -232,9 +232,9 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/favourite")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNil(resource.method.queryItems)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
@@ -247,9 +247,9 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/statuses/42/unfavourite")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.httpBody)
-        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNil(resource.method.queryItems)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)

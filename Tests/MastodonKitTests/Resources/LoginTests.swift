@@ -9,10 +9,10 @@ class LoginTests: XCTestCase {
         XCTAssertEqual(resource.path, "/oauth/token")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
 
-        let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
+        let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 6)
         XCTAssertTrue(payload.contains("client_id=client id"))
         XCTAssertTrue(payload.contains("client_secret=client secret"))

@@ -9,9 +9,9 @@ class FavouritesTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/favourites")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]?>.self)

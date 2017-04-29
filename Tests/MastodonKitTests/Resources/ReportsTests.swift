@@ -9,9 +9,9 @@ class ReportsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/reports")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "GET")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNil(resource.method.httpBody)
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Report]?>.self)
@@ -24,11 +24,11 @@ class ReportsTests: XCTestCase {
         XCTAssertEqual(resource.path, "/api/v1/reports")
 
         // Method
-        XCTAssertEqual(resource.httpMethod.name, "POST")
-        XCTAssertNil(resource.httpMethod.queryItems)
-        XCTAssertNotNil(resource.httpMethod.httpBody)
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNotNil(resource.method.httpBody)
 
-        let payload = String(data: resource.httpMethod.httpBody!, encoding: .utf8)!
+        let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
         XCTAssertTrue(payload.contains("account_id=40"))
         XCTAssertTrue(payload.contains("status_ids=2"))
