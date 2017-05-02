@@ -264,6 +264,44 @@ class AccountsTests: XCTestCase {
     func testSearchWithoutLimit() {
         let resource = Accounts.search(query: "Ash")
         let expectedQuery = URLQueryItem(name: "q", value: "Ash")
+
+        // Endpoint
+        XCTAssertEqual(resource.path, "/api/v1/accounts/search")
+
+        // Method
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNotNil(resource.method.queryItems)
+        XCTAssertEqual(resource.method.queryItems?.count, 1)
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedQuery))
+
+        // Parser
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
+    }
+
+    func testSearchWithValidLimit() {
+        let resource = Accounts.search(query: "Ash", limit: 42)
+        let expectedQuery = URLQueryItem(name: "q", value: "Ash")
+        let expectedLimit = URLQueryItem(name: "limit", value: "42")
+
+        // Endpoint
+        XCTAssertEqual(resource.path, "/api/v1/accounts/search")
+
+        // Method
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertNotNil(resource.method.queryItems)
+        XCTAssertEqual(resource.method.queryItems?.count, 2)
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedQuery))
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedLimit))
+
+        // Parser
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
+    }
+
+    func testSearchWithLimitBelowMinimumValue() {
+        let resource = Accounts.search(query: "Ash", limit: 0)
+        let expectedQuery = URLQueryItem(name: "q", value: "Ash")
         let expectedLimit = URLQueryItem(name: "limit", value: "40")
 
         // Endpoint
@@ -281,10 +319,10 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
     }
 
-    func testSearchWithLimit() {
-        let resource = Accounts.search(query: "Ash", limit: 42)
+    func testSearchWithLimitAboveMaximumValue() {
+        let resource = Accounts.search(query: "Ash", limit: 81)
         let expectedQuery = URLQueryItem(name: "q", value: "Ash")
-        let expectedLimit = URLQueryItem(name: "limit", value: "42")
+        let expectedLimit = URLQueryItem(name: "limit", value: "40")
 
         // Endpoint
         XCTAssertEqual(resource.path, "/api/v1/accounts/search")

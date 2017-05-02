@@ -134,10 +134,11 @@ public struct Accounts {
     ///   - query: What to search for.
     ///   - limit: Maximum number of matching accounts to return (default: 40).
     /// - Returns: Resource for `[Account]`.
-    public static func search(query: String, limit: Int = 40) -> AccountsResource {
+    public static func search(query: String, limit: Int? = nil) -> AccountsResource {
+        let toLimitBounds = between(1, and: 80, fallback: 40)
         let parameters = [
             Parameter(name: "q", value: query),
-            Parameter(name: "limit", value: String(limit))
+            Parameter(name: "limit", value: limit.flatMap(toLimitBounds).flatMap(toOptionalString))
         ]
 
         let method = HTTPMethod.get(Payload.parameters(parameters))

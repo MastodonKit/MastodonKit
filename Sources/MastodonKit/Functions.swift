@@ -12,6 +12,12 @@ func toArrayOfParameters<A>(withName name: String) -> (A) -> Parameter {
     }
 }
 
+func between(_ min: Int, and max: Int, fallback: Int) -> (Int) -> Int {
+    return { limit in
+        return (limit >= min && limit <= max) ? limit : fallback
+    }
+}
+
 // MARK: - Flat-map
 
 func asString(json: JSONObject) -> String? {
@@ -27,8 +33,7 @@ func asJSONDictionaries(json: JSONObject) -> [JSONDictionary]? {
 }
 
 func toOptionalString<A>(optional: A?) -> String? {
-    guard let value = optional else { return nil }
-    return String(describing: value)
+    return optional.flatMap { String(describing: $0) }
 }
 
 func toQueryItem(parameter: Parameter) -> URLQueryItem? {
