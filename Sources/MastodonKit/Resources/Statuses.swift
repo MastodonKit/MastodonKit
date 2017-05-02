@@ -58,7 +58,7 @@ public struct Statuses {
             Parameter(name: "sensitive", value: sensitive.flatMap(nilOrTrue)),
             Parameter(name: "spoiler_text", value: spoilerText),
             Parameter(name: "visibility", value: visibility.rawValue)
-            ] + mediaIDs.map(toArrayOfParameter(withName: "media_ids"))
+            ] + mediaIDs.map(toArrayOfParameters(withName: "media_ids"))
 
         let method = HTTPMethod.post(Payload.parameters(parameters))
         return StatusResource(path: "/api/v1/statuses", method: method, parse: StatusResource.parser)

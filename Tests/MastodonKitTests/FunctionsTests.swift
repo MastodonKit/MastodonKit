@@ -56,14 +56,14 @@ class FunctionsTests: XCTestCase {
     }
 
     func testArrayOfParametersWithInteger() {
-        let parameters = toArrayOfParameter(withName: "foo")(42)
+        let parameters = toArrayOfParameters(withName: "foo")(42)
 
         XCTAssertEqual(parameters.name, "foo[]")
         XCTAssertEqual(parameters.value, "42")
     }
 
     func testArrayOfParametersWithString() {
-        let parameters = toArrayOfParameter(withName: "foo")("bar")
+        let parameters = toArrayOfParameters(withName: "foo")("bar")
 
         XCTAssertEqual(parameters.name, "foo[]")
         XCTAssertEqual(parameters.value, "bar")

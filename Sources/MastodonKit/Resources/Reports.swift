@@ -19,7 +19,7 @@ public struct Reports {
         let parameters = [
             Parameter(name: "account_id", value: String(accountID)),
             Parameter(name: "comment", value: reason)
-            ] + statusIDs.map(toArrayOfParameter(withName: "status_ids"))
+            ] + statusIDs.map(toArrayOfParameters(withName: "status_ids"))
 
         let method = HTTPMethod.post(Payload.parameters(parameters))
         return ReportResource(path: "/api/v1/reports", method: method, parse: ReportResource.parser)

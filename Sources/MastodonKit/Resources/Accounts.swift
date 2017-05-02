@@ -122,7 +122,7 @@ public struct Accounts {
     /// - Parameter ids: The account's ids.
     /// - Returns: Resource for `[Relationship]`.
     public static func relationships(ids: [Int]) -> RelationshipsResource {
-        let parameters = ids.map(toArrayOfParameter(withName: "id"))
+        let parameters = ids.map(toArrayOfParameters(withName: "id"))
 
         let method = HTTPMethod.get(Payload.parameters(parameters))
         return RelationshipsResource(path: "/api/v1/accounts/relationships", method: method, parse: RelationshipsResource.parser)
