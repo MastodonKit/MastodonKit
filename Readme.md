@@ -6,13 +6,13 @@ By the way, if you want to get in touch with me, [toot me](https://mastodon.tech
 
 ## Table of content
 
-- [Building from source](#building-it-from-source)
+- [Building it from source](#building-it-from-source)
 - [Initializing the client](#initializing-the-client)
 - [Making requests](#making-requests)
 - [List of resources](#list-of-resources)
     - [Accounts](#accounts)
-    - [Clients](#clients)
     - [Blocks](#blocks)
+    - [Clients](#clients)
     - [Favourites](#favourites)
     - [Follow Requests](#follow-requests)
     - [Instances](#instances)
@@ -129,389 +129,90 @@ client.run(resource) { status, error in
 
 ## List of resources
 
-Below a list of resources implemented by MastodonKit. All the methods are documented and their descriptions are available via option+click on Xcode.
+Below the qualified symbol name for the resources implemented by MastodonKit. All the methods are documented and their descriptions are available via option+click on Xcode.
 
 ### Accounts
 
-Fetching an account:
-
-```swift
-public struct Accounts {
-    public static func account(id: Int) -> AccountResource
-}
-```
-
-Getting the current user:
-
-```swift
-public struct Accounts {
-    public static func currentUser() -> AccountResource
-}
-```
-
-Getting an account's followers:
-
-```swift
-public struct Accounts {
-    public static func followers(id: Int) -> AccountsResource
-}
-```
-
-Getting who account is following:
-
-```swift
-public struct Accounts {
-    public static func following(id: Int) -> AccountsResource
-}
-```
-
-Getting an account's statuses:
-
-```swift
-public struct Accounts {
-    public static func statuses(id: Int) -> TimelineResource
-}
-```
-
-Following an account:
-
-```swift
-public struct Accounts {
-    public static func follow(id: Int) -> AccountResource
-}
-```
-
-Unfollowing an account:
-
-```swift
-public struct Accounts {
-    public static func unfollow(id: Int) -> AccountResource
-}
-```
-
-Blocking an account:
-
-```swift
-public struct Accounts {
-    public static func block(id: Int) -> RelationshipResource
-}
-```
-
-Unblocking an account:
-
-```swift
-public struct Accounts {
-    public static func unblock(id: Int) -> RelationshipResource
-}
-```
-
-Muting an account:
-
-```swift
-public struct Accounts {
-    public static func mute(id: Int) -> RelationshipResource
-}
-```
-
-Unmuting an account:
-
-```swift
-public struct Accounts {
-    public static func unmute(id: Int) -> RelationshipResource
-}
-```
-
-Getting an account's relationships:
-
-```swift
-public struct Accounts {
-    public static func relationships(ids: [Int]) -> RelationshipsResource
-}
-```
-
-Searching for accounts:
-
-```swift
-public struct Accounts {
-    public static func search(query: String, limit: Int = default) -> AccountsResource
-}
-```
-
-### Clients
-
-Registering an application:
-
-```swift
-public struct Clients {
-    public static func register(clietName: String,
-                                redirectURI: String = default,
-                                scopes: [AccessScope],
-                                website: String? = default) -> RegisteredApplicationResource
-}
-```
+* ``Accounts.account(id:)`` - fetches an account.
+* ``Accounts.currentUser()`` - gets the current user.
+* ``Accounts.updateCurrentUser(displayName:note:avatar:header:)`` - updates the current user.
+* ``Accounts.followers(id:)`` - gets an account's followers.
+* ``Accounts.following(id:)`` - gets who account is following.
+* ``Accounts.statuses(id:mediaOnly:excludeReplies:)`` - gets an account's statuses.
+* ``Accounts.follow(id:)`` - follows an account.
+* ``Accounts.unfollow(id:)`` - unfollow an account.
+* ``Accounts.block(id:)`` - blocks an account.
+* ``Accounts.unblock(id:)`` - unblocks an account.
+* ``Accounts.mute(id:)`` - mutes an account.
+* ``Accounts.unmute(id:)`` - unmutes an account.
+* ``Accounts.relationships(ids:)`` - gets an account's relationships.
+* ``Accounts.search(query:limit:)`` - searches for accounts.
 
 ### Blocks
 
-Fetching a user's blocks:
+* ``Blocks.all()`` - fetches a user's blocks.
 
-```swift
-public struct Blocks {
-    public static func all() -> AccountsResource
-}
-```
+### Clients
+
+* ``Clients.register(clientName:redirectURI:scopes:website:)`` - registers an application.
 
 ### Favourites
 
-Fetching a user's favourites:
-
-```swift
-public struct Favourites {
-    public static func all() -> TimelineResource
-}
-```
+* ``Favourites.all()`` - fetches a user's favourites.
 
 ### Follow Requests
 
-Fetching a list of follow requests:
-
-```swift
-public struct FollowRequests {
-    public static func all() -> AccountsResource
-}
-```
-
-Authorizing a follow request:
-
-```swift
-public struct FollowRequests {
-    public static func authorize(id: Int) -> AccountResource
-}
-```
-
-Rejecting a follow request:
-
-```swift
-public struct FollowRequests {
-    public static func reject(id: Int) -> AccountResource
-}
-```
+* ``FollowRequests.all()`` - fetches a list of follow requests.
+* ``FollowRequests.authorize(id:)`` - authorizes a follow request.
+* ``FollowRequests.reject(id:)`` - rejects a follow request.
 
 ### Instances
 
-Getting instance information:
-
-```swift
-public struct Instances {
-    public static func current() -> InstanceResource
-}
-```
+* ``Instances.current()`` - gets instance information.
 
 ### Login
 
-Performing a silent login:
+* ``Login.silent(clientID:clientSecret:scope:username:password:)`` - performs a silent login.
 
-```swift
-public struct Login {
-    public static func silent(clientID: String,
-                              clientSecret: String,
-                              scope: AccessScope,
-                              username: String,
-                              password: String) -> LoginSettingsResource
-}
-```
+### Mutes
 
-### Mute
-
-Fetching a user's mute:
-
-```swift
-public struct Mutes {
-    public static func all() -> AccountsResource
-}
-```
+* ``Mutes.all()`` - fetches a user's mute:
 
 ### Notifications
 
-Fetching a user's notifications:
-
-```swift
-public struct Notifications {
-    public static func all() -> NotificationsResource
-}
-```
-
-Getting a single notification:
-
-```swift
-public struct Notifications {
-    public static func notification(id: Int) -> NotificationResource
-}
-```
-
-Deleting all notifications for the authenticated use:
-
-```swift
-public struct Notifications {
-    public static func dismissAll() -> NotificationResource
-}
-```
-
-Deleting a single notification for the authenticated user:
-
-```swift
-public struct Notifications {
-    public static func dismiss(id: Int) -> NotificationResource
-}
-```
+* ``Notifications.all()`` - fetches a user's notifications.
+* ``Notifications.notification(id:)`` - gets a single notification.
+* ``Notifications.dismissAll()`` - deletes all notifications for the authenticated user.
+* ``Notifications.dismiss(id:)`` - deletes a single notification for the authenticated user.
 
 ### Reports
 
-Fetching a user's reports:
-
-```swift
-public struct Reports {
-    public static func all() -> ReportsResource
-}
-```
-
-Reporting a user:
-
-```swift
-public struct Reports {
-    public static func report(accountID: Int, statusIDs: [Int], reason: String) -> ReportResource
-}
-```
+* ``Reports.all()`` - fetches a user's reports.
+* ``Reports.report(accountID:statusIDs:reason:)`` - reports a user.
 
 ### Search
 
-Searching for content:
-
-```swift
-public struct Search {
-    public static func search(query: String, resolve: Bool = default) -> ResultsResource
-}
-```
+* ``Search.search(query:resolve:)`` - searches for content.
 
 ### Statuses
 
-Fetching a status:
-
-```swift
-public struct Statuses {
-    public static func status(id: Int) -> StatusResource
-}
-```
-
-Getting a status context:
-
-```swift
-public struct Statuses {
-    public static func context(id: Int) -> ContextResource
-}
-```
-
-Getting a card associated with a status:
-
-```swift
-public struct Statuses {
-    public static func card(id: Int) -> CardResource
-}
-```
-
-Getting who reblogged a status:
-
-```swift
-public struct Statuses {
-    public static func rebloggedBy(id: Int) -> AccountsResource
-}
-```
-
-Getting who favourited a status:
-
-```swift
-public struct Statuses {
-    public static func favouritedBy(id: Int) -> AccountsResource
-}
-```
-
-Posting a new status:
-
-```swift
-public struct Statuses {
-    public static func create(status: String,
-                              replyToID: Int? = default,
-                              mediaIDs: [Int] = default,
-                              sensitive: Bool? = default,
-                              spoilerText: String? = default,
-                              visibility: VisibilityType = default) -> StatusResource
-}
-```
-
-Deleting a status:
-
-```swift
-public struct Statuses {
-    public static func delete(id: Int) -> StatusResource
-}
-```
-
-Reblogging a status:
-
-```swift
-public struct Statuses {
-    public static func reblog(id: Int) -> StatusResource
-}
-```
-
-Unreblogging a status:
-
-```swift
-public struct Statuses {
-    public static func unreblog(id: Int) -> StatusResource
-}
-```
-
-Favouriting a status:
-
-```swift
-public struct Statuses {
-    public static func favourite(id: Int) -> StatusResource
-}
-```
-
-Unfavouriting a status:
-
-```swift
-public struct Statuses {
-    public static func unfavourite(id: Int) -> StatusResource
-}
-```
+* ``Statuses.status(id:)`` - fetches a status.
+* ``Statuses.context(id:)`` - gets a status context.
+* ``Statuses.card(id:)`` - gets a card associated with a status.
+* ``Statuses.rebloggedBy(id:)`` - gets who reblogged a status.
+* ``Statuses.favouritedBy(id:)`` - gets who favourited a status.
+* ``Statuses.create(status:replyToID:mediaIDs:sensitive:spoilerText:visibility:)`` - posts a new status.
+* ``Statuses.delete(id:)`` - deletes a status.
+* ``Statuses.reblog(id:)`` - reblogs a status.
+* ``Statuses.unreblog(id:)`` - unreblogs a status.
+* ``Statuses.favourite(id:)`` - favourites a status.
+* ``Statuses.unfavourite(id:)`` - unfavourites a status.
 
 ### Timelines
 
-Retrieving the home timeline:
-
-```swift
-public struct Timelines {
-    public static func home() -> TimelineResource
-}
-```
-
-Retrieving the public timeline:
-
-```swift
-public struct Timelines {
-    public static func `public`(local: Bool? = default) -> TimelineResource
-}
-```
-
-Retrieving a tag timeline:
-
-```swift
-public struct Timelines {
-    public static func tag(_ hashtag: String, local: Bool? = default) -> TimelineResource
-}
-```
+* ``Timelines.home()`` - retrieves the home timeline.
+* ``Timelines.public(local:)`` - retrieves the public timeline.
+* ``Timelines.tag(_:local:)`` - retrieves a tag timeline.
 
 # License
 
