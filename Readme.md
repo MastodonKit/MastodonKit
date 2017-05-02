@@ -225,7 +225,7 @@ Getting an account's relationships:
 
 ```swift
 public struct Accounts {
-    public static func relationships(id: Int) -> RelationshipsResource
+    public static func relationships(ids: [Int]) -> RelationshipsResource
 }
 ```
 
@@ -306,6 +306,20 @@ public struct Instances {
 }
 ```
 
+### Login
+
+Performing a silent login:
+
+```swift
+public struct Login {
+    public static func silent(clientID: String,
+                              clientSecret: String,
+                              scope: AccessScope,
+                              username: String,
+                              password: String) -> LoginSettingsResource
+}
+```
+
 ### Mute
 
 Fetching a user's mute:
@@ -334,6 +348,22 @@ public struct Notifications {
 }
 ```
 
+Deleting all notifications for the authenticated use:
+
+```swift
+public struct Notifications {
+    public static func dismissAll() -> NotificationResource
+}
+```
+
+Deleting a single notification for the authenticated user:
+
+```swift
+public struct Notifications {
+    public static func dismiss(id: Int) -> NotificationResource
+}
+```
+
 ### Reports
 
 Fetching a user's reports:
@@ -348,7 +378,7 @@ Reporting a user:
 
 ```swift
 public struct Reports {
-    public static func report(accountID: Int, statusID: Int, reason: String) -> ReportResource
+    public static func report(accountID: Int, statusIDs: [Int], reason: String) -> ReportResource
 }
 ```
 
@@ -410,6 +440,7 @@ Posting a new status:
 public struct Statuses {
     public static func create(status: String,
                               replyToID: Int? = default,
+                              mediaIDs: [Int] = default,
                               sensitive: Bool? = default,
                               spoilerText: String? = default,
                               visibility: VisibilityType = default) -> StatusResource
@@ -470,7 +501,7 @@ Retrieving the public timeline:
 
 ```swift
 public struct Timelines {
-    public static func `public`() -> TimelineResource
+    public static func `public`(local: Bool? = default) -> TimelineResource
 }
 ```
 
@@ -478,7 +509,7 @@ Retrieving a tag timeline:
 
 ```swift
 public struct Timelines {
-    public static func tag(_ hashtag: String) -> TimelineResource
+    public static func tag(_ hashtag: String, local: Bool? = default) -> TimelineResource
 }
 ```
 
