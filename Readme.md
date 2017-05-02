@@ -105,7 +105,7 @@ Bear in mind the method above should never be used when deadling with other user
 
 ## Making requests
 
-Create a resource and run it using the client.
+To make requests, create a resource and *run* it using the client. Two examples:
 
 Getting the home timeline:
 
