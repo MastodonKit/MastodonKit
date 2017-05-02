@@ -24,10 +24,14 @@ class URLComponentsTests: XCTestCase {
     }
 
     func testURLComponentsWithBaseURLAndQueryItems() {
-        let dictionary: Parameters = ["a": "0", "b": "1"]
-        let resource = Resource<String>(path: "/string", method: .get(Payload.parameters(dictionary))) { _ in return "string" }
+        let parameters = [
+            Parameter(name: "a", value: "0"),
+            Parameter(name: "b", value: "1")
+        ]
+
+        let resource = Resource<String>(path: "/string", method: .get(Payload.parameters(parameters))) { _ in return "string" }
         let components = URLComponents(baseURL: "https://mastodon.technology", resource: resource)
 
-        XCTAssertEqual(components?.url, URL(string: "https://mastodon.technology/string?b=1&a=0"))
+        XCTAssertEqual(components?.url, URL(string: "https://mastodon.technology/string?a=0&b=1"))
     }
 }

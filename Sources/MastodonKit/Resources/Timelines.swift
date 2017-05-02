@@ -13,9 +13,11 @@ public struct Timelines {
     /// - Parameter local: Only return statuses originating from this instance.
     /// - Returns: Resource for `[Status]`.
     public static func `public`(local: Bool? = nil) -> TimelineResource {
-        let dictionary: Parameters = ["local": local.flatMap(nilOrTrue)]
-        let method = HTTPMethod.get(Payload.parameters(dictionary))
+        let parameters = [
+            Parameter(name: "local", value: local.flatMap(nilOrTrue))
+        ]
 
+        let method = HTTPMethod.get(Payload.parameters(parameters))
         return TimelineResource(path: "/api/v1/timelines/public", method: method, parse: TimelineResource.parser)
     }
 
@@ -26,9 +28,11 @@ public struct Timelines {
     ///   - local: Only return statuses originating from this instance.
     /// - Returns: Resource for `[Status]`.
     public static func tag(_ hashtag: String, local: Bool? = nil) -> TimelineResource {
-        let dictionary: Parameters = ["local": local.flatMap(nilOrTrue)]
-        let method = HTTPMethod.get(Payload.parameters(dictionary))
+        let parameters = [
+            Parameter(name: "local", value: local.flatMap(nilOrTrue))
+        ]
 
+        let method = HTTPMethod.get(Payload.parameters(parameters))
         return TimelineResource(path: "/api/v1/timelines/tag/\(hashtag)", method: method, parse: TimelineResource.parser)
     }
 }

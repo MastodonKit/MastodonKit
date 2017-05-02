@@ -1,7 +1,7 @@
 import Foundation
 
 enum Payload {
-    case parameters(Parameters?)
+    case parameters([Parameter]?)
     case image(Data?)
     case empty
 }
@@ -9,7 +9,7 @@ enum Payload {
 extension Payload {
     var items: [URLQueryItem]? {
         switch self {
-        case .parameters(let parameters): return parameters.flatMap(toQueryItems)
+        case .parameters(let parameters): return parameters?.flatMap(toQueryItem)
         case .image: return nil
         case .empty: return nil
         }
@@ -17,9 +17,10 @@ extension Payload {
 
     var data: Data? {
         switch self {
-        case .parameters(let parameters): return parameters.flatMap(toData)
+        case .parameters(let parameters): return parameters?.flatMap(toString).joined(separator: "&").data(using: .utf8)
         case .image(let data): return data
         case .empty: return nil
         }
     }
 }
+

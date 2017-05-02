@@ -24,11 +24,6 @@ class FunctionsTests: XCTestCase {
         XCTAssertNil(asJSONDictionary(json: invalidDictionary))
     }
 
-    func testToQueryItem() {
-        XCTAssertNotNil(toQueryItem(name: "foo", value: "bar"))
-        XCTAssertNil(toQueryItem(name: "foo", value: nil))
-    }
-
     func testOptionalToNilOrStringFromOptionalString() {
         let invalidString: String? = nil
         let validString: String? = "foo"
@@ -55,34 +50,22 @@ class FunctionsTests: XCTestCase {
         XCTAssertEqual(toOptionalString(optional: validFalseBoolean), "false")
     }
 
-    func testStringsToQueryString() {
-        XCTAssertEqual(toString(name: "foo", value: "bar"), "foo=bar")
-        XCTAssertNil(toString(name: "foo", value: nil))
-    }
-
-    func testParametersToQueryItems()  {
-        let emptyParamters: Parameters = [:]
-        XCTAssertEqual(toQueryItems(parameter: emptyParamters)?.count, 0)
-
-        let paramters: Parameters = ["id": "42", "name": "foo", "url": nil]
-        let queryItems = toQueryItems(parameter: paramters)
-        XCTAssertEqual(queryItems?.count, 2)
-        XCTAssertTrue(queryItems!.contains(URLQueryItem(name: "id", value: "42")))
-        XCTAssertTrue(queryItems!.contains(URLQueryItem(name: "name", value: "foo")))
-    }
-
-    func testParametersToData()  {
-        let emptyParamters: Parameters = [:]
-        let emptyParamtersData = toData(parameter: emptyParamters)
-        XCTAssertEqual(emptyParamtersData?.count, 0)
-
-        let paramters: Parameters = ["id": "42", "name": "foo", "url": nil]
-        let paramtersData = toData(parameter: paramters)
-        XCTAssertEqual(paramtersData?.count, 14)
-    }
-
     func testNilOrTrue() {
         XCTAssertNil(nilOrTrue(false))
         XCTAssertEqual(nilOrTrue(true), "true")
+    }
+
+    func testArrayOfParametersWithInteger() {
+        let parameters = toArrayOfParameter(withName: "foo")(42)
+
+        XCTAssertEqual(parameters.name, "foo[]")
+        XCTAssertEqual(parameters.value, "42")
+    }
+
+    func testArrayOfParametersWithString() {
+        let parameters = toArrayOfParameter(withName: "foo")("bar")
+
+        XCTAssertEqual(parameters.name, "foo[]")
+        XCTAssertEqual(parameters.value, "bar")
     }
 }

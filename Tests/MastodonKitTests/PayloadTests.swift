@@ -3,13 +3,13 @@ import XCTest
 
 class PayloadTests: XCTestCase {
     func testParametersWithValidValue() {
-        let dictionary: Parameters = [
-            "number": String(42),
-            "url": "https://mastodon.technology",
-            "nilValue": nil
+        let parameters = [
+            Parameter(name: "number", value: String(42)),
+            Parameter(name: "url", value: "https://mastodon.technology"),
+            Parameter(name: "nilValue", value: nil)
         ]
 
-        let payload = Payload.parameters(dictionary)
+        let payload = Payload.parameters(parameters)
 
         // Items
         let expectedNumber = URLQueryItem(name: "number", value: "42")

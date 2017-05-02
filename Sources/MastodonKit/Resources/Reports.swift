@@ -12,17 +12,16 @@ public struct Reports {
     ///
     /// - Parameters:
     ///   - accountID: The ID of the account to report.
-    ///   - statusID: The ID of status to report.
+    ///   - statusIDs: The IDs of statuses to report.
     ///   - reason: A comment to associate with the report.
     /// - Returns: Resource for `Report`.
-    public static func report(accountID: Int, statusID: Int, reason: String) -> ReportResource {
-        let dictionary: Parameters = [
-            "account_id": String(accountID),
-            "status_ids": String(statusID),
-            "comment": reason
-        ]
+    public static func report(accountID: Int, statusIDs: [Int], reason: String) -> ReportResource {
+        let parameters = [
+            Parameter(name: "account_id", value: String(accountID)),
+            Parameter(name: "comment", value: reason)
+            ] + statusIDs.map(toArrayOfParameter(withName: "status_ids"))
 
-        let method = HTTPMethod.post(Payload.parameters(dictionary))
+        let method = HTTPMethod.post(Payload.parameters(parameters))
         return ReportResource(path: "/api/v1/reports", method: method, parse: ReportResource.parser)
     }
 }

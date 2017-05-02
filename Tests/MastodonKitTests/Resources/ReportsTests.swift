@@ -18,7 +18,7 @@ class ReportsTests: XCTestCase {
     }
 
     func testReport() {
-        let resource = Reports.report(accountID: 40, statusID: 2, reason: "Westworld Spoiler!!!")
+        let resource = Reports.report(accountID: 40, statusIDs: [4, 2, 42], reason: "Westworld Spoiler!!!")
 
         // Endpoint
         XCTAssertEqual(resource.path, "/api/v1/reports")
@@ -29,9 +29,11 @@ class ReportsTests: XCTestCase {
         XCTAssertNotNil(resource.method.httpBody)
 
         let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
+        XCTAssertEqual(payload.components(separatedBy: "&").count, 5)
         XCTAssertTrue(payload.contains("account_id=40"))
-        XCTAssertTrue(payload.contains("status_ids=2"))
+        XCTAssertTrue(payload.contains("status_ids[]=4"))
+        XCTAssertTrue(payload.contains("status_ids[]=2"))
+        XCTAssertTrue(payload.contains("status_ids[]=42"))
         XCTAssertTrue(payload.contains("comment=Westworld Spoiler!!!"))
 
         // Parser

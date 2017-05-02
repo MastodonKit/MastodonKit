@@ -25,14 +25,14 @@ public struct Accounts {
     ///   - header: A base64 encoded image to display as the user's header image (e.g. data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAU...).
     /// - Returns: Resource for `Account`.
     public static func updateCurrentUser(displayName: String? = nil, note: String? = nil, avatar: String? = nil, header: String? = nil) -> AccountResource {
-        let dictionary: Parameters = [
-            "display_name": displayName,
-            "note": note,
-            "avatar": avatar,
-            "header": header
+        let parameters = [
+            Parameter(name: "display_name", value: displayName),
+            Parameter(name: "note", value: note),
+            Parameter(name: "avatar", value: avatar),
+            Parameter(name: "header", value: header)
         ]
 
-        let method = HTTPMethod.patch(Payload.parameters(dictionary))
+        let method = HTTPMethod.patch(Payload.parameters(parameters))
         return AccountResource(path: "/api/v1/accounts/update_credentials", method: method, parse: AccountResource.parser)
     }
 
@@ -60,12 +60,12 @@ public struct Accounts {
     ///   - showReplies: Skip statuses that reply to other statuses.
     /// - Returns: Resource for `[Status]`.
     public static func statuses(id: Int, mediaOnly: Bool? = nil, excludeReplies: Bool? = nil) -> TimelineResource {
-        let dictionary: Parameters = [
-            "only_media": mediaOnly.flatMap(nilOrTrue),
-            "exclude_replies": excludeReplies.flatMap(nilOrTrue)
+        let parameters = [
+            Parameter(name: "only_media", value: mediaOnly.flatMap(nilOrTrue)),
+            Parameter(name: "exclude_replies", value: excludeReplies.flatMap(nilOrTrue))
         ]
 
-        let method = HTTPMethod.get(Payload.parameters(dictionary))
+        let method = HTTPMethod.get(Payload.parameters(parameters))
         return TimelineResource(path: "/api/v1/accounts/\(id)/statuses", method: method, parse: TimelineResource.parser)
     }
 
@@ -119,12 +119,12 @@ public struct Accounts {
 
     /// Gets an account's relationships.
     ///
-    /// - Parameter id: The accound id.
+    /// - Parameter ids: The account's ids.
     /// - Returns: Resource for `[Relationship]`.
-    public static func relationships(id: Int) -> RelationshipsResource {
-        let dictionary: Parameters = ["id": String(id)]
-        let method = HTTPMethod.get(Payload.parameters(dictionary))
+    public static func relationships(ids: [Int]) -> RelationshipsResource {
+        let parameters = ids.map(toArrayOfParameter(withName: "id"))
 
+        let method = HTTPMethod.get(Payload.parameters(parameters))
         return RelationshipsResource(path: "/api/v1/accounts/relationships", method: method, parse: RelationshipsResource.parser)
     }
 
@@ -135,9 +135,12 @@ public struct Accounts {
     ///   - limit: Maximum number of matching accounts to return (default: 40).
     /// - Returns: Resource for `[Account]`.
     public static func search(query: String, limit: Int = 40) -> AccountsResource {
-        let dictionary: Parameters = ["q": query, "limit": String(limit)]
-        let method = HTTPMethod.get(Payload.parameters(dictionary))
+        let parameters = [
+            Parameter(name: "q", value: query),
+            Parameter(name: "limit", value: String(limit))
+        ]
 
+        let method = HTTPMethod.get(Payload.parameters(parameters))
         return AccountsResource(path: "/api/v1/accounts/search", method: method, parse: AccountsResource.parser)
     }
 }

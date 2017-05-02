@@ -10,14 +10,14 @@ public struct Clients {
     ///   - website: URL to the homepage of your app.
     /// - Returns: Resource for `ClientApplication`.
     public static func register(clientName: String, redirectURI: String = "urn:ietf:wg:oauth:2.0:oob", scopes: [AccessScope], website: String? = nil) -> ClientApplicationResource {
-        let dictionary: Parameters = [
-            "client_name": clientName,
-            "redirect_uris": redirectURI,
-            "website": website,
-            "scopes": scopes.map(toString).joined(separator: "+")
+        let parameters = [
+            Parameter(name: "client_name", value: clientName),
+            Parameter(name: "redirect_uris", value: redirectURI),
+            Parameter(name: "website", value: website),
+            Parameter(name: "scopes", value: scopes.map(toString).joined(separator: "+"))
         ]
 
-        let method = HTTPMethod.post(Payload.parameters(dictionary))
+        let method = HTTPMethod.post(Payload.parameters(parameters))
         return ClientApplicationResource(path: "/api/v1/apps", method: method, parse: ClientApplicationResource.parser)
     }
 }

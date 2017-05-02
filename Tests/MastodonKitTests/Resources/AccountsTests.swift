@@ -242,8 +242,9 @@ class AccountsTests: XCTestCase {
     }
 
     func testRelationships() {
-        let resource = Accounts.relationships(id: 42)
-        let expectedID = URLQueryItem(name: "id", value: "42")
+        let resource = Accounts.relationships(ids: [42, 52])
+        let expectedID42 = URLQueryItem(name: "id[]", value: "42")
+        let expectedID52 = URLQueryItem(name: "id[]", value: "52")
 
         // Endpoint
         XCTAssertEqual(resource.path, "/api/v1/accounts/relationships")
@@ -252,8 +253,9 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.method.name, "GET")
         XCTAssertNil(resource.method.httpBody)
         XCTAssertNotNil(resource.method.queryItems)
-        XCTAssertEqual(resource.method.queryItems?.count, 1)
-        XCTAssertTrue(resource.method.queryItems!.contains(expectedID))
+        XCTAssertEqual(resource.method.queryItems?.count, 2)
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedID42))
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedID52))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Relationship]?>.self)

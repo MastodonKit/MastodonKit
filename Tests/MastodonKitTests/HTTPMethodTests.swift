@@ -3,13 +3,13 @@ import XCTest
 
 class HTTPMethodTests: XCTestCase {
     func testGet()  {
-        let dictionary: Parameters = [
-            "number": String(42),
-            "url": "https://mastodon.technology",
-            "nilValue": nil
+        let parameters = [
+            Parameter(name: "number", value: String(42)),
+            Parameter(name: "url", value: "https://mastodon.technology"),
+            Parameter(name: "nilValue", value: nil)
         ]
 
-        let payload = Payload.parameters(dictionary)
+        let payload = Payload.parameters(parameters)
         let method = HTTPMethod.get(payload)
 
         // Name
@@ -28,13 +28,13 @@ class HTTPMethodTests: XCTestCase {
     }
 
     func testPost()  {
-        let dictionary: Parameters = [
-            "number": String(42),
-            "url": "https://mastodon.technology",
-            "nilValue": nil
+        let parameters = [
+            Parameter(name: "number", value: String(42)),
+            Parameter(name: "url", value: "https://mastodon.technology"),
+            Parameter(name: "nilValue", value: nil)
         ]
 
-        let payload = Payload.parameters(dictionary)
+        let payload = Payload.parameters(parameters)
         let method = HTTPMethod.post(payload)
 
         // Name
@@ -50,13 +50,13 @@ class HTTPMethodTests: XCTestCase {
     }
 
     func testPatch()  {
-        let dictionary: Parameters = [
-            "number": String(42),
-            "url": "https://mastodon.technology",
-            "nilValue": nil
+        let parameters = [
+            Parameter(name: "number", value: String(42)),
+            Parameter(name: "url", value: "https://mastodon.technology"),
+            Parameter(name: "nilValue", value: nil)
         ]
 
-        let payload = Payload.parameters(dictionary)
+        let payload = Payload.parameters(parameters)
         let method = HTTPMethod.patch(payload)
 
         // Name
