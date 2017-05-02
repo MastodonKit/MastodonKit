@@ -6,6 +6,12 @@ func toString(scope: AccessScope) -> String {
     return scope.rawValue
 }
 
+func toArrayOfParameter<A>(withName name: String) -> (A) -> Parameter {
+    return { value in
+        Parameter(name: "\(name)[]", value: String(describing: value))
+    }
+}
+
 // MARK: - Flat-map
 
 func asString(json: JSONObject) -> String? {
@@ -36,10 +42,4 @@ func toString(parameter: Parameter) -> String? {
 
 func nilOrTrue(_ flag: Bool) -> String? {
     return flag ? "true" : nil
-}
-
-func toArrayOfParameter<A>(withName name: String) -> (A) -> Parameter {
-    return { value in
-        Parameter(name: "\(name)[]", value: String(describing: value))
-    }
 }

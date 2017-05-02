@@ -118,6 +118,29 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
     }
 
+    func testCreateWithMessageAndMediaIDs() {
+        let resource = Statuses.create(status: "The most awesome status message ever!", mediaIDs: [1, 2, 42])
+
+        // Endpoint
+        XCTAssertEqual(resource.path, "/api/v1/statuses")
+
+        // Method
+        XCTAssertEqual(resource.method.name, "POST")
+        XCTAssertNil(resource.method.queryItems)
+        XCTAssertNotNil(resource.method.httpBody)
+
+        let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
+        XCTAssertEqual(payload.components(separatedBy: "&").count, 5)
+        XCTAssertTrue(payload.contains("status=The most awesome status message ever!"))
+        XCTAssertTrue(payload.contains("visibility=public"))
+        XCTAssertTrue(payload.contains("media_ids[]=1"))
+        XCTAssertTrue(payload.contains("media_ids[]=2"))
+        XCTAssertTrue(payload.contains("media_ids[]=42"))
+
+        // Parser
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Status?>.self)
+    }
+
     func testCreateWithSensitiveMessage() {
         let resource = Statuses.create(status: "The most awesome status message ever!", sensitive: true)
 
