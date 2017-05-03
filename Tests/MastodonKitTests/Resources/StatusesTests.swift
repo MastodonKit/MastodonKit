@@ -62,6 +62,25 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
     }
 
+    func testRebloggedByWithRange() {
+        let resource = Statuses.rebloggedBy(id: 42, range: .since(id: 12, limit: 50))
+        let expectedSinceID = URLQueryItem(name: "since_id", value: "12")
+        let expectedLimit = URLQueryItem(name: "limit", value: "50")
+
+        // Endpoint
+        XCTAssertEqual(resource.path, "/api/v1/statuses/42/reblogged_by")
+
+        // Method
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertEqual(resource.method.queryItems?.count, 2)
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedSinceID))
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedLimit))
+
+        // Parser
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
+    }
+
     func testFavouritedBy() {
         let resource = Statuses.favouritedBy(id: 42)
 
@@ -72,6 +91,25 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(resource.method.name, "GET")
         XCTAssertNil(resource.method.httpBody)
         XCTAssertNil(resource.method.queryItems)
+
+        // Parser
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
+    }
+
+    func testFavouritedByWithRange() {
+        let resource = Statuses.favouritedBy(id: 42, range: .since(id: 12, limit: 50))
+        let expectedSinceID = URLQueryItem(name: "since_id", value: "12")
+        let expectedLimit = URLQueryItem(name: "limit", value: "50")
+
+        // Endpoint
+        XCTAssertEqual(resource.path, "/api/v1/statuses/42/favourited_by")
+
+        // Method
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertEqual(resource.method.queryItems?.count, 2)
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedSinceID))
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedLimit))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)

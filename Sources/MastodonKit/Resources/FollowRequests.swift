@@ -4,8 +4,11 @@ public struct FollowRequests {
     /// Fetches a list of follow requests.
     ///
     /// - Returns: Resource for `[Account]`.
-    public static func all() -> AccountsResource {
-        return AccountsResource(path: "/api/v1/follow_requests", parse: AccountsResource.parser)
+    public static func all(range: ResourceRange = .default) -> AccountsResource {
+        let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
+        let method = HTTPMethod.get(Payload.parameters(parameters))
+
+        return AccountsResource(path: "/api/v1/follow_requests", method: method, parse: AccountsResource.parser)
     }
 
     /// Authorizes a follow request.
