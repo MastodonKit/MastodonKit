@@ -7,15 +7,11 @@ func toString(scope: AccessScope) -> String {
 }
 
 func toArrayOfParameters<A>(withName name: String) -> (A) -> Parameter {
-    return { value in
-        Parameter(name: "\(name)[]", value: String(describing: value))
-    }
+    return { value in Parameter(name: "\(name)[]", value: String(describing: value)) }
 }
 
 func between(_ min: Int, and max: Int, fallback: Int) -> (Int) -> Int {
-    return { limit in
-        return (limit >= min && limit <= max) ? limit : fallback
-    }
+    return { limit in (limit >= min && limit <= max) ? limit : fallback }
 }
 
 // MARK: - Flat-map
