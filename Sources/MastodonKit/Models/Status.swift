@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Status {
+public class Status {
     /// The ID of the status.
     public let id: Int
     /// A Fediverse-unique resource ID.
@@ -17,6 +17,8 @@ public struct Status {
     public let content: String
     /// The time the status was created.
     public let createdAt: Date
+    /// Original Status if this one is "boost"
+    public let reblog: Status?
     /// The number of reblogs for the status.
     public let reblogsCount: Int
     /// The number of favourites for the status.
@@ -39,9 +41,7 @@ public struct Status {
     public let tags: [Tag]
     /// Application from which the status was posted.
     public let application: Application?
-}
 
-extension Status {
     init?(from dictionary: JSONDictionary) {
         guard
             let id = dictionary["id"] as? Int,
@@ -74,6 +74,7 @@ extension Status {
         self.createdAt = createdAt
         self.reblogsCount = reblogsCount
         self.favouritesCount = favouritesCount
+        self.reblog = dictionary["reblog"].flatMap(asJSONDictionary).flatMap(Status.init)
         self.reblogged = dictionary["reblogged"] as? Bool
         self.favourited = dictionary["favourited"] as? Bool
         self.sensitive = dictionary["sensitive"] as? Bool
