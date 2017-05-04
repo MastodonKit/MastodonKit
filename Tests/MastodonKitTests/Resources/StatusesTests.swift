@@ -128,7 +128,7 @@ class StatusesTests: XCTestCase {
 
         let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 2)
-        XCTAssertTrue(payload.contains("status=The most awesome status message ever!"))
+        XCTAssertTrue(payload.contains("status=The%20most%20awesome%20status%20message%20ever%21"))
         XCTAssertTrue(payload.contains("visibility=public"))
 
         // Parser
@@ -148,7 +148,7 @@ class StatusesTests: XCTestCase {
 
         let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
-        XCTAssertTrue(payload.contains("status=The most awesome status message ever!"))
+        XCTAssertTrue(payload.contains("status=The%20most%20awesome%20status%20message%20ever%21"))
         XCTAssertTrue(payload.contains("in_reply_to_id=42"))
         XCTAssertTrue(payload.contains("visibility=public"))
 
@@ -169,7 +169,7 @@ class StatusesTests: XCTestCase {
 
         let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 5)
-        XCTAssertTrue(payload.contains("status=The most awesome status message ever!"))
+        XCTAssertTrue(payload.contains("status=The%20most%20awesome%20status%20message%20ever%21"))
         XCTAssertTrue(payload.contains("visibility=public"))
         XCTAssertTrue(payload.contains("media_ids[]=1"))
         XCTAssertTrue(payload.contains("media_ids[]=2"))
@@ -192,7 +192,7 @@ class StatusesTests: XCTestCase {
 
         let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
-        XCTAssertTrue(payload.contains("status=The most awesome status message ever!"))
+        XCTAssertTrue(payload.contains("status=The%20most%20awesome%20status%20message%20ever%21"))
         XCTAssertTrue(payload.contains("sensitive=true"))
         XCTAssertTrue(payload.contains("visibility=public"))
 
@@ -213,8 +213,8 @@ class StatusesTests: XCTestCase {
 
         let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
-        XCTAssertTrue(payload.contains("status=Can't believe it's an amusement park like Westworld!"))
-        XCTAssertTrue(payload.contains("spoiler_text=Last night's GoT!!!"))
+        XCTAssertTrue(payload.contains("status=Can%27t%20believe%20it%27s%20an%20amusement%20park%20like%20Westworld%21"))
+        XCTAssertTrue(payload.contains("spoiler_text=Last%20night%27s%20GoT%21%21%21"))
         XCTAssertTrue(payload.contains("visibility=public"))
 
         // Parser
@@ -234,7 +234,7 @@ class StatusesTests: XCTestCase {
 
         let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 2)
-        XCTAssertTrue(payload.contains("status=The most awesome status message ever!"))
+        XCTAssertTrue(payload.contains("status=The%20most%20awesome%20status%20message%20ever%21"))
         XCTAssertTrue(payload.contains("visibility=unlisted"))
 
         // Parser

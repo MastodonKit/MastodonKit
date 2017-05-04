@@ -14,8 +14,8 @@ class LoginTests: XCTestCase {
 
         let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 6)
-        XCTAssertTrue(payload.contains("client_id=client id"))
-        XCTAssertTrue(payload.contains("client_secret=client secret"))
+        XCTAssertTrue(payload.contains("client_id=client%20id"))
+        XCTAssertTrue(payload.contains("client_secret=client%20secret"))
         XCTAssertTrue(payload.contains("scope=read"))
         XCTAssertTrue(payload.contains("grant_type=password"))
         XCTAssertTrue(payload.contains("username=foo"))

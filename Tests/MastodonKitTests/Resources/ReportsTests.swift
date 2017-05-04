@@ -34,7 +34,7 @@ class ReportsTests: XCTestCase {
         XCTAssertTrue(payload.contains("status_ids[]=4"))
         XCTAssertTrue(payload.contains("status_ids[]=2"))
         XCTAssertTrue(payload.contains("status_ids[]=42"))
-        XCTAssertTrue(payload.contains("comment=Westworld Spoiler!!!"))
+        XCTAssertTrue(payload.contains("comment=Westworld%20Spoiler%21%21%21"))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Report?>.self)

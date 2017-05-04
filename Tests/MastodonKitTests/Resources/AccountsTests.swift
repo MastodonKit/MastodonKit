@@ -45,10 +45,10 @@ class AccountsTests: XCTestCase {
 
         let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 4)
-        XCTAssertTrue(payload.contains("display_name=Ornithologist Coder"))
-        XCTAssertTrue(payload.contains("note=Creator of MastodonKit"))
-        XCTAssertTrue(payload.contains("avatar=base64 avatar"))
-        XCTAssertTrue(payload.contains("header=base64 header"))
+        XCTAssertTrue(payload.contains("display_name=Ornithologist%20Coder"))
+        XCTAssertTrue(payload.contains("note=Creator%20of%20MastodonKit"))
+        XCTAssertTrue(payload.contains("avatar=base64%20avatar"))
+        XCTAssertTrue(payload.contains("header=base64%20header"))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
@@ -67,8 +67,8 @@ class AccountsTests: XCTestCase {
 
         let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 2)
-        XCTAssertTrue(payload.contains("display_name=Ornithologist Coder"))
-        XCTAssertTrue(payload.contains("header=base64 header"))
+        XCTAssertTrue(payload.contains("display_name=Ornithologist%20Coder"))
+        XCTAssertTrue(payload.contains("header=base64%20header"))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)

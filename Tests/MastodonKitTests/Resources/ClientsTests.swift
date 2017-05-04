@@ -16,7 +16,7 @@ class ClientsTests: XCTestCase {
         let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
         XCTAssertTrue(payload.contains("client_name=MastodonKitTestApplication"))
-        XCTAssertTrue(payload.contains("redirect_uris=urn:ietf:wg:oauth:2.0:oob"))
+        XCTAssertTrue(payload.contains("redirect_uris=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob"))
         XCTAssertTrue(payload.contains("scopes="))
 
         // Parser
@@ -37,8 +37,8 @@ class ClientsTests: XCTestCase {
         let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
         XCTAssertTrue(payload.contains("client_name=MastodonKitTestApplication"))
-        XCTAssertTrue(payload.contains("redirect_uris=my-awesome-app://"))
-        XCTAssertTrue(payload.contains("scopes=read+follow"))
+        XCTAssertTrue(payload.contains("redirect_uris=my-awesome-app%3A//"))
+        XCTAssertTrue(payload.contains("scopes=read%20follow"))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<ClientApplication?>.self)
@@ -58,9 +58,9 @@ class ClientsTests: XCTestCase {
         let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 4)
         XCTAssertTrue(payload.contains("client_name=MastodonKitTestApplication"))
-        XCTAssertTrue(payload.contains("redirect_uris=urn:ietf:wg:oauth:2.0:oob"))
-        XCTAssertTrue(payload.contains("scopes=read+write+follow"))
-        XCTAssertTrue(payload.contains("website=https://github.com/ornithocoder/MastodonKit"))
+        XCTAssertTrue(payload.contains("redirect_uris=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob"))
+        XCTAssertTrue(payload.contains("scopes=read%20write%20follow"))
+        XCTAssertTrue(payload.contains("website=https%3A//github.com/ornithocoder/MastodonKit"))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<ClientApplication?>.self)

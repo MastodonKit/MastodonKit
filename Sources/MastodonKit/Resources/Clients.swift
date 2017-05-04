@@ -14,7 +14,7 @@ public struct Clients {
             Parameter(name: "client_name", value: clientName),
             Parameter(name: "redirect_uris", value: redirectURI),
             Parameter(name: "website", value: website),
-            Parameter(name: "scopes", value: scopes.map(toString).joined(separator: "+"))
+            Parameter(name: "scopes", value: scopes.map(toString).joined(separator: " "))
         ]
 
         let method = HTTPMethod.post(Payload.parameters(parameters))

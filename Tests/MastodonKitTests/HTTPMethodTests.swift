@@ -44,7 +44,7 @@ class HTTPMethodTests: XCTestCase {
         XCTAssertNil(method.queryItems)
 
         // HTTP body
-        let expectedData = "number=42&url=https://mastodon.technology".data(using: .utf8)
+        let expectedData = "number=42&url=https%3A//mastodon.technology".data(using: .utf8)
 
         XCTAssertEqual(method.httpBody, expectedData)
     }
@@ -66,7 +66,7 @@ class HTTPMethodTests: XCTestCase {
         XCTAssertNil(method.queryItems)
 
         // HTTP body
-        let expectedData = "number=42&url=https://mastodon.technology".data(using: .utf8)
+        let expectedData = "number=42&url=https%3A//mastodon.technology".data(using: .utf8)
 
         XCTAssertEqual(method.httpBody, expectedData)
     }

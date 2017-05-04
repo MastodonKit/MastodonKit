@@ -182,7 +182,7 @@ class ClientRunWithPostAndHTTPBodyTests: XCTestCase {
 
         let httyBodyString = String(data: request!.httpBody!, encoding: .utf8)!
 
-        XCTAssertTrue(httyBodyString.contains("status=Hi there!"))
+        XCTAssertTrue(httyBodyString.contains("status=Hi%20there%21"))
         XCTAssertTrue(httyBodyString.contains("visibility=public"))
         XCTAssertTrue(httyBodyString.contains("in_reply_to_id=42"))
     }

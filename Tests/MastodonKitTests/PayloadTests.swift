@@ -20,7 +20,7 @@ class PayloadTests: XCTestCase {
         XCTAssertTrue(payload.items!.contains(expectedURL))
 
         // Data
-        let expectedData = "number=42&url=https://mastodon.technology".data(using: .utf8)
+        let expectedData = "number=42&url=https%3A//mastodon.technology".data(using: .utf8)
 
         XCTAssertEqual(payload.data, expectedData)
     }
