@@ -22,6 +22,7 @@ By the way, if you want to get in touch with me, [toot me](https://mastodon.tech
     - [Search](#search)
     - [Statuses](#statuses)
     - [Timelines](#timelines)
+- [Contributors](#contributors)
 - [License](#license)
 
 ## Building it from source
@@ -213,6 +214,12 @@ Below the qualified symbol name for the resources implemented by MastodonKit. Al
 * ``Timelines.home()`` - retrieves the home timeline.
 * ``Timelines.public(local:)`` - retrieves the public timeline.
 * ``Timelines.tag(_:local:)`` - retrieves a tag timeline.
+
+# Contributors
+
+Special thanks to:
+
+* [Valerii Hiora (@vhbit)](https://github.com/vhbit)
 
 # License
 
