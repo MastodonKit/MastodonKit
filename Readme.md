@@ -242,6 +242,7 @@ Below the qualified symbol name for the resources implemented by MastodonKit. Al
 
 Special thanks to:
 
+* [Paul Schifferer (@exsortis)](https://github.com/exsortis)
 * [Valerii Hiora (@vhbit)](https://github.com/vhbit)
 
 # License
