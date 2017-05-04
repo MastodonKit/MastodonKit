@@ -128,6 +128,29 @@ client.run(resource) { status, error in
 }
 ```
 
+## Range and Limit
+
+Some resources take an optional `ResourceRange` parameter. This parameter should be used to specify the range of IDs to get and the number of entities to fetch. The possible options are:
+
+* `.since(id: Int, limit: Int?)`: Gets a list with IDs less than or equal this value.
+    * Note: Passing `nil` as `limit` asks Mastodon to return the default number of entities for that endpoint.
+* `.max(id: Int, limit: Int?)`: Gets a list with IDs greater than this value.
+    * Note: Passing `nil` as `limit` asks Mastodon to return the default number of entities for that endpoint.
+* `.limit(Int)`: Sets the maximum number of entities to get.
+* `.default`: Applies the default values.
+
+Omitting the `range` paramater on the method call has the same effect of passing `.default`.
+
+Examples:
+
+```swift
+let resource = Timelines.home(range: .since(id: 42, limit: 30))
+```
+
+```swift
+let resource = Timelines.home(range: .limit(30))
+```
+
 ## List of resources
 
 Below the qualified symbol name for the resources implemented by MastodonKit. All the methods are documented and their descriptions are available via option+click on Xcode.
