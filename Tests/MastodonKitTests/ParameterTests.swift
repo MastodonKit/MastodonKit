@@ -15,4 +15,18 @@ class ParameterTests: XCTestCase {
         XCTAssertEqual(parameter.name, "name")
         XCTAssertNil(parameter.value)
     }
+
+    func testEqualWithNilValue() {
+        let parameterOne = Parameter(name: "foo", value: nil)
+        let parameterTwo = Parameter(name: "foo", value: nil)
+
+        XCTAssertEqual(parameterOne, parameterTwo)
+    }
+
+    func testEqualWithValue() {
+        let parameterOne = Parameter(name: "foo", value: "bar")
+        let parameterTwo = Parameter(name: "foo", value: "bar")
+
+        XCTAssertEqual(parameterOne, parameterTwo)
+    }
 }

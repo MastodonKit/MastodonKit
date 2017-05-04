@@ -29,16 +29,22 @@ public struct Statuses {
     ///
     /// - Parameter id: The status id.
     /// - Returns: Resource for `[Account]`.
-    public static func rebloggedBy(id: Int) -> AccountsResource {
-        return AccountsResource(path: "/api/v1/statuses/\(id)/reblogged_by", parse: AccountsResource.parser)
+    public static func rebloggedBy(id: Int, range: ResourceRange = .default) -> AccountsResource {
+        let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
+        let method = HTTPMethod.get(Payload.parameters(parameters))
+
+        return AccountsResource(path: "/api/v1/statuses/\(id)/reblogged_by", method: method, parse: AccountsResource.parser)
     }
 
     /// Gets who favourited a status.
     ///
     /// - Parameter id: The status id.
     /// - Returns: Resource for `[Account]`.
-    public static func favouritedBy(id: Int) -> AccountsResource {
-        return AccountsResource(path: "/api/v1/statuses/\(id)/favourited_by", parse: AccountsResource.parser)
+    public static func favouritedBy(id: Int, range: ResourceRange = .default) -> AccountsResource {
+        let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
+        let method = HTTPMethod.get(Payload.parameters(parameters))
+
+        return AccountsResource(path: "/api/v1/statuses/\(id)/favourited_by", method: method, parse: AccountsResource.parser)
     }
 
     /// Posts a new status.

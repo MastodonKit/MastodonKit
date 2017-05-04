@@ -4,7 +4,10 @@ public struct Mutes {
     /// Fetches a user's mutes.
     ///
     /// - Returns: Resource for `[Account]`.
-    public static func all() -> AccountsResource {
-        return AccountsResource(path: "/api/v1/mutes", parse: AccountsResource.parser)
+    public static func all(range: ResourceRange = .default) -> AccountsResource {
+        let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
+        let method = HTTPMethod.get(Payload.parameters(parameters))
+
+        return AccountsResource(path: "/api/v1/mutes", method: method, parse: AccountsResource.parser)
     }
 }

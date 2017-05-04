@@ -40,16 +40,22 @@ public struct Accounts {
     ///
     /// - Parameter id: The account id.
     /// - Returns: Resource for `[Account]`.
-    public static func followers(id: Int) -> AccountsResource {
-        return AccountsResource(path: "/api/v1/accounts/\(id)/followers", parse: AccountsResource.parser)
+    public static func followers(id: Int, range: ResourceRange = .default) -> AccountsResource {
+        let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
+        let method = HTTPMethod.get(Payload.parameters(parameters))
+
+        return AccountsResource(path: "/api/v1/accounts/\(id)/followers", method: method, parse: AccountsResource.parser)
     }
 
     /// Gets who account is following.
     ///
     /// - Parameter id: The account id.
     /// - Returns: Resource for `[Account]`.
-    public static func following(id: Int) -> AccountsResource {
-        return AccountsResource(path: "/api/v1/accounts/\(id)/following", parse: AccountsResource.parser)
+    public static func following(id: Int, range: ResourceRange = .default) -> AccountsResource {
+        let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
+        let method = HTTPMethod.get(Payload.parameters(parameters))
+
+        return AccountsResource(path: "/api/v1/accounts/\(id)/following", method: method, parse: AccountsResource.parser)
     }
 
     /// Gets an account's statuses.
@@ -59,8 +65,9 @@ public struct Accounts {
     ///   - mediaOnly: Only return statuses that have media attachments.
     ///   - showReplies: Skip statuses that reply to other statuses.
     /// - Returns: Resource for `[Status]`.
-    public static func statuses(id: Int, mediaOnly: Bool? = nil, excludeReplies: Bool? = nil) -> TimelineResource {
-        let parameters = [
+    public static func statuses(id: Int, mediaOnly: Bool? = nil, excludeReplies: Bool? = nil, range: ResourceRange = .default) -> TimelineResource {
+        let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []
+        let parameters = rangeParameters + [
             Parameter(name: "only_media", value: mediaOnly.flatMap(nilOrTrue)),
             Parameter(name: "exclude_replies", value: excludeReplies.flatMap(nilOrTrue))
         ]

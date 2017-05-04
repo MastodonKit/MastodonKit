@@ -89,6 +89,25 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
     }
 
+    func testFollowersWithRange() {
+        let resource = Accounts.followers(id: 42, range: .since(id: 420, limit: 37))
+        let expectedMaxID = URLQueryItem(name: "since_id", value: "420")
+        let expectedLimit = URLQueryItem(name: "limit", value: "37")
+
+        // Endpoint
+        XCTAssertEqual(resource.path, "/api/v1/accounts/42/followers")
+
+        // Method
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertEqual(resource.method.queryItems?.count, 2)
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedMaxID))
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedLimit))
+
+        // Parser
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
+    }
+
     func testFollowing() {
         let resource = Accounts.following(id: 42)
 
@@ -104,6 +123,23 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
     }
 
+    func testFollowingWithRange() {
+        let resource = Accounts.following(id: 42, range: .limit(17))
+        let expectedLimit = URLQueryItem(name: "limit", value: "17")
+
+        // Endpoint
+        XCTAssertEqual(resource.path, "/api/v1/accounts/42/following")
+
+        // Method
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertEqual(resource.method.queryItems?.count, 1)
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedLimit))
+
+        // Parser
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Account]?>.self)
+    }
+
     func testStatuses() {
         let resource = Accounts.statuses(id: 42)
 
@@ -114,6 +150,25 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(resource.method.name, "GET")
         XCTAssertEqual(resource.method.queryItems?.count, 0)
         XCTAssertNil(resource.method.httpBody)
+
+        // Parser
+        XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]?>.self)
+    }
+
+    func testStatusesWithRange() {
+        let resource = Accounts.statuses(id: 42, range: .since(id: 10, limit: 20))
+        let expectedSinceID = URLQueryItem(name: "since_id", value: "10")
+        let expectedLimit = URLQueryItem(name: "limit", value: "20")
+
+        // Endpoint
+        XCTAssertEqual(resource.path, "/api/v1/accounts/42/statuses")
+
+        // Method
+        XCTAssertEqual(resource.method.name, "GET")
+        XCTAssertNil(resource.method.httpBody)
+        XCTAssertEqual(resource.method.queryItems?.count, 2)
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedSinceID))
+        XCTAssertTrue(resource.method.queryItems!.contains(expectedLimit))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<[Status]?>.self)

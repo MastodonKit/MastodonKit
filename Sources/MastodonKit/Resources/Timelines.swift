@@ -4,20 +4,22 @@ public struct Timelines {
     /// Retrieves the home timeline.
     ///
     /// - Returns: Resource for `[Status]`.
-    public static func home() -> TimelineResource {
-        return TimelineResource(path: "/api/v1/timelines/home", parse: TimelineResource.parser)
+    public static func home(range: ResourceRange = .default) -> TimelineResource {
+        let parameters = range.parameters(limit: between(1, and: 40, fallback: 20))
+        let method = HTTPMethod.get(Payload.parameters(parameters))
+
+        return TimelineResource(path: "/api/v1/timelines/home", method: method, parse: TimelineResource.parser)
     }
 
     /// Retrieves the public timeline.
     ///
     /// - Parameter local: Only return statuses originating from this instance.
     /// - Returns: Resource for `[Status]`.
-    public static func `public`(local: Bool? = nil) -> TimelineResource {
-        let parameters = [
-            Parameter(name: "local", value: local.flatMap(nilOrTrue))
-        ]
+    public static func `public`(local: Bool? = nil, range: ResourceRange = .default) -> TimelineResource {
+        let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []
+        let localParameters = [Parameter(name: "local", value: local.flatMap(nilOrTrue))]
+        let method = HTTPMethod.get(Payload.parameters(localParameters + rangeParameters))
 
-        let method = HTTPMethod.get(Payload.parameters(parameters))
         return TimelineResource(path: "/api/v1/timelines/public", method: method, parse: TimelineResource.parser)
     }
 
@@ -27,12 +29,11 @@ public struct Timelines {
     ///   - hashtag: The hashtag.
     ///   - local: Only return statuses originating from this instance.
     /// - Returns: Resource for `[Status]`.
-    public static func tag(_ hashtag: String, local: Bool? = nil) -> TimelineResource {
-        let parameters = [
-            Parameter(name: "local", value: local.flatMap(nilOrTrue))
-        ]
+    public static func tag(_ hashtag: String, local: Bool? = nil, range: ResourceRange = .default) -> TimelineResource {
+        let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []
+        let localParameters = [Parameter(name: "local", value: local.flatMap(nilOrTrue))]
+        let method = HTTPMethod.get(Payload.parameters(localParameters + rangeParameters))
 
-        let method = HTTPMethod.get(Payload.parameters(parameters))
         return TimelineResource(path: "/api/v1/timelines/tag/\(hashtag)", method: method, parse: TimelineResource.parser)
     }
 }

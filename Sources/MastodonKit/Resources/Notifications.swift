@@ -4,8 +4,11 @@ public struct Notifications {
     /// Fetches a user's notifications.
     ///
     /// - Returns: Resource for `[Notification]`.
-    public static func all() -> NotificationsResource {
-        return NotificationsResource(path: "/api/v1/notifications", parse: NotificationsResource.parser)
+    public static func all(range: ResourceRange = .default) -> NotificationsResource {
+        let parameters = range.parameters(limit: between(1, and: 15, fallback: 30))
+        let method = HTTPMethod.get(Payload.parameters(parameters))
+
+        return NotificationsResource(path: "/api/v1/notifications", method: method, parse: NotificationsResource.parser)
     }
 
     /// Gets a single notification.

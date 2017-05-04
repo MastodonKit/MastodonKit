@@ -128,6 +128,29 @@ client.run(resource) { status, error in
 }
 ```
 
+## Range and Limit
+
+Some resources take an optional `ResourceRange` parameter. This parameter should be used to specify the range of IDs to get and the number of entities to fetch. The possible options are:
+
+* `.since(id: Int, limit: Int?)`: Gets a list with IDs less than or equal this value.
+    * Note: Passing `nil` as `limit` asks Mastodon to return the default number of entities for that endpoint.
+* `.max(id: Int, limit: Int?)`: Gets a list with IDs greater than this value.
+    * Note: Passing `nil` as `limit` asks Mastodon to return the default number of entities for that endpoint.
+* `.limit(Int)`: Sets the maximum number of entities to get.
+* `.default`: Applies the default values.
+
+Omitting the `range` paramater on the method call has the same effect of passing `.default`.
+
+Examples:
+
+```swift
+let resource = Timelines.home(range: .since(id: 42, limit: 30))
+```
+
+```swift
+let resource = Timelines.home(range: .limit(30))
+```
+
 ## List of resources
 
 Below the qualified symbol name for the resources implemented by MastodonKit. All the methods are documented and their descriptions are available via option+click on Xcode.
@@ -137,9 +160,9 @@ Below the qualified symbol name for the resources implemented by MastodonKit. Al
 * ``Accounts.account(id:)`` - fetches an account.
 * ``Accounts.currentUser()`` - gets the current user.
 * ``Accounts.updateCurrentUser(displayName:note:avatar:header:)`` - updates the current user.
-* ``Accounts.followers(id:)`` - gets an account's followers.
-* ``Accounts.following(id:)`` - gets who account is following.
-* ``Accounts.statuses(id:mediaOnly:excludeReplies:)`` - gets an account's statuses.
+* ``Accounts.followers(id:range:)`` - gets an account's followers.
+* ``Accounts.following(id:range:)`` - gets who account is following.
+* ``Accounts.statuses(id:mediaOnly:excludeReplies:range:)`` - gets an account's statuses.
 * ``Accounts.follow(id:)`` - follows an account.
 * ``Accounts.unfollow(id:)`` - unfollow an account.
 * ``Accounts.block(id:)`` - blocks an account.
@@ -151,7 +174,7 @@ Below the qualified symbol name for the resources implemented by MastodonKit. Al
 
 ### Blocks
 
-* ``Blocks.all()`` - fetches a user's blocks.
+* ``Blocks.all(range:)`` - fetches a user's blocks.
 
 ### Clients
 
@@ -159,11 +182,11 @@ Below the qualified symbol name for the resources implemented by MastodonKit. Al
 
 ### Favourites
 
-* ``Favourites.all()`` - fetches a user's favourites.
+* ``Favourites.all(range:)`` - fetches a user's favourites.
 
 ### Follow Requests
 
-* ``FollowRequests.all()`` - fetches a list of follow requests.
+* ``FollowRequests.all(range:)`` - fetches a list of follow requests.
 * ``FollowRequests.authorize(id:)`` - authorizes a follow request.
 * ``FollowRequests.reject(id:)`` - rejects a follow request.
 
@@ -177,11 +200,11 @@ Below the qualified symbol name for the resources implemented by MastodonKit. Al
 
 ### Mutes
 
-* ``Mutes.all()`` - fetches a user's mute:
+* ``Mutes.all(range:)`` - fetches a user's mute:
 
 ### Notifications
 
-* ``Notifications.all()`` - fetches a user's notifications.
+* ``Notifications.all(range:)`` - fetches a user's notifications.
 * ``Notifications.notification(id:)`` - gets a single notification.
 * ``Notifications.dismissAll()`` - deletes all notifications for the authenticated user.
 * ``Notifications.dismiss(id:)`` - deletes a single notification for the authenticated user.
@@ -200,8 +223,8 @@ Below the qualified symbol name for the resources implemented by MastodonKit. Al
 * ``Statuses.status(id:)`` - fetches a status.
 * ``Statuses.context(id:)`` - gets a status context.
 * ``Statuses.card(id:)`` - gets a card associated with a status.
-* ``Statuses.rebloggedBy(id:)`` - gets who reblogged a status.
-* ``Statuses.favouritedBy(id:)`` - gets who favourited a status.
+* ``Statuses.rebloggedBy(id:range:)`` - gets who reblogged a status.
+* ``Statuses.favouritedBy(id:range:)`` - gets who favourited a status.
 * ``Statuses.create(status:replyToID:mediaIDs:sensitive:spoilerText:visibility:)`` - posts a new status.
 * ``Statuses.delete(id:)`` - deletes a status.
 * ``Statuses.reblog(id:)`` - reblogs a status.
@@ -211,9 +234,9 @@ Below the qualified symbol name for the resources implemented by MastodonKit. Al
 
 ### Timelines
 
-* ``Timelines.home()`` - retrieves the home timeline.
-* ``Timelines.public(local:)`` - retrieves the public timeline.
-* ``Timelines.tag(_:local:)`` - retrieves a tag timeline.
+* ``Timelines.home(range:)`` - retrieves the home timeline.
+* ``Timelines.public(local:range:)`` - retrieves the public timeline.
+* ``Timelines.tag(_:local:range:)`` - retrieves a tag timeline.
 
 # Contributors
 

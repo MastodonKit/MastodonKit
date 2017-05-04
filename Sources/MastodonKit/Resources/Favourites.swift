@@ -4,7 +4,10 @@ public struct Favourites {
     /// Fetches a user's favourites.
     ///
     /// - Returns: Resource for `[Status]`.
-    public static func all() -> TimelineResource {
-        return TimelineResource(path: "/api/v1/favourites", parse: TimelineResource.parser)
+    public static func all(range: ResourceRange = .default) -> TimelineResource {
+        let parameters = range.parameters(limit: between(1, and: 40, fallback: 20))
+        let method = HTTPMethod.get(Payload.parameters(parameters))
+
+        return TimelineResource(path: "/api/v1/favourites", method: method, parse: TimelineResource.parser)
     }
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-public class Status {
+public struct Status {
     /// The ID of the status.
     public let id: Int
     /// A Fediverse-unique resource ID.
@@ -17,8 +17,6 @@ public class Status {
     public let content: String
     /// The time the status was created.
     public let createdAt: Date
-    /// Original Status if this one is "boost"
-    public let reblog: Status?
     /// The number of reblogs for the status.
     public let reblogsCount: Int
     /// The number of favourites for the status.
@@ -41,7 +39,15 @@ public class Status {
     public let tags: [Tag]
     /// Application from which the status was posted.
     public let application: Application?
+    /// The reblogged Status
+    public var reblog: Status? {
+        return reblogWrapper.first?.flatMap { $0 }
+    }
 
+    var reblogWrapper: [Status?]
+}
+
+extension Status {
     init?(from dictionary: JSONDictionary) {
         guard
             let id = dictionary["id"] as? Int,
@@ -74,12 +80,12 @@ public class Status {
         self.createdAt = createdAt
         self.reblogsCount = reblogsCount
         self.favouritesCount = favouritesCount
-        self.reblog = dictionary["reblog"].flatMap(asJSONDictionary).flatMap(Status.init)
         self.reblogged = dictionary["reblogged"] as? Bool
         self.favourited = dictionary["favourited"] as? Bool
         self.sensitive = dictionary["sensitive"] as? Bool
         self.spoilerText = spoilerText
         self.visibility = Visibility(string: visibilityString)
+        self.reblogWrapper = [dictionary["reblog"].flatMap(asJSONDictionary).flatMap(Status.init)]
         self.application = dictionary["application"].flatMap(asJSONDictionary).flatMap(Application.init)
         self.mediaAttachments = attachmentsArray.flatMap(Attachment.init)
         self.mentions = mentionsArray.flatMap(Mention.init)
