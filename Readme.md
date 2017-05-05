@@ -9,6 +9,7 @@ By the way, if you want to get in touch with me, [toot me](https://mastodon.tech
 - [Building it from source](#building-it-from-source)
 - [Initializing the client](#initializing-the-client)
 - [Making requests](#making-requests)
+- [Ranges and Limits](#ranges-and-limits)
 - [List of resources](#list-of-resources)
     - [Accounts](#accounts)
     - [Blocks](#blocks)
@@ -128,13 +129,13 @@ client.run(resource) { status, error in
 }
 ```
 
-## Range and Limit
+## Ranges and Limits
 
 Some resources take an optional `ResourceRange` parameter. This parameter should be used to specify the range of IDs to get and the number of entities to fetch. The possible options are:
 
-* `.since(id: Int, limit: Int?)`: Gets a list with IDs less than or equal this value.
+* `.since(id: Int, limit: Int?)`: Gets a list with IDs greater than this value.
     * Note: Passing `nil` as `limit` asks Mastodon to return the default number of entities for that endpoint.
-* `.max(id: Int, limit: Int?)`: Gets a list with IDs greater than this value.
+* `.max(id: Int, limit: Int?)`: Gets a list with IDs less than or equal this value.
     * Note: Passing `nil` as `limit` asks Mastodon to return the default number of entities for that endpoint.
 * `.limit(Int)`: Sets the maximum number of entities to get.
 * `.default`: Applies the default values.
