@@ -1,6 +1,10 @@
-# MastodonKit [![Build Status](https://travis-ci.org/ornithocoder/MastodonKit.svg?branch=master)](https://travis-ci.org/ornithocoder/MastodonKit) [![Code Coverage](http://codecov.io/github/ornithocoder/MastodonKit/branch/master/graphs/badge.svg)](http://codecov.io/github/ornithocoder/MastodonKit)
+# MastodonKit
 
-MastodonKit is a Swift Framework built using Swift Package Manager that wraps the Mastodon API. Its goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
+[![Build Status](https://travis-ci.org/ornithocoder/MastodonKit.svg?branch=master)](https://travis-ci.org/ornithocoder/MastodonKit)
+[![Code Coverage](http://codecov.io/github/ornithocoder/MastodonKit/branch/master/graphs/badge.svg)](http://codecov.io/github/ornithocoder/MastodonKit)
+[![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
+
+**MastodonKit** is a Swift Framework built using Swift Package Manager that wraps the Mastodon API. Its goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
 
 By the way, if you want to get in touch with me, [toot me](https://mastodon.technology/@ornithocoder).
 
@@ -145,11 +149,18 @@ Omitting the `range` paramater on the method call has the same effect of passing
 Examples:
 
 ```swift
+// Since + limit
 let resource = Timelines.home(range: .since(id: 42, limit: 30))
-```
 
-```swift
+// Limit
 let resource = Timelines.home(range: .limit(30))
+
+// Max + default limit
+let resource = Timelines.home(range: .max(id: 42, limit: nil))
+
+// Default range and limit
+let resource = Timelines.home()
+let resource = Timelines.home(range: .default)
 ```
 
 ## List of resources
