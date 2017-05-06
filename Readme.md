@@ -2,7 +2,8 @@
 
 [![Build Status](https://travis-ci.org/ornithocoder/MastodonKit.svg?branch=master)](https://travis-ci.org/ornithocoder/MastodonKit)
 [![Code Coverage](http://codecov.io/github/ornithocoder/MastodonKit/branch/master/graphs/badge.svg)](http://codecov.io/github/ornithocoder/MastodonKit)
-[![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
+[![SwiftPM Compatible](https://img.shields.io/badge/Swift_Package_Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
+[![SwiftPM Version](https://img.shields.io/github/release/ornithocoder/mastodonkit.svg?colorB=brightgreen)](https://github.com/ornithocoder/MastodonKit/releases)
 
 **MastodonKit** is a Swift Framework built using Swift Package Manager that wraps the Mastodon API. Its goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
 
