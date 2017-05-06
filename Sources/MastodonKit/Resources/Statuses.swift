@@ -27,7 +27,9 @@ public struct Statuses {
 
     /// Gets who reblogged a status.
     ///
-    /// - Parameter id: The status id.
+    /// - Parameters:
+    ///   - id: The status id.
+    ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Resource for `[Account]`.
     public static func rebloggedBy(id: Int, range: ResourceRange = .default) -> AccountsResource {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
@@ -38,7 +40,9 @@ public struct Statuses {
 
     /// Gets who favourited a status.
     ///
-    /// - Parameter id: The status id.
+    /// - Parameters:
+    ///   - id: The status id.
+    ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Resource for `[Account]`.
     public static func favouritedBy(id: Int, range: ResourceRange = .default) -> AccountsResource {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))

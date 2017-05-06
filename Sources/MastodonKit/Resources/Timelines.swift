@@ -3,6 +3,7 @@ import Foundation
 public struct Timelines {
     /// Retrieves the home timeline.
     ///
+    /// - Parameter range: The bounds used when requesting data from Mastodon.
     /// - Returns: Resource for `[Status]`.
     public static func home(range: ResourceRange = .default) -> TimelineResource {
         let parameters = range.parameters(limit: between(1, and: 40, fallback: 20))
@@ -13,7 +14,9 @@ public struct Timelines {
 
     /// Retrieves the public timeline.
     ///
-    /// - Parameter local: Only return statuses originating from this instance.
+    /// - Parameters:
+    ///   - local: Only return statuses originating from this instance.
+    ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Resource for `[Status]`.
     public static func `public`(local: Bool? = nil, range: ResourceRange = .default) -> TimelineResource {
         let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []
@@ -28,6 +31,7 @@ public struct Timelines {
     /// - Parameters:
     ///   - hashtag: The hashtag.
     ///   - local: Only return statuses originating from this instance.
+    ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Resource for `[Status]`.
     public static func tag(_ hashtag: String, local: Bool? = nil, range: ResourceRange = .default) -> TimelineResource {
         let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []

@@ -6,7 +6,7 @@ public struct Login {
     /// - Parameters:
     ///   - clientID: The client ID.
     ///   - clientSecret: The client secret.
-    ///   - scope: The access scope.
+    ///   - scopes: The access scopes.
     ///   - username: The user's username or e-mail address.
     ///   - password: The user's password.
     /// - Returns: Resource for `LoginSettings`.

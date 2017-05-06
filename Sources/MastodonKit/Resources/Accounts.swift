@@ -38,7 +38,9 @@ public struct Accounts {
 
     /// Gets an account's followers.
     ///
-    /// - Parameter id: The account id.
+    /// - Parameters:
+    ///   - id: The account id.
+    ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Resource for `[Account]`.
     public static func followers(id: Int, range: ResourceRange = .default) -> AccountsResource {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
@@ -49,7 +51,9 @@ public struct Accounts {
 
     /// Gets who account is following.
     ///
-    /// - Parameter id: The account id.
+    /// - Parameters:
+    ///   - id: The account id
+    ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Resource for `[Account]`.
     public static func following(id: Int, range: ResourceRange = .default) -> AccountsResource {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
@@ -63,7 +67,8 @@ public struct Accounts {
     /// - Parameters:
     ///   - id: The account id.
     ///   - mediaOnly: Only return statuses that have media attachments.
-    ///   - showReplies: Skip statuses that reply to other statuses.
+    ///   - excludeReplies: Skip statuses that reply to other statuses.
+    ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Resource for `[Status]`.
     public static func statuses(id: Int, mediaOnly: Bool? = nil, excludeReplies: Bool? = nil, range: ResourceRange = .default) -> TimelineResource {
         let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []

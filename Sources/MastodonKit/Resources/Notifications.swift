@@ -3,6 +3,7 @@ import Foundation
 public struct Notifications {
     /// Fetches a user's notifications.
     ///
+    /// - Parameter range: The bounds used when requesting data from Mastodon.
     /// - Returns: Resource for `[Notification]`.
     public static func all(range: ResourceRange = .default) -> NotificationsResource {
         let parameters = range.parameters(limit: between(1, and: 15, fallback: 30))
