@@ -3,7 +3,7 @@ import XCTest
 
 class LoginTests: XCTestCase {
     func testSilentLogin() {
-        let resource = Login.silent(clientID: "client id", clientSecret: "client secret", scope: .read, username: "foo", password: "123")
+        let resource = Login.silent(clientID: "client id", clientSecret: "client secret", scopes: [.read, .write], username: "foo", password: "123")
 
         // Endpoint
         XCTAssertEqual(resource.path, "/oauth/token")
@@ -16,7 +16,7 @@ class LoginTests: XCTestCase {
         XCTAssertEqual(payload.components(separatedBy: "&").count, 6)
         XCTAssertTrue(payload.contains("client_id=client%20id"))
         XCTAssertTrue(payload.contains("client_secret=client%20secret"))
-        XCTAssertTrue(payload.contains("scope=read"))
+        XCTAssertTrue(payload.contains("scope=read%20write"))
         XCTAssertTrue(payload.contains("grant_type=password"))
         XCTAssertTrue(payload.contains("username=foo"))
         XCTAssertTrue(payload.contains("password=123"))

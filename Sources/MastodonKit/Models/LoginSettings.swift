@@ -5,8 +5,8 @@ public struct LoginSettings {
     public let accessToken: String
     /// Access token type.
     public let accessTokenType: String
-    /// Access scope.
-    public let scope: AccessScope
+    /// Access scopes.
+    public let scopes: [AccessScope]
     /// Date when the access token was retrieved.
     public let createdAt: TimeInterval
 }
@@ -24,7 +24,7 @@ extension LoginSettings {
 
         self.accessToken = accessToken
         self.accessTokenType = accessTokenType
-        self.scope = AccessScope(string: accessScopeString)
+        self.scopes = accessScopeString.components(separatedBy: .whitespaces).map(AccessScope.init)
         self.createdAt = createdAt
     }
 }

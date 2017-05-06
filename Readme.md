@@ -96,9 +96,10 @@ But in case you want to test it with your own account, here is how:
 let loginResource = Login.silent(
     clientID: "very long client id",
     clientSecret: "very long client secret",
-    scope: .read,
+    scopes: [.read, .write],
     username: "foo",
-    password: "bar")
+    password: "bar"
+)
 
 client.run(loginResource) { loginSettings, error in
     if let loginSettings = loginSettings {

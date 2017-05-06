@@ -1,6 +1,6 @@
 {
     "access_token": "the secret code is yellow",
     "token_type": "bär",
-    "scope": "follow",
+    "scope": "read write",
     "created_at": 1492249031
 }
