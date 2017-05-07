@@ -1,9 +1,9 @@
 # MastodonKit
 
-[![Build Status](https://travis-ci.org/ornithocoder/MastodonKit.svg?branch=master)](https://travis-ci.org/ornithocoder/MastodonKit)
-[![Code Coverage](http://codecov.io/github/ornithocoder/MastodonKit/branch/master/graphs/badge.svg)](http://codecov.io/github/ornithocoder/MastodonKit)
+[![Build Status](https://travis-ci.org/MastodonKit/MastodonKit.svg?branch=master)](https://travis-ci.org/MastodonKit/MastodonKit)
+[![Code Coverage](http://codecov.io/github/MastodonKit/MastodonKit/branch/master/graphs/badge.svg)](http://codecov.io/github/MastodonKit/MastodonKit)
 [![SwiftPM Compatible](https://img.shields.io/badge/Swift_Package_Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
-[![SwiftPM Version](https://img.shields.io/github/release/ornithocoder/mastodonkit.svg?colorB=brightgreen)](https://github.com/ornithocoder/MastodonKit/releases)
+[![SwiftPM Version](https://img.shields.io/github/release/MastodonKit/MastodonKit.svg?colorB=brightgreen)](https://github.com/MastodonKit/MastodonKit/releases)
 
 **MastodonKit** is a Swift Framework built using Swift Package Manager that wraps the Mastodon API. Its goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
 
@@ -36,7 +36,7 @@ By the way, if you want to get in touch with me, [toot me](https://mastodon.tech
 MastodonKit uses the Swift Package Manager and can be built and tested using the following commands:
 
 ```
-$ git clone https://github.com/ornithocoder/MastodonKit.git
+$ git clone https://github.com/MastodonKit/MastodonKit.git
 $ cd MastodonKit
 $ swift build
 $ swift test
@@ -68,7 +68,7 @@ let client = Client(baseURL: "https://mastodon.technology")
 let resource = Clients.register(
     clientName: "MastodonKit Test Client",
     scopes: [.read, .write, .follow],
-    website: "https://github.com/ornithocoder/MastodonKit"
+    website: "https://github.com/MastodonKit/MastodonKit"
 )
 
 client.run(resource) { application, error in
