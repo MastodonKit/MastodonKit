@@ -20,7 +20,7 @@ class URLRequestTests: XCTestCase {
 
     func testRequestWithoutHTTPBody() {
         let url = URL(string: "https://mastodon.technology")!
-        let resource = Resource<String>(path: "/string", method: HTTPMethod.get(Payload.empty)) { _ in return "string" }
+        let resource = Resource<String>(path: "/string", method: HTTPMethod.get(.empty)) { _ in return "string" }
 
         let request = URLRequest(url: url, resource: resource, accessToken: nil)
 
@@ -34,7 +34,7 @@ class URLRequestTests: XCTestCase {
 
     func testRequestWithAccessToken() {
         let url = URL(string: "https://mastodon.technology")!
-        let resource = Resource<String>(path: "/string", method: HTTPMethod.get(Payload.empty)) { _ in return "string" }
+        let resource = Resource<String>(path: "/string", method: HTTPMethod.get(.empty)) { _ in return "string" }
 
         let request = URLRequest(url: url, resource: resource, accessToken: "foo")
 

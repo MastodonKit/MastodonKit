@@ -24,7 +24,7 @@ public struct Notifications {
     ///
     /// - Returns: Resource for `Notification`.
     public static func dismissAll() -> NotificationResource {
-        return NotificationResource(path: "/api/v1/notifications/clear", method: .post(Payload.empty), parse: NotificationResource.parser)
+        return NotificationResource(path: "/api/v1/notifications/clear", method: .post(.empty), parse: NotificationResource.parser)
     }
 
     /// Deletes a single notification for the authenticated user.
@@ -32,6 +32,6 @@ public struct Notifications {
     /// - Parameter id: The notification id.
     /// - Returns: Resource for `Notification`.
     public static func dismiss(id: Int) -> NotificationResource {
-        return NotificationResource(path: "/api/v1/notifications/dismiss/\(id)", method: .post(Payload.empty), parse: NotificationResource.parser)
+        return NotificationResource(path: "/api/v1/notifications/dismiss/\(id)", method: .post(.empty), parse: NotificationResource.parser)
     }
 }
