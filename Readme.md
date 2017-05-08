@@ -7,6 +7,10 @@
 
 **MastodonKit** is a Swift Framework built using Swift Package Manager that wraps the Mastodon API. Its goal is to cover all the entities and endpoints from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md).
 
+[Full documentation](https://MastodonKit.github.io/MastodonKit/)
+
+[Dash docset](dash-feed://https%3A%2F%2FMastodonKit%2Egithub%2Eio%2FMastodonKit%2Fdocsets%2FMastodonKit%2Exml)
+
 By the way, if you want to get in touch with me, [toot me](https://mastodon.technology/@ornithocoder).
 
 ## Table of content
