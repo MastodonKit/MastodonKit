@@ -3,3 +3,7 @@
 /.idea
 /Packages
 /*.xcodeproj
+
+# Docs generation
+/build
+/docs
