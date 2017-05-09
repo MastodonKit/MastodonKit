@@ -10,7 +10,7 @@ class DateFormatterTests: XCTestCase {
 
     func testDateFromMastodonWithInvalidDate() {
         let date = DateFormatter.mastodonFormatter.date(from: "2016-12-20")
-        
+
         XCTAssertNil(date)
     }
 }

@@ -31,4 +31,12 @@ extension HTTPMethod {
         default: return nil
         }
     }
+
+    var contentType: String? {
+        switch self {
+        case .post(let payload): return payload.type
+        case .patch(let payload): return payload.type
+        default: return nil
+        }
+    }
 }

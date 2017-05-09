@@ -4,6 +4,8 @@ import XCTest
 typealias ParserFunctionType<Model> = (Any) -> Model
 
 class ResourcesTests: XCTestCase {
+    // MARK: AccountResource
+
     func testAccountResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Account.json")
         let parsed = Resource<Account>.parser(json: fixture)
@@ -22,6 +24,8 @@ class ResourcesTests: XCTestCase {
 
         XCTAssertNil(parsed)
     }
+
+    // MARK: AccountsResource
 
     func testAccountsResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Accounts.json")
@@ -42,6 +46,29 @@ class ResourcesTests: XCTestCase {
         XCTAssertEqual(parsed.count, 0)
     }
 
+    // MARK: AttachmentResource
+
+    func testAttachmentResource() {
+        let fixture = try! Fixture.load(fileName: "Fixtures/Attachment.json")
+        let parsed = Resource<Attachment>.parser(json: fixture)
+
+        XCTAssertNotNil(parsed)
+    }
+
+    func testAttachmentResourceWithInvalidArray() {
+        let parsed = Resource<Attachment>.parser(json: [])
+
+        XCTAssertNil(parsed)
+    }
+
+    func testAttachmentResourceWithInvalidDictionary() {
+        let parsed = Resource<Attachment>.parser(json: [:])
+
+        XCTAssertNil(parsed)
+    }
+
+    // MARK: CardResource
+
     func testCardResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Card.json")
         let parsed = Resource<Card>.parser(json: fixture)
@@ -60,6 +87,8 @@ class ResourcesTests: XCTestCase {
 
         XCTAssertNil(parsed)
     }
+
+    // MARK: ClientApplicationResource
 
     func testClientApplicationResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/ClientApplication.json")
@@ -80,6 +109,8 @@ class ResourcesTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
+    // MARK: ContextResource
+
     func testContextResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Context.json")
         let parsed = Resource<Context>.parser(json: fixture)
@@ -98,6 +129,8 @@ class ResourcesTests: XCTestCase {
 
         XCTAssertNil(parsed)
     }
+
+    // MARK: InstanceResource
 
     func testInstanceResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Instance.json")
@@ -118,6 +151,8 @@ class ResourcesTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
+    // MARK: LoginSettingsResource
+
     func testLoginSettingsResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/LoginSettings.json")
         let parsed = Resource<LoginSettings>.parser(json: fixture)
@@ -136,6 +171,8 @@ class ResourcesTests: XCTestCase {
 
         XCTAssertNil(parsed)
     }
+
+    // MARK:  NotificationResource
 
     func testNotificationResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Notification.json")
@@ -156,6 +193,8 @@ class ResourcesTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
+    // MARK:  NotificationsResource
+
     func testNotificationsResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Notifications.json")
         let parsed = Resource<[MastodonKit.Notification]>.parser(json: fixture)
@@ -174,6 +213,8 @@ class ResourcesTests: XCTestCase {
 
         XCTAssertEqual(parsed.count, 0)
     }
+
+    // MARK: RelationshipResource
 
     func testRelationshipResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Relationship.json")
@@ -194,6 +235,8 @@ class ResourcesTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
+    // MARK: RelationshipsResource
+
     func testRelationshipsResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Relationships.json")
         let parsed = Resource<[Relationship]>.parser(json: fixture)
@@ -212,6 +255,8 @@ class ResourcesTests: XCTestCase {
 
         XCTAssertEqual(parsed.count, 0)
     }
+
+    // MARK: ReportResource
 
     func testReportResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Report.json")
@@ -232,6 +277,8 @@ class ResourcesTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
+    // MARK: ReportsResource
+
     func testReportsResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Reports.json")
         let parsed = Resource<[Report]>.parser(json: fixture)
@@ -250,6 +297,8 @@ class ResourcesTests: XCTestCase {
 
         XCTAssertEqual(parsed.count, 0)
     }
+
+    // MARK: ResultsResource
 
     func testResultsResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/ResultsWithoutNull.json")
@@ -270,6 +319,8 @@ class ResourcesTests: XCTestCase {
         XCTAssertNotNil(parsed)
     }
 
+    // MARK: StatusResource
+
     func testStatusResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/StatusWithoutNull.json")
         let parsed = Resource<Status>.parser(json: fixture)
@@ -288,6 +339,8 @@ class ResourcesTests: XCTestCase {
 
         XCTAssertNil(parsed)
     }
+
+    // MARK: TimelineResource
 
     func testTimelineResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Timeline.json")

@@ -4,18 +4,18 @@ import XCTest
 class URLRequestTests: XCTestCase {
     func testRequestWithValidHTTPBody() {
         let url = URL(string: "https://mastodon.technology")!
-        let data = Data()
-        let method = HTTPMethod.post(Payload.image(data))
+        let mediaData = Data()
+        let method = HTTPMethod.post(Payload.media(.gif(mediaData)))
         let resource = Resource<String>(path: "/string", method: method) { _ in return "string" }
 
         let request = URLRequest(url: url, resource: resource, accessToken: nil)
 
         XCTAssertEqual(request.timeoutInterval, 30)
         XCTAssertEqual(request.httpMethod, "POST")
-        XCTAssertEqual(request.httpBody, data)
+        XCTAssertNotNil(request.httpBody)
 
         XCTAssertNil(request.value(forHTTPHeaderField: "Authorization"))
-        XCTAssertEqual(request.value(forHTTPHeaderField: "Content-Type"), "application/x-www-form-urlencoded; charset=utf-8")
+        XCTAssertNotNil(request.value(forHTTPHeaderField: "Content-Type"))
     }
 
     func testRequestWithoutHTTPBody() {
@@ -29,7 +29,7 @@ class URLRequestTests: XCTestCase {
         XCTAssertNil(request.httpBody)
 
         XCTAssertNil(request.value(forHTTPHeaderField: "Authorization"))
-        XCTAssertEqual(request.value(forHTTPHeaderField: "Content-Type"), "application/x-www-form-urlencoded; charset=utf-8")
+        XCTAssertNil(request.value(forHTTPHeaderField: "Content-Type"))
     }
 
     func testRequestWithAccessToken() {
@@ -43,6 +43,6 @@ class URLRequestTests: XCTestCase {
         XCTAssertNil(request.httpBody)
 
         XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "Bearer foo")
-        XCTAssertEqual(request.value(forHTTPHeaderField: "Content-Type"), "application/x-www-form-urlencoded; charset=utf-8")
+        XCTAssertNil(request.value(forHTTPHeaderField: "Content-Type"))
     }
 }
