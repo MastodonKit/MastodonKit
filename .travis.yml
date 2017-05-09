@@ -2,6 +2,10 @@ os:
   - osx
 language: generic
 osx_image:  xcode8.3
+before_script:
+  - brew install swiftlint
+  - bundle install
+  - bundle exec danger
 script:
   - swift package generate-xcodeproj
   - xcodebuild -scheme MastodonKit -enableCodeCoverage YES build test

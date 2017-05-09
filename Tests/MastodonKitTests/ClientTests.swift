@@ -104,7 +104,8 @@ class ClientRunTests: XCTestCase {
         fakeSession?.lastCompletionHandler?(data, response, nil)
 
         XCTAssertNil(passedModel)
-        XCTAssertEqual(passedError?.localizedDescription, ClientError.mastodonError("yes, it's an error.").localizedDescription)
+        XCTAssertEqual(passedError?.localizedDescription,
+                       ClientError.mastodonError("yes, it's an error.").localizedDescription)
     }
 
     func testDataTaskCompletionBlockWithSuccess() {
@@ -165,7 +166,8 @@ class ClientRunWithPostAndHTTPBodyTests: XCTestCase {
         fakeSession = URLSessionFake()
         client.session = fakeSession!
 
-        client.run(Statuses.create(status: "Hi there!", replyToID: 42, sensitive: false, visibility: .public) ) { _, _ in }
+        client.run(Statuses.create(status: "Hi there!", replyToID: 42, sensitive: false,
+                                   visibility: .public) ) { _, _ in }
     }
 
     func testPassedRequest() {

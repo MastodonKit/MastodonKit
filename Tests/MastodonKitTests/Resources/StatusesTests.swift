@@ -201,7 +201,8 @@ class StatusesTests: XCTestCase {
     }
 
     func testCreateWithSpoilerMessage() {
-        let resource = Statuses.create(status: "Can't believe it's an amusement park like Westworld!", spoilerText: "Last night's GoT!!!")
+        let resource = Statuses.create(status: "Can't believe it's an amusement park like Westworld!",
+                                       spoilerText: "Last night's GoT!!!")
 
         // Endpoint
         XCTAssertEqual(resource.path, "/api/v1/statuses")

@@ -33,7 +33,9 @@ class AccountsTests: XCTestCase {
     }
 
     func testUpdateCurrentUserWithAllFields() {
-        let resource = Accounts.updateCurrentUser(displayName: "Ornithologist Coder", note: "Creator of MastodonKit", avatar: "base64 avatar", header: "base64 header")
+        let resource = Accounts.updateCurrentUser(displayName: "Ornithologist Coder",
+                                                  note: "Creator of MastodonKit", avatar: "base64 avatar",
+                                                  header: "base64 header")
 
         // Endpoint
         XCTAssertEqual(resource.path, "/api/v1/accounts/update_credentials")

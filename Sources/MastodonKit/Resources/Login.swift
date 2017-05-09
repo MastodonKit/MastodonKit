@@ -10,7 +10,8 @@ public struct Login {
     ///   - username: The user's username or e-mail address.
     ///   - password: The user's password.
     /// - Returns: Resource for `LoginSettings`.
-    public static func silent(clientID: String, clientSecret: String, scopes: [AccessScope], username: String, password: String) -> LoginSettingsResource {
+    public static func silent(clientID: String, clientSecret: String, scopes: [AccessScope],
+                              username: String, password: String) -> LoginSettingsResource {
         let parameters = [
             Parameter(name: "client_id", value: clientID),
             Parameter(name: "client_secret", value: clientSecret),

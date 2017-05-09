@@ -9,7 +9,8 @@ public struct Notifications {
         let parameters = range.parameters(limit: between(1, and: 15, fallback: 30))
         let method = HTTPMethod.get(Payload.parameters(parameters))
 
-        return NotificationsResource(path: "/api/v1/notifications", method: method, parse: NotificationsResource.parser)
+        return NotificationsResource(path: "/api/v1/notifications", method: method,
+                                     parse: NotificationsResource.parser)
     }
 
     /// Gets a single notification.
@@ -24,7 +25,8 @@ public struct Notifications {
     ///
     /// - Returns: Resource for `Notification`.
     public static func dismissAll() -> NotificationResource {
-        return NotificationResource(path: "/api/v1/notifications/clear", method: .post(.empty), parse: NotificationResource.parser)
+        return NotificationResource(path: "/api/v1/notifications/clear", method: .post(.empty),
+                                    parse: NotificationResource.parser)
     }
 
     /// Deletes a single notification for the authenticated user.
@@ -32,6 +34,7 @@ public struct Notifications {
     /// - Parameter id: The notification id.
     /// - Returns: Resource for `Notification`.
     public static func dismiss(id: Int) -> NotificationResource {
-        return NotificationResource(path: "/api/v1/notifications/dismiss/\(id)", method: .post(.empty), parse: NotificationResource.parser)
+        return NotificationResource(path: "/api/v1/notifications/dismiss/\(id)", method: .post(.empty),
+                                    parse: NotificationResource.parser)
     }
 }
