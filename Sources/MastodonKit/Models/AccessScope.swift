@@ -1,9 +1,9 @@
 import Foundation
 
 public enum AccessScope: String {
-    case read = "read"
-    case write = "write"
-    case follow = "follow"
+    case read
+    case write
+    case follow
 }
 
 extension AccessScope {

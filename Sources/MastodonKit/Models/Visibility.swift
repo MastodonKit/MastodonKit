@@ -1,10 +1,10 @@
 import Foundation
 
 public enum Visibility: String {
-    case `public` = "public"
-    case unlisted = "unlisted"
-    case `private` = "private"
-    case direct = "direct"
+    case `public`
+    case unlisted
+    case `private`
+    case direct
 }
 
 extension Visibility {
