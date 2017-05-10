@@ -84,7 +84,7 @@ extension Resource where Model == LoginSettings {
     }
 }
 
-// MARK:  NotificationResource
+// MARK: NotificationResource
 
 extension Resource where Model == Notification {
     static func parser(json: JSONObject) -> Notification? {
@@ -93,7 +93,7 @@ extension Resource where Model == Notification {
     }
 }
 
-// MARK:  NotificationsResource
+// MARK: NotificationsResource
 
 extension Resource where Model == [Notification] {
     static func parser(json: JSONObject) -> [Notification] {
