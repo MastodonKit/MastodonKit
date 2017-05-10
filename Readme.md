@@ -23,6 +23,7 @@ By the way, if you want to get in touch with me, [toot me](https://mastodon.tech
     - [Favourites](#favourites)
     - [Follow requests](#follow-requests)
     - [Instances](#instances)
+    - [Login](#login)
     - [Media](#media)
     - [Mute](#mute)
     - [Notifications](#notifications)
@@ -242,13 +243,13 @@ Below the qualified symbol name for the resources implemented by MastodonKit. Al
 
 * ``Instances.current()`` - gets instance information.
 
-### Media
-
-* ``Media.upload(media:)`` - uploads a media attachment.
-
 ### Login
 
 * ``Login.silent(clientID:clientSecret:scope:username:password:)`` - performs a silent login.
+
+### Media
+
+* ``Media.upload(media:)`` - uploads a media attachment.
 
 ### Mutes
 
