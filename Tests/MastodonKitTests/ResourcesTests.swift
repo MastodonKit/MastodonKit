@@ -172,7 +172,7 @@ class ResourcesTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
-    // MARK:  NotificationResource
+    // MARK: NotificationResource
 
     func testNotificationResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Notification.json")
@@ -193,7 +193,7 @@ class ResourcesTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
-    // MARK:  NotificationsResource
+    // MARK: NotificationsResource
 
     func testNotificationsResource() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Notifications.json")
