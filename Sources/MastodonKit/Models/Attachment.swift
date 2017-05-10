@@ -12,7 +12,7 @@ public struct Attachment {
     /// URL of the preview image.
     public let previewURL: String
     /// Shorter URL for the image, for insertion into text (only present on local images).
-    public let textURL: String
+    public let textURL: String?
 }
 
 extension Attachment {
@@ -21,8 +21,7 @@ extension Attachment {
             let id = dictionary["id"] as? Int,
             let typeString = dictionary["type"] as? String,
             let url = dictionary["url"] as? String,
-            let previewURL = dictionary["preview_url"] as? String,
-            let textURL = dictionary["text_url"] as? String
+            let previewURL = dictionary["preview_url"] as? String
             else {
                 return nil
         }
@@ -32,6 +31,6 @@ extension Attachment {
         self.url = url
         self.remoteURL = dictionary["remote_url"] as? String
         self.previewURL = previewURL
-        self.textURL = textURL
+        self.textURL = dictionary["text_url"] as? String
     }
 }
