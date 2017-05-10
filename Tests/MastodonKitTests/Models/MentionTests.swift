@@ -9,7 +9,7 @@ class MentionTests: XCTestCase {
 
         XCTAssertEqual(mention?.id, 42)
         XCTAssertEqual(mention?.username, "ornithocoder")
-        XCTAssertEqual(mention?.acct,"ornithocoder")
+        XCTAssertEqual(mention?.acct, "ornithocoder")
         XCTAssertEqual(mention?.url, "https://mastodon.technology/@ornithocoder")
     }
 

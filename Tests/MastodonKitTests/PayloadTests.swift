@@ -30,22 +30,31 @@ class PayloadTests: XCTestCase {
 
         XCTAssertNil(payload.items)
         XCTAssertNil(payload.data)
+        XCTAssertNil(payload.type)
     }
 
-    func testImageWithValidValue() {
-        let imageData = Data()
+    func testMediaWithValidValue() {
+        let imageData = "image data".data(using: .utf8)
 
-        let payload = Payload.image(imageData)
+        let payload = Payload.media(.jpeg(imageData))
 
+        // Items
         XCTAssertNil(payload.items)
-        XCTAssertEqual(payload.data, imageData)
+
+        // Data
+        let payloadData = String(data: payload.data!, encoding: .utf8)
+
+        XCTAssertNotNil(payload.data)
+        XCTAssertEqual(payloadData, "--MastodonKitBoundary\r\nContent-Disposition: form-data; name=\"file\"; filename=\"file.jpg\"\r\nContent-Type: image/jpg\r\n\r\nimage data\r\n--MastodonKitBoundary--\r\n")
+        XCTAssertEqual(payload.type, "multipart/form-data; boundary=MastodonKitBoundary")
     }
 
-    func testImageWithNilValue() {
-        let payload = Payload.image(nil)
+    func testMediaWithNilValue() {
+        let payload = Payload.media(nil)
 
         XCTAssertNil(payload.items)
         XCTAssertNil(payload.data)
+        XCTAssertNil(payload.type)
     }
 
     func testEmpty() {
@@ -53,5 +62,6 @@ class PayloadTests: XCTestCase {
 
         XCTAssertNil(payload.items)
         XCTAssertNil(payload.data)
+        XCTAssertNil(payload.type)
     }
 }

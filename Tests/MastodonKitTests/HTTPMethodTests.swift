@@ -2,7 +2,7 @@ import XCTest
 @testable import MastodonKit
 
 class HTTPMethodTests: XCTestCase {
-    func testGet()  {
+    func testGet() {
         let parameters = [
             Parameter(name: "number", value: String(42)),
             Parameter(name: "url", value: "https://mastodon.technology"),
@@ -16,18 +16,17 @@ class HTTPMethodTests: XCTestCase {
         XCTAssertEqual(method.name, "GET")
 
         // Query items
-        let expectedNumber = URLQueryItem(name: "number", value: "42")
-        let expectedURL = URLQueryItem(name: "url", value: "https://mastodon.technology")
-
         XCTAssertEqual(method.queryItems?.count, 2)
-        XCTAssertTrue(method.queryItems!.contains(expectedNumber))
-        XCTAssertTrue(method.queryItems!.contains(expectedURL))
+        XCTAssertEqual(method.queryItems!, payload.items!)
 
         // HTTP body
         XCTAssertNil(method.httpBody)
+
+        // Content Type
+        XCTAssertNil(method.contentType)
     }
 
-    func testPost()  {
+    func testPost() {
         let parameters = [
             Parameter(name: "number", value: String(42)),
             Parameter(name: "url", value: "https://mastodon.technology"),
@@ -44,12 +43,15 @@ class HTTPMethodTests: XCTestCase {
         XCTAssertNil(method.queryItems)
 
         // HTTP body
-        let expectedData = "number=42&url=https%3A//mastodon.technology".data(using: .utf8)
+        XCTAssertNotNil(method.httpBody)
+        XCTAssertEqual(method.httpBody, payload.data)
 
-        XCTAssertEqual(method.httpBody, expectedData)
+        // Content Type
+        XCTAssertNotNil(method.contentType)
+        XCTAssertEqual(method.contentType, payload.type)
     }
 
-    func testPatch()  {
+    func testPatch() {
         let parameters = [
             Parameter(name: "number", value: String(42)),
             Parameter(name: "url", value: "https://mastodon.technology"),
@@ -66,12 +68,15 @@ class HTTPMethodTests: XCTestCase {
         XCTAssertNil(method.queryItems)
 
         // HTTP body
-        let expectedData = "number=42&url=https%3A//mastodon.technology".data(using: .utf8)
+        XCTAssertNotNil(method.httpBody)
+        XCTAssertEqual(method.httpBody, payload.data)
 
-        XCTAssertEqual(method.httpBody, expectedData)
+        // Content Type
+        XCTAssertNotNil(method.contentType)
+        XCTAssertEqual(method.contentType, payload.type)
     }
 
-    func testDelete()  {
+    func testDelete() {
         let method = HTTPMethod.delete
 
         // Name
@@ -82,5 +87,8 @@ class HTTPMethodTests: XCTestCase {
 
         // HTTP body
         XCTAssertNil(method.httpBody)
+
+        // Content Type
+        XCTAssertNil(method.contentType)
     }
 }

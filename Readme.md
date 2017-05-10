@@ -15,13 +15,15 @@ By the way, if you want to get in touch with me, [toot me](https://mastodon.tech
 - [Initializing the client](#initializing-the-client)
 - [Making requests](#making-requests)
 - [Ranges and Limits](#ranges-and-limits)
+- [Uploading media attachments](#uploading-media-attachments)
 - [List of resources](#list-of-resources)
     - [Accounts](#accounts)
     - [Blocks](#blocks)
     - [Clients](#clients)
     - [Favourites](#favourites)
-    - [Follow Requests](#follow-requests)
+    - [Follow requests](#follow-requests)
     - [Instances](#instances)
+    - [Media](#media)
     - [Mute](#mute)
     - [Notifications](#notifications)
     - [Reports](#reports)
@@ -165,6 +167,38 @@ let resource = Timelines.home()
 let resource = Timelines.home(range: .default)
 ```
 
+## Uploading media attachments
+
+To upload images to Mastodon, create a media attachment containing the file data (``Data``) and then pass the media attachment as argument to the ``Media.upload(media:)`` method. Supported media attachments types are ``.jpeg``, ``.png``, and ``.gif``. Examples:
+
+Uploading the JPEG representation of an ``UIImage``:
+
+```swift
+let image = UIImage(named: "mastodon_logo")
+let imageData = UIImageJPEGRepresentation(image, 0.82)
+
+let resource = Media.upload(media: .jpeg(imageData))
+
+client.run(resource) { attachment, error in
+    // do something with 'attachment'
+}
+```
+
+Uploading a GIF image from the main bundle:
+
+```swift
+let imagePath = Bundle.main.path(forResource: "funny_meme", ofType: ".gif")
+let imageData = try? Data(contentsOf: URL(fileURLWithPath: imagePath!))
+
+let imageUpload = Media.upload(media: .gif(imageData))
+
+client.run(resource) { attachment, error in
+    // do something with 'attachment'
+}
+```
+
+Use the URL and id from ``attachment`` when creating a status.
+
 ## List of resources
 
 Below the qualified symbol name for the resources implemented by MastodonKit. All the methods are documented and their descriptions are available via option+click on Xcode.
@@ -198,7 +232,7 @@ Below the qualified symbol name for the resources implemented by MastodonKit. Al
 
 * ``Favourites.all(range:)`` - fetches a user's favourites.
 
-### Follow Requests
+### Follow requests
 
 * ``FollowRequests.all(range:)`` - fetches a list of follow requests.
 * ``FollowRequests.authorize(id:)`` - authorizes a follow request.
@@ -207,6 +241,10 @@ Below the qualified symbol name for the resources implemented by MastodonKit. Al
 ### Instances
 
 * ``Instances.current()`` - gets instance information.
+
+### Media
+
+* ``Media.upload(media:)`` - uploads a media attachment.
 
 ### Login
 

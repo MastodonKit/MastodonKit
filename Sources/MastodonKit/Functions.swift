@@ -38,9 +38,9 @@ func toQueryItem(parameter: Parameter) -> URLQueryItem? {
 }
 
 func toString(parameter: Parameter) -> String? {
-    return parameter.value?.addingPercentEncoding(withAllowedCharacters: .bodyAllowed).flatMap { value in
-        "\(parameter.name)=\(value)"
-    }
+    return parameter.value?
+        .addingPercentEncoding(withAllowedCharacters: .bodyAllowed)
+        .flatMap { value in "\(parameter.name)=\(value)" }
 }
 
 func nilOrTrue(_ flag: Bool) -> String? {

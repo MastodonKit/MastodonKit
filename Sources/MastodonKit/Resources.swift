@@ -2,6 +2,7 @@ import Foundation
 
 public typealias AccountResource = Resource<Account>
 public typealias AccountsResource = Resource<[Account]>
+public typealias AttachmentResource = Resource<Attachment>
 public typealias CardResource = Resource<Card>
 public typealias ClientApplicationResource = Resource<ClientApplication>
 public typealias ContextResource = Resource<Context>
@@ -35,6 +36,15 @@ extension Resource where Model == [Account] {
     static func parser(json: JSONObject) -> [Account] {
         guard let array = json as? [JSONDictionary] else { return [] }
         return array.flatMap(Account.init)
+    }
+}
+
+// MARK: AttachmentResource
+
+extension Resource where Model == Attachment {
+    static func parser(json: JSONObject) -> Attachment? {
+        guard let dictionary = json as? JSONDictionary else { return nil }
+        return Attachment(from: dictionary)
     }
 }
 
