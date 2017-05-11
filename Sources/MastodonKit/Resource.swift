@@ -1,7 +1,5 @@
 import Foundation
 
-typealias Parameters = [String : String?]
-
 public struct Resource<Model> {
     let path: String
     let method: HTTPMethod
