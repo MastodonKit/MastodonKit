@@ -13,7 +13,7 @@ git worktree add jazzycode master
 # build project and documentation
 cd jazzycode
 swift package generate-xcodeproj
-bundle exec jazzy --clean --disable-search --module-version $git_tag
+bundle exec jazzy --clean --disable-search --module-version $git_tag --github-file-prefix "https://github.com/MastodonKit/MastodonKit/tree/$git_tag"
 cd -
 
 # move docs to destination
