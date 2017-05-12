@@ -1,8 +1,11 @@
 import Foundation
 
 public enum AccessScope: String {
+    /// Allows reading data.
     case read
+    /// Allows posting statuses and uploading media for statuses.
     case write
+    /// Allows following, unfollowing, blocking, and unblocking users.
     case follow
 }
 
