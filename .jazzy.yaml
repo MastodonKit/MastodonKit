@@ -6,8 +6,16 @@ root_url: https://MastodonKit.github.io/MastodonKit/docs/
 docset_icon: icon.png
 dash_url: https://MastodonKit.github.io/MastodonKit/docs/docsets/MastodonKit.xml
 theme: fullwidth
+documentation: ../markdown/*.md
 
 custom_categories:
+  - name: Documentation
+    children:
+    - How to Build
+    - Initializing the Client
+    - Making Requests
+    - Ranges and Limits
+    - Uploading Media Attachments
   - name: Client
     children:
     - Client
