@@ -1,8 +1,0 @@
-module: MastodonKit
-output: docs
-author: MastodonKit Contributors
-github_url: https://github.com/MastodonKit/MastodonKit
-github_file_prefix: MastodonKit
-root_url: https://MastodonKit.github.io/MastodonKit/
-docset_icon: icon.png
-dash_url: https://MastodonKit.github.io/MastodonKit/docsets/MastodonKit.xml
