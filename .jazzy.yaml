@@ -6,3 +6,42 @@ root_url: https://MastodonKit.github.io/MastodonKit/
 docset_icon: icon.png
 dash_url: https://MastodonKit.github.io/MastodonKit/docsets/MastodonKit.xml
 theme: fullwidth
+
+custom_categories:
+  - name: Client
+    children:
+    - Client
+  - name: Resources
+    children:
+    - Accounts
+    - Blocks
+    - Clients
+    - Favourites
+    - FollowRequests
+    - Instances
+    - Login
+    - Media
+    - Mutes
+    - Notifications
+    - Reports
+    - Search
+    - Statuses
+    - Timelines
+  - name: Entities
+    children:
+    - Account
+    - Application
+    - Attachment
+    - Card
+    - ClientApplication
+    - Context
+    - Instance
+    - LoginSettings
+    - Mention
+    - Notification
+    - Relationship
+    - Report
+    - RequestError
+    - Results
+    - Status
+    - Tag
