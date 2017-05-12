@@ -2,9 +2,9 @@ module: MastodonKit
 output: docs
 author: Ornithologist Coder and MastodonKit Contributors
 github_url: https://github.com/MastodonKit/MastodonKit
-root_url: https://MastodonKit.github.io/MastodonKit/
+root_url: https://MastodonKit.github.io/MastodonKit/docs/
 docset_icon: icon.png
-dash_url: https://MastodonKit.github.io/MastodonKit/docsets/MastodonKit.xml
+dash_url: https://MastodonKit.github.io/MastodonKit/docs/docsets/MastodonKit.xml
 theme: fullwidth
 
 custom_categories:
@@ -41,7 +41,6 @@ custom_categories:
     - Notification
     - Relationship
     - Report
-    - RequestError
     - Results
     - Status
     - Tag
