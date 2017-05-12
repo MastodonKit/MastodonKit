@@ -6,6 +6,7 @@ git_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
 # setup
 git rm -rf .
 git checkout HEAD -- $git_files_to_preserve
+bundle install
 
 # create a local copy of master
 git worktree add jazzycode master
