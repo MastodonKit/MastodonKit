@@ -17,6 +17,7 @@ custom_categories:
     - Making Requests
     - Ranges and Limits
     - Uploading Media Attachments
+    - Replying to a Status
   - name: Client
     children:
     - Client

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Initializing the Client  Reference</title>
+    <title>Replying to a Status  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
   <body>
 
 
-    <a title="Initializing the Client  Reference"></a>
+    <a title="Replying to a Status  Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -41,7 +41,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="index.html">MastodonKit Reference</a>
       <img class="carat" src="img/carat.png" />
-      Initializing the Client  Reference
+      Replying to a Status  Reference
     </p>
 
     <div class="content-wrapper">
@@ -219,61 +219,32 @@
         <section class="section">
           <div class="section-content">
             
-            <h1 id='initializing-the-client' class='heading'>Initializing the Client</h1>
+            <h1 id='replying-to-a-status' class='heading'>Replying to a Status</h1>
 
-<p>Assuming you already have an access token for a user on the given Mastodon instance:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">client</span> <span class="o">=</span> <span class="kt">Client</span><span class="p">(</span>
-    <span class="nv">baseURL</span><span class="p">:</span> <span class="s">"https://mastodon.technology"</span><span class="p">,</span>
-    <span class="nv">accessToken</span><span class="p">:</span> <span class="s">"user access token (after OAuth login)"</span>
-<span class="p">)</span>
-</code></pre>
+<p>When building a client application that allows users to reply to other users, it&rsquo;s important to include in the reply message the author of the status being replied to (<code>status.account</code>), as well all the people mentioned on the original message  (<code>status.mentions</code>).</p>
 
-<p>Shall you need to get an access token, you must first register the application against the given Mastodon instance. Registering an application returns the Client ID and Client Secret needed to perform the OAuth call. Remember to store the Client ID and Client Secret locally in your application for future OAuth logins:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">client</span> <span class="o">=</span> <span class="kt">Client</span><span class="p">(</span><span class="nv">baseURL</span><span class="p">:</span> <span class="s">"https://mastodon.technology"</span><span class="p">)</span>
+<p>To mention a user, use the <a href="https://mastodonkit.github.io/MastodonKit/docs/Structs/Account.html">Account</a>&lsquo;s <code>acct</code> property instead of the <code>username</code>. The first one carries the instance information while the latter doesn&rsquo;t.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">statusAuthor</span> <span class="o">=</span> <span class="n">status</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">acct</span>
+<span class="c1">// String, "ornithocoder"</span>
 
-<span class="k">let</span> <span class="nv">resource</span> <span class="o">=</span> <span class="kt">Clients</span><span class="o">.</span><span class="nf">register</span><span class="p">(</span>
-    <span class="nv">clientName</span><span class="p">:</span> <span class="s">"MastodonKit Test Client"</span><span class="p">,</span>
-    <span class="nv">scopes</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">read</span><span class="p">,</span> <span class="o">.</span><span class="n">write</span><span class="p">,</span> <span class="o">.</span><span class="n">follow</span><span class="p">],</span>
-    <span class="nv">website</span><span class="p">:</span> <span class="s">"https://github.com/MastodonKit/MastodonKit"</span>
-<span class="p">)</span>
+<span class="k">let</span> <span class="nv">mentionedAccountsOnStatus</span> <span class="o">=</span> <span class="n">status</span><span class="o">.</span><span class="n">mentions</span><span class="o">.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="nv">$0</span><span class="o">.</span><span class="n">acct</span> <span class="p">}</span>
+<span class="c1">// [String], ["eurasierboy@mastodon.social", "ashfurrow"]</span>
 
-<span class="n">client</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span> <span class="p">{</span> <span class="n">application</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
-    <span class="k">if</span> <span class="k">let</span> <span class="nv">application</span> <span class="o">=</span> <span class="n">application</span> <span class="p">{</span>
-        <span class="nf">print</span><span class="p">(</span><span class="s">"id: </span><span class="se">\(</span><span class="n">application</span><span class="o">.</span><span class="n">id</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="s">"redirect uri: </span><span class="se">\(</span><span class="n">application</span><span class="o">.</span><span class="n">redirectURI</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="s">"client id: </span><span class="se">\(</span><span class="n">application</span><span class="o">.</span><span class="n">clientID</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="s">"client secret: </span><span class="se">\(</span><span class="n">application</span><span class="o">.</span><span class="n">clientSecret</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-    <span class="p">}</span>
+<span class="k">let</span> <span class="nv">allAccounts</span> <span class="o">=</span> <span class="p">[</span><span class="n">statusAuthor</span><span class="p">]</span> <span class="o">+</span> <span class="n">mentionedAccountsOnStatus</span>
+<span class="c1">// [String], ["ornithocoder", "eurasierboy@mastodon.social", "ashfurrow"]</span>
+
+<span class="n">textView</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">allAccounts</span><span class="o">.</span><span class="n">map</span><span class="p">{</span> <span class="s">"@"</span> <span class="o">+</span> <span class="nv">$0</span> <span class="p">}</span><span class="o">.</span><span class="nf">reduce</span><span class="p">(</span><span class="s">""</span><span class="p">)</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">+</span> <span class="nv">$1</span> <span class="o">+</span> <span class="s">" "</span> <span class="p">}</span>
+<span class="c1">// String, "@ornithocoder @eurasierboy@mastodon.social @ashfurrow"</span>
+
+<span class="c1">// ... append seomthing to textView.text, example: "that's awesome"</span>
+<span class="c1">// String, "@ornithocoder @eurasierboy@mastodon.social @ashfurrow that's awesome"</span>
+
+<span class="k">let</span> <span class="nv">post</span> <span class="o">=</span> <span class="kt">Statuses</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">status</span><span class="p">:</span> <span class="n">textView</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="nv">replyToID</span><span class="p">:</span> <span class="n">status</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+<span class="n">client</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="n">post</span><span class="p">)</span> <span class="p">{</span> <span class="n">status</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="c1">// do something with 'status'</span>
 <span class="p">}</span>
 </code></pre>
-
-<p>After retrieving the access token (via standard OAuth 2 authorization flow), update the MastodonKit client with the returned accessToken:</p>
-<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="n">accessToken</span> <span class="o">=</span> <span class="s">"user access token (after OAuth login)"</span>
-</code></pre>
-
-<p><strong>Side note</strong>: Mastodon&rsquo;s API and MastodonKit offer a way to silently log a user in, but the method is discouraged. The <a href="https://github.com/tootsuite/documentation/blob/master/Using-the-API/Testing-with-cURL.md">API documentation</a> recommends using the standard OAuth 2 authorization flow instead.</p>
-
-<blockquote>
-<p><em><q>Please note that the password-based approach is not recommended especially if you&rsquo;re dealing with other user&rsquo;s accounts and not just your own. Usually you would use the authorization grant approach where you redirect the user to a web page on the original site where they can login and authorize the application and are then redirected back to your application with an access code.</q></em> - Mastodon&rsquo;s API Documentation</p>
-</blockquote>
-
-<p>But in case you want to test it with your own account, here is how:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">loginResource</span> <span class="o">=</span> <span class="kt">Login</span><span class="o">.</span><span class="nf">silent</span><span class="p">(</span>
-    <span class="nv">clientID</span><span class="p">:</span> <span class="s">"very long client id"</span><span class="p">,</span>
-    <span class="nv">clientSecret</span><span class="p">:</span> <span class="s">"very long client secret"</span><span class="p">,</span>
-    <span class="nv">scopes</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">read</span><span class="p">,</span> <span class="o">.</span><span class="n">write</span><span class="p">],</span>
-    <span class="nv">username</span><span class="p">:</span> <span class="s">"foo"</span><span class="p">,</span>
-    <span class="nv">password</span><span class="p">:</span> <span class="s">"bar"</span>
-<span class="p">)</span>
-
-<span class="n">client</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="n">loginResource</span><span class="p">)</span> <span class="p">{</span> <span class="n">loginSettings</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
-    <span class="k">if</span> <span class="k">let</span> <span class="nv">loginSettings</span> <span class="o">=</span> <span class="n">loginSettings</span> <span class="p">{</span>
-        <span class="nf">print</span><span class="p">(</span><span class="s">"access token: </span><span class="se">\(</span><span class="n">loginSettings</span><span class="o">.</span><span class="n">accessToken</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-
-<p>Bear in mind the method above should never be used when deadling with other user&rsquo;s accounts.</p>
 
           </div>
         </section>
