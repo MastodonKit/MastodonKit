@@ -1,4 +1,4 @@
-# How to Build
+# How to Build and Test
 
 **MastodonKit** uses the Swift Package Manager and can be built and tested using the following commands:
 

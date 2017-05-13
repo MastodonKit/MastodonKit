@@ -11,7 +11,8 @@ documentation: ../markdown/*.md
 custom_categories:
   - name: Documentation
     children:
-    - How to Build
+    - How to Install
+    - How to Build and Test
     - Initializing the Client
     - Making Requests
     - Ranges and Limits

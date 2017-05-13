@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Build  Reference</title>
+    <title>How to Install  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
   <body>
 
 
-    <a title="How to Build  Reference"></a>
+    <a title="How to Install  Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -41,7 +41,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="index.html">MastodonKit Reference</a>
       <img class="carat" src="img/carat.png" />
-      How to Build  Reference
+      How to Install  Reference
     </p>
 
     <div class="content-wrapper">
@@ -51,7 +51,10 @@
             <a class="nav-group-name-link" href="Documentation.html">Documentation</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="how-to-build.html">How to Build</a>
+                <a class="nav-group-task-link" href="how-to-install.html">How to Install</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="how-to-build-and-test.html">How to Build and Test</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="initializing-the-client.html">Initializing the Client</a>
@@ -213,19 +216,40 @@
         <section class="section">
           <div class="section-content">
             
-            <h1 id='how-to-build' class='heading'>How to Build</h1>
+            <h1 id='how-to-install' class='heading'>How to Install</h1>
+<h2 id='swift-package-manager' class='heading'>Swift Package Manager</h2>
+<h3 id='as-a-dependency' class='heading'>As a dependency</h3>
 
-<p><strong>MastodonKit</strong> uses the Swift Package Manager and can be built and tested using the following commands:</p>
-<pre class="highlight plaintext"><code>$ git clone https://github.com/MastodonKit/MastodonKit.git
-$ cd MastodonKit
-$ swift build
-$ swift test
+<p><strong>MastodonKit</strong> uses Swift Package Manager and can be integrated into other Swift projects as a package dependency:</p>
+<pre class="highlight swift"><code><span class="o">.</span><span class="kt">Package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/MastodonKit/MastodonKit.git"</span><span class="p">,</span> <span class="nv">majorVersion</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre>
 
-<p>If you prefer, Swift Package Manager can create an Xcode Project:</p>
+<p>For instance:</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">PackageDescription</span>
+
+<span class="k">let</span> <span class="nv">package</span> <span class="o">=</span> <span class="kt">Package</span><span class="p">(</span>
+    <span class="nv">name</span><span class="p">:</span> <span class="s">"MastodonCLI"</span><span class="p">,</span>
+    <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+        <span class="o">.</span><span class="kt">Package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/MastodonKit/MastodonKit.git"</span><span class="p">,</span> <span class="nv">majorVersion</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</code></pre>
+<h3 id='as-an-xcode-project' class='heading'>As an Xcode project</h3>
+
+<p>Another way to integrate a Swift Package into a project is by generating an Xcode project</p>
 <pre class="highlight plaintext"><code>$ swift package generate-xcodeproj
 $ open MastodonKit.xcodeproj
 </code></pre>
+
+<p>and dragging the generated project into another Xcode project.</p>
+<h2 id='cocoapods' class='heading'>CocoaPods</h2>
+
+<p>CocoaPods is probably the easiest way to integrate MastodonKit into an existing project (since Swift Package Manager support isn&rsquo;t built into Xcode yet). Simply add <code>MastodonKit</code> to your <code>Podfile</code> and run <code>pod install</code> to install the pod.</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'MastodonKit'</span><span class="p">,</span> <span class="s1">'~&gt; 1.0'</span>
+</code></pre>
+<h2 id='drag-and-drop' class='heading'>Drag and Drop</h2>
+
+<p>Drag all the files from the <code>Sources</code> directory (and sub directories) to your project. Since MastodonKit has no dependencies on other libraries and frameworks, it should work fine. But remember to use <a href="https://github.com/MastodonKit/MastodonKit/releases">tagged versions</a> instead of using code from master or any other development branch.</p>
 
           </div>
         </section>
@@ -234,7 +258,7 @@ $ open MastodonKit.xcodeproj
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external">Ornithologist Coder and MastodonKit Contributors</a>. All rights reserved. (Last updated: 2017-05-13)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/MastodonKit/MastodonKit" target="_blank" rel="external">Ornithologist Coder and MastodonKit Contributors</a>. All rights reserved. (Last updated: 2017-05-13)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
