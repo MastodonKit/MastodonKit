@@ -10,7 +10,8 @@
 
 Visit [MastodonKit's Complete Documentation](https://mastodonkit.github.io/MastodonKit) for examples and descriptions of all the methods available. These are some of the examples of what you'll find there:
 
-* [How to Build](https://mastodonkit.github.io/MastodonKit/docs/how-to-build.html)
+* [How to Install](https://mastodonkit.github.io/MastodonKit/docs/how-to-install.html)
+* [How to Build and Test](https://mastodonkit.github.io/MastodonKit/docs/how-to-build-and-test.html)
 * [Initializing the Client](https://mastodonkit.github.io/MastodonKit/docs/initializing-the-client.html)
 * [Making Requests](https://mastodonkit.github.io/MastodonKit/docs/making-requests.html)
 * [Ranges and Limits](https://mastodonkit.github.io/MastodonKit/docs/ranges-and-limits.html)
