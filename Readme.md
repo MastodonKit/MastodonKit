@@ -1,6 +1,10 @@
 ![MastodonKit](https://cloud.githubusercontent.com/assets/19753339/26019845/f64df19a-3778-11e7-8482-e09e187f3923.png)
 
-[![Build Status](https://travis-ci.org/MastodonKit/MastodonKit.svg?branch=master)](https://travis-ci.org/MastodonKit/MastodonKit) [![Code Coverage](http://codecov.io/github/MastodonKit/MastodonKit/branch/master/graphs/badge.svg)](http://codecov.io/github/MastodonKit/MastodonKit) [![SwiftPM Compatible](https://img.shields.io/badge/Swift_Package_Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager) [![SwiftPM Version](https://img.shields.io/github/release/MastodonKit/MastodonKit.svg?colorB=brightgreen)](https://github.com/MastodonKit/MastodonKit/releases)
+[![Build Status](https://travis-ci.org/MastodonKit/MastodonKit.svg?branch=master)](https://travis-ci.org/MastodonKit/MastodonKit)
+[![Code Coverage](http://codecov.io/github/MastodonKit/MastodonKit/branch/master/graphs/badge.svg)](http://codecov.io/github/MastodonKit/MastodonKit)
+[![SwiftPM Compatible](https://img.shields.io/badge/Swift_Package_Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
+[![SwiftPM Version](https://img.shields.io/github/release/MastodonKit/MastodonKit.svg?colorB=brightgreen)](https://github.com/MastodonKit/MastodonKit/releases)
+[![CocoaPods](https://img.shields.io/cocoapods/v/MastodonKit.svg?colorB=brightgreen)](https://github.com/MastodonKit/MastodonKit)
 
 **MastodonKit** is a Swift Framework built using Swift Package Manager that wraps the Mastodon API. It covers all the endpoints and entities from [Mastodon's API](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md) and is designed to be simple to use.
 
