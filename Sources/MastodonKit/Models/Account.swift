@@ -15,8 +15,12 @@ public struct Account {
     public let url: String
     /// URL to the avatar image.
     public let avatar: String
+    /// URL to the avatar static image
+    public let avatarStatic: String
     /// URL to the header image.
     public let header: String
+    /// URL to the header static image
+    public let headerStatic: String
     /// Boolean for when the account cannot be followed without waiting for approval first.
     public let locked: Bool
     /// The time the account was created.
@@ -42,7 +46,9 @@ extension Account {
             let note = dictionary["note"] as? String,
             let url = dictionary["url"] as? String,
             let avatar = dictionary["avatar"] as? String,
+            let avatarStatic = dictionary["avatar_static"] as? String,
             let header = dictionary["header"] as? String,
+            let headerStatic = dictionary["header_static"] as? String,
             let followersCount = dictionary["followers_count"] as? Int,
             let followingCount = dictionary["following_count"] as? Int,
             let statusesCount = dictionary["statuses_count"] as? Int
@@ -57,7 +63,9 @@ extension Account {
         self.note = note
         self.url = url
         self.avatar = avatar
+        self.avatarStatic = avatarStatic
         self.header = header
+        self.headerStatic = headerStatic
         self.locked = locked
         self.createdAt = createdAt
         self.followersCount = followersCount
