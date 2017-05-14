@@ -1,0 +1,7 @@
+include:
+  - Sources
+  - Tests
+
+identifier_name:
+  excluded:
+    - id

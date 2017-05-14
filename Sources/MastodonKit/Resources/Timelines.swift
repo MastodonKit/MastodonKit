@@ -38,6 +38,7 @@ public struct Timelines {
         let localParameters = [Parameter(name: "local", value: local.flatMap(nilOrTrue))]
         let method = HTTPMethod.get(Payload.parameters(localParameters + rangeParameters))
 
-        return TimelineResource(path: "/api/v1/timelines/tag/\(hashtag)", method: method, parse: TimelineResource.parser)
+        return TimelineResource(path: "/api/v1/timelines/tag/\(hashtag)", method: method,
+                                parse: TimelineResource.parser)
     }
 }

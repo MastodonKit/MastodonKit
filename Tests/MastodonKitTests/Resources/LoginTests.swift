@@ -3,7 +3,8 @@ import XCTest
 
 class LoginTests: XCTestCase {
     func testSilentLogin() {
-        let resource = Login.silent(clientID: "client id", clientSecret: "client secret", scopes: [.read, .write], username: "foo", password: "123")
+        let resource = Login.silent(clientID: "client id", clientSecret: "client secret",
+                                    scopes: [.read, .write], username: "foo", password: "123")
 
         // Endpoint
         XCTAssertEqual(resource.path, "/oauth/token")

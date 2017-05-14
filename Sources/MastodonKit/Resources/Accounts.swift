@@ -24,7 +24,8 @@ public struct Accounts {
     ///   - avatar: A base64 encoded image to display as the user's avatar (e.g. data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAU...).
     ///   - header: A base64 encoded image to display as the user's header image (e.g. data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAU...).
     /// - Returns: Resource for `Account`.
-    public static func updateCurrentUser(displayName: String? = nil, note: String? = nil, avatar: String? = nil, header: String? = nil) -> AccountResource {
+    public static func updateCurrentUser(displayName: String? = nil, note: String? = nil, avatar: String? = nil,
+                                         header: String? = nil) -> AccountResource {
         let parameters = [
             Parameter(name: "display_name", value: displayName),
             Parameter(name: "note", value: note),
@@ -33,7 +34,8 @@ public struct Accounts {
         ]
 
         let method = HTTPMethod.patch(Payload.parameters(parameters))
-        return AccountResource(path: "/api/v1/accounts/update_credentials", method: method, parse: AccountResource.parser)
+        return AccountResource(path: "/api/v1/accounts/update_credentials", method: method,
+                               parse: AccountResource.parser)
     }
 
     /// Gets an account's followers.
@@ -46,7 +48,8 @@ public struct Accounts {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
         let method = HTTPMethod.get(Payload.parameters(parameters))
 
-        return AccountsResource(path: "/api/v1/accounts/\(id)/followers", method: method, parse: AccountsResource.parser)
+        return AccountsResource(path: "/api/v1/accounts/\(id)/followers", method: method,
+                                parse: AccountsResource.parser)
     }
 
     /// Gets who account is following.
@@ -59,7 +62,8 @@ public struct Accounts {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
         let method = HTTPMethod.get(Payload.parameters(parameters))
 
-        return AccountsResource(path: "/api/v1/accounts/\(id)/following", method: method, parse: AccountsResource.parser)
+        return AccountsResource(path: "/api/v1/accounts/\(id)/following", method: method,
+                                parse: AccountsResource.parser)
     }
 
     /// Gets an account's statuses.
@@ -70,7 +74,8 @@ public struct Accounts {
     ///   - excludeReplies: Skip statuses that reply to other statuses.
     ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Resource for `[Status]`.
-    public static func statuses(id: Int, mediaOnly: Bool? = nil, excludeReplies: Bool? = nil, range: ResourceRange = .default) -> TimelineResource {
+    public static func statuses(id: Int, mediaOnly: Bool? = nil, excludeReplies: Bool? = nil,
+                                range: ResourceRange = .default) -> TimelineResource {
         let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []
         let parameters = rangeParameters + [
             Parameter(name: "only_media", value: mediaOnly.flatMap(nilOrTrue)),
@@ -78,7 +83,8 @@ public struct Accounts {
         ]
 
         let method = HTTPMethod.get(Payload.parameters(parameters))
-        return TimelineResource(path: "/api/v1/accounts/\(id)/statuses", method: method, parse: TimelineResource.parser)
+        return TimelineResource(path: "/api/v1/accounts/\(id)/statuses", method: method,
+                                parse: TimelineResource.parser)
     }
 
     /// Follows an account.
@@ -86,7 +92,8 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Account`.
     public static func follow(id: Int) -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/\(id)/follow", method: .post(.empty), parse: AccountResource.parser)
+        return AccountResource(path: "/api/v1/accounts/\(id)/follow", method: .post(.empty),
+                               parse: AccountResource.parser)
     }
 
     /// Unfollow an account.
@@ -94,7 +101,8 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Account`.
     public static func unfollow(id: Int) -> AccountResource {
-        return AccountResource(path: "/api/v1/accounts/\(id)/unfollow", method: .post(.empty), parse: AccountResource.parser)
+        return AccountResource(path: "/api/v1/accounts/\(id)/unfollow", method: .post(.empty),
+                               parse: AccountResource.parser)
     }
 
     /// Blocks an account.
@@ -102,7 +110,8 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Relationship`.
     public static func block(id: Int) -> RelationshipResource {
-        return RelationshipResource(path: "/api/v1/accounts/\(id)/block", method: .post(.empty), parse: RelationshipResource.parser)
+        return RelationshipResource(path: "/api/v1/accounts/\(id)/block", method: .post(.empty),
+                                    parse: RelationshipResource.parser)
     }
 
     /// Unblocks an account.
@@ -110,7 +119,8 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Relationship`.
     public static func unblock(id: Int) -> RelationshipResource {
-        return RelationshipResource(path: "/api/v1/accounts/\(id)/unblock", method: .post(.empty), parse: RelationshipResource.parser)
+        return RelationshipResource(path: "/api/v1/accounts/\(id)/unblock", method: .post(.empty),
+                                    parse: RelationshipResource.parser)
     }
 
     /// Mutes an account.
@@ -118,7 +128,8 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Relationship`.
     public static func mute(id: Int) -> RelationshipResource {
-        return RelationshipResource(path: "/api/v1/accounts/\(id)/mute", method: .post(.empty), parse: RelationshipResource.parser)
+        return RelationshipResource(path: "/api/v1/accounts/\(id)/mute", method: .post(.empty),
+                                    parse: RelationshipResource.parser)
     }
 
     /// Unmutes an account.
@@ -126,7 +137,8 @@ public struct Accounts {
     /// - Parameter id: The account id.
     /// - Returns: Resource for `Relationship`.
     public static func unmute(id: Int) -> RelationshipResource {
-        return RelationshipResource(path: "/api/v1/accounts/\(id)/unmute", method: .post(.empty), parse: RelationshipResource.parser)
+        return RelationshipResource(path: "/api/v1/accounts/\(id)/unmute", method: .post(.empty),
+                                    parse: RelationshipResource.parser)
     }
 
     /// Gets an account's relationships.
@@ -137,7 +149,8 @@ public struct Accounts {
         let parameters = ids.map(toArrayOfParameters(withName: "id"))
 
         let method = HTTPMethod.get(Payload.parameters(parameters))
-        return RelationshipsResource(path: "/api/v1/accounts/relationships", method: method, parse: RelationshipsResource.parser)
+        return RelationshipsResource(path: "/api/v1/accounts/relationships", method: method,
+                                     parse: RelationshipsResource.parser)
     }
 
     /// Searches for accounts.

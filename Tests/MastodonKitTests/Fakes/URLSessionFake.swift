@@ -5,7 +5,8 @@ class URLSessionFake: URLSession {
     var lastCompletionHandler: ((Data?, URLResponse?, Error?) -> Void)?
     var lastReturnedDataTask: URLSessionDataTaskFake?
 
-    override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+    override func dataTask(with request: URLRequest,
+                           completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         lastRequest = request
         lastCompletionHandler = completionHandler
         lastReturnedDataTask = URLSessionDataTaskFake()
