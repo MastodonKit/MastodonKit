@@ -21,15 +21,15 @@ public struct Accounts {
     /// - Parameters:
     ///   - displayName: The name to display in the user's profile.
     ///   - note: A new biography for the user.
-    ///   - avatar: A base64 encoded image to display as the user's avatar (e.g. data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAU...).
-    ///   - header: A base64 encoded image to display as the user's header image (e.g. data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAU...).
+    ///   - avatar: The media attachment to display as the user's avatar.
+    ///   - header: The media attachment to display as the user's header image.
     /// - Returns: Resource for `Account`.
-    public static func updateCurrentUser(displayName: String? = nil, note: String? = nil, avatar: String? = nil, header: String? = nil) -> AccountResource {
+    public static func updateCurrentUser(displayName: String? = nil, note: String? = nil, avatar: MediaAttachment? = nil, header: MediaAttachment? = nil) -> AccountResource {
         let parameters = [
             Parameter(name: "display_name", value: displayName),
             Parameter(name: "note", value: note),
-            Parameter(name: "avatar", value: avatar),
-            Parameter(name: "header", value: header)
+            Parameter(name: "avatar", value: avatar?.base64EncondedString),
+            Parameter(name: "header", value: header?.base64EncondedString)
         ]
 
         let method = HTTPMethod.patch(Payload.parameters(parameters))

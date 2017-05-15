@@ -38,4 +38,8 @@ extension MediaAttachment {
         case .other(_, _, let mimeType): return mimeType
         }
     }
+
+    var base64EncondedString: String? {
+        return data.flatMap { "data:" + mimeType + ";base64," + $0.base64EncodedString() }
+    }
 }

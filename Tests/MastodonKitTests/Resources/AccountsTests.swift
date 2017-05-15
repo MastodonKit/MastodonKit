@@ -33,7 +33,10 @@ class AccountsTests: XCTestCase {
     }
 
     func testUpdateCurrentUserWithAllFields() {
-        let resource = Accounts.updateCurrentUser(displayName: "Ornithologist Coder", note: "Creator of MastodonKit", avatar: "base64 avatar", header: "base64 header")
+        let avatar = MediaAttachment.jpeg(Data(count: 8))
+        let header = MediaAttachment.png(Data(count: 8))
+
+        let resource = Accounts.updateCurrentUser(displayName: "Ornithologist Coder", note: "Creator of MastodonKit", avatar: avatar, header: header)
 
         // Endpoint
         XCTAssertEqual(resource.path, "/api/v1/accounts/update_credentials")
@@ -47,15 +50,15 @@ class AccountsTests: XCTestCase {
         XCTAssertEqual(payload.components(separatedBy: "&").count, 4)
         XCTAssertTrue(payload.contains("display_name=Ornithologist%20Coder"))
         XCTAssertTrue(payload.contains("note=Creator%20of%20MastodonKit"))
-        XCTAssertTrue(payload.contains("avatar=base64%20avatar"))
-        XCTAssertTrue(payload.contains("header=base64%20header"))
+        XCTAssertTrue(payload.contains("avatar=data%3Aimage/jpg%3Bbase64%2CAAAAAAAAAAA%3D"))
+        XCTAssertTrue(payload.contains("header=data%3Aimage/png%3Bbase64%2CAAAAAAAAAAA%3D"))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
     }
 
     func testUpdateCurrentUserWithSomeFields() {
-        let resource = Accounts.updateCurrentUser(displayName: "Ornithologist Coder", header: "base64 header")
+        let resource = Accounts.updateCurrentUser(displayName: "Ornithologist Coder", note: "Creator of MastodonKit")
 
         // Endpoint
         XCTAssertEqual(resource.path, "/api/v1/accounts/update_credentials")
@@ -68,7 +71,7 @@ class AccountsTests: XCTestCase {
         let payload = String(data: resource.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 2)
         XCTAssertTrue(payload.contains("display_name=Ornithologist%20Coder"))
-        XCTAssertTrue(payload.contains("header=base64%20header"))
+        XCTAssertTrue(payload.contains("note=Creator%20of%20MastodonKit"))
 
         // Parser
         XCTAssertTrue(type(of: resource.parse) == ParserFunctionType<Account?>.self)
