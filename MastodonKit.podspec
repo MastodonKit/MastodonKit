@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                    = 'MastodonKit'
-  s.version                 = '1.0.8'
+  s.version                 = '1.0.9'
   s.license                 = 'MIT'
   s.summary                 = 'MastodonKit is a Swift Framework that wraps the Mastodon API.'
   s.description             = 'MastodonKit covers all the endpoints and entities from Mastodon\'s API and is designed to be simple to use.'
