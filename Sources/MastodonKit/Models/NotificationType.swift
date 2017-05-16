@@ -1,7 +1,16 @@
 import Foundation
 
 public enum NotificationType {
-    case mention, reblog, favourite, follow, unknown
+    /// The user has been mentioned.
+    case mention
+    /// The status message has been reblogged.
+    case reblog
+    /// The status message has been favourited.
+    case favourite
+    /// The user has a new follower.
+    case follow
+    /// Unknown notification type.
+    case unknown
 }
 
 extension NotificationType {
