@@ -21,7 +21,7 @@ custom_categories:
   - name: Client
     children:
     - Client
-  - name: Resources
+  - name: Requests
     children:
     - Accounts
     - Blocks
