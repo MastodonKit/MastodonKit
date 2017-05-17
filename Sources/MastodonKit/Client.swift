@@ -10,18 +10,18 @@ public final class Client {
         self.accessToken = accessToken
     }
 
-    public func run<Model>(_ resource: Resource<Model>, completion: @escaping (Model?, Error?) -> Void) {
+    public func run<Model>(_ request: Request<Model>, completion: @escaping (Model?, Error?) -> Void) {
         guard
-            let components = URLComponents(baseURL: baseURL, resource: resource),
+            let components = URLComponents(baseURL: baseURL, request: request),
             let requestURL = components.url
             else {
                 completion(nil, ClientError.malformedURL)
                 return
         }
 
-        let request = URLRequest(url: requestURL, resource: resource, accessToken: accessToken)
+        let urlRequest = URLRequest(url: requestURL, request: request, accessToken: accessToken)
 
-        let task = session.dataTask(with: request) { data, response, error in
+        let task = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 completion(nil, error)
                 return
@@ -44,7 +44,7 @@ public final class Client {
                     return
             }
 
-            completion(resource.parse(jsonObject), nil)
+            completion(request.parse(jsonObject), nil)
         }
 
         task.resume()
