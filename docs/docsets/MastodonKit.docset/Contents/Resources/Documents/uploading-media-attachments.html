@@ -197,7 +197,7 @@
                 <a class="nav-group-task-link" href="Enums/NotificationType.html">NotificationType</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Enums/ResourceRange.html">ResourceRange</a>
+                <a class="nav-group-task-link" href="Enums/RequestRange.html">RequestRange</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/Visibility.html">Visibility</a>
@@ -208,7 +208,7 @@
             <a class="nav-group-name-link" href="Other Structs.html">Other Structs</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Other Structs.html#/s:V11MastodonKit8Resource">Resource</a>
+                <a class="nav-group-task-link" href="Other Structs.html#/s:V11MastodonKit7Request">Request</a>
               </li>
             </ul>
           </li>
@@ -227,20 +227,20 @@
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">image</span> <span class="o">=</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"mastodon_logo"</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">imageData</span> <span class="o">=</span> <span class="kt">UIImageJPEGRepresentation</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mf">0.82</span><span class="p">)</span>
 
-<span class="k">let</span> <span class="nv">resource</span> <span class="o">=</span> <span class="kt">Media</span><span class="o">.</span><span class="nf">upload</span><span class="p">(</span><span class="nv">media</span><span class="p">:</span> <span class="o">.</span><span class="nf">jpeg</span><span class="p">(</span><span class="n">imageData</span><span class="p">))</span>
+<span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">Media</span><span class="o">.</span><span class="nf">upload</span><span class="p">(</span><span class="nv">media</span><span class="p">:</span> <span class="o">.</span><span class="nf">jpeg</span><span class="p">(</span><span class="n">imageData</span><span class="p">))</span>
 
-<span class="n">client</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span> <span class="p">{</span> <span class="n">attachment</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+<span class="n">client</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">attachment</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
     <span class="c1">// do something with 'attachment'</span>
 <span class="p">}</span>
 </code></pre>
 
 <p>Uploading a GIF image from the main bundle:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">imagePath</span> <span class="o">=</span> <span class="kt">Bundle</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="nf">path</span><span class="p">(</span><span class="nv">forResource</span><span class="p">:</span> <span class="s">"funny_meme"</span><span class="p">,</span> <span class="nv">ofType</span><span class="p">:</span> <span class="s">".gif"</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">imagePath</span> <span class="o">=</span> <span class="kt">Bundle</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="nf">path</span><span class="p">(</span><span class="nv">forRequest</span><span class="p">:</span> <span class="s">"funny_meme"</span><span class="p">,</span> <span class="nv">ofType</span><span class="p">:</span> <span class="s">".gif"</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">imageData</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">Data</span><span class="p">(</span><span class="nv">contentsOf</span><span class="p">:</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">fileURLWithPath</span><span class="p">:</span> <span class="n">imagePath</span><span class="o">!</span><span class="p">))</span>
 
-<span class="k">let</span> <span class="nv">imageUpload</span> <span class="o">=</span> <span class="kt">Media</span><span class="o">.</span><span class="nf">upload</span><span class="p">(</span><span class="nv">media</span><span class="p">:</span> <span class="o">.</span><span class="nf">gif</span><span class="p">(</span><span class="n">imageData</span><span class="p">))</span>
+<span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">Media</span><span class="o">.</span><span class="nf">upload</span><span class="p">(</span><span class="nv">media</span><span class="p">:</span> <span class="o">.</span><span class="nf">gif</span><span class="p">(</span><span class="n">imageData</span><span class="p">))</span>
 
-<span class="n">client</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span> <span class="p">{</span> <span class="n">attachment</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+<span class="n">client</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">attachment</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
     <span class="c1">// do something with 'attachment'</span>
 <span class="p">}</span>
 </code></pre>
@@ -254,7 +254,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/MastodonKit/MastodonKit" target="_blank" rel="external">Ornithologist Coder and MastodonKit Contributors</a>. All rights reserved. (Last updated: 2017-05-16)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/MastodonKit/MastodonKit" target="_blank" rel="external">Ornithologist Coder and MastodonKit Contributors</a>. All rights reserved. (Last updated: 2017-05-17)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

@@ -198,7 +198,7 @@
                 <a class="nav-group-task-link" href="../Enums/NotificationType.html">NotificationType</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums/ResourceRange.html">ResourceRange</a>
+                <a class="nav-group-task-link" href="../Enums/RequestRange.html">RequestRange</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/Visibility.html">Visibility</a>
@@ -209,7 +209,7 @@
             <a class="nav-group-name-link" href="../Other Structs.html">Other Structs</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Other Structs.html#/s:V11MastodonKit8Resource">Resource</a>
+                <a class="nav-group-task-link" href="../Other Structs.html#/s:V11MastodonKit7Request">Request</a>
               </li>
             </ul>
           </li>
@@ -232,9 +232,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFV11MastodonKit7Reports3allFT_GVS_8ResourceGSaVS_6Report__"></a>
+                    <a name="/s:ZFV11MastodonKit7Reports3allFT_GVS_7RequestGSaVS_6Report__"></a>
                     <a name="//apple_ref/swift/Method/all()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFV11MastodonKit7Reports3allFT_GVS_8ResourceGSaVS_6Report__">all()</a>
+                    <a class="token" href="#/s:ZFV11MastodonKit7Reports3allFT_GVS_7RequestGSaVS_6Report__">all()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -249,16 +249,16 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">all</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">ReportsResource</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">all</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">ReportsRequest</span></code></pre>
 
                         </div>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>Resource for <code>[Report]</code>.</p>
+                        <p>Request for <code>[Report]</code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/MastodonKit/MastodonKit/tree/1.0.9/Sources/MastodonKit/Resources/Reports.swift#L7-L9">Show on GitHub</a>
+                        <a href="https://github.com/MastodonKit/MastodonKit/tree/1.0.9/Sources/MastodonKit/Requests/Reports.swift#L7-L9">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -266,9 +266,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFV11MastodonKit7Reports6reportFT9accountIDSi9statusIDsGSaSi_6reasonSS_GVS_8ResourceVS_6Report_"></a>
+                    <a name="/s:ZFV11MastodonKit7Reports6reportFT9accountIDSi9statusIDsGSaSi_6reasonSS_GVS_7RequestVS_6Report_"></a>
                     <a name="//apple_ref/swift/Method/report(accountID:statusIDs:reason:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFV11MastodonKit7Reports6reportFT9accountIDSi9statusIDsGSaSi_6reasonSS_GVS_8ResourceVS_6Report_">report(accountID:statusIDs:reason:)</a>
+                    <a class="token" href="#/s:ZFV11MastodonKit7Reports6reportFT9accountIDSi9statusIDsGSaSi_6reasonSS_GVS_7RequestVS_6Report_">report(accountID:statusIDs:reason:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -283,7 +283,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">report</span><span class="p">(</span><span class="nv">accountID</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">statusIDs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">],</span> <span class="nv">reason</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ReportResource</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">report</span><span class="p">(</span><span class="nv">accountID</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">statusIDs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">],</span> <span class="nv">reason</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ReportRequest</span></code></pre>
 
                         </div>
                       </div>
@@ -332,10 +332,10 @@
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>Resource for <code><a href="../Structs/Report.html">Report</a></code>.</p>
+                        <p>Request for <code><a href="../Structs/Report.html">Report</a></code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/MastodonKit/MastodonKit/tree/1.0.9/Sources/MastodonKit/Resources/Reports.swift#L18-L26">Show on GitHub</a>
+                        <a href="https://github.com/MastodonKit/MastodonKit/tree/1.0.9/Sources/MastodonKit/Requests/Reports.swift#L18-L26">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -348,7 +348,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/MastodonKit/MastodonKit" target="_blank" rel="external">Ornithologist Coder and MastodonKit Contributors</a>. All rights reserved. (Last updated: 2017-05-16)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/MastodonKit/MastodonKit" target="_blank" rel="external">Ornithologist Coder and MastodonKit Contributors</a>. All rights reserved. (Last updated: 2017-05-17)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

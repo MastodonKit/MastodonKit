@@ -1,13 +1,13 @@
 # Making Requests
 
-To perform a network request against a Mastodon instance, first create a resource and then *run* it using the client. Below two examples:
+To perform a network request against a Mastodon instance, first create a request and then *run* it using the client. Below two examples:
 
 **Getting the home timeline**
 
 ```swift
-let resource = Timelines.home()
+let request = Timelines.home()
 
-client.run(resource) { statuses, error in
+client.run(request) { statuses, error in
     // do something with 'statuses'
 }
 ```
@@ -15,9 +15,9 @@ client.run(resource) { statuses, error in
 **Posting a new status**
 
 ```swift
-let resource = Statuses.create("Mastodon's API is awesome!")
+let request = Statuses.create("Mastodon's API is awesome!")
 
-client.run(resource) { status, error in
+client.run(request) { status, error in
     // do something with 'status'
 }
 ```

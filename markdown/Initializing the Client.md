@@ -14,13 +14,13 @@ Shall you need to get an access token, you must first register the application a
 ```swift
 let client = Client(baseURL: "https://mastodon.technology")
 
-let resource = Clients.register(
+let request = Clients.register(
     clientName: "MastodonKit Test Client",
     scopes: [.read, .write, .follow],
     website: "https://github.com/MastodonKit/MastodonKit"
 )
 
-client.run(resource) { application, error in
+client.run(request) { application, error in
     if let application = application {
         print("id: \(application.id)")
         print("redirect uri: \(application.redirectURI)")
@@ -43,7 +43,7 @@ client.accessToken = "user access token (after OAuth login)"
 But in case you want to test it with your own account, here is how:
 
 ```swift
-let loginResource = Login.silent(
+let loginRequest = Login.silent(
     clientID: "very long client id",
     clientSecret: "very long client secret",
     scopes: [.read, .write],
@@ -51,7 +51,7 @@ let loginResource = Login.silent(
     password: "bar"
 )
 
-client.run(loginResource) { loginSettings, error in
+client.run(loginRequest) { loginSettings, error in
     if let loginSettings = loginSettings {
         print("access token: \(loginSettings.accessToken)")
     }

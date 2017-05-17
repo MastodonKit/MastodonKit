@@ -10,6 +10,7 @@ generate:
 	cd jazzycode && bundle exec jazzy --clean \
 					--disable-search \
 					--module-version $(git_tag) \
+					--no-download-badge \
 					--github-file-prefix "https://github.com/MastodonKit/MastodonKit/tree/$(git_tag)"
 	rm -rf jazzycode
 	git worktree prune

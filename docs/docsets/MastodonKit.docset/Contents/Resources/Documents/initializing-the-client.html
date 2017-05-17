@@ -197,7 +197,7 @@
                 <a class="nav-group-task-link" href="Enums/NotificationType.html">NotificationType</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Enums/ResourceRange.html">ResourceRange</a>
+                <a class="nav-group-task-link" href="Enums/RequestRange.html">RequestRange</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/Visibility.html">Visibility</a>
@@ -208,7 +208,7 @@
             <a class="nav-group-name-link" href="Other Structs.html">Other Structs</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Other Structs.html#/s:V11MastodonKit8Resource">Resource</a>
+                <a class="nav-group-task-link" href="Other Structs.html#/s:V11MastodonKit7Request">Request</a>
               </li>
             </ul>
           </li>
@@ -231,13 +231,13 @@
 <p>Shall you need to get an access token, you must first register the application against the given Mastodon instance. Registering an application returns the Client ID and Client Secret needed to perform the OAuth call. Remember to store the Client ID and Client Secret locally in your application for future OAuth logins:</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">client</span> <span class="o">=</span> <span class="kt">Client</span><span class="p">(</span><span class="nv">baseURL</span><span class="p">:</span> <span class="s">"https://mastodon.technology"</span><span class="p">)</span>
 
-<span class="k">let</span> <span class="nv">resource</span> <span class="o">=</span> <span class="kt">Clients</span><span class="o">.</span><span class="nf">register</span><span class="p">(</span>
+<span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">Clients</span><span class="o">.</span><span class="nf">register</span><span class="p">(</span>
     <span class="nv">clientName</span><span class="p">:</span> <span class="s">"MastodonKit Test Client"</span><span class="p">,</span>
     <span class="nv">scopes</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">read</span><span class="p">,</span> <span class="o">.</span><span class="n">write</span><span class="p">,</span> <span class="o">.</span><span class="n">follow</span><span class="p">],</span>
     <span class="nv">website</span><span class="p">:</span> <span class="s">"https://github.com/MastodonKit/MastodonKit"</span>
 <span class="p">)</span>
 
-<span class="n">client</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span> <span class="p">{</span> <span class="n">application</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+<span class="n">client</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">application</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
     <span class="k">if</span> <span class="k">let</span> <span class="nv">application</span> <span class="o">=</span> <span class="n">application</span> <span class="p">{</span>
         <span class="nf">print</span><span class="p">(</span><span class="s">"id: </span><span class="se">\(</span><span class="n">application</span><span class="o">.</span><span class="n">id</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
         <span class="nf">print</span><span class="p">(</span><span class="s">"redirect uri: </span><span class="se">\(</span><span class="n">application</span><span class="o">.</span><span class="n">redirectURI</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
@@ -258,7 +258,7 @@
 </blockquote>
 
 <p>But in case you want to test it with your own account, here is how:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">loginResource</span> <span class="o">=</span> <span class="kt">Login</span><span class="o">.</span><span class="nf">silent</span><span class="p">(</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">loginRequest</span> <span class="o">=</span> <span class="kt">Login</span><span class="o">.</span><span class="nf">silent</span><span class="p">(</span>
     <span class="nv">clientID</span><span class="p">:</span> <span class="s">"very long client id"</span><span class="p">,</span>
     <span class="nv">clientSecret</span><span class="p">:</span> <span class="s">"very long client secret"</span><span class="p">,</span>
     <span class="nv">scopes</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">read</span><span class="p">,</span> <span class="o">.</span><span class="n">write</span><span class="p">],</span>
@@ -266,7 +266,7 @@
     <span class="nv">password</span><span class="p">:</span> <span class="s">"bar"</span>
 <span class="p">)</span>
 
-<span class="n">client</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="n">loginResource</span><span class="p">)</span> <span class="p">{</span> <span class="n">loginSettings</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+<span class="n">client</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="n">loginRequest</span><span class="p">)</span> <span class="p">{</span> <span class="n">loginSettings</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
     <span class="k">if</span> <span class="k">let</span> <span class="nv">loginSettings</span> <span class="o">=</span> <span class="n">loginSettings</span> <span class="p">{</span>
         <span class="nf">print</span><span class="p">(</span><span class="s">"access token: </span><span class="se">\(</span><span class="n">loginSettings</span><span class="o">.</span><span class="n">accessToken</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
     <span class="p">}</span>
@@ -282,7 +282,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/MastodonKit/MastodonKit" target="_blank" rel="external">Ornithologist Coder and MastodonKit Contributors</a>. All rights reserved. (Last updated: 2017-05-16)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/MastodonKit/MastodonKit" target="_blank" rel="external">Ornithologist Coder and MastodonKit Contributors</a>. All rights reserved. (Last updated: 2017-05-17)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

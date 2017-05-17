@@ -8,9 +8,9 @@ Uploading the JPEG representation of an ``UIImage``:
 let image = UIImage(named: "mastodon_logo")
 let imageData = UIImageJPEGRepresentation(image, 0.82)
 
-let resource = Media.upload(media: .jpeg(imageData))
+let request = Media.upload(media: .jpeg(imageData))
 
-client.run(resource) { attachment, error in
+client.run(request) { attachment, error in
     // do something with 'attachment'
 }
 ```
@@ -18,12 +18,12 @@ client.run(resource) { attachment, error in
 Uploading a GIF image from the main bundle:
 
 ```swift
-let imagePath = Bundle.main.path(forResource: "funny_meme", ofType: ".gif")
+let imagePath = Bundle.main.path(forRequest: "funny_meme", ofType: ".gif")
 let imageData = try? Data(contentsOf: URL(fileURLWithPath: imagePath!))
 
-let imageUpload = Media.upload(media: .gif(imageData))
+let request = Media.upload(media: .gif(imageData))
 
-client.run(resource) { attachment, error in
+client.run(request) { attachment, error in
     // do something with 'attachment'
 }
 ```
