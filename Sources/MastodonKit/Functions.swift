@@ -43,6 +43,6 @@ func toString(parameter: Parameter) -> String? {
         .flatMap { value in "\(parameter.name)=\(value)" }
 }
 
-func nilOrTrue(_ flag: Bool) -> String? {
+func trueOrNil(_ flag: Bool) -> String? {
     return flag ? "true" : nil
 }

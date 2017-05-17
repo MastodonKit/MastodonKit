@@ -10,7 +10,7 @@ public struct Search {
     public static func search(query: String, resolve: Bool? = nil) -> ResultsRequest {
         let parameters = [
             Parameter(name: "q", value: query),
-            Parameter(name: "resolve", value: resolve.flatMap(nilOrTrue))
+            Parameter(name: "resolve", value: resolve.flatMap(trueOrNil))
         ]
 
         let method = HTTPMethod.get(Payload.parameters(parameters))

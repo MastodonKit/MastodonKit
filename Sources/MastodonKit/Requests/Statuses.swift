@@ -65,7 +65,7 @@ public struct Statuses {
         let parameters = [
             Parameter(name: "status", value: status),
             Parameter(name: "in_reply_to_id", value: replyToID.flatMap(toOptionalString)),
-            Parameter(name: "sensitive", value: sensitive.flatMap(nilOrTrue)),
+            Parameter(name: "sensitive", value: sensitive.flatMap(trueOrNil)),
             Parameter(name: "spoiler_text", value: spoilerText),
             Parameter(name: "visibility", value: visibility.rawValue)
             ] + mediaIDs.map(toArrayOfParameters(withName: "media_ids"))

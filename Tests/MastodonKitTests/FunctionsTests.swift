@@ -51,8 +51,8 @@ class FunctionsTests: XCTestCase {
     }
 
     func testNilOrTrue() {
-        XCTAssertNil(nilOrTrue(false))
-        XCTAssertEqual(nilOrTrue(true), "true")
+        XCTAssertNil(trueOrNil(false))
+        XCTAssertEqual(trueOrNil(true), "true")
     }
 
     func testArrayOfParametersWithInteger() {

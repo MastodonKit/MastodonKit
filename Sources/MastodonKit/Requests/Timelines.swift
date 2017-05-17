@@ -20,7 +20,7 @@ public struct Timelines {
     /// - Returns: Request for `[Status]`.
     public static func `public`(local: Bool? = nil, range: RequestRange = .default) -> TimelineRequest {
         let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []
-        let localParameters = [Parameter(name: "local", value: local.flatMap(nilOrTrue))]
+        let localParameters = [Parameter(name: "local", value: local.flatMap(trueOrNil))]
         let method = HTTPMethod.get(Payload.parameters(localParameters + rangeParameters))
 
         return TimelineRequest(path: "/api/v1/timelines/public", method: method, parse: TimelineRequest.parser)
@@ -35,7 +35,7 @@ public struct Timelines {
     /// - Returns: Request for `[Status]`.
     public static func tag(_ hashtag: String, local: Bool? = nil, range: RequestRange = .default) -> TimelineRequest {
         let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []
-        let localParameters = [Parameter(name: "local", value: local.flatMap(nilOrTrue))]
+        let localParameters = [Parameter(name: "local", value: local.flatMap(trueOrNil))]
         let method = HTTPMethod.get(Payload.parameters(localParameters + rangeParameters))
 
         return TimelineRequest(path: "/api/v1/timelines/tag/\(hashtag)", method: method, parse: TimelineRequest.parser)

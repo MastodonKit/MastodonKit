@@ -73,8 +73,8 @@ public struct Accounts {
     public static func statuses(id: Int, mediaOnly: Bool? = nil, excludeReplies: Bool? = nil, range: RequestRange = .default) -> TimelineRequest {
         let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []
         let parameters = rangeParameters + [
-            Parameter(name: "only_media", value: mediaOnly.flatMap(nilOrTrue)),
-            Parameter(name: "exclude_replies", value: excludeReplies.flatMap(nilOrTrue))
+            Parameter(name: "only_media", value: mediaOnly.flatMap(trueOrNil)),
+            Parameter(name: "exclude_replies", value: excludeReplies.flatMap(trueOrNil))
         ]
 
         let method = HTTPMethod.get(Payload.parameters(parameters))
