@@ -3,7 +3,7 @@ import XCTest
 
 typealias ParserFunctionType<Model> = (Any) -> Model
 
-class RequestsTests: XCTestCase {
+class RequestParsersTests: XCTestCase {
     // MARK: Request<Account>
 
     func testAccountRequest() {
