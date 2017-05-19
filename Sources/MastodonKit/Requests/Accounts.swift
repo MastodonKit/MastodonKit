@@ -5,15 +5,15 @@ public struct Accounts {
     ///
     /// - Parameter id: The account id.
     /// - Returns: Request for `Account`.
-    public static func account(id: Int) -> AccountRequest {
-        return AccountRequest(path: "/api/v1/accounts/\(id)", parse: AccountRequest.parser)
+    public static func account(id: Int) -> Request<Account> {
+        return Request<Account>(path: "/api/v1/accounts/\(id)", parse: Request<Account>.parser)
     }
 
     /// Gets the current user.
     ///
     /// - Returns: Request for `Account`.
-    public static func currentUser() -> AccountRequest {
-        return AccountRequest(path: "/api/v1/accounts/verify_credentials", parse: AccountRequest.parser)
+    public static func currentUser() -> Request<Account> {
+        return Request<Account>(path: "/api/v1/accounts/verify_credentials", parse: Request<Account>.parser)
     }
 
     /// Updates the current user.
@@ -24,7 +24,7 @@ public struct Accounts {
     ///   - avatar: The media attachment to display as the user's avatar.
     ///   - header: The media attachment to display as the user's header image.
     /// - Returns: Request for `Account`.
-    public static func updateCurrentUser(displayName: String? = nil, note: String? = nil, avatar: MediaAttachment? = nil, header: MediaAttachment? = nil) -> AccountRequest {
+    public static func updateCurrentUser(displayName: String? = nil, note: String? = nil, avatar: MediaAttachment? = nil, header: MediaAttachment? = nil) -> Request<Account> {
         let parameters = [
             Parameter(name: "display_name", value: displayName),
             Parameter(name: "note", value: note),
@@ -33,7 +33,7 @@ public struct Accounts {
         ]
 
         let method = HTTPMethod.patch(Payload.parameters(parameters))
-        return AccountRequest(path: "/api/v1/accounts/update_credentials", method: method, parse: AccountRequest.parser)
+        return Request<Account>(path: "/api/v1/accounts/update_credentials", method: method, parse: Request<Account>.parser)
     }
 
     /// Gets an account's followers.
@@ -42,11 +42,11 @@ public struct Accounts {
     ///   - id: The account id.
     ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Request for `[Account]`.
-    public static func followers(id: Int, range: RequestRange = .default) -> AccountsRequest {
+    public static func followers(id: Int, range: RequestRange = .default) -> Request<[Account]> {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
         let method = HTTPMethod.get(Payload.parameters(parameters))
 
-        return AccountsRequest(path: "/api/v1/accounts/\(id)/followers", method: method, parse: AccountsRequest.parser)
+        return Request<[Account]>(path: "/api/v1/accounts/\(id)/followers", method: method, parse: Request<[Account]>.parser)
     }
 
     /// Gets who account is following.
@@ -55,11 +55,11 @@ public struct Accounts {
     ///   - id: The account id
     ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Request for `[Account]`.
-    public static func following(id: Int, range: RequestRange = .default) -> AccountsRequest {
+    public static func following(id: Int, range: RequestRange = .default) -> Request<[Account]> {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
         let method = HTTPMethod.get(Payload.parameters(parameters))
 
-        return AccountsRequest(path: "/api/v1/accounts/\(id)/following", method: method, parse: AccountsRequest.parser)
+        return Request<[Account]>(path: "/api/v1/accounts/\(id)/following", method: method, parse: Request<[Account]>.parser)
     }
 
     /// Gets an account's statuses.
@@ -70,7 +70,7 @@ public struct Accounts {
     ///   - excludeReplies: Skip statuses that reply to other statuses.
     ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Request for `[Status]`.
-    public static func statuses(id: Int, mediaOnly: Bool? = nil, excludeReplies: Bool? = nil, range: RequestRange = .default) -> TimelineRequest {
+    public static func statuses(id: Int, mediaOnly: Bool? = nil, excludeReplies: Bool? = nil, range: RequestRange = .default) -> Request<[Status]> {
         let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []
         let parameters = rangeParameters + [
             Parameter(name: "only_media", value: mediaOnly.flatMap(trueOrNil)),
@@ -78,66 +78,66 @@ public struct Accounts {
         ]
 
         let method = HTTPMethod.get(Payload.parameters(parameters))
-        return TimelineRequest(path: "/api/v1/accounts/\(id)/statuses", method: method, parse: TimelineRequest.parser)
+        return Request<[Status]>(path: "/api/v1/accounts/\(id)/statuses", method: method, parse: Request<[Status]>.parser)
     }
 
     /// Follows an account.
     ///
     /// - Parameter id: The account id.
     /// - Returns: Request for `Account`.
-    public static func follow(id: Int) -> AccountRequest {
-        return AccountRequest(path: "/api/v1/accounts/\(id)/follow", method: .post(.empty), parse: AccountRequest.parser)
+    public static func follow(id: Int) -> Request<Account> {
+        return Request<Account>(path: "/api/v1/accounts/\(id)/follow", method: .post(.empty), parse: Request<Account>.parser)
     }
 
     /// Unfollow an account.
     ///
     /// - Parameter id: The account id.
     /// - Returns: Request for `Account`.
-    public static func unfollow(id: Int) -> AccountRequest {
-        return AccountRequest(path: "/api/v1/accounts/\(id)/unfollow", method: .post(.empty), parse: AccountRequest.parser)
+    public static func unfollow(id: Int) -> Request<Account> {
+        return Request<Account>(path: "/api/v1/accounts/\(id)/unfollow", method: .post(.empty), parse: Request<Account>.parser)
     }
 
     /// Blocks an account.
     ///
     /// - Parameter id: The account id.
     /// - Returns: Request for `Relationship`.
-    public static func block(id: Int) -> RelationshipRequest {
-        return RelationshipRequest(path: "/api/v1/accounts/\(id)/block", method: .post(.empty), parse: RelationshipRequest.parser)
+    public static func block(id: Int) -> Request<Relationship> {
+        return Request<Relationship>(path: "/api/v1/accounts/\(id)/block", method: .post(.empty), parse: Request<Relationship>.parser)
     }
 
     /// Unblocks an account.
     ///
     /// - Parameter id: The account id.
     /// - Returns: Request for `Relationship`.
-    public static func unblock(id: Int) -> RelationshipRequest {
-        return RelationshipRequest(path: "/api/v1/accounts/\(id)/unblock", method: .post(.empty), parse: RelationshipRequest.parser)
+    public static func unblock(id: Int) -> Request<Relationship> {
+        return Request<Relationship>(path: "/api/v1/accounts/\(id)/unblock", method: .post(.empty), parse: Request<Relationship>.parser)
     }
 
     /// Mutes an account.
     ///
     /// - Parameter id: The account id.
     /// - Returns: Request for `Relationship`.
-    public static func mute(id: Int) -> RelationshipRequest {
-        return RelationshipRequest(path: "/api/v1/accounts/\(id)/mute", method: .post(.empty), parse: RelationshipRequest.parser)
+    public static func mute(id: Int) -> Request<Relationship> {
+        return Request<Relationship>(path: "/api/v1/accounts/\(id)/mute", method: .post(.empty), parse: Request<Relationship>.parser)
     }
 
     /// Unmutes an account.
     ///
     /// - Parameter id: The account id.
     /// - Returns: Request for `Relationship`.
-    public static func unmute(id: Int) -> RelationshipRequest {
-        return RelationshipRequest(path: "/api/v1/accounts/\(id)/unmute", method: .post(.empty), parse: RelationshipRequest.parser)
+    public static func unmute(id: Int) -> Request<Relationship> {
+        return Request<Relationship>(path: "/api/v1/accounts/\(id)/unmute", method: .post(.empty), parse: Request<Relationship>.parser)
     }
 
     /// Gets an account's relationships.
     ///
     /// - Parameter ids: The account's ids.
     /// - Returns: Request for `[Relationship]`.
-    public static func relationships(ids: [Int]) -> RelationshipsRequest {
+    public static func relationships(ids: [Int]) -> Request<[Relationship]> {
         let parameters = ids.map(toArrayOfParameters(withName: "id"))
 
         let method = HTTPMethod.get(Payload.parameters(parameters))
-        return RelationshipsRequest(path: "/api/v1/accounts/relationships", method: method, parse: RelationshipsRequest.parser)
+        return Request<[Relationship]>(path: "/api/v1/accounts/relationships", method: method, parse: Request<[Relationship]>.parser)
     }
 
     /// Searches for accounts.
@@ -146,7 +146,7 @@ public struct Accounts {
     ///   - query: What to search for.
     ///   - limit: Maximum number of matching accounts to return (default: 40).
     /// - Returns: Request for `[Account]`.
-    public static func search(query: String, limit: Int? = nil) -> AccountsRequest {
+    public static func search(query: String, limit: Int? = nil) -> Request<[Account]> {
         let toLimitBounds = between(1, and: 80, fallback: 40)
         let parameters = [
             Parameter(name: "q", value: query),
@@ -154,6 +154,6 @@ public struct Accounts {
         ]
 
         let method = HTTPMethod.get(Payload.parameters(parameters))
-        return AccountsRequest(path: "/api/v1/accounts/search", method: method, parse: AccountsRequest.parser)
+        return Request<[Account]>(path: "/api/v1/accounts/search", method: method, parse: Request<[Account]>.parser)
     }
 }

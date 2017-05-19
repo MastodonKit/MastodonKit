@@ -9,7 +9,7 @@ public struct Clients {
     ///   - scopes: Application's access scopes.
     ///   - website: URL to the homepage of your app.
     /// - Returns: Request for `ClientApplication`.
-    public static func register(clientName: String, redirectURI: String = "urn:ietf:wg:oauth:2.0:oob", scopes: [AccessScope], website: String? = nil) -> ClientApplicationRequest {
+    public static func register(clientName: String, redirectURI: String = "urn:ietf:wg:oauth:2.0:oob", scopes: [AccessScope], website: String? = nil) -> Request<ClientApplication> {
         let parameters = [
             Parameter(name: "client_name", value: clientName),
             Parameter(name: "redirect_uris", value: redirectURI),
@@ -18,6 +18,6 @@ public struct Clients {
         ]
 
         let method = HTTPMethod.post(Payload.parameters(parameters))
-        return ClientApplicationRequest(path: "/api/v1/apps", method: method, parse: ClientApplicationRequest.parser)
+        return Request<ClientApplication>(path: "/api/v1/apps", method: method, parse: Request<ClientApplication>.parser)
     }
 }

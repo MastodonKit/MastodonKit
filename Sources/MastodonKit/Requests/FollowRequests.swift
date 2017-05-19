@@ -5,26 +5,26 @@ public struct FollowRequests {
     ///
     /// - Parameter range: The bounds used when requesting data from Mastodon.
     /// - Returns: Request for `[Account]`.
-    public static func all(range: RequestRange = .default) -> AccountsRequest {
+    public static func all(range: RequestRange = .default) -> Request<[Account]> {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
         let method = HTTPMethod.get(Payload.parameters(parameters))
 
-        return AccountsRequest(path: "/api/v1/follow_requests", method: method, parse: AccountsRequest.parser)
+        return Request<[Account]>(path: "/api/v1/follow_requests", method: method, parse: Request<[Account]>.parser)
     }
 
     /// Authorizes a follow request.
     ///
     /// - Parameter id: The accound id.
     /// - Returns: Request for `Account`.
-    public static func authorize(id: Int) -> AccountRequest {
-        return AccountRequest(path: "/api/v1/follow_requests/\(id)/authorize", method: .post(.empty), parse: AccountRequest.parser)
+    public static func authorize(id: Int) -> Request<Account> {
+        return Request<Account>(path: "/api/v1/follow_requests/\(id)/authorize", method: .post(.empty), parse: Request<Account>.parser)
     }
 
     /// Rejects a follow request.
     ///
     /// - Parameter id: The accound id.
     /// - Returns: Request for `Account`.
-    public static func reject(id: Int) -> AccountRequest {
-        return AccountRequest(path: "/api/v1/follow_requests/\(id)/reject", method: .post(.empty), parse: AccountRequest.parser)
+    public static func reject(id: Int) -> Request<Account> {
+        return Request<Account>(path: "/api/v1/follow_requests/\(id)/reject", method: .post(.empty), parse: Request<Account>.parser)
     }
 }

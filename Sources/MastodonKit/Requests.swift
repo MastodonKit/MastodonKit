@@ -1,27 +1,9 @@
 import Foundation
 
-public typealias AccountRequest = Request<Account>
-public typealias AccountsRequest = Request<[Account]>
-public typealias AttachmentRequest = Request<Attachment>
-public typealias CardRequest = Request<Card>
-public typealias ClientApplicationRequest = Request<ClientApplication>
-public typealias ContextRequest = Request<Context>
-public typealias InstanceRequest = Request<Instance>
-public typealias LoginSettingsRequest = Request<LoginSettings>
-public typealias NotificationRequest = Request<Notification>
-public typealias NotificationsRequest = Request<[Notification]>
-public typealias RelationshipRequest = Request<Relationship>
-public typealias RelationshipsRequest = Request<[Relationship]>
-public typealias ReportRequest = Request<Report>
-public typealias ReportsRequest = Request<[Report]>
-public typealias ResultsRequest = Request<Results>
-public typealias StatusRequest = Request<Status>
-public typealias TimelineRequest = Request<[Status]>
-
 typealias JSONObject = Any
 typealias JSONDictionary = [String: JSONObject]
 
-// MARK: AccountRequest
+// MARK: Request<Account>
 
 extension Request where Model == Account {
     static func parser(json: JSONObject) -> Account? {
@@ -30,7 +12,7 @@ extension Request where Model == Account {
     }
 }
 
-// MARK: AccountsRequest
+// MARK: Request<[Account]>
 
 extension Request where Model == [Account] {
     static func parser(json: JSONObject) -> [Account] {
@@ -39,7 +21,7 @@ extension Request where Model == [Account] {
     }
 }
 
-// MARK: AttachmentRequest
+// MARK: Request<Attachment>
 
 extension Request where Model == Attachment {
     static func parser(json: JSONObject) -> Attachment? {
@@ -48,7 +30,7 @@ extension Request where Model == Attachment {
     }
 }
 
-// MARK: CardRequest
+// MARK: Request<Card>
 
 extension Request where Model == Card {
     static func parser(json: JSONObject) -> Card? {
@@ -57,7 +39,7 @@ extension Request where Model == Card {
     }
 }
 
-// MARK: ContextRequest
+// MARK: Request<Context>
 
 extension Request where Model == Context {
     static func parser(json: JSONObject) -> Context? {
@@ -66,7 +48,7 @@ extension Request where Model == Context {
     }
 }
 
-// MARK: InstanceRequest
+// MARK: Request<Instance>
 
 extension Request where Model == Instance {
     static func parser(json: JSONObject) -> Instance? {
@@ -75,7 +57,7 @@ extension Request where Model == Instance {
     }
 }
 
-// MARK: LoginSettingsRequest
+// MARK: Request<LoginSettings>
 
 extension Request where Model == LoginSettings {
     static func parser(json: JSONObject) -> LoginSettings? {
@@ -84,7 +66,7 @@ extension Request where Model == LoginSettings {
     }
 }
 
-// MARK: NotificationRequest
+// MARK: Request<Notification>
 
 extension Request where Model == Notification {
     static func parser(json: JSONObject) -> Notification? {
@@ -93,7 +75,7 @@ extension Request where Model == Notification {
     }
 }
 
-// MARK: NotificationsRequest
+// MARK: Request<[Notification]>
 
 extension Request where Model == [Notification] {
     static func parser(json: JSONObject) -> [Notification] {
@@ -102,7 +84,7 @@ extension Request where Model == [Notification] {
     }
 }
 
-// MARK: RelationshipRequest
+// MARK: Request<Relationship>
 
 extension Request where Model == Relationship {
     static func parser(json: JSONObject) -> Relationship? {
@@ -111,7 +93,7 @@ extension Request where Model == Relationship {
     }
 }
 
-// MARK: RelationshipsRequest
+// MARK: Request<[Relationship]>
 
 extension Request where Model == [Relationship] {
     static func parser(json: JSONObject) -> [Relationship] {
@@ -120,7 +102,7 @@ extension Request where Model == [Relationship] {
     }
 }
 
-// MARK: ClientApplicationRequest
+// MARK: Request<ClientApplication>
 
 extension Request where Model == ClientApplication {
     static func parser(json: JSONObject) -> ClientApplication? {
@@ -129,7 +111,7 @@ extension Request where Model == ClientApplication {
     }
 }
 
-// MARK: ReportRequest
+// MARK: Request<Report>
 
 extension Request where Model == Report {
     static func parser(json: JSONObject) -> Report? {
@@ -138,7 +120,7 @@ extension Request where Model == Report {
     }
 }
 
-// MARK: ReportsRequest
+// MARK: Request<[Report]>
 
 extension Request where Model == [Report] {
     static func parser(json: JSONObject) -> [Report] {
@@ -147,7 +129,7 @@ extension Request where Model == [Report] {
     }
 }
 
-// MARK: ResultsRequest
+// MARK: Request<Results>
 
 extension Request where Model == Results {
     static func parser(json: JSONObject) -> Results? {
@@ -156,7 +138,7 @@ extension Request where Model == Results {
     }
 }
 
-// MARK: StatusRequest
+// MARK: Request<Status>
 
 extension Request where Model == Status {
     static func parser(json: JSONObject) -> Status? {
@@ -165,7 +147,7 @@ extension Request where Model == Status {
     }
 }
 
-// MARK: TimelineRequest
+// MARK: Request<[Status]>
 
 extension Request where Model == [Status] {
     static func parser(json: JSONObject) -> [Status] {

@@ -4,7 +4,7 @@ import XCTest
 typealias ParserFunctionType<Model> = (Any) -> Model
 
 class RequestsTests: XCTestCase {
-    // MARK: AccountRequest
+    // MARK: Request<Account>
 
     func testAccountRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Account.json")
@@ -25,7 +25,7 @@ class RequestsTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
-    // MARK: AccountsRequest
+    // MARK: Request<[Account]>
 
     func testAccountsRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Accounts.json")
@@ -46,7 +46,7 @@ class RequestsTests: XCTestCase {
         XCTAssertEqual(parsed.count, 0)
     }
 
-    // MARK: AttachmentRequest
+    // MARK: Request<Attachment>
 
     func testAttachmentRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Attachment.json")
@@ -67,7 +67,7 @@ class RequestsTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
-    // MARK: CardRequest
+    // MARK: Request<Card>
 
     func testCardRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Card.json")
@@ -88,7 +88,7 @@ class RequestsTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
-    // MARK: ClientApplicationRequest
+    // MARK: Request<ClientApplication>
 
     func testClientApplicationRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/ClientApplication.json")
@@ -109,7 +109,7 @@ class RequestsTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
-    // MARK: ContextRequest
+    // MARK: Request<Context>
 
     func testContextRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Context.json")
@@ -130,7 +130,7 @@ class RequestsTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
-    // MARK: InstanceRequest
+    // MARK: Request<Instance>
 
     func testInstanceRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Instance.json")
@@ -151,7 +151,7 @@ class RequestsTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
-    // MARK: LoginSettingsRequest
+    // MARK: Request<LoginSettings>
 
     func testLoginSettingsRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/LoginSettings.json")
@@ -172,7 +172,7 @@ class RequestsTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
-    // MARK: NotificationRequest
+    // MARK: Request<Notification>
 
     func testNotificationRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Notification.json")
@@ -193,7 +193,7 @@ class RequestsTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
-    // MARK: NotificationsRequest
+    // MARK: Request<[Notification]>
 
     func testNotificationsRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Notifications.json")
@@ -214,7 +214,7 @@ class RequestsTests: XCTestCase {
         XCTAssertEqual(parsed.count, 0)
     }
 
-    // MARK: RelationshipRequest
+    // MARK: Request<Relationship>
 
     func testRelationshipRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Relationship.json")
@@ -235,7 +235,7 @@ class RequestsTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
-    // MARK: RelationshipsRequest
+    // MARK: Request<[Relationship]>
 
     func testRelationshipsRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Relationships.json")
@@ -256,7 +256,7 @@ class RequestsTests: XCTestCase {
         XCTAssertEqual(parsed.count, 0)
     }
 
-    // MARK: ReportRequest
+    // MARK: Request<Report>
 
     func testReportRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Report.json")
@@ -277,7 +277,7 @@ class RequestsTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
-    // MARK: ReportsRequest
+    // MARK: Request<[Report]>
 
     func testReportsRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Reports.json")
@@ -298,7 +298,7 @@ class RequestsTests: XCTestCase {
         XCTAssertEqual(parsed.count, 0)
     }
 
-    // MARK: ResultsRequest
+    // MARK: Request<Results>
 
     func testResultsRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/ResultsWithoutNull.json")
@@ -319,7 +319,7 @@ class RequestsTests: XCTestCase {
         XCTAssertNotNil(parsed)
     }
 
-    // MARK: StatusRequest
+    // MARK: Request<Status>
 
     func testStatusRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/StatusWithoutNull.json")
@@ -340,7 +340,7 @@ class RequestsTests: XCTestCase {
         XCTAssertNil(parsed)
     }
 
-    // MARK: TimelineRequest
+    // MARK: Request<[Status]>
 
     func testTimelineRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Timeline.json")

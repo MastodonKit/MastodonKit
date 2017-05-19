@@ -5,8 +5,8 @@ public struct Media {
     ///
     /// - Parameter mediaAttachment: The media attachment to upload.
     /// - Returns: Request for `Attachment`.
-    public static func upload(media mediaAttachment: MediaAttachment) -> AttachmentRequest {
+    public static func upload(media mediaAttachment: MediaAttachment) -> Request<Attachment> {
         let method = HTTPMethod.post(.media(mediaAttachment))
-        return AttachmentRequest(path: "/api/v1/media", method: method, parse: AttachmentRequest.parser)
+        return Request<Attachment>(path: "/api/v1/media", method: method, parse: Request<Attachment>.parser)
     }
 }
