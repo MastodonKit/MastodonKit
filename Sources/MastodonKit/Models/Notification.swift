@@ -13,7 +13,7 @@ public struct Notification {
     public let status: Status?
 }
 
-extension Notification {
+extension Notification: JSONDictionaryInitializer {
     init?(from dictionary: JSONDictionary) {
         guard
             let id = dictionary["id"] as? Int,

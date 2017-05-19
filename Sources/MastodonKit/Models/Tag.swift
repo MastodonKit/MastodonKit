@@ -7,7 +7,7 @@ public struct Tag {
     public let url: String
 }
 
-extension Tag {
+extension Tag: JSONDictionaryInitializer {
     init?(from dictionary: JSONDictionary) {
         guard
             let name = dictionary["name"] as? String,

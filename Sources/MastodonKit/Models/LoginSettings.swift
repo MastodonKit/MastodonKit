@@ -11,7 +11,7 @@ public struct LoginSettings {
     public let createdAt: TimeInterval
 }
 
-extension LoginSettings {
+extension LoginSettings: JSONDictionaryInitializer {
     init?(from dictionary: JSONDictionary) {
         guard
             let accessToken = dictionary["access_token"] as? String,

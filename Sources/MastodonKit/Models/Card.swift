@@ -11,7 +11,7 @@ public struct Card {
     public let image: URL?
 }
 
-extension Card {
+extension Card: JSONDictionaryInitializer {
     init?(from dictionary: JSONDictionary) {
         guard
             let urlString = dictionary["url"] as? String,

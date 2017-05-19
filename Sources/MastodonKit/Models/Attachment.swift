@@ -15,7 +15,7 @@ public struct Attachment {
     public let textURL: String?
 }
 
-extension Attachment {
+extension Attachment: JSONDictionaryInitializer {
     init?(from dictionary: JSONDictionary) {
         guard
             let id = dictionary["id"] as? Int,

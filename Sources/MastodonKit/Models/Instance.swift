@@ -13,7 +13,7 @@ public struct Instance {
     public let version: String?
 }
 
-extension Instance {
+extension Instance: JSONDictionaryInitializer {
     init?(from dictionary: JSONDictionary) {
         guard
             let uri = dictionary["uri"] as? String,

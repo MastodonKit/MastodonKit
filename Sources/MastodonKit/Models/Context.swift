@@ -7,7 +7,7 @@ public struct Context {
     public let descendants: [Status]
 }
 
-extension Context {
+extension Context: JSONDictionaryInitializer {
     init?(from dictionary: JSONDictionary) {
         guard
             let ancestorsArray = dictionary["ancestors"] as? [JSONDictionary],

@@ -9,7 +9,7 @@ public struct Results {
     public let hashtags: [String]?
 }
 
-extension Results {
+extension Results: JSONDictionaryInitializer {
     init?(from dictionary: JSONDictionary) {
         self.accounts = dictionary["accounts"].flatMap(asJSONDictionaries)?.flatMap(Account.init)
         self.statuses = dictionary["statuses"].flatMap(asJSONDictionaries)?.flatMap(Status.init)

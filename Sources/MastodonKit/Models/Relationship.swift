@@ -15,7 +15,7 @@ public struct Relationship {
     public let requested: Bool
 }
 
-extension Relationship {
+extension Relationship: JSONDictionaryInitializer {
     init?(from dictionary: JSONDictionary) {
         guard
             let id = dictionary["id"] as? Int,

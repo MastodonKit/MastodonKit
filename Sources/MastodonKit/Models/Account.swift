@@ -33,7 +33,7 @@ public struct Account {
     public let statusesCount: Int
 }
 
-extension Account {
+extension Account: JSONDictionaryInitializer {
     init?(from dictionary: JSONDictionary) {
         guard
             let id = dictionary["id"] as? Int,
