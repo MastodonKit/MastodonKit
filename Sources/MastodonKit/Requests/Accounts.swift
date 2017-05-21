@@ -24,7 +24,10 @@ public struct Accounts {
     ///   - avatar: The media attachment to display as the user's avatar.
     ///   - header: The media attachment to display as the user's header image.
     /// - Returns: Request for `Account`.
-    public static func updateCurrentUser(displayName: String? = nil, note: String? = nil, avatar: MediaAttachment? = nil, header: MediaAttachment? = nil) -> Request<Account> {
+    public static func updateCurrentUser(displayName: String? = nil,
+                                         note: String? = nil,
+                                         avatar: MediaAttachment? = nil,
+                                         header: MediaAttachment? = nil) -> Request<Account> {
         let parameters = [
             Parameter(name: "display_name", value: displayName),
             Parameter(name: "note", value: note),

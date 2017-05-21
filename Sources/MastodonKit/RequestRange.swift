@@ -12,20 +12,20 @@ public enum RequestRange {
 }
 
 extension RequestRange {
-    func parameters(limit f: (Int) -> Int) -> [Parameter]? {
+    func parameters(limit limitFunction: (Int) -> Int) -> [Parameter]? {
         switch self {
         case .max(let id, let limit):
             return [
                 Parameter(name: "max_id", value: String(id)),
-                Parameter(name: "limit", value: limit.flatMap(f).flatMap(toOptionalString))
+                Parameter(name: "limit", value: limit.flatMap(limitFunction).flatMap(toOptionalString))
             ]
         case .since(let id, let limit):
             return [
                 Parameter(name: "since_id", value: String(id)),
-                Parameter(name: "limit", value: limit.flatMap(f).flatMap(toOptionalString))
+                Parameter(name: "limit", value: limit.flatMap(limitFunction).flatMap(toOptionalString))
             ]
         case .limit(let limit):
-            return [Parameter(name: "limit", value: String(f(limit)))]
+            return [Parameter(name: "limit", value: String(limitFunction(limit)))]
         default:
             return nil
         }
