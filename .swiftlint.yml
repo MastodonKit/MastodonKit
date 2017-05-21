@@ -14,13 +14,11 @@ opt_in_rules:
   - force_try
   - force_unwrapping
   - implicitly_unwrapped_optional
-  - missing_docs
   - operator_usage_whitespace
   - overridden_super_call
   - private_outlet
   - prohibited_super_call
   - redundant_nil_coalescing
-  - valid_docs
 
 identifier_name:
   min_length:
