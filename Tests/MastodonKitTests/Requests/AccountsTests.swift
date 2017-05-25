@@ -307,6 +307,36 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Relationship?>.self)
     }
 
+    func testMuteBoosts() {
+        let request = Accounts.muteBoosts(id: 42)
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/accounts/42/mute_boosts")
+
+        // Method
+        XCTAssertEqual(request.method.name, "POST")
+        XCTAssertNil(request.method.queryItems)
+        XCTAssertNil(request.method.httpBody)
+
+        // Parser
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Relationship?>.self)
+    }
+
+    func testUnmuteBoosts() {
+        let request = Accounts.unmuteBoosts(id: 42)
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/accounts/42/unmute_boosts")
+
+        // Method
+        XCTAssertEqual(request.method.name, "POST")
+        XCTAssertNil(request.method.queryItems)
+        XCTAssertNil(request.method.httpBody)
+
+        // Parser
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Relationship?>.self)
+    }
+
     func testRelationships() {
         let request = Accounts.relationships(ids: [42, 52])
         let expectedID42 = URLQueryItem(name: "id[]", value: "42")
