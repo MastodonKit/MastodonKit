@@ -4,5 +4,6 @@
     "followed_by": false,
     "blocking": true,
     "muting": false,
+    "muting_boosts": true,
     "requested": false
 }

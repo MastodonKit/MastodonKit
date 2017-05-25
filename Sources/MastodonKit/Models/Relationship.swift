@@ -19,6 +19,8 @@ public struct Relationship {
     public let blocking: Bool
     /// Whether the user is currently muting the account.
     public let muting: Bool
+    /// Whether the user is currently muting boosts from the account.
+    public let mutingBoosts: Bool
     /// Whether the user has requested to follow the account.
     public let requested: Bool
 }
@@ -31,6 +33,7 @@ extension Relationship: JSONDictionaryInitializer {
             let followedBy = dictionary["followed_by"] as? Bool,
             let blocking = dictionary["blocking"] as? Bool,
             let muting = dictionary["muting"] as? Bool,
+            let mutingBoosts = dictionary["muting_boosts"] as? Bool,
             let requested = dictionary["requested"] as? Bool
             else {
                 return nil
@@ -41,6 +44,7 @@ extension Relationship: JSONDictionaryInitializer {
         self.followedBy = followedBy
         self.blocking = blocking
         self.muting = muting
+        self.mutingBoosts = mutingBoosts
         self.requested = requested
     }
 }
