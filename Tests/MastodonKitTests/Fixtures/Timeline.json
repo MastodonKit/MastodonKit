@@ -37,7 +37,8 @@
         "reblogs_count": 0,
         "favourites_count": 1,
         "favourited": true,
-        "reblogged": true
+        "reblogged": true,
+        "language": "fr"
     },
     {
         "id": 1,
@@ -77,6 +78,7 @@
         "reblogs_count": 0,
         "favourites_count": 1,
         "favourited": true,
-        "reblogged": true
+        "reblogged": true,
+        "language": "fr"
     }
 ]
