@@ -19,6 +19,7 @@ opt_in_rules:
   - private_outlet
   - prohibited_super_call
   - redundant_nil_coalescing
+  - multiline_parameters
 
 identifier_name:
   min_length:
