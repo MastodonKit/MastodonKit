@@ -8,11 +8,11 @@
 
 import Foundation
 
-public struct Link {
-    enum LinkType: String {
-        case next, prev
-    }
+enum LinkType: String {
+    case next, prev
+}
 
+struct Link {
     let type: LinkType
     let id: Int
     let limit: Int?
