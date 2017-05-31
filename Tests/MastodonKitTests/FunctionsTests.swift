@@ -106,4 +106,29 @@ class FunctionsTests: XCTestCase {
 
         XCTAssertEqual(limitFunction(20), 20)
     }
+
+    func testTrim() {
+        let trimmer = trim(left: "{", right: "}")
+        let emojiTrimmer = trim(left: "🐵", right: "🙉")
+
+        XCTAssertEqual(trimmer("{valid string}"), "valid string")
+        XCTAssertEqual(trimmer("{another string"), "{another string")
+        XCTAssertEqual(trimmer("another string}"), "another string}")
+        XCTAssertEqual(emojiTrimmer("🐵🙈🙉"), "🙈")
+        XCTAssertEqual(emojiTrimmer("🙉🙈🐵"), "🙉🙈🐵")
+    }
+
+    func testQueryItemToOptionalInteger() {
+        let validItem = URLQueryItem(name: "toto", value: "42")
+        let anotherValidItem = URLQueryItem(name: "toto", value: "-42")
+        let invalidItem = URLQueryItem(name: "toto", value: "")
+        let anotherInvalidItem = URLQueryItem(name: "toto", value: "covfefe")
+        let nilValueItem = URLQueryItem(name: "toto", value: nil)
+
+        XCTAssertEqual(toInteger(item: validItem), 42)
+        XCTAssertEqual(toInteger(item: anotherValidItem), -42)
+        XCTAssertNil(toInteger(item: invalidItem))
+        XCTAssertNil(toInteger(item: anotherInvalidItem))
+        XCTAssertNil(toInteger(item: nilValueItem))
+    }
 }

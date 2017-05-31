@@ -21,7 +21,7 @@ public struct Link {
 extension Link {
     init?(string: String) {
         let segments = string
-            .replacingOccurrences(of: " ", with: "")
+            .condensed()
             .components(separatedBy: ";")
 
         let url = segments.first.flatMap(trim(left: "<", right: ">"))
