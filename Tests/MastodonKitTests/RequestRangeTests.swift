@@ -75,4 +75,47 @@ class RequestRangeTests: XCTestCase {
 
         XCTAssertNil(parameters)
     }
+
+    func testEqualityEqualValues() {
+        let max = RequestRange.max(id: 42, limit: 10)
+        let anotherMax = RequestRange.max(id: 42, limit: 10)
+
+        let since = RequestRange.since(id: 42, limit: 10)
+        let anotherSince = RequestRange.since(id: 42, limit: 10)
+
+        let limit = RequestRange.limit(10)
+        let anotherLimit = RequestRange.limit(10)
+
+        XCTAssertEqual(max, anotherMax)
+        XCTAssertEqual(since, anotherSince)
+        XCTAssertEqual(limit, anotherLimit)
+        XCTAssertEqual(RequestRange.default, RequestRange.default)
+    }
+
+    func testEqualityDiferentValues() {
+        let max = RequestRange.max(id: 42, limit: 10)
+        let anotherMax = RequestRange.max(id: 420, limit: 12)
+
+        let since = RequestRange.since(id: 42, limit: 10)
+        let anotherSince = RequestRange.since(id: 420, limit: 12)
+
+        let limit = RequestRange.limit(10)
+        let anotherLimit = RequestRange.limit(12)
+
+        XCTAssertNotEqual(max, anotherMax)
+        XCTAssertNotEqual(since, anotherSince)
+        XCTAssertNotEqual(limit, anotherLimit)
+
+        XCTAssertNotEqual(max, since)
+        XCTAssertNotEqual(max, limit)
+        XCTAssertNotEqual(max, RequestRange.default)
+
+        XCTAssertNotEqual(since, max)
+        XCTAssertNotEqual(since, limit)
+        XCTAssertNotEqual(since, RequestRange.default)
+
+        XCTAssertNotEqual(RequestRange.default, max)
+        XCTAssertNotEqual(RequestRange.default, since)
+        XCTAssertNotEqual(RequestRange.default, limit)
+    }
 }
