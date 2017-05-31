@@ -54,3 +54,15 @@ func toString(parameter: Parameter) -> String? {
 func trueOrNil(_ flag: Bool) -> String? {
     return flag ? "true" : nil
 }
+
+func trim(left: Character, right: Character) -> (String) -> String {
+    return { string in
+        guard string.hasPrefix("\(left)"), string.hasSuffix("\(right)") else { return string }
+        return string[string.characters.index(after: string.startIndex)..<string.characters.index(before: string.endIndex)]
+    }
+}
+
+func toInteger(item: URLQueryItem) -> Int? {
+    guard let value = item.value else { return nil }
+    return Int(value)
+}
