@@ -92,7 +92,7 @@ class RequestRangeTests: XCTestCase {
         XCTAssertEqual(RequestRange.default, RequestRange.default)
     }
 
-    func testEqualityDiferentValues() {
+    func testEqualityDifferentValues() {
         let max = RequestRange.max(id: 42, limit: 10)
         let anotherMax = RequestRange.max(id: 420, limit: 12)
 
