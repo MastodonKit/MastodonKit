@@ -1,5 +1,5 @@
 //
-//  Link.swift
+//  PaginationItem.swift
 //  MastodonKit
 //
 //  Created by Ornithologist Coder on 5/31/17.
@@ -8,19 +8,19 @@
 
 import Foundation
 
-enum LinkType: String {
+enum PaginationItemType: String {
     case next, prev
 }
 
-struct Link {
-    let type: LinkType
+struct PaginationItem {
+    let type: PaginationItemType
     let id: Int
     let limit: Int?
 }
 
-extension Link {
-    init?(string: String) {
-        let segments = string
+extension PaginationItem {
+    init?(webLink: String) {
+        let segments = webLink
             .condensed()
             .components(separatedBy: ";")
 
@@ -34,7 +34,7 @@ extension Link {
             let validURL = url,
             let referenceKey = rel?.first, referenceKey == "rel",
             let referenceValue = rel?.last,
-            let type = LinkType(rawValue: referenceValue),
+            let type = PaginationItemType(rawValue: referenceValue),
             let queryItems = URLComponents(string: validURL)?.queryItems
             else {
                 return nil
