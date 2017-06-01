@@ -26,6 +26,7 @@ extension Notification: JSONDictionaryInitializer {
         guard
             let id = dictionary["id"] as? Int,
             let typeString = dictionary["type"] as? String,
+            let type = NotificationType(rawValue: typeString),
             let createdAtString = dictionary["created_at"] as? String,
             let createdAt = DateFormatter.mastodonFormatter.date(from: createdAtString),
             let accountDictionary = dictionary["account"] as? JSONDictionary,
@@ -35,7 +36,7 @@ extension Notification: JSONDictionaryInitializer {
         }
 
         self.id = id
-        self.type = NotificationType(string: typeString)
+        self.type = type
         self.createdAt = createdAt
         self.account = account
         self.status = dictionary["status"].flatMap(asJSONDictionary).flatMap(Status.init)

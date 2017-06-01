@@ -73,6 +73,7 @@ extension Status: JSONDictionaryInitializer {
             let favouritesCount = dictionary["favourites_count"] as? Int,
             let spoilerText = dictionary["spoiler_text"] as? String,
             let visibilityString = dictionary["visibility"] as? String,
+            let visibility = Visibility(rawValue: visibilityString),
             let attachmentsArray = dictionary["media_attachments"] as? [JSONDictionary],
             let mentionsArray = dictionary["mentions"] as? [JSONDictionary],
             let tagsArray = dictionary["tags"] as? [JSONDictionary],
@@ -95,7 +96,7 @@ extension Status: JSONDictionaryInitializer {
         self.favourited = dictionary["favourited"] as? Bool
         self.sensitive = dictionary["sensitive"] as? Bool
         self.spoilerText = spoilerText
-        self.visibility = Visibility(string: visibilityString)
+        self.visibility = visibility
         self.reblogWrapper = [dictionary["reblog"].flatMap(asJSONDictionary).flatMap(Status.init)]
         self.application = dictionary["application"].flatMap(asJSONDictionary).flatMap(Application.init)
         self.mediaAttachments = attachmentsArray.flatMap(Attachment.init)

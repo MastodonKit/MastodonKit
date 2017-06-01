@@ -11,22 +11,22 @@ import XCTest
 
 class NotificationTypeTests: XCTestCase {
     func testMention() {
-        XCTAssertEqual(NotificationType(string: "mention"), NotificationType.mention)
+        XCTAssertEqual(NotificationType(rawValue: "mention"), NotificationType.mention)
     }
 
     func testReblog() {
-        XCTAssertEqual(NotificationType(string: "reblog"), NotificationType.reblog)
+        XCTAssertEqual(NotificationType(rawValue: "reblog"), NotificationType.reblog)
     }
 
     func testFavourite() {
-        XCTAssertEqual(NotificationType(string: "favourite"), NotificationType.favourite)
+        XCTAssertEqual(NotificationType(rawValue: "favourite"), NotificationType.favourite)
     }
 
     func testFollow() {
-        XCTAssertEqual(NotificationType(string: "follow"), NotificationType.follow)
+        XCTAssertEqual(NotificationType(rawValue: "follow"), NotificationType.follow)
     }
 
-    func testUnknown() {
-        XCTAssertEqual(NotificationType(string: "foobar"), NotificationType.unknown)
+    func testInvalidType() {
+        XCTAssertNil(NotificationType(rawValue: "foobar"))
     }
 }
