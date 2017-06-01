@@ -18,12 +18,12 @@ public final class Client {
         self.accessToken = accessToken
     }
 
-    public func run<Model>(_ request: Request<Model>, completion: @escaping (Model?, Error?) -> Void) {
+    public func run<Model>(_ request: Request<Model>, completion: @escaping (Model?, Pagination?, Error?) -> Void) {
         guard
             let components = URLComponents(baseURL: baseURL, request: request),
             let requestURL = components.url
             else {
-                completion(nil, ClientError.malformedURL)
+                completion(nil, nil, ClientError.malformedURL)
                 return
         }
 
@@ -31,7 +31,7 @@ public final class Client {
 
         let task = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
-                completion(nil, error)
+                completion(nil, nil, error)
                 return
             }
 
@@ -39,7 +39,7 @@ public final class Client {
                 let data = data,
                 let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
                 else {
-                    completion(nil, ClientError.dataError)
+                    completion(nil, nil, ClientError.dataError)
                     return
             }
 
@@ -48,11 +48,11 @@ public final class Client {
                 httpResponse.statusCode == 200
                 else {
                     let mastodonError = MastodonError(json: jsonObject)
-                    completion(nil, ClientError.mastodonError(mastodonError.description))
+                    completion(nil, nil, ClientError.mastodonError(mastodonError.description))
                     return
             }
 
-            completion(request.parse(jsonObject), nil)
+            completion(request.parse(jsonObject), httpResponse.pagination, nil)
         }
 
         task.resume()
