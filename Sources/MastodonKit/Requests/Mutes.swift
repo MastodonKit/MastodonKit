@@ -15,7 +15,7 @@ public struct Mutes {
     /// - Returns: Request for `[Account]`.
     public static func all(range: RequestRange = .default) -> Request<[Account]> {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
-        let method = HTTPMethod.get(Payload.parameters(parameters))
+        let method = HTTPMethod.get(.parameters(parameters))
 
         return Request<[Account]>(path: "/api/v1/mutes", method: method, parse: Request<[Account]>.parser)
     }

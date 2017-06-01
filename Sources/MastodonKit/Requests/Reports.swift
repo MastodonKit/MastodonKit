@@ -29,7 +29,7 @@ public struct Reports {
             Parameter(name: "comment", value: reason)
             ] + statusIDs.map(toArrayOfParameters(withName: "status_ids"))
 
-        let method = HTTPMethod.post(Payload.parameters(parameters))
+        let method = HTTPMethod.post(.parameters(parameters))
         return Request<Report>(path: "/api/v1/reports", method: method, parse: Request<Report>.parser)
     }
 }

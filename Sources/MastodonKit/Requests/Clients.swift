@@ -28,7 +28,7 @@ public struct Clients {
             Parameter(name: "scopes", value: scopes.map(toString).joined(separator: " "))
         ]
 
-        let method = HTTPMethod.post(Payload.parameters(parameters))
+        let method = HTTPMethod.post(.parameters(parameters))
         return Request<ClientApplication>(path: "/api/v1/apps", method: method, parse: Request<ClientApplication>.parser)
     }
 }

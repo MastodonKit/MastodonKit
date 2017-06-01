@@ -43,7 +43,7 @@ public struct Accounts {
             Parameter(name: "header", value: header?.base64EncondedString)
         ]
 
-        let method = HTTPMethod.patch(Payload.parameters(parameters))
+        let method = HTTPMethod.patch(.parameters(parameters))
         return Request<Account>(path: "/api/v1/accounts/update_credentials", method: method, parse: Request<Account>.parser)
     }
 
@@ -55,7 +55,7 @@ public struct Accounts {
     /// - Returns: Request for `[Account]`.
     public static func followers(id: Int, range: RequestRange = .default) -> Request<[Account]> {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
-        let method = HTTPMethod.get(Payload.parameters(parameters))
+        let method = HTTPMethod.get(.parameters(parameters))
 
         return Request<[Account]>(path: "/api/v1/accounts/\(id)/followers", method: method, parse: Request<[Account]>.parser)
     }
@@ -68,7 +68,7 @@ public struct Accounts {
     /// - Returns: Request for `[Account]`.
     public static func following(id: Int, range: RequestRange = .default) -> Request<[Account]> {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
-        let method = HTTPMethod.get(Payload.parameters(parameters))
+        let method = HTTPMethod.get(.parameters(parameters))
 
         return Request<[Account]>(path: "/api/v1/accounts/\(id)/following", method: method, parse: Request<[Account]>.parser)
     }
@@ -88,7 +88,7 @@ public struct Accounts {
             Parameter(name: "exclude_replies", value: excludeReplies.flatMap(trueOrNil))
         ]
 
-        let method = HTTPMethod.get(Payload.parameters(parameters))
+        let method = HTTPMethod.get(.parameters(parameters))
         return Request<[Status]>(path: "/api/v1/accounts/\(id)/statuses", method: method, parse: Request<[Status]>.parser)
     }
 
@@ -147,7 +147,7 @@ public struct Accounts {
     public static func relationships(ids: [Int]) -> Request<[Relationship]> {
         let parameters = ids.map(toArrayOfParameters(withName: "id"))
 
-        let method = HTTPMethod.get(Payload.parameters(parameters))
+        let method = HTTPMethod.get(.parameters(parameters))
         return Request<[Relationship]>(path: "/api/v1/accounts/relationships", method: method, parse: Request<[Relationship]>.parser)
     }
 
@@ -164,7 +164,7 @@ public struct Accounts {
             Parameter(name: "limit", value: limit.flatMap(toLimitBounds).flatMap(toOptionalString))
         ]
 
-        let method = HTTPMethod.get(Payload.parameters(parameters))
+        let method = HTTPMethod.get(.parameters(parameters))
         return Request<[Account]>(path: "/api/v1/accounts/search", method: method, parse: Request<[Account]>.parser)
     }
 }
