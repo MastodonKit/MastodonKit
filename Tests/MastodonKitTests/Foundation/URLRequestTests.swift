@@ -13,7 +13,7 @@ class URLRequestTests: XCTestCase {
     func testRequestWithValidHTTPBody() {
         let url = URL(string: "https://mastodon.technology")!
         let mediaData = Data()
-        let method = HTTPMethod.post(Payload.media(.gif(mediaData)))
+        let method = HTTPMethod.post(.media(.gif(mediaData)))
         let request = Request<String>(path: "/string", method: method) { _ in return "string" }
 
         let urlRequest = URLRequest(url: url, request: request, accessToken: nil)

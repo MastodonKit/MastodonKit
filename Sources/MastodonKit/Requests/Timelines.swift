@@ -15,7 +15,7 @@ public struct Timelines {
     /// - Returns: Request for `[Status]`.
     public static func home(range: RequestRange = .default) -> Request<[Status]> {
         let parameters = range.parameters(limit: between(1, and: 40, fallback: 20))
-        let method = HTTPMethod.get(Payload.parameters(parameters))
+        let method = HTTPMethod.get(.parameters(parameters))
 
         return Request<[Status]>(path: "/api/v1/timelines/home", method: method, parse: Request<[Status]>.parser)
     }
@@ -29,7 +29,7 @@ public struct Timelines {
     public static func `public`(local: Bool? = nil, range: RequestRange = .default) -> Request<[Status]> {
         let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []
         let localParameters = [Parameter(name: "local", value: local.flatMap(trueOrNil))]
-        let method = HTTPMethod.get(Payload.parameters(localParameters + rangeParameters))
+        let method = HTTPMethod.get(.parameters(localParameters + rangeParameters))
 
         return Request<[Status]>(path: "/api/v1/timelines/public", method: method, parse: Request<[Status]>.parser)
     }
@@ -44,7 +44,7 @@ public struct Timelines {
     public static func tag(_ hashtag: String, local: Bool? = nil, range: RequestRange = .default) -> Request<[Status]> {
         let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []
         let localParameters = [Parameter(name: "local", value: local.flatMap(trueOrNil))]
-        let method = HTTPMethod.get(Payload.parameters(localParameters + rangeParameters))
+        let method = HTTPMethod.get(.parameters(localParameters + rangeParameters))
 
         return Request<[Status]>(path: "/api/v1/timelines/tag/\(hashtag)", method: method, parse: Request<[Status]>.parser)
     }

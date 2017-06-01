@@ -21,7 +21,7 @@ public struct Search {
             Parameter(name: "resolve", value: resolve.flatMap(trueOrNil))
         ]
 
-        let method = HTTPMethod.get(Payload.parameters(parameters))
+        let method = HTTPMethod.get(.parameters(parameters))
         return Request<Results>(path: "/api/v1/search", method: method, parse: Request<Results>.parser)
     }
 }

@@ -41,7 +41,7 @@ public struct Statuses {
     /// - Returns: Request for `[Account]`.
     public static func rebloggedBy(id: Int, range: RequestRange = .default) -> Request<[Account]> {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
-        let method = HTTPMethod.get(Payload.parameters(parameters))
+        let method = HTTPMethod.get(.parameters(parameters))
 
         return Request<[Account]>(path: "/api/v1/statuses/\(id)/reblogged_by", method: method, parse: Request<[Account]>.parser)
     }
@@ -54,7 +54,7 @@ public struct Statuses {
     /// - Returns: Request for `[Account]`.
     public static func favouritedBy(id: Int, range: RequestRange = .default) -> Request<[Account]> {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
-        let method = HTTPMethod.get(Payload.parameters(parameters))
+        let method = HTTPMethod.get(.parameters(parameters))
 
         return Request<[Account]>(path: "/api/v1/statuses/\(id)/favourited_by", method: method, parse: Request<[Account]>.parser)
     }
@@ -83,7 +83,7 @@ public struct Statuses {
             Parameter(name: "visibility", value: visibility.rawValue)
             ] + mediaIDs.map(toArrayOfParameters(withName: "media_ids"))
 
-        let method = HTTPMethod.post(Payload.parameters(parameters))
+        let method = HTTPMethod.post(.parameters(parameters))
         return Request<Status>(path: "/api/v1/statuses", method: method, parse: Request<Status>.parser)
     }
 

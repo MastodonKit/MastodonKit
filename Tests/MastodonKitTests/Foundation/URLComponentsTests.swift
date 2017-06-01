@@ -37,7 +37,7 @@ class URLComponentsTests: XCTestCase {
             Parameter(name: "b", value: "1")
         ]
 
-        let request = Request<String>(path: "/string", method: .get(Payload.parameters(parameters))) { _ in return "string" }
+        let request = Request<String>(path: "/string", method: .get(.parameters(parameters))) { _ in return "string" }
         let components = URLComponents(baseURL: "https://mastodon.technology", request: request)
 
         XCTAssertEqual(components?.url, URL(string: "https://mastodon.technology/string?a=0&b=1"))
