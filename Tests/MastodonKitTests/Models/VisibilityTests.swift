@@ -11,37 +11,22 @@ import XCTest
 
 class VisibilityTests: XCTestCase {
     func testPublic() {
-        let type = Visibility(string: "public")
-
-        XCTAssertEqual(type, Visibility.public)
-        XCTAssertEqual(type.rawValue, "public")
+        XCTAssertEqual(Visibility(rawValue: "public"), Visibility.public)
     }
 
     func testUnlisted() {
-        let type = Visibility(string: "unlisted")
-
-        XCTAssertEqual(type, Visibility.unlisted)
-        XCTAssertEqual(type.rawValue, "unlisted")
+        XCTAssertEqual(Visibility(rawValue: "unlisted"), Visibility.unlisted)
     }
 
     func testPrivate() {
-        let type = Visibility(string: "private")
-
-        XCTAssertEqual(type, Visibility.private)
-        XCTAssertEqual(type.rawValue, "private")
+        XCTAssertEqual(Visibility(rawValue: "private"), Visibility.private)
     }
 
     func testDirect() {
-        let type = Visibility(string: "direct")
-
-        XCTAssertEqual(type, Visibility.direct)
-        XCTAssertEqual(type.rawValue, "direct")
+        XCTAssertEqual(Visibility(rawValue: "direct"), Visibility.direct)
     }
 
     func testInvalidType() {
-        let type = Visibility(string: "foobar")
-
-        XCTAssertEqual(type, Visibility.unlisted)
-        XCTAssertEqual(type.rawValue, "unlisted")
+        XCTAssertNil(Visibility(rawValue: "foobar"))
     }
 }

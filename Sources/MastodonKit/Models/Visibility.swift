@@ -30,15 +30,3 @@ public enum Visibility: String {
     /// - Federates to other instances: Only remote @mentions.
     case direct
 }
-
-extension Visibility {
-    init(string: String) {
-        switch string {
-        case "public": self = .public
-        case "unlisted": self = .unlisted
-        case "private": self = .private
-        case "direct": self = .direct
-        default: self = .unlisted
-        }
-    }
-}

@@ -28,6 +28,7 @@ extension Attachment: JSONDictionaryInitializer {
         guard
             let id = dictionary["id"] as? Int,
             let typeString = dictionary["type"] as? String,
+            let type = AttachmentType(rawValue: typeString),
             let url = dictionary["url"] as? String,
             let previewURL = dictionary["preview_url"] as? String
             else {
@@ -35,7 +36,7 @@ extension Attachment: JSONDictionaryInitializer {
         }
 
         self.id = id
-        self.type = AttachmentType(string: typeString)
+        self.type = type
         self.url = url
         self.remoteURL = dictionary["remote_url"] as? String
         self.previewURL = previewURL
