@@ -140,6 +140,22 @@ public struct Accounts {
         return Request<Relationship>(path: "/api/v1/accounts/\(id)/unmute", method: .post(.empty), parse: Request<Relationship>.parser)
     }
 
+    /// Mutes an account's boosts.
+    ///
+    /// - Parameter id: The account id.
+    /// - Returns: Request for `Relationship`.
+    public static func muteBoosts(id: Int) -> Request<Relationship> {
+        return Request<Relationship>(path: "/api/v1/accounts/\(id)/mute_boosts", method: .post(.empty), parse: Request<Relationship>.parser)
+    }
+
+    /// Unmutes an account's boosts.
+    ///
+    /// - Parameter id: The account id.
+    /// - Returns: Request for `Relationship`.
+    public static func unmuteBoosts(id: Int) -> Request<Relationship> {
+        return Request<Relationship>(path: "/api/v1/accounts/\(id)/unmute_boosts", method: .post(.empty), parse: Request<Relationship>.parser)
+    }
+
     /// Gets an account's relationships.
     ///
     /// - Parameter ids: The account's ids.
