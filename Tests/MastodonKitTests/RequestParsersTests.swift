@@ -39,19 +39,19 @@ class RequestParsersTests: XCTestCase {
         let fixture = try! Fixture.load(fileName: "Fixtures/Accounts.json")
         let parsed = Request<[Account]>.parser(json: fixture)
 
-        XCTAssertEqual(parsed.count, 2)
+        XCTAssertEqual(parsed?.count, 2)
     }
 
-    func testAccountsRequestWithInvalidArray() {
+    func testAccountsRequestWithEmptyArray() {
         let parsed = Request<[Account]>.parser(json: [])
 
-        XCTAssertEqual(parsed.count, 0)
+        XCTAssertEqual(parsed?.count, 0)
     }
 
     func testAccountsRequestWithInvalidDictionary() {
         let parsed = Request<[Account]>.parser(json: [:])
 
-        XCTAssertEqual(parsed.count, 0)
+        XCTAssertNil(parsed)
     }
 
     // MARK: Request<Attachment>
@@ -207,19 +207,19 @@ class RequestParsersTests: XCTestCase {
         let fixture = try! Fixture.load(fileName: "Fixtures/Notifications.json")
         let parsed = Request<[MastodonKit.Notification]>.parser(json: fixture)
 
-        XCTAssertEqual(parsed.count, 2)
+        XCTAssertEqual(parsed?.count, 2)
     }
 
-    func testNotificationsRequestWithInvalidArray() {
+    func testNotificationsRequestWithEmptyArray() {
         let parsed = Request<[MastodonKit.Notification]>.parser(json: [])
 
-        XCTAssertEqual(parsed.count, 0)
+        XCTAssertEqual(parsed?.count, 0)
     }
 
     func testNotificationsRequestWithInvalidDictionary() {
         let parsed = Request<[MastodonKit.Notification]>.parser(json: [:])
 
-        XCTAssertEqual(parsed.count, 0)
+        XCTAssertNil(parsed)
     }
 
     // MARK: Request<Relationship>
@@ -249,19 +249,19 @@ class RequestParsersTests: XCTestCase {
         let fixture = try! Fixture.load(fileName: "Fixtures/Relationships.json")
         let parsed = Request<[Relationship]>.parser(json: fixture)
 
-        XCTAssertEqual(parsed.count, 2)
+        XCTAssertEqual(parsed?.count, 2)
     }
 
-    func testRelationshipsRequestWithInvalidArray() {
+    func testRelationshipsRequestWithEmptyArray() {
         let parsed = Request<[Relationship]>.parser(json: [])
 
-        XCTAssertEqual(parsed.count, 0)
+        XCTAssertEqual(parsed?.count, 0)
     }
 
     func testRelationshipsRequestWithInvalidDictionary() {
         let parsed = Request<[Relationship]>.parser(json: [:])
 
-        XCTAssertEqual(parsed.count, 0)
+        XCTAssertNil(parsed)
     }
 
     // MARK: Request<Report>
@@ -291,19 +291,19 @@ class RequestParsersTests: XCTestCase {
         let fixture = try! Fixture.load(fileName: "Fixtures/Reports.json")
         let parsed = Request<[Report]>.parser(json: fixture)
 
-        XCTAssertEqual(parsed.count, 2)
+        XCTAssertEqual(parsed?.count, 2)
     }
 
-    func testReportsRequestWithInvalidArray() {
+    func testReportsRequestWithEmptyArray() {
         let parsed = Request<[Report]>.parser(json: [])
 
-        XCTAssertEqual(parsed.count, 0)
+        XCTAssertEqual(parsed?.count, 0)
     }
 
     func testReportsRequestWithInvalidDictionary() {
         let parsed = Request<[Report]>.parser(json: [:])
 
-        XCTAssertEqual(parsed.count, 0)
+        XCTAssertNil(parsed)
     }
 
     // MARK: Request<Results>
@@ -354,18 +354,18 @@ class RequestParsersTests: XCTestCase {
         let fixture = try! Fixture.load(fileName: "Fixtures/Timeline.json")
         let parsed = Request<[Status]>.parser(json: fixture)
 
-        XCTAssertEqual(parsed.count, 2)
+        XCTAssertEqual(parsed?.count, 2)
     }
 
-    func testTimelineRequestWithInvalidArray() {
+    func testTimelineRequestWithEmptyArray() {
         let parsed = Request<[Status]>.parser(json: [])
 
-        XCTAssertEqual(parsed.count, 0)
+        XCTAssertEqual(parsed?.count, 0)
     }
 
     func testTimelineRequestWithInvalidDictionary() {
         let parsed = Request<[Status]>.parser(json: [:])
 
-        XCTAssertEqual(parsed.count, 0)
+        XCTAssertNil(parsed)
     }
 }
