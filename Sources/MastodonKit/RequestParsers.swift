@@ -23,8 +23,8 @@ extension Request where Model: JSONDictionaryInitializer {
 }
 
 extension Request where Model: Sequence, Model.Iterator.Element: JSONDictionaryInitializer {
-    static func parser(json: JSONObject) -> [Model.Iterator.Element] {
-        guard let array = json as? [JSONDictionary] else { return [] }
+    static func parser(json: JSONObject) -> [Model.Iterator.Element]? {
+        guard let array = json as? [JSONDictionary] else { return nil }
         return array.flatMap(Model.Iterator.Element.init)
     }
 }
