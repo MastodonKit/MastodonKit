@@ -28,3 +28,9 @@ extension Request where Model: Sequence, Model.Iterator.Element: JSONDictionaryI
         return array.flatMap(Model.Iterator.Element.init)
     }
 }
+
+extension Request where Model == [String] {
+    static func parser(json: JSONObject) -> [String]? {
+        return json as? [String]
+    }
+}
