@@ -368,4 +368,29 @@ class RequestParsersTests: XCTestCase {
 
         XCTAssertNil(parsed)
     }
+
+    // MARK: Request<[String]>
+
+    func testDomainBlocksRequest() {
+        let fixture = try! Fixture.load(fileName: "Fixtures/DomainBlocks.json")
+        let parsed = Request<[String]>.parser(json: fixture)
+
+        XCTAssertEqual(parsed?.count, 3)
+
+        XCTAssertTrue(parsed!.contains("toto"))
+        XCTAssertTrue(parsed!.contains("foo"))
+        XCTAssertTrue(parsed!.contains("bar"))
+    }
+
+    func testDomainBlocksRequestWithEmptyArray() {
+        let parsed = Request<[String]>.parser(json: [])
+
+        XCTAssertEqual(parsed?.count, 0)
+    }
+
+    func testDomainBlocksRequestWithInvalidDictionary() {
+        let parsed = Request<[String]>.parser(json: [:])
+
+        XCTAssertNil(parsed)
+    }
 }
