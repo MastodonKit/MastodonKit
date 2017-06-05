@@ -22,7 +22,7 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
     }
 
     func testContext() {
@@ -37,7 +37,7 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Context?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Context>.self)
     }
 
     func testCard() {
@@ -52,7 +52,7 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Card?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Card>.self)
     }
 
     func testRebloggedBy() {
@@ -67,7 +67,7 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testRebloggedByWithRange() {
@@ -86,7 +86,7 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testFavouritedBy() {
@@ -101,7 +101,7 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testFavouritedByWithRange() {
@@ -120,7 +120,7 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testCreateWithMessage() {
@@ -140,7 +140,7 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(payload.contains("visibility=public"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
     }
 
     func testCreateWithMessageAndReplyID() {
@@ -161,7 +161,7 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(payload.contains("visibility=public"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
     }
 
     func testCreateWithMessageAndMediaIDs() {
@@ -184,7 +184,7 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(payload.contains("media_ids[]=42"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
     }
 
     func testCreateWithSensitiveMessage() {
@@ -205,7 +205,7 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(payload.contains("visibility=public"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
     }
 
     func testCreateWithSpoilerMessage() {
@@ -226,7 +226,7 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(payload.contains("visibility=public"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
     }
 
     func testCreateWithUnlistedMessage() {
@@ -246,7 +246,7 @@ class StatusesTests: XCTestCase {
         XCTAssertTrue(payload.contains("visibility=unlisted"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
     }
 
     func testDelete() {
@@ -261,7 +261,7 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
     }
 
     func testReblog() {
@@ -276,7 +276,7 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
     }
 
     func testUnreblog() {
@@ -291,7 +291,7 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
     }
 
     func testFavourite() {
@@ -306,7 +306,7 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
     }
 
     func testUnfavourite() {
@@ -321,6 +321,6 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
     }
 }

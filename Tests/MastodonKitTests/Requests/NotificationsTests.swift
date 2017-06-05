@@ -22,7 +22,7 @@ class NotificationsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[MastodonKit.Notification]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[MastodonKit.Notification]>.self)
     }
 
     func testAllWithRange() {
@@ -41,7 +41,7 @@ class NotificationsTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[MastodonKit.Notification]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[MastodonKit.Notification]>.self)
     }
 
     func testNotification() {
@@ -56,7 +56,7 @@ class NotificationsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<MastodonKit.Notification?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<MastodonKit.Notification>.self)
     }
 
     func testDismissAll() {
@@ -71,7 +71,7 @@ class NotificationsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<MastodonKit.Notification?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<MastodonKit.Notification>.self)
     }
 
     func testDismissWithID() {
@@ -86,6 +86,6 @@ class NotificationsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<MastodonKit.Notification?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<MastodonKit.Notification>.self)
     }
 }

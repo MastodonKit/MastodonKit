@@ -30,6 +30,6 @@ class LoginTests: XCTestCase {
         XCTAssertTrue(payload.contains("password=123"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<LoginSettings?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<LoginSettings>.self)
     }
 }

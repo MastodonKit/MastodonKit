@@ -22,7 +22,7 @@ class BlocksTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testAllWithRange() {
@@ -39,6 +39,6 @@ class BlocksTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedMaxID))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 }

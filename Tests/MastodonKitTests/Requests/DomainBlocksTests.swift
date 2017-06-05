@@ -22,7 +22,7 @@ class DomainBlocksTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[String]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[String]>.self)
     }
 
     func testAllWithRange() {
@@ -39,7 +39,7 @@ class DomainBlocksTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedMaxID))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[String]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[String]>.self)
     }
 
     func testBlock() {
@@ -58,7 +58,7 @@ class DomainBlocksTests: XCTestCase {
         XCTAssertTrue(payload.contains("domain=foobar"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[String]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[String]>.self)
     }
 
     func testUnlock() {
@@ -77,6 +77,6 @@ class DomainBlocksTests: XCTestCase {
         XCTAssertTrue(payload.contains("domain=foobar"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[String]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[String]>.self)
     }
 }

@@ -22,7 +22,7 @@ class AccountsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account>.self)
     }
 
     func testCurrentUser() {
@@ -37,7 +37,7 @@ class AccountsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account>.self)
     }
 
     func testUpdateCurrentUserWithAllFields() {
@@ -62,7 +62,7 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(payload.contains("header=data%3Aimage/png%3Bbase64%2CAAAAAAAAAAA%3D"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account>.self)
     }
 
     func testUpdateCurrentUserWithSomeFields() {
@@ -82,7 +82,7 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(payload.contains("note=Creator%20of%20MastodonKit"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account>.self)
     }
 
     func testFollowers() {
@@ -97,7 +97,7 @@ class AccountsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testFollowersWithRange() {
@@ -116,7 +116,7 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testFollowing() {
@@ -131,7 +131,7 @@ class AccountsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testFollowingWithRange() {
@@ -148,7 +148,7 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testStatuses() {
@@ -163,7 +163,7 @@ class AccountsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testStatusesWithRange() {
@@ -182,7 +182,7 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testStatusesWithMediaOnly() {
@@ -198,7 +198,7 @@ class AccountsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testStatusesWithoutReplies() {
@@ -214,7 +214,7 @@ class AccountsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testFollow() {
@@ -229,7 +229,7 @@ class AccountsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Paser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account>.self)
     }
 
     func testUnfollow() {
@@ -244,7 +244,7 @@ class AccountsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account>.self)
     }
 
     func testBlock() {
@@ -259,7 +259,7 @@ class AccountsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Relationship?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Relationship>.self)
     }
 
     func testUnblock() {
@@ -274,7 +274,7 @@ class AccountsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Relationship?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Relationship>.self)
     }
 
     func testMute() {
@@ -289,7 +289,7 @@ class AccountsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Relationship?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Relationship>.self)
     }
 
     func testUnmute() {
@@ -304,7 +304,7 @@ class AccountsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Relationship?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Relationship>.self)
     }
 
     func testRelationships() {
@@ -324,7 +324,7 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedID52))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Relationship]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Relationship]>.self)
     }
 
     func testSearchWithoutLimit() {
@@ -342,7 +342,7 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedQuery))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testSearchWithValidLimit() {
@@ -362,7 +362,7 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testSearchWithLimitBelowMinimumValue() {
@@ -382,7 +382,7 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testSearchWithLimitAboveMaximumValue() {
@@ -402,6 +402,6 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 }

@@ -22,6 +22,6 @@ class InstancesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Instance?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Instance>.self)
     }
 }

@@ -22,7 +22,7 @@ class FavouritesTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testAllWithRange() {
@@ -39,6 +39,6 @@ class FavouritesTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedSinceID))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 }

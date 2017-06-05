@@ -22,6 +22,6 @@ class MediaTests: XCTestCase {
         XCTAssertNotNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Attachment?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Attachment>.self)
     }
 }

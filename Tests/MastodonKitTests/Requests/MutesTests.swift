@@ -22,7 +22,7 @@ class MutesTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testAllWithRange() {
@@ -41,6 +41,6 @@ class MutesTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 }

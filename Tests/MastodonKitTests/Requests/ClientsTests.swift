@@ -28,7 +28,7 @@ class ClientsTests: XCTestCase {
         XCTAssertTrue(payload.contains("scopes="))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<ClientApplication?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<ClientApplication>.self)
     }
 
     func testRegisterApplicationWithRedirectURI() {
@@ -49,7 +49,7 @@ class ClientsTests: XCTestCase {
         XCTAssertTrue(payload.contains("scopes=read%20follow"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<ClientApplication?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<ClientApplication>.self)
     }
 
     func testRegisterApplicationWithStatusAndWebsite() {
@@ -71,6 +71,6 @@ class ClientsTests: XCTestCase {
         XCTAssertTrue(payload.contains("website=https%3A//github.com/ornithocoder/MastodonKit"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<ClientApplication?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<ClientApplication>.self)
     }
 }
