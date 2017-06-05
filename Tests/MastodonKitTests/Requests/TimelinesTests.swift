@@ -22,7 +22,7 @@ class TimelinesTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testHomeTimelineWithRange() {
@@ -39,7 +39,7 @@ class TimelinesTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testPublicTimelineLocal() {
@@ -54,7 +54,7 @@ class TimelinesTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(URLQueryItem(name: "local", value: "true")))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testPublicTimelineFederated() {
@@ -69,7 +69,7 @@ class TimelinesTests: XCTestCase {
         XCTAssertEqual(request.method.queryItems?.count, 0)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testPublicTimelineLocalWithRange() {
@@ -90,7 +90,7 @@ class TimelinesTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedSinceID))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testTagTimelineLocal() {
@@ -105,7 +105,7 @@ class TimelinesTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(URLQueryItem(name: "local", value: "true")))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testTagTimelineFederated() {
@@ -120,7 +120,7 @@ class TimelinesTests: XCTestCase {
         XCTAssertEqual(request.method.queryItems?.count, 0)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testTagTimelineWithRange() {
@@ -139,6 +139,6 @@ class TimelinesTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedSinceID))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 }

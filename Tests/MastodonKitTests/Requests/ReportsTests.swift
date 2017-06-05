@@ -22,7 +22,7 @@ class ReportsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Report]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Report]>.self)
     }
 
     func testReport() {
@@ -45,6 +45,6 @@ class ReportsTests: XCTestCase {
         XCTAssertTrue(payload.contains("comment=Westworld%20Spoiler%21%21%21"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Report?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Report>.self)
     }
 }

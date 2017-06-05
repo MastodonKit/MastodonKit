@@ -22,7 +22,7 @@ class FollowRequestsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testAllWithRange() {
@@ -41,7 +41,7 @@ class FollowRequestsTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testAuthorize() {
@@ -56,7 +56,7 @@ class FollowRequestsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account>.self)
     }
 
     func testReject() {
@@ -71,6 +71,6 @@ class FollowRequestsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account?>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account>.self)
     }
 }

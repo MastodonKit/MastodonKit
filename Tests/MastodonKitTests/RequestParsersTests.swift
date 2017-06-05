@@ -9,7 +9,7 @@
 import XCTest
 @testable import MastodonKit
 
-typealias ParserFunctionType<Model> = (Any) -> Model
+typealias ParserFunctionType<Model> = (Any) -> Model?
 
 class RequestParsersTests: XCTestCase {
     // MARK: Request<Account>
