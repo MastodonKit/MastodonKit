@@ -21,6 +21,8 @@ public struct Relationship {
     public let muting: Bool
     /// Whether the user has requested to follow the account.
     public let requested: Bool
+    /// Whether the user is currently blocking the user's domain.
+    public let domainBlocking: Bool
 }
 
 extension Relationship: JSONDictionaryInitializer {
@@ -31,7 +33,8 @@ extension Relationship: JSONDictionaryInitializer {
             let followedBy = dictionary["followed_by"] as? Bool,
             let blocking = dictionary["blocking"] as? Bool,
             let muting = dictionary["muting"] as? Bool,
-            let requested = dictionary["requested"] as? Bool
+            let requested = dictionary["requested"] as? Bool,
+            let domainBlocking = dictionary["domain_blocking"] as? Bool
             else {
                 return nil
         }
@@ -42,5 +45,6 @@ extension Relationship: JSONDictionaryInitializer {
         self.blocking = blocking
         self.muting = muting
         self.requested = requested
+        self.domainBlocking = domainBlocking
     }
 }

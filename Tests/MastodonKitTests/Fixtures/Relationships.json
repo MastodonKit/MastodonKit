@@ -5,7 +5,8 @@
         "followed_by": false,
         "blocking": true,
         "muting": false,
-        "requested": false
+        "requested": false,
+        "domain_blocking": true
     },
     {
         "id": 42,
@@ -13,6 +14,7 @@
         "followed_by": false,
         "blocking": true,
         "muting": false,
-        "requested": false
+        "requested": false,
+        "domain_blocking": true
     }
 ]
