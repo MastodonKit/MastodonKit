@@ -11,30 +11,18 @@ import XCTest
 
 class AccessScopeTests: XCTestCase {
     func testRead() {
-        let type = AccessScope(string: "read")
-
-        XCTAssertEqual(type, AccessScope.read)
-        XCTAssertEqual(type.rawValue, "read")
+        XCTAssertEqual(AccessScope(rawValue: "read"), AccessScope.read)
     }
 
     func testWrite() {
-        let type = AccessScope(string: "write")
-
-        XCTAssertEqual(type, AccessScope.write)
-        XCTAssertEqual(type.rawValue, "write")
+        XCTAssertEqual(AccessScope(rawValue: "write"), AccessScope.write)
     }
 
     func testFollow() {
-        let type = AccessScope(string: "follow")
-
-        XCTAssertEqual(type, AccessScope.follow)
-        XCTAssertEqual(type.rawValue, "follow")
+        XCTAssertEqual(AccessScope(rawValue: "follow"), AccessScope.follow)
     }
 
     func testInvalidType() {
-        let type = AccessScope(string: "foobar")
-
-        XCTAssertEqual(type, AccessScope.read)
-        XCTAssertEqual(type.rawValue, "read")
+        XCTAssertNil(AccessScope(rawValue: "foobar"))
     }
 }

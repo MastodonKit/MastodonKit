@@ -66,3 +66,7 @@ func toInteger(item: URLQueryItem) -> Int? {
     guard let value = item.value else { return nil }
     return Int(value)
 }
+
+func toAccessScope(string: String) -> AccessScope? {
+    return AccessScope(rawValue: string)
+}

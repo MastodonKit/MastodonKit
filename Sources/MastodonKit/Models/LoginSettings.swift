@@ -32,7 +32,7 @@ extension LoginSettings: JSONDictionaryInitializer {
 
         self.accessToken = accessToken
         self.accessTokenType = accessTokenType
-        self.scopes = accessScopeString.components(separatedBy: .whitespaces).map(AccessScope.init)
+        self.scopes = accessScopeString.components(separatedBy: .whitespaces).flatMap(toAccessScope)
         self.createdAt = createdAt
     }
 }
