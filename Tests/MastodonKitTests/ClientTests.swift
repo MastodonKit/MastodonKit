@@ -35,30 +35,26 @@ class ClientInitializationTests: XCTestCase {
 class ClientInitializationWithInvalidURLTests: XCTestCase {
     func testClientInitializationWithAccessToken() {
         let client = Client(baseURL: "42 is the answer but isn't a valid URL")
-        var passedModel: [Status]?
-        var passedPagination: Pagination?
         var passedError: Error?
 
         let fakeSession = URLSessionFake()
         client.session = fakeSession
 
-        client.run(Timelines.home()) { model, pagination, error in
-            passedModel = model
-            passedPagination = pagination
-            passedError = error
+        client.run(Timelines.home()) { result in
+            switch result {
+            case .failure(let error):
+                passedError = error
+            default: break
+            }
         }
 
-        XCTAssertNil(passedModel)
-        XCTAssertNil(passedPagination)
         XCTAssertEqual(passedError?.localizedDescription, ClientError.malformedURL.localizedDescription)
     }
 }
 
 class ClientRunTests: XCTestCase {
     var fakeSession: URLSessionFake?
-    var passedModel: [Status]?
-    var passedPagination: Pagination?
-    var passedError: Error?
+    var result: Result<[Status]>?
 
     override func setUp() {
         super.setUp()
@@ -68,10 +64,8 @@ class ClientRunTests: XCTestCase {
         fakeSession = URLSessionFake()
         client.session = fakeSession!
 
-        client.run(Timelines.home()) { model, pagination, error in
-            self.passedModel = model
-            self.passedPagination = pagination
-            self.passedError = error
+        client.run(Timelines.home()) { result in
+            self.result = result
         }
     }
 
@@ -91,39 +85,71 @@ class ClientRunTests: XCTestCase {
     }
 
     func testDataTaskCompletionBlockWithError() {
-        let error = NSError(domain: "fake error", code: 42, userInfo: nil)
+        let fakeError = NSError(domain: "fake error", code: 42, userInfo: nil)
 
-        fakeSession?.lastCompletionHandler?(nil, nil, error)
+        fakeSession?.lastCompletionHandler?(nil, nil, fakeError)
 
-        XCTAssertNil(passedModel)
-        XCTAssertNil(passedPagination)
-        XCTAssertEqual(passedError?.localizedDescription, error.localizedDescription)
+        var passedError: Error?
+        switch result! {
+        case .failure(let error): passedError = error
+        default: break
+        }
+
+        XCTAssertEqual(passedError?.localizedDescription, fakeError.localizedDescription)
     }
 
-    func testDataTaskCompletionBlockWithInvalidData() {
-        let data = Data()
+    func testDataTaskCompletionBlockWithMalformedJSON() {
+        let fakeData = Data()
 
-        fakeSession?.lastCompletionHandler?(data, nil, nil)
+        fakeSession?.lastCompletionHandler?(fakeData, nil, nil)
 
-        XCTAssertNil(passedModel)
-        XCTAssertNil(passedPagination)
-        XCTAssertEqual(passedError?.localizedDescription, ClientError.dataError.localizedDescription)
+        var passedError: Error?
+        switch result! {
+        case .failure(let error): passedError = error
+        default: break
+        }
+
+        XCTAssertEqual(passedError?.localizedDescription, ClientError.malformedJSON.localizedDescription)
     }
 
-    func testDataTaskCompletionBlockWithkMastodonError() {
+    func testDataTaskCompletionBlockWithMastodonError() {
         let fixture = try! Fixture.load(fileName: "Fixtures/RequestError.json")
         let data = try! JSONSerialization.data(withJSONObject: fixture, options: .prettyPrinted)
         let response = HTTPURLResponse(
-            url:URL(string: "https://my.mastodon.instance/api/v1/timelines/home")!,
+            url: URL(string: "https://my.mastodon.instance/api/v1/timelines/home")!,
             statusCode: 401,
             httpVersion: nil,
             headerFields: nil)
 
         fakeSession?.lastCompletionHandler?(data, response, nil)
 
-        XCTAssertNil(passedModel)
-        XCTAssertNil(passedPagination)
+        var passedError: Error?
+        switch result! {
+        case .failure(let error): passedError = error
+        default: break
+        }
+
         XCTAssertEqual(passedError?.localizedDescription, ClientError.mastodonError("yes, it's an error.").localizedDescription)
+    }
+
+    func testDataTaskCompletionBlockWithInvalidModel() {
+        let fixture = try! Fixture.load(fileName: "Fixtures/Account.json")
+        let data = try! JSONSerialization.data(withJSONObject: fixture, options: .prettyPrinted)
+        let response = HTTPURLResponse(
+            url: URL(string: "https://my.mastodon.instance/api/v1/timelines/home")!,
+            statusCode: 200,
+            httpVersion: nil,
+            headerFields: nil)
+
+        fakeSession?.lastCompletionHandler?(data, response, nil)
+
+        var passedError: Error?
+        switch result! {
+        case .failure(let error): passedError = error
+        default: break
+        }
+
+        XCTAssertEqual(passedError?.localizedDescription, ClientError.invalidModel.localizedDescription)
     }
 
     func testDataTaskCompletionBlockWithSuccessWithoutHeaderLink() {
@@ -138,9 +164,17 @@ class ClientRunTests: XCTestCase {
 
         fakeSession?.lastCompletionHandler?(data, response, nil)
 
+        var passedModel: [Status]?
+        var passedPagination: Pagination?
+        switch result! {
+        case .success(let model, let pagination):
+            passedModel = model
+            passedPagination = pagination
+        default: break
+        }
+
         XCTAssertEqual(passedModel?.count, 2)
         XCTAssertNil(passedPagination)
-        XCTAssertNil(passedError)
     }
 
     func testDataTaskCompletionBlockWithSuccessWithHeaderLink() {
@@ -160,9 +194,17 @@ class ClientRunTests: XCTestCase {
 
         fakeSession?.lastCompletionHandler?(data, response, nil)
 
+        var passedModel: [Status]?
+        var passedPagination: Pagination?
+        switch result! {
+        case .success(let model, let pagination):
+            passedModel = model
+            passedPagination = pagination
+        default: break
+        }
+
         XCTAssertEqual(passedModel?.count, 2)
         XCTAssertNotNil(passedPagination)
-        XCTAssertNil(passedError)
     }
 }
 
@@ -177,7 +219,7 @@ class ClientRunWithoutAccessTokenTests: XCTestCase {
         fakeSession = URLSessionFake()
         client.session = fakeSession!
 
-        client.run(Timelines.public(local: true)) { _, _, _ in }
+        client.run(Timelines.public(local: true)) { _ in }
     }
 
     func testCallsResume() {
@@ -207,7 +249,7 @@ class ClientRunWithPostAndHTTPBodyTests: XCTestCase {
         fakeSession = URLSessionFake()
         client.session = fakeSession!
 
-        client.run(Statuses.create(status: "Hi there!", replyToID: 42, sensitive: false, visibility: .public) ) { _, _, _ in }
+        client.run(Statuses.create(status: "Hi there!", replyToID: 42, sensitive: false, visibility: .public) ) { _ in }
     }
 
     func testPassedRequest() {
@@ -241,7 +283,7 @@ class ClientRunWithGetAndQueryItemsTests: XCTestCase {
         fakeSession = URLSessionFake()
         client.session = fakeSession!
 
-        client.run(Search.search(query: "MastodonKit", resolve: false)) { _, _, _ in }
+        client.run(Search.search(query: "MastodonKit", resolve: false)) { _ in }
     }
 
     func testPassedRequest() {
