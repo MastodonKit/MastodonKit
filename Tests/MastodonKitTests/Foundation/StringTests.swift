@@ -2,8 +2,8 @@
 //  StringTests.swift
 //  MastodonKit
 //
-//  Created by Ornithologist Coder on 5/31/17.
-//  Copyright (c) 2017 MastodonKit. All rights reserved.
+//  Created by Ornithologist Coder on 4/22/17.
+//  Copyright © 2017 MastodonKit. All rights reserved.
 //
 
 import XCTest

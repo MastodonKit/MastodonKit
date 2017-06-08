@@ -2,7 +2,7 @@
 //  Parameter.swift
 //  MastodonKit
 //
-//  Created by Ornithologist Coder in 2017.
+//  Created by Ornithologist Coder on 5/2/17.
 //  Copyright © 2017 MastodonKit. All rights reserved.
 //
 
