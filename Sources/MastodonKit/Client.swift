@@ -10,11 +10,12 @@ import Foundation
 
 public final class Client {
     let baseURL: String
+    let session: URLSession
     public var accessToken: String?
-    lazy var session = URLSession.shared
 
-    public init(baseURL: String, accessToken: String? = nil) {
+    public init(baseURL: String, accessToken: String? = nil, session: URLSession = .shared) {
         self.baseURL = baseURL
+        self.session = session
         self.accessToken = accessToken
     }
 
