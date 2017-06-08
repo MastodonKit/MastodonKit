@@ -34,3 +34,8 @@ type_name:
   max_length:
     warning: 30
     error: 40
+
+function_body_length:
+  warning: 50
+  error: 100
+
