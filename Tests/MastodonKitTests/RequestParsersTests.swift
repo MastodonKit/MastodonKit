@@ -393,4 +393,42 @@ class RequestParsersTests: XCTestCase {
 
         XCTAssertNil(parsed)
     }
+
+    // MARK: Request<Empty>
+
+    func testEmptyRequestWithEmptyDictionary() {
+        let parsed = Request<Empty>.parser(json: [:])
+
+        XCTAssertNotNil(parsed)
+    }
+
+    func testEmptyRequestWithNonEmptyDictionary() {
+        let parsed = Request<Empty>.parser(json: ["foo": "bar"])
+
+        XCTAssertNil(parsed)
+    }
+
+    func testEmptyRequestWithNonEmptyArray() {
+        let parsed = Request<Empty>.parser(json: ["foo"])
+
+        XCTAssertNil(parsed)
+    }
+
+    func testEmptyRequestWithEmptyArray() {
+        let parsed = Request<Empty>.parser(json: [])
+
+        XCTAssertNil(parsed)
+    }
+
+    func testEmptyRequestWithEmptyString() {
+        let parsed = Request<Empty>.parser(json: "")
+
+        XCTAssertNil(parsed)
+    }
+
+    func testEmptyRequestWithString() {
+        let parsed = Request<Empty>.parser(json: "foo")
+
+        XCTAssertNil(parsed)
+    }
 }

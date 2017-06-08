@@ -56,7 +56,7 @@ class FollowRequestsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Empty>.self)
     }
 
     func testReject() {
@@ -71,6 +71,6 @@ class FollowRequestsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Account>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Empty>.self)
     }
 }

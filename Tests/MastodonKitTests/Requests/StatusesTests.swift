@@ -261,7 +261,7 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Empty>.self)
     }
 
     func testReblog() {

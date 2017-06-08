@@ -58,7 +58,7 @@ class DomainBlocksTests: XCTestCase {
         XCTAssertTrue(payload.contains("domain=foobar"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[String]>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Empty>.self)
     }
 
     func testUnlock() {
@@ -77,6 +77,6 @@ class DomainBlocksTests: XCTestCase {
         XCTAssertTrue(payload.contains("domain=foobar"))
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[String]>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Empty>.self)
     }
 }

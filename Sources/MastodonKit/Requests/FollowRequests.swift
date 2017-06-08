@@ -23,16 +23,16 @@ public struct FollowRequests {
     /// Authorizes a follow request.
     ///
     /// - Parameter id: The accound id.
-    /// - Returns: Request for `Account`.
-    public static func authorize(id: Int) -> Request<Account> {
-        return Request<Account>(path: "/api/v1/follow_requests/\(id)/authorize", method: .post(.empty), parse: Request<Account>.parser)
+    /// - Returns: Request for `Empty`.
+    public static func authorize(id: Int) -> Request<Empty> {
+        return Request<Empty>(path: "/api/v1/follow_requests/\(id)/authorize", method: .post(.empty), parse: Request<Empty>.parser)
     }
 
     /// Rejects a follow request.
     ///
     /// - Parameter id: The accound id.
-    /// - Returns: Request for `Account`.
-    public static func reject(id: Int) -> Request<Account> {
-        return Request<Account>(path: "/api/v1/follow_requests/\(id)/reject", method: .post(.empty), parse: Request<Account>.parser)
+    /// - Returns: Request for `Empty`.
+    public static func reject(id: Int) -> Request<Empty> {
+        return Request<Empty>(path: "/api/v1/follow_requests/\(id)/reject", method: .post(.empty), parse: Request<Empty>.parser)
     }
 }

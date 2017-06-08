@@ -71,7 +71,7 @@ class NotificationsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<MastodonKit.Notification>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Empty>.self)
     }
 
     func testDismissWithID() {
@@ -86,6 +86,6 @@ class NotificationsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
 
         // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<MastodonKit.Notification>.self)
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Empty>.self)
     }
 }
