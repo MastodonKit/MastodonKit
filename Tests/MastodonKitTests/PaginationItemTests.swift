@@ -2,8 +2,9 @@
 //  PaginationItemTests.swift
 //  MastodonKit
 //
-//  Created by Ornithologist Coder on 5/31/17.
+//  Created by Ornithologist Coder on 6/1/17.
 //  Copyright © 2017 MastodonKit. All rights reserved.
+//
 
 import XCTest
 @testable import MastodonKit

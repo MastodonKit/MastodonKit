@@ -4,3 +4,45 @@ disabled_rules:
   - line_length
   - file_length
   - type_body_length
+
+opt_in_rules:
+  - closure_end_indentation
+  - closure_spacing
+  - empty_count
+  - explicit_init
+  - fatal_error_message
+  - first_where
+  - implicitly_unwrapped_optional
+  - operator_usage_whitespace
+  - overridden_super_call
+  - private_outlet
+  - prohibited_super_call
+  - redundant_nil_coalescing
+  - multiline_parameters
+  - file_header
+
+identifier_name:
+  min_length:
+    error: 3
+  excluded:
+    - id
+
+type_name:
+  min_length: 3
+  max_length:
+    warning: 40
+    error: 50
+
+function_body_length:
+  warning: 50
+  error: 100
+
+file_header:
+  required_pattern: |
+                    \/\/
+                    \/\/  .*?\.swift
+                    \/\/  MastodonKit
+                    \/\/
+                    \/\/  Created by .*? on \d{1,2}\/\d{1,2}\/\d{2}\.
+                    \/\/  Copyright © \d{4} MastodonKit\. All rights reserved\.
+                    \/\/
