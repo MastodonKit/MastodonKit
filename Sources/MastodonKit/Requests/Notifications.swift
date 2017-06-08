@@ -30,16 +30,16 @@ public struct Notifications {
 
     /// Deletes all notifications for the authenticated user.
     ///
-    /// - Returns: Request for `Notification`.
-    public static func dismissAll() -> Request<Notification> {
-        return Request<Notification>(path: "/api/v1/notifications/clear", method: .post(.empty), parse: Request<Notification>.parser)
+    /// - Returns: Request for `Empty`.
+    public static func dismissAll() -> Request<Empty> {
+        return Request<Empty>(path: "/api/v1/notifications/clear", method: .post(.empty), parse: Request<Empty>.parser)
     }
 
     /// Deletes a single notification for the authenticated user.
     ///
     /// - Parameter id: The notification id.
-    /// - Returns: Request for `Notification`.
-    public static func dismiss(id: Int) -> Request<Notification> {
-        return Request<Notification>(path: "/api/v1/notifications/dismiss/\(id)", method: .post(.empty), parse: Request<Notification>.parser)
+    /// - Returns: Request for `Empty`.
+    public static func dismiss(id: Int) -> Request<Empty> {
+        return Request<Empty>(path: "/api/v1/notifications/dismiss/\(id)", method: .post(.empty), parse: Request<Empty>.parser)
     }
 }

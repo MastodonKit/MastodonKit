@@ -23,22 +23,22 @@ public struct DomainBlocks {
     /// Blocks a domain.
     ///
     /// - Parameter domain: The domain to block.
-    /// - Returns: Request for `[String]`.
-    public static func block(domain: String) -> Request<[String]> {
+    /// - Returns: Request for `Empty`.
+    public static func block(domain: String) -> Request<Empty> {
         let parameters = [Parameter(name: "domain", value: domain)]
         let method = HTTPMethod.post(.parameters(parameters))
 
-        return Request<[String]>(path: "/api/v1/domain_blocks", method: method, parse: Request<[String]>.parser)
+        return Request<Empty>(path: "/api/v1/domain_blocks", method: method, parse: Request<Empty>.parser)
     }
 
     /// Unblocks a domain.
     ///
     /// - Parameter domain: The domain to unblock.
-    /// - Returns: Request for `[String]`.
-    public static func unblock(domain: String) -> Request<[String]> {
+    /// - Returns: Request for `Empty`.
+    public static func unblock(domain: String) -> Request<Empty> {
         let parameters = [Parameter(name: "domain", value: domain)]
         let method = HTTPMethod.delete(.parameters(parameters))
 
-        return Request<[String]>(path: "/api/v1/domain_blocks", method: method, parse: Request<[String]>.parser)
+        return Request<Empty>(path: "/api/v1/domain_blocks", method: method, parse: Request<Empty>.parser)
     }
 }
