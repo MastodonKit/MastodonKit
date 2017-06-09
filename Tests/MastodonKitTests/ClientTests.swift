@@ -39,11 +39,7 @@ class ClientInitializationWithInvalidURLTests: XCTestCase {
         var passedError: Error?
 
         client.run(Timelines.home()) { result in
-            switch result {
-            case .failure(let error):
-                passedError = error
-            default: break
-            }
+            passedError = result.error
         }
 
         XCTAssertEqual(passedError?.localizedDescription, ClientError.malformedURL.localizedDescription)
@@ -85,13 +81,7 @@ class ClientRunTests: XCTestCase {
 
         fakeSession.lastCompletionHandler?(nil, nil, fakeError)
 
-        var passedError: Error?
-        switch result! {
-        case .failure(let error): passedError = error
-        default: break
-        }
-
-        XCTAssertEqual(passedError?.localizedDescription, fakeError.localizedDescription)
+        XCTAssertEqual(result?.error?.localizedDescription, fakeError.localizedDescription)
     }
 
     func testDataTaskCompletionBlockWithMalformedJSON() {
@@ -99,13 +89,7 @@ class ClientRunTests: XCTestCase {
 
         fakeSession.lastCompletionHandler?(fakeData, nil, nil)
 
-        var passedError: Error?
-        switch result! {
-        case .failure(let error): passedError = error
-        default: break
-        }
-
-        XCTAssertEqual(passedError?.localizedDescription, ClientError.malformedJSON.localizedDescription)
+        XCTAssertEqual(result?.error?.localizedDescription, ClientError.malformedJSON.localizedDescription)
     }
 
     func testDataTaskCompletionBlockWithMastodonError() {
@@ -119,13 +103,7 @@ class ClientRunTests: XCTestCase {
 
         fakeSession.lastCompletionHandler?(data, response, nil)
 
-        var passedError: Error?
-        switch result! {
-        case .failure(let error): passedError = error
-        default: break
-        }
-
-        XCTAssertEqual(passedError?.localizedDescription, ClientError.mastodonError("yes, it's an error.").localizedDescription)
+        XCTAssertEqual(result?.error?.localizedDescription, ClientError.mastodonError("yes, it's an error.").localizedDescription)
     }
 
     func testDataTaskCompletionBlockWithInvalidModel() {
@@ -139,13 +117,7 @@ class ClientRunTests: XCTestCase {
 
         fakeSession.lastCompletionHandler?(data, response, nil)
 
-        var passedError: Error?
-        switch result! {
-        case .failure(let error): passedError = error
-        default: break
-        }
-
-        XCTAssertEqual(passedError?.localizedDescription, ClientError.invalidModel.localizedDescription)
+        XCTAssertEqual(result?.error?.localizedDescription, ClientError.invalidModel.localizedDescription)
     }
 
     func testDataTaskCompletionBlockWithSuccessWithoutHeaderLink() {
@@ -160,17 +132,8 @@ class ClientRunTests: XCTestCase {
 
         fakeSession.lastCompletionHandler?(data, response, nil)
 
-        var passedModel: [Status]?
-        var passedPagination: Pagination?
-        switch result! {
-        case .success(let model, let pagination):
-            passedModel = model
-            passedPagination = pagination
-        default: break
-        }
-
-        XCTAssertEqual(passedModel?.count, 2)
-        XCTAssertNil(passedPagination)
+        XCTAssertEqual(result?.value?.count, 2)
+        XCTAssertNil(result?.pagination)
     }
 
     func testDataTaskCompletionBlockWithSuccessWithHeaderLink() {
@@ -190,17 +153,8 @@ class ClientRunTests: XCTestCase {
 
         fakeSession.lastCompletionHandler?(data, response, nil)
 
-        var passedModel: [Status]?
-        var passedPagination: Pagination?
-        switch result! {
-        case .success(let model, let pagination):
-            passedModel = model
-            passedPagination = pagination
-        default: break
-        }
-
-        XCTAssertEqual(passedModel?.count, 2)
-        XCTAssertNotNil(passedPagination)
+        XCTAssertEqual(result?.value?.count, 2)
+        XCTAssertNotNil(result?.pagination)
     }
 }
 
