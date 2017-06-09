@@ -64,4 +64,53 @@ class PaginationTests: XCTestCase {
         XCTAssertEqual(pagination.next, .max(id: 321, limit: 52))
         XCTAssertEqual(pagination.previous, .since(id: 123, limit: 42))
     }
+
+    func testEqualityWithMatchingNilRanges() {
+        let firstPagination = Pagination(next: nil, previous: nil)
+        let secondPagination = Pagination(next: nil, previous: nil)
+
+        XCTAssertEqual(firstPagination, secondPagination)
+    }
+
+    func testEqualityWithMatchingNextAndMatchingNilPrevious() {
+        let firstPagination = Pagination(next: .default, previous: nil)
+        let secondPagination = Pagination(next: .default, previous: nil)
+
+        XCTAssertEqual(firstPagination, secondPagination)
+    }
+
+    func testEqualityWithMatchingNilNextAndMatchingPrevious() {
+        let firstPagination = Pagination(next: nil, previous: .default)
+        let secondPagination = Pagination(next: nil, previous: .default)
+
+        XCTAssertEqual(firstPagination, secondPagination)
+    }
+
+    func testEqualityWithMatchingNextAndPrevious() {
+        let firstPagination = Pagination(next: .limit(42), previous: .default)
+        let secondPagination = Pagination(next: .limit(42), previous: .default)
+
+        XCTAssertEqual(firstPagination, secondPagination)
+    }
+
+    func testEqualityWithMismatchingNextAndMatchingNilPrevious() {
+        let firstPagination = Pagination(next: .limit(42), previous: nil)
+        let secondPagination = Pagination(next: .default, previous: nil)
+
+        XCTAssertNotEqual(firstPagination, secondPagination)
+    }
+
+    func testEqualityWithMatchingNilNextAndMismatchingPrevious() {
+        let firstPagination = Pagination(next: nil, previous: .default)
+        let secondPagination = Pagination(next: nil, previous: .limit(42))
+
+        XCTAssertNotEqual(firstPagination, secondPagination)
+    }
+
+    func testEqualityWithMismatchingNextAndPrevious() {
+        let firstPagination = Pagination(next: .limit(42), previous: .default)
+        let secondPagination = Pagination(next: .default, previous: .limit(42))
+
+        XCTAssertNotEqual(firstPagination, secondPagination)
+    }
 }
