@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-    public func condensed(separator: String = "") -> String {
+    func condensed(separator: String = "") -> String {
         let components = self.components(separatedBy: .whitespaces)
         return components.filter { !$0.isEmpty }.joined(separator: separator)
     }
