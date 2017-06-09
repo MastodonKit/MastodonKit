@@ -35,3 +35,10 @@ extension Pagination {
         self.previous = previousLink
     }
 }
+
+extension Pagination: Equatable {
+    public static func == (lhs: Pagination, rhs: Pagination) -> Bool {
+        guard lhs.next == rhs.next, lhs.previous == rhs.previous else { return false }
+        return true
+    }
+}
