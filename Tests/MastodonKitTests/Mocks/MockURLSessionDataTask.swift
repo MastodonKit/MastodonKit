@@ -1,5 +1,5 @@
 //
-//  URLSessionDataTaskFake.swift
+//  MockURLSessionDataTask.swift
 //  MastodonKit
 //
 //  Created by Ornithologist Coder on 4/22/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class URLSessionDataTaskFake: URLSessionDataTask {
+class MockURLSessionDataTask: URLSessionDataTask {
     var didCallResume = false
 
     override func resume() {
