@@ -22,14 +22,13 @@ public final class Client {
     public func run<Model>(_ request: Request<Model>, completion: @escaping (Result<Model>) -> Void) {
         guard
             let components = URLComponents(baseURL: baseURL, request: request),
-            let requestURL = components.url
+            let url = components.url
             else {
                 completion(.failure(ClientError.malformedURL))
                 return
         }
 
-        let urlRequest = URLRequest(url: requestURL, request: request, accessToken: accessToken)
-
+        let urlRequest = URLRequest(url: url, request: request, accessToken: accessToken)
         let task = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 completion(.failure(error))
