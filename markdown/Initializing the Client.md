@@ -20,8 +20,8 @@ let request = Clients.register(
     website: "https://github.com/MastodonKit/MastodonKit"
 )
 
-client.run(request) { application, error in
-    if let application = application {
+client.run(request) { result in
+    if let application = result.value {
         print("id: \(application.id)")
         print("redirect uri: \(application.redirectURI)")
         print("client id: \(application.clientID)")
@@ -51,8 +51,8 @@ let loginRequest = Login.silent(
     password: "bar"
 )
 
-client.run(loginRequest) { loginSettings, error in
-    if let loginSettings = loginSettings {
+client.run(loginRequest) { result in
+    if let loginSettings = result.value {
         print("access token: \(loginSettings.accessToken)")
     }
 }

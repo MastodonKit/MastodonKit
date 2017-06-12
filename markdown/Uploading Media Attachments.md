@@ -10,8 +10,8 @@ let imageData = UIImageJPEGRepresentation(image, 0.82)
 
 let request = Media.upload(media: .jpeg(imageData))
 
-client.run(request) { attachment, error in
-    // do something with 'attachment'
+client.run(request) { result in
+    // do something with 'result'
 }
 ```
 
@@ -23,9 +23,9 @@ let imageData = try? Data(contentsOf: URL(fileURLWithPath: imagePath!))
 
 let request = Media.upload(media: .gif(imageData))
 
-client.run(request) { attachment, error in
-    // do something with 'attachment'
+client.run(request) { result in
+    // do something with 'result'
 }
 ```
 
-Use the URL and id from ``attachment`` when creating a status.
+Use the URL and id from ``result`` when creating a status.

@@ -22,7 +22,7 @@ textView.text = allAccounts.map{ "@" + $0 }.reduce("") { $0 + $1 + " " }
 
 let post = Statuses.create(status: textView.text, replyToID: status.id)
 
-client.run(post) { status, error in
-    // do something with 'status'
+client.run(post) { result in
+    // do something with 'result'
 }
 ```

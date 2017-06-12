@@ -7,8 +7,8 @@ To perform a network request against a Mastodon instance, first create a request
 ```swift
 let request = Timelines.home()
 
-client.run(request) { statuses, error in
-    // do something with 'statuses'
+client.run(request) { result in
+    // do something with 'result'
 }
 ```
 
@@ -17,7 +17,7 @@ client.run(request) { statuses, error in
 ```swift
 let request = Statuses.create("Mastodon's API is awesome!")
 
-client.run(request) { status, error in
-    // do something with 'status'
+client.run(request) { result in
+    // do something with 'result'
 }
 ```
