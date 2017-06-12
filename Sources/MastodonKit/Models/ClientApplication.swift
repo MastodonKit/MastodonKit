@@ -19,7 +19,7 @@ public struct ClientApplication {
     public let clientSecret: String
 }
 
-extension ClientApplication: JSONDictionaryInitializer {
+extension ClientApplication: JSONDictionaryInitializable {
     init?(from dictionary: JSONDictionary) {
         guard
             let id = dictionary["id"] as? Int,

@@ -15,7 +15,7 @@ public struct Report {
     public let actionTaken: String
 }
 
-extension Report: JSONDictionaryInitializer {
+extension Report: JSONDictionaryInitializable {
     init?(from dictionary: JSONDictionary) {
         guard
             let id = dictionary["id"] as? Int,

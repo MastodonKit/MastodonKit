@@ -57,7 +57,7 @@ public struct Status {
     var reblogWrapper: [Status?]
 }
 
-extension Status: JSONDictionaryInitializer {
+extension Status: JSONDictionaryInitializable {
     init?(from dictionary: JSONDictionary) {
         guard
             let id = dictionary["id"] as? Int,

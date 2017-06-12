@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class Client {
+public struct Client: ClientProtocol {
     let baseURL: String
     let session: URLSession
     public var accessToken: String?

@@ -19,7 +19,7 @@ public struct Mention {
     public let url: String
 }
 
-extension Mention: JSONDictionaryInitializer {
+extension Mention: JSONDictionaryInitializable {
     init?(from dictionary: JSONDictionary) {
         guard
             let id = dictionary["id"] as? Int,

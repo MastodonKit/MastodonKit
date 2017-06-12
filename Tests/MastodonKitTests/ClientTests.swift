@@ -23,7 +23,7 @@ class ClientInitializationTests: XCTestCase {
     }
 
     func testClientAccessTokenConfiguration() {
-        let client = Client(baseURL: "https://my.mastodon.instance/")
+        var client = Client(baseURL: "https://my.mastodon.instance/")
 
         XCTAssertNil(client.accessToken)
 

@@ -25,7 +25,7 @@ public struct Relationship {
     public let domainBlocking: Bool
 }
 
-extension Relationship: JSONDictionaryInitializer {
+extension Relationship: JSONDictionaryInitializable {
     init?(from dictionary: JSONDictionary) {
         guard
             let id = dictionary["id"] as? Int,
