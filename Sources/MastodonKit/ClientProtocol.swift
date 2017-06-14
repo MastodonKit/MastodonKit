@@ -25,5 +25,6 @@ public protocol ClientProtocol {
     /// - Parameters:
     ///   - request: The request to be performed.
     ///   - completion: The completion block to be called when the request is complete.
-    func run<Model>(_ request: Request<Model>, completion: @escaping (Result<Model>) -> Void)
+    ///   - result: The request result.
+    func run<Model>(_ request: Request<Model>, completion: @escaping (_ result: Result<Model>) -> Void)
 }
