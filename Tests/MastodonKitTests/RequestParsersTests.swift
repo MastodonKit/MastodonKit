@@ -309,7 +309,7 @@ class RequestParsersTests: XCTestCase {
     // MARK: Request<Results>
 
     func testResultsRequest() {
-        let fixture = try! Fixture.load(fileName: "Fixtures/ResultsWithoutNull.json")
+        let fixture = try! Fixture.load(fileName: "Fixtures/Results.json")
         let parsed = Request<Results>.parser(json: fixture)
 
         XCTAssertNotNil(parsed)
@@ -324,7 +324,7 @@ class RequestParsersTests: XCTestCase {
     func testResultsRequestWithEmptyDictionary() {
         let parsed = Request<Results>.parser(json: [:])
 
-        XCTAssertNotNil(parsed)
+        XCTAssertNil(parsed)
     }
 
     // MARK: Request<Status>
