@@ -48,7 +48,7 @@ public struct Status {
     /// Application from which the status was posted.
     public let application: Application?
     /// The detected language for the status.
-    public let language: String
+    public let language: String?
     /// The reblogged Status
     public var reblog: Status? {
         return reblogWrapper.first?.flatMap { $0 }
@@ -76,8 +76,7 @@ extension Status: JSONDictionaryInitializable {
             let visibility = Visibility(rawValue: visibilityString),
             let attachmentsArray = dictionary["media_attachments"] as? [JSONDictionary],
             let mentionsArray = dictionary["mentions"] as? [JSONDictionary],
-            let tagsArray = dictionary["tags"] as? [JSONDictionary],
-            let language = dictionary["language"] as? String
+            let tagsArray = dictionary["tags"] as? [JSONDictionary]
             else {
                 return nil
         }
@@ -102,6 +101,6 @@ extension Status: JSONDictionaryInitializable {
         self.mediaAttachments = attachmentsArray.flatMap(Attachment.init)
         self.mentions = mentionsArray.flatMap(Mention.init)
         self.tags = tagsArray.flatMap(Tag.init)
-        self.language = language
+        self.language = dictionary["language"] as? String
     }
 }

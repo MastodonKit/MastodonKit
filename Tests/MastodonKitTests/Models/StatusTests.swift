@@ -35,7 +35,7 @@ class StatusTests: XCTestCase {
         XCTAssertEqual(status?.mentions.count, 0)
         XCTAssertEqual(status?.tags.count, 0)
         XCTAssertNotNil(status?.application)
-        XCTAssertEqual(status?.language, "fr")
+        XCTAssertNil(status?.language)
     }
 
     func testStatusWithoutNullFromJSON() {
