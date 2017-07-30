@@ -15,4 +15,6 @@ public enum AttachmentType: String {
     case video
     /// The attachment contains a gif image.
     case gifv
+    /// The attachment contains an unknown image file.
+    case unknown
 }

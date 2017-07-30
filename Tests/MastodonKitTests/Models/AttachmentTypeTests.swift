@@ -22,6 +22,10 @@ class AttachmentTypeTests: XCTestCase {
         XCTAssertEqual(AttachmentType(rawValue: "gifv"), AttachmentType.gifv)
     }
 
+    func testUnknown() {
+        XCTAssertEqual(AttachmentType(rawValue: "unknown"), AttachmentType.unknown)
+    }
+
     func testInvalidType() {
         XCTAssertNil(AttachmentType(rawValue: "foobar"))
     }
