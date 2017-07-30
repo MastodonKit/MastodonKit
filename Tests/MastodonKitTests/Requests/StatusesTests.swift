@@ -323,4 +323,34 @@ class StatusesTests: XCTestCase {
         // Parser
         XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
     }
+
+    func testMute() {
+        let request = Statuses.mute(id: 42)
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/statuses/42/mute")
+
+        // Method
+        XCTAssertEqual(request.method.name, "POST")
+        XCTAssertNil(request.method.httpBody)
+        XCTAssertNil(request.method.queryItems)
+
+        // Parser
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
+    }
+
+    func testUnmute() {
+        let request = Statuses.unmute(id: 42)
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/statuses/42/unmute")
+
+        // Method
+        XCTAssertEqual(request.method.name, "POST")
+        XCTAssertNil(request.method.httpBody)
+        XCTAssertNil(request.method.queryItems)
+
+        // Parser
+        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Status>.self)
+    }
 }
