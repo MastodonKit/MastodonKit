@@ -78,12 +78,16 @@ class NotificationsTests: XCTestCase {
         let request = Notifications.dismiss(id: 42)
 
         // Endpoint
-        XCTAssertEqual(request.path, "/api/v1/notifications/dismiss/42")
+        XCTAssertEqual(request.path, "/api/v1/notifications/dismiss")
 
         // Method
         XCTAssertEqual(request.method.name, "POST")
         XCTAssertNil(request.method.queryItems)
-        XCTAssertNil(request.method.httpBody)
+        XCTAssertNotNil(request.method.httpBody)
+
+        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
+        XCTAssertEqual(payload.components(separatedBy: "&").count, 1)
+        XCTAssertTrue(payload.contains("id=42"))
 
         // Parser
         XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Empty>.self)
