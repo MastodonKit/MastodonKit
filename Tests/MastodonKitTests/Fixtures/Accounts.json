@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "id": "1",
         "username": "ornithocoder",
         "acct": "ornithocoder",
         "display_name": "Ornithologist Coder",
@@ -17,7 +17,7 @@
         "statuses_count": 420
     },
     {
-        "id": 2,
+        "id": "2",
         "username": "ornithocoder",
         "acct": "ornithocoder",
         "display_name": "Ornithologist Coder",
