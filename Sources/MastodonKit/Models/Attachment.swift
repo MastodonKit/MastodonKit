@@ -26,7 +26,8 @@ public struct Attachment {
 extension Attachment: JSONDictionaryInitializable {
     init?(from dictionary: JSONDictionary) {
         guard
-            let id = dictionary["id"] as? Int,
+            let id = dictionary["id"] as? String,
+            let intID = Int(id),
             let typeString = dictionary["type"] as? String,
             let type = AttachmentType(rawValue: typeString),
             let url = dictionary["url"] as? String,
@@ -35,7 +36,7 @@ extension Attachment: JSONDictionaryInitializable {
                 return nil
         }
 
-        self.id = id
+        self.id = intID
         self.type = type
         self.url = url
         self.remoteURL = dictionary["remote_url"] as? String
