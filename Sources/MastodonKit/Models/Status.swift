@@ -60,7 +60,8 @@ public struct Status {
 extension Status: JSONDictionaryInitializable {
     init?(from dictionary: JSONDictionary) {
         guard
-            let id = dictionary["id"] as? Int,
+            let id = dictionary["id"] as? String,
+            let intID = Int(id),
             let uri = dictionary["uri"] as? String,
             let urlString = dictionary["url"] as? String,
             let url = URL(string: urlString),
@@ -81,7 +82,7 @@ extension Status: JSONDictionaryInitializable {
                 return nil
         }
 
-        self.id = id
+        self.id = intID
         self.uri = uri
         self.url = url
         self.account = account

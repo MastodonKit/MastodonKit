@@ -44,7 +44,8 @@ public struct Account {
 extension Account: JSONDictionaryInitializable {
     init?(from dictionary: JSONDictionary) {
         guard
-            let id = dictionary["id"] as? Int,
+            let id = dictionary["id"] as? String,
+            let intID = Int(id),
             let username = dictionary["username"] as? String,
             let acct = dictionary["acct"] as? String,
             let displayName = dictionary["display_name"] as? String,
@@ -64,7 +65,7 @@ extension Account: JSONDictionaryInitializable {
                 return nil
         }
 
-        self.id = id
+        self.id = intID
         self.username = username
         self.acct = acct
         self.displayName = displayName

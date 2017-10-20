@@ -24,7 +24,8 @@ public struct Notification {
 extension Notification: JSONDictionaryInitializable {
     init?(from dictionary: JSONDictionary) {
         guard
-            let id = dictionary["id"] as? Int,
+            let id = dictionary["id"] as? String,
+            let intID = Int(id),
             let typeString = dictionary["type"] as? String,
             let type = NotificationType(rawValue: typeString),
             let createdAtString = dictionary["created_at"] as? String,
@@ -35,7 +36,7 @@ extension Notification: JSONDictionaryInitializable {
                 return nil
         }
 
-        self.id = id
+        self.id = intID
         self.type = type
         self.createdAt = createdAt
         self.account = account
