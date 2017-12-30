@@ -17,6 +17,6 @@ public struct Favourites {
         let parameters = range.parameters(limit: between(1, and: 40, fallback: 20))
         let method = HTTPMethod.get(.parameters(parameters))
 
-        return Request<[Status]>(path: "/api/v1/favourites", method: method, parse: Request<[Status]>.parser)
+        return Request<[Status]>(path: "/api/v1/favourites", method: method)
     }
 }

@@ -16,30 +16,6 @@ class FunctionsTests: XCTestCase {
         XCTAssertEqual(toString(scope: .follow), "follow")
     }
 
-    func testJSONObjectAsString() {
-        let validString: JSONObject = "foo"
-        let invalidString: JSONObject = 42
-
-        XCTAssertNotNil(asString(json: validString))
-        XCTAssertNil(asString(json: invalidString))
-    }
-
-    func testJSONObjectAsJSONDictionary() {
-        let validDictionary: JSONDictionary = ["id": 42, "name": "foo"]
-        let invalidDictionary = "bar"
-
-        XCTAssertNotNil(asJSONDictionary(json: validDictionary))
-        XCTAssertNil(asJSONDictionary(json: invalidDictionary))
-    }
-
-    func testJSONObjectAsJSONDictionaries() {
-        let validDictionaries: [JSONDictionary] = [["id": 42, "name": "foo"]]
-        let invalidDictionary = "bar"
-
-        XCTAssertNotNil(asJSONDictionaries(json: validDictionaries))
-        XCTAssertNil(asJSONDictionaries(json: invalidDictionary))
-    }
-
     func testOptionalToNilOrStringFromOptionalString() {
         let invalidString: String? = nil
         let validString: String? = "foo"

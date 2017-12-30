@@ -20,13 +20,10 @@ class DomainBlocksTests: XCTestCase {
         XCTAssertEqual(request.method.name, "GET")
         XCTAssertNil(request.method.httpBody)
         XCTAssertNil(request.method.queryItems)
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[String]>.self)
     }
 
     func testAllWithRange() {
-        let request = DomainBlocks.all(range: .max(id: 42, limit: nil))
+        let request = DomainBlocks.all(range: .max(id: "42", limit: nil))
         let expectedMaxID = URLQueryItem(name: "max_id", value: "42")
 
         // Endpoint
@@ -37,9 +34,6 @@ class DomainBlocksTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
         XCTAssertEqual(request.method.queryItems?.count, 1)
         XCTAssertTrue(request.method.queryItems!.contains(expectedMaxID))
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[String]>.self)
     }
 
     func testBlock() {
@@ -56,9 +50,6 @@ class DomainBlocksTests: XCTestCase {
         let payload = String(data: request.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 1)
         XCTAssertTrue(payload.contains("domain=foobar"))
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Empty>.self)
     }
 
     func testUnlock() {
@@ -75,8 +66,5 @@ class DomainBlocksTests: XCTestCase {
         let payload = String(data: request.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 1)
         XCTAssertTrue(payload.contains("domain=foobar"))
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Empty>.self)
     }
 }

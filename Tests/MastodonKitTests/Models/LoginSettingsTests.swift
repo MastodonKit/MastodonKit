@@ -11,13 +11,12 @@ import XCTest
 
 class LoginSettingsTests: XCTestCase {
     func testLoginSettingsFromJSON() {
-        let fixture = try? Fixture.load(fileName: "Fixtures/LoginSettings.json")
-        let dictionary = fixture as! JSONDictionary
-        let loginSettings = LoginSettings(from: dictionary)!
+        let fixture = try! Fixture.load(fileName: "Fixtures/LoginSettings.json")
+        let loginSettings = try? LoginSettings.decode(data: fixture)
 
-        XCTAssertEqual(loginSettings.accessToken, "the secret code is yellow")
-        XCTAssertEqual(loginSettings.accessTokenType, "bär")
-        XCTAssertEqual(loginSettings.scopes, [.read, .write])
-        XCTAssertEqual(loginSettings.createdAt, 1492249031)
+        XCTAssertEqual(loginSettings?.accessToken, "the secret code is yellow")
+        XCTAssertEqual(loginSettings?.accessTokenType, "bär")
+        XCTAssertEqual((loginSettings?.scopes)!, [.read, .write])
+        XCTAssertEqual(loginSettings?.createdAt, 1492249031)
     }
 }

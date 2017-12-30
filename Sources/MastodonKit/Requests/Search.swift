@@ -22,6 +22,6 @@ public struct Search {
         ]
 
         let method = HTTPMethod.get(.parameters(parameters))
-        return Request<Results>(path: "/api/v1/search", method: method, parse: Request<Results>.parser)
+        return Request<Results>(path: "/api/v1/search", method: method)
     }
 }

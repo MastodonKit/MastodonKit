@@ -8,9 +8,9 @@
 
 import Foundation
 
-public struct Relationship {
+public class Relationship: Codable {
     /// Target account id.
-    public let id: Int
+    public let id: String
     /// Whether the user is currently following the account.
     public let following: Bool
     /// Whether the user is currently being followed by the account.
@@ -23,28 +23,14 @@ public struct Relationship {
     public let requested: Bool
     /// Whether the user is currently blocking the user's domain.
     public let domainBlocking: Bool
-}
 
-extension Relationship: JSONDictionaryInitializable {
-    init?(from dictionary: JSONDictionary) {
-        guard
-            let id = dictionary["id"] as? Int,
-            let following = dictionary["following"] as? Bool,
-            let followedBy = dictionary["followed_by"] as? Bool,
-            let blocking = dictionary["blocking"] as? Bool,
-            let muting = dictionary["muting"] as? Bool,
-            let requested = dictionary["requested"] as? Bool,
-            let domainBlocking = dictionary["domain_blocking"] as? Bool
-            else {
-                return nil
-        }
-
-        self.id = id
-        self.following = following
-        self.followedBy = followedBy
-        self.blocking = blocking
-        self.muting = muting
-        self.requested = requested
-        self.domainBlocking = domainBlocking
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case following
+        case followedBy = "followed_by"
+        case blocking
+        case muting
+        case requested
+        case domainBlocking = "domain_blocking"
     }
 }

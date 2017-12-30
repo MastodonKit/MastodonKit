@@ -17,7 +17,7 @@ public struct Timelines {
         let parameters = range.parameters(limit: between(1, and: 40, fallback: 20))
         let method = HTTPMethod.get(.parameters(parameters))
 
-        return Request<[Status]>(path: "/api/v1/timelines/home", method: method, parse: Request<[Status]>.parser)
+        return Request<[Status]>(path: "/api/v1/timelines/home", method: method)
     }
 
     /// Retrieves the public timeline.
@@ -31,7 +31,7 @@ public struct Timelines {
         let localParameters = [Parameter(name: "local", value: local.flatMap(trueOrNil))]
         let method = HTTPMethod.get(.parameters(localParameters + rangeParameters))
 
-        return Request<[Status]>(path: "/api/v1/timelines/public", method: method, parse: Request<[Status]>.parser)
+        return Request<[Status]>(path: "/api/v1/timelines/public", method: method)
     }
 
     /// Retrieves a tag timeline.
@@ -46,6 +46,6 @@ public struct Timelines {
         let localParameters = [Parameter(name: "local", value: local.flatMap(trueOrNil))]
         let method = HTTPMethod.get(.parameters(localParameters + rangeParameters))
 
-        return Request<[Status]>(path: "/api/v1/timelines/tag/\(hashtag)", method: method, parse: Request<[Status]>.parser)
+        return Request<[Status]>(path: "/api/v1/timelines/tag/\(hashtag)", method: method)
     }
 }

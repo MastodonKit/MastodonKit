@@ -26,9 +26,6 @@ class ClientsTests: XCTestCase {
         XCTAssertTrue(payload.contains("client_name=MastodonKitTestApplication"))
         XCTAssertTrue(payload.contains("redirect_uris=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob"))
         XCTAssertTrue(payload.contains("scopes="))
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<ClientApplication>.self)
     }
 
     func testRegisterApplicationWithRedirectURI() {
@@ -47,9 +44,6 @@ class ClientsTests: XCTestCase {
         XCTAssertTrue(payload.contains("client_name=MastodonKitTestApplication"))
         XCTAssertTrue(payload.contains("redirect_uris=my-awesome-app%3A//"))
         XCTAssertTrue(payload.contains("scopes=read%20follow"))
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<ClientApplication>.self)
     }
 
     func testRegisterApplicationWithStatusAndWebsite() {
@@ -69,8 +63,5 @@ class ClientsTests: XCTestCase {
         XCTAssertTrue(payload.contains("redirect_uris=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob"))
         XCTAssertTrue(payload.contains("scopes=read%20write%20follow"))
         XCTAssertTrue(payload.contains("website=https%3A//github.com/ornithocoder/MastodonKit"))
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<ClientApplication>.self)
     }
 }

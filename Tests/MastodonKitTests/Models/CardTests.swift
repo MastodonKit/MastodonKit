@@ -11,9 +11,8 @@ import XCTest
 
 class CardTests: XCTestCase {
     func testCardFromJSON() {
-        let fixture = try? Fixture.load(fileName: "Fixtures/Card.json")
-        let dictionary = fixture as! JSONDictionary
-        let card = Card(from: dictionary)
+        let fixture = try! Fixture.load(fileName: "Fixtures/Card.json")
+        let card = try? Card.decode(data: fixture)
 
         XCTAssertEqual(card?.url, URL(string: "http://lorempixel.com/200/200/cats/3/"))
         XCTAssertEqual(card?.title, "Awesome card title")

@@ -8,10 +8,4 @@
 
 import Foundation
 
-public struct Empty { }
-
-extension Empty: JSONDictionaryInitializable {
-    init?(from dictionary: JSONDictionary) {
-        guard dictionary.isEmpty else { return nil }
-    }
-}
+public class Empty: Codable { }

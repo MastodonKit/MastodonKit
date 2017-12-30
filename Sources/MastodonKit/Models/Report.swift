@@ -8,23 +8,14 @@
 
 import Foundation
 
-public struct Report {
+public class Report: Codable {
     /// The ID of the report.
-    public let id: Int
+    public let id: String
     /// The action taken in response to the report.
     public let actionTaken: String
-}
 
-extension Report: JSONDictionaryInitializable {
-    init?(from dictionary: JSONDictionary) {
-        guard
-            let id = dictionary["id"] as? Int,
-            let actionTaken = dictionary["action_taken"] as? String
-            else {
-                return nil
-        }
-
-        self.id = id
-        self.actionTaken = actionTaken
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case actionTaken = "action_taken"
     }
 }

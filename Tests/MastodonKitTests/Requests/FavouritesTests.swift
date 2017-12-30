@@ -20,13 +20,10 @@ class FavouritesTests: XCTestCase {
         XCTAssertEqual(request.method.name, "GET")
         XCTAssertNil(request.method.queryItems)
         XCTAssertNil(request.method.httpBody)
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 
     func testAllWithRange() {
-        let request = Favourites.all(range: .since(id: 42, limit: nil))
+        let request = Favourites.all(range: .since(id: "42", limit: nil))
         let expectedSinceID = URLQueryItem(name: "since_id", value: "42")
 
         // Endpoint
@@ -37,8 +34,5 @@ class FavouritesTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
         XCTAssertEqual(request.method.queryItems?.count, 1)
         XCTAssertTrue(request.method.queryItems!.contains(expectedSinceID))
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Status]>.self)
     }
 }

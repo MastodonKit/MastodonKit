@@ -11,11 +11,10 @@ import XCTest
 
 class AccountTests: XCTestCase {
     func testAccountFromJSON() {
-        let fixture = try? Fixture.load(fileName: "Fixtures/Account.json")
-        let dictionary = fixture as! JSONDictionary
-        let account = Account(from: dictionary)
+        let fixture = try! Fixture.load(fileName: "Fixtures/Account.json")
+        let account = try? Account.decode(data: fixture)
 
-        XCTAssertEqual(account?.id, 1)
+        XCTAssertEqual(account?.id, "1")
         XCTAssertEqual(account?.username, "ornithocoder")
         XCTAssertEqual(account?.acct, "ornithocoder")
         XCTAssertEqual(account?.displayName, "Ornithologist Coder")

@@ -17,7 +17,7 @@ public struct DomainBlocks {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
         let method = HTTPMethod.get(.parameters(parameters))
 
-        return Request<[String]>(path: "/api/v1/domain_blocks", method: method, parse: Request<[String]>.parser)
+        return Request<[String]>(path: "/api/v1/domain_blocks", method: method)
     }
 
     /// Blocks a domain.
@@ -28,7 +28,7 @@ public struct DomainBlocks {
         let parameters = [Parameter(name: "domain", value: domain)]
         let method = HTTPMethod.post(.parameters(parameters))
 
-        return Request<Empty>(path: "/api/v1/domain_blocks", method: method, parse: Request<Empty>.parser)
+        return Request<Empty>(path: "/api/v1/domain_blocks", method: method)
     }
 
     /// Unblocks a domain.
@@ -39,6 +39,6 @@ public struct DomainBlocks {
         let parameters = [Parameter(name: "domain", value: domain)]
         let method = HTTPMethod.delete(.parameters(parameters))
 
-        return Request<Empty>(path: "/api/v1/domain_blocks", method: method, parse: Request<Empty>.parser)
+        return Request<Empty>(path: "/api/v1/domain_blocks", method: method)
     }
 }

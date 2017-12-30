@@ -20,8 +20,5 @@ class InstancesTests: XCTestCase {
         XCTAssertEqual(request.method.name, "GET")
         XCTAssertNil(request.method.httpBody)
         XCTAssertNil(request.method.queryItems)
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Instance>.self)
     }
 }

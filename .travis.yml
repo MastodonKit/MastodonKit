@@ -1,10 +1,10 @@
 os:
   - osx
 language: generic
-osx_image:  xcode8.3
+osx_image:  xcode9.2
 script:
   - swift package generate-xcodeproj
-  - xcodebuild -scheme MastodonKit -enableCodeCoverage YES build test
+  - xcodebuild -scheme MastodonKit-Package -enableCodeCoverage YES build test
 after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
 notifications:

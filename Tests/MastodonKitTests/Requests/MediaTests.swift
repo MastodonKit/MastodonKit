@@ -20,8 +20,5 @@ class MediaTests: XCTestCase {
         XCTAssertEqual(request.method.name, "POST")
         XCTAssertNil(request.method.queryItems)
         XCTAssertNotNil(request.method.httpBody)
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Attachment>.self)
     }
 }

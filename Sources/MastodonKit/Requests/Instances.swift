@@ -13,6 +13,6 @@ public struct Instances {
     ///
     /// - Returns: Request for `Instance`.
     public static func current() -> Request<Instance> {
-        return Request<Instance>(path: "/api/v1/instance", parse: Request<Instance>.parser)
+        return Request<Instance>(path: "/api/v1/instance")
     }
 }

@@ -29,6 +29,6 @@ public struct Clients {
         ]
 
         let method = HTTPMethod.post(.parameters(parameters))
-        return Request<ClientApplication>(path: "/api/v1/apps", method: method, parse: Request<ClientApplication>.parser)
+        return Request<ClientApplication>(path: "/api/v1/apps", method: method)
     }
 }

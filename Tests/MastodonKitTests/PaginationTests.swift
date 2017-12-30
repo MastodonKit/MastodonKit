@@ -33,7 +33,7 @@ class PaginationTests: XCTestCase {
         XCTAssertNotNil(pagination.next)
         XCTAssertNil(pagination.previous)
 
-        XCTAssertEqual(pagination.next, .max(id: 420, limit: 42))
+        XCTAssertEqual(pagination.next, .max(id: "420", limit: 42))
     }
 
     func testPaginationWithValidPrevious() {
@@ -47,7 +47,7 @@ class PaginationTests: XCTestCase {
         XCTAssertNil(pagination.next)
         XCTAssertNotNil(pagination.previous)
 
-        XCTAssertEqual(pagination.previous, .since(id: 420, limit: 42))
+        XCTAssertEqual(pagination.previous, .since(id: "420", limit: 42))
     }
 
     func testPaginationWithValidNextAndPrevious() {
@@ -61,8 +61,8 @@ class PaginationTests: XCTestCase {
         XCTAssertNotNil(pagination.next)
         XCTAssertNotNil(pagination.previous)
 
-        XCTAssertEqual(pagination.next, .max(id: 321, limit: 52))
-        XCTAssertEqual(pagination.previous, .since(id: 123, limit: 42))
+        XCTAssertEqual(pagination.next, .max(id: "321", limit: 52))
+        XCTAssertEqual(pagination.previous, .since(id: "123", limit: 42))
     }
 
     func testEqualityWithMatchingNilRanges() {

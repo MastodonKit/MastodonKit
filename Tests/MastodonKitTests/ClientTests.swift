@@ -84,45 +84,40 @@ class ClientRunTests: XCTestCase {
         XCTAssertEqual(result?.error?.localizedDescription, mockError.localizedDescription)
     }
 
-    func testDataTaskCompletionBlockWithMalformedJSON() {
-        let mockData = Data()
-
-        mockSession.lastCompletionHandler?(mockData, nil, nil)
+    func testDataTaskCompletionBlockWithMissingData() {
+        mockSession.lastCompletionHandler?(nil, nil, nil)
 
         XCTAssertEqual(result?.error?.localizedDescription, ClientError.malformedJSON.localizedDescription)
     }
 
     func testDataTaskCompletionBlockWithMastodonError() {
         let fixture = try! Fixture.load(fileName: "Fixtures/RequestError.json")
-        let data = try! JSONSerialization.data(withJSONObject: fixture, options: .prettyPrinted)
         let response = HTTPURLResponse(
             url: URL(string: "https://my.mastodon.instance/api/v1/timelines/home")!,
             statusCode: 401,
             httpVersion: nil,
             headerFields: nil)
 
-        mockSession.lastCompletionHandler?(data, response, nil)
+        mockSession.lastCompletionHandler?(fixture, response, nil)
 
         XCTAssertEqual(result?.error?.localizedDescription, ClientError.mastodonError("yes, it's an error.").localizedDescription)
     }
 
     func testDataTaskCompletionBlockWithInvalidModel() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Account.json")
-        let data = try! JSONSerialization.data(withJSONObject: fixture, options: .prettyPrinted)
         let response = HTTPURLResponse(
             url: URL(string: "https://my.mastodon.instance/api/v1/timelines/home")!,
             statusCode: 200,
             httpVersion: nil,
             headerFields: nil)
 
-        mockSession.lastCompletionHandler?(data, response, nil)
+        mockSession.lastCompletionHandler?(fixture, response, nil)
 
         XCTAssertEqual(result?.error?.localizedDescription, ClientError.invalidModel.localizedDescription)
     }
 
     func testDataTaskCompletionBlockWithSuccessWithoutHeaderLink() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Timeline.json")
-        let data = try! JSONSerialization.data(withJSONObject: fixture, options: .prettyPrinted)
         let response = HTTPURLResponse(
             url: URL(string: "https://my.mastodon.instance/api/v1/timelines/home")!,
             statusCode: 200,
@@ -130,7 +125,7 @@ class ClientRunTests: XCTestCase {
             headerFields: nil
         )
 
-        mockSession.lastCompletionHandler?(data, response, nil)
+        mockSession.lastCompletionHandler?(fixture, response, nil)
 
         XCTAssertEqual(result?.value?.count, 2)
         XCTAssertNil(result?.pagination)
@@ -138,7 +133,6 @@ class ClientRunTests: XCTestCase {
 
     func testDataTaskCompletionBlockWithSuccessWithHeaderLink() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Timeline.json")
-        let data = try! JSONSerialization.data(withJSONObject: fixture, options: .prettyPrinted)
         let links = [
             "<https://mastodon.technology/api/v1/timelines/home?limit=42&since_id=123>; rel=\"prev\"",
             "<https://mastodon.technology/api/v1/timelines/home?limit=52&max_id=321>; rel=\"next\""
@@ -151,7 +145,7 @@ class ClientRunTests: XCTestCase {
             headerFields: ["Link": links]
         )
 
-        mockSession.lastCompletionHandler?(data, response, nil)
+        mockSession.lastCompletionHandler?(fixture, response, nil)
 
         XCTAssertEqual(result?.value?.count, 2)
         XCTAssertNotNil(result?.pagination)
@@ -193,7 +187,7 @@ class ClientRunWithPostAndHTTPBodyTests: XCTestCase {
         super.setUp()
 
         let client = Client(baseURL: "https://my.mastodon.instance/", accessToken: "foo", session: mockSession)
-        let request = Statuses.create(status: "Hi there!", replyToID: 42, sensitive: false, visibility: .public)
+        let request = Statuses.create(status: "Hi there!", replyToID: "42", sensitive: false, visibility: .public)
 
         client.run(request) { _ in }
     }

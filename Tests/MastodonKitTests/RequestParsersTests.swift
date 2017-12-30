@@ -9,26 +9,20 @@
 import XCTest
 @testable import MastodonKit
 
-typealias ParserFunctionType<Model> = (Any) -> Model?
+typealias ParserFunctionType<Model> = (Data) -> Model?
 
 class RequestParsersTests: XCTestCase {
     // MARK: Request<Account>
 
     func testAccountRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Account.json")
-        let parsed = Request<Account>.parser(json: fixture)
+        let parsed = try? Account.decode(data: fixture)
 
         XCTAssertNotNil(parsed)
     }
 
-    func testAccountRequestWithInvalidArray() {
-        let parsed = Request<Account>.parser(json: [])
-
-        XCTAssertNil(parsed)
-    }
-
-    func testAccountRequestWithInvalidDictionary() {
-        let parsed = Request<Account>.parser(json: [:])
+    func testAccountRequestWithInvalidData() {
+        let parsed = try? Account.decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -37,19 +31,13 @@ class RequestParsersTests: XCTestCase {
 
     func testAccountsRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Accounts.json")
-        let parsed = Request<[Account]>.parser(json: fixture)
+        let parsed = try? [Account].decode(data: fixture)
 
         XCTAssertEqual(parsed?.count, 2)
     }
 
-    func testAccountsRequestWithEmptyArray() {
-        let parsed = Request<[Account]>.parser(json: [])
-
-        XCTAssertEqual(parsed?.count, 0)
-    }
-
-    func testAccountsRequestWithInvalidDictionary() {
-        let parsed = Request<[Account]>.parser(json: [:])
+    func testAccountsRequestWithInvalidData() {
+        let parsed = try? [Account].decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -58,19 +46,13 @@ class RequestParsersTests: XCTestCase {
 
     func testAttachmentRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Attachment.json")
-        let parsed = Request<Attachment>.parser(json: fixture)
+        let parsed = try? Attachment.decode(data: fixture)
 
         XCTAssertNotNil(parsed)
     }
 
-    func testAttachmentRequestWithInvalidArray() {
-        let parsed = Request<Attachment>.parser(json: [])
-
-        XCTAssertNil(parsed)
-    }
-
-    func testAttachmentRequestWithInvalidDictionary() {
-        let parsed = Request<Attachment>.parser(json: [:])
+    func testAttachmentRequestWithInvalidData() {
+        let parsed = try? Attachment.decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -79,19 +61,13 @@ class RequestParsersTests: XCTestCase {
 
     func testCardRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Card.json")
-        let parsed = Request<Card>.parser(json: fixture)
+        let parsed = try? Card.decode(data: fixture)
 
         XCTAssertNotNil(parsed)
     }
 
-    func testCardRequestWithInvalidArray() {
-        let parsed = Request<Card>.parser(json: [])
-
-        XCTAssertNil(parsed)
-    }
-
-    func testCardRequestWithInvalidDictionary() {
-        let parsed = Request<Card>.parser(json: [:])
+    func testCardRequestWithInvalidData() {
+        let parsed = try? Card.decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -100,19 +76,13 @@ class RequestParsersTests: XCTestCase {
 
     func testClientApplicationRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/ClientApplication.json")
-        let parsed = Request<ClientApplication>.parser(json: fixture)
+        let parsed = try? ClientApplication.decode(data: fixture)
 
         XCTAssertNotNil(parsed)
     }
 
-    func testClientApplicationRequestWithInvalidArray() {
-        let parsed = Request<ClientApplication>.parser(json: [])
-
-        XCTAssertNil(parsed)
-    }
-
-    func testClientApplicationRequestWithInvalidDictionary() {
-        let parsed = Request<ClientApplication>.parser(json: [:])
+    func testClientApplicationRequestWithInvalidData() {
+        let parsed = try? ClientApplication.decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -121,19 +91,13 @@ class RequestParsersTests: XCTestCase {
 
     func testContextRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Context.json")
-        let parsed = Request<Context>.parser(json: fixture)
+        let parsed = try? Context.decode(data: fixture)
 
         XCTAssertNotNil(parsed)
     }
 
-    func testContextRequestWithInvalidArray() {
-        let parsed = Request<Context>.parser(json: [])
-
-        XCTAssertNil(parsed)
-    }
-
-    func testContextRequestWithInvalidDictionary() {
-        let parsed = Request<Context>.parser(json: [:])
+    func testContextRequestWithInvalidData() {
+        let parsed = try? Context.decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -142,19 +106,13 @@ class RequestParsersTests: XCTestCase {
 
     func testInstanceRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Instance.json")
-        let parsed = Request<Instance>.parser(json: fixture)
+        let parsed = try? Instance.decode(data: fixture)
 
         XCTAssertNotNil(parsed)
     }
 
-    func testInstanceRequestWithInvalidArray() {
-        let parsed = Request<Instance>.parser(json: [])
-
-        XCTAssertNil(parsed)
-    }
-
-    func testInstanceRequestWithInvalidDictionary() {
-        let parsed = Request<Instance>.parser(json: [:])
+    func testInstanceRequestWithInvalidData() {
+        let parsed = try? Instance.decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -163,19 +121,13 @@ class RequestParsersTests: XCTestCase {
 
     func testLoginSettingsRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/LoginSettings.json")
-        let parsed = Request<LoginSettings>.parser(json: fixture)
+        let parsed = try? LoginSettings.decode(data: fixture)
 
         XCTAssertNotNil(parsed)
     }
 
-    func testLoginSettingsRequestWithInvalidArray() {
-        let parsed = Request<LoginSettings>.parser(json: [])
-
-        XCTAssertNil(parsed)
-    }
-
-    func testLoginSettingsRequestWithInvalidDictionary() {
-        let parsed = Request<LoginSettings>.parser(json: [:])
+    func testLoginSettingsRequestWithInvalidData() {
+        let parsed = try? LoginSettings.decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -184,19 +136,13 @@ class RequestParsersTests: XCTestCase {
 
     func testNotificationRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Notification.json")
-        let parsed = Request<MastodonKit.Notification>.parser(json: fixture)
+        let parsed = try? MastodonKit.Notification.decode(data: fixture)
 
         XCTAssertNotNil(parsed)
     }
 
-    func testNotificationRequestWithInvalidArray() {
-        let parsed = Request<MastodonKit.Notification>.parser(json: [])
-
-        XCTAssertNil(parsed)
-    }
-
-    func testNotificationRequestWithInvalidDictionary() {
-        let parsed = Request<MastodonKit.Notification>.parser(json: [:])
+    func testNotificationRequestWithInvalidData() {
+        let parsed = try? MastodonKit.Notification.decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -205,19 +151,13 @@ class RequestParsersTests: XCTestCase {
 
     func testNotificationsRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Notifications.json")
-        let parsed = Request<[MastodonKit.Notification]>.parser(json: fixture)
+        let parsed = try? [MastodonKit.Notification].decode(data: fixture)
 
         XCTAssertEqual(parsed?.count, 2)
     }
 
-    func testNotificationsRequestWithEmptyArray() {
-        let parsed = Request<[MastodonKit.Notification]>.parser(json: [])
-
-        XCTAssertEqual(parsed?.count, 0)
-    }
-
-    func testNotificationsRequestWithInvalidDictionary() {
-        let parsed = Request<[MastodonKit.Notification]>.parser(json: [:])
+    func testNotificationsRequestWithInvalidData() {
+        let parsed = try? [MastodonKit.Notification].decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -226,19 +166,13 @@ class RequestParsersTests: XCTestCase {
 
     func testRelationshipRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Relationship.json")
-        let parsed = Request<Relationship>.parser(json: fixture)
+        let parsed = try? Relationship.decode(data: fixture)
 
         XCTAssertNotNil(parsed)
     }
 
-    func testRelationshipRequestWithInvalidArray() {
-        let parsed = Request<Relationship>.parser(json: [])
-
-        XCTAssertNil(parsed)
-    }
-
-    func testRelationshipRequestWithInvalidDictionary() {
-        let parsed = Request<Relationship>.parser(json: [:])
+    func testRelationshipRequestWithInvalidData() {
+        let parsed = try? Relationship.decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -247,19 +181,13 @@ class RequestParsersTests: XCTestCase {
 
     func testRelationshipsRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Relationships.json")
-        let parsed = Request<[Relationship]>.parser(json: fixture)
+        let parsed = try? [Relationship].decode(data: fixture)
 
         XCTAssertEqual(parsed?.count, 2)
     }
 
-    func testRelationshipsRequestWithEmptyArray() {
-        let parsed = Request<[Relationship]>.parser(json: [])
-
-        XCTAssertEqual(parsed?.count, 0)
-    }
-
-    func testRelationshipsRequestWithInvalidDictionary() {
-        let parsed = Request<[Relationship]>.parser(json: [:])
+    func testRelationshipsRequestWithInvalidData() {
+        let parsed = try? [Relationship].decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -268,19 +196,13 @@ class RequestParsersTests: XCTestCase {
 
     func testReportRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Report.json")
-        let parsed = Request<Report>.parser(json: fixture)
+        let parsed = try? Report.decode(data: fixture)
 
         XCTAssertNotNil(parsed)
     }
 
-    func testReportRequestWithInvalidArray() {
-        let parsed = Request<Report>.parser(json: [])
-
-        XCTAssertNil(parsed)
-    }
-
-    func testReportRequestWithInvalidDictionary() {
-        let parsed = Request<Report>.parser(json: [:])
+    func testReportRequestWithInvalidData() {
+        let parsed = try? Report.decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -289,19 +211,13 @@ class RequestParsersTests: XCTestCase {
 
     func testReportsRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Reports.json")
-        let parsed = Request<[Report]>.parser(json: fixture)
+        let parsed = try? [Report].decode(data: fixture)
 
         XCTAssertEqual(parsed?.count, 2)
     }
 
-    func testReportsRequestWithEmptyArray() {
-        let parsed = Request<[Report]>.parser(json: [])
-
-        XCTAssertEqual(parsed?.count, 0)
-    }
-
-    func testReportsRequestWithInvalidDictionary() {
-        let parsed = Request<[Report]>.parser(json: [:])
+    func testReportsRequestWithInvalidData() {
+        let parsed = try? [Report].decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -310,19 +226,13 @@ class RequestParsersTests: XCTestCase {
 
     func testResultsRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Results.json")
-        let parsed = Request<Results>.parser(json: fixture)
+        let parsed = try? Results.decode(data: fixture)
 
         XCTAssertNotNil(parsed)
     }
 
-    func testResultsRequestWithInvalidArray() {
-        let parsed = Request<Results>.parser(json: [])
-
-        XCTAssertNil(parsed)
-    }
-
-    func testResultsRequestWithEmptyDictionary() {
-        let parsed = Request<Results>.parser(json: [:])
+    func testResultsRequestWithInvalidData() {
+        let parsed = try? Results.decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -331,19 +241,13 @@ class RequestParsersTests: XCTestCase {
 
     func testStatusRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/StatusWithoutNull.json")
-        let parsed = Request<Status>.parser(json: fixture)
+        let parsed = try? Status.decode(data: fixture)
 
         XCTAssertNotNil(parsed)
     }
 
-    func testStatusRequestWithInvalidArray() {
-        let parsed = Request<Status>.parser(json: [])
-
-        XCTAssertNil(parsed)
-    }
-
-    func testStatusRequestWithInvalidDictionary() {
-        let parsed = Request<Status>.parser(json: [:])
+    func testStatusRequestWithInvalidData() {
+        let parsed = try? Status.decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -352,19 +256,13 @@ class RequestParsersTests: XCTestCase {
 
     func testTimelineRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Timeline.json")
-        let parsed = Request<[Status]>.parser(json: fixture)
+        let parsed = try? [Status].decode(data: fixture)
 
         XCTAssertEqual(parsed?.count, 2)
     }
 
-    func testTimelineRequestWithEmptyArray() {
-        let parsed = Request<[Status]>.parser(json: [])
-
-        XCTAssertEqual(parsed?.count, 0)
-    }
-
-    func testTimelineRequestWithInvalidDictionary() {
-        let parsed = Request<[Status]>.parser(json: [:])
+    func testTimelineRequestWithInvalidData() {
+        let parsed = try? [Status].decode(data: Data())
 
         XCTAssertNil(parsed)
     }
@@ -373,7 +271,7 @@ class RequestParsersTests: XCTestCase {
 
     func testDomainBlocksRequest() {
         let fixture = try! Fixture.load(fileName: "Fixtures/DomainBlocks.json")
-        let parsed = Request<[String]>.parser(json: fixture)
+        let parsed = try? [String].decode(data: fixture)
 
         XCTAssertEqual(parsed?.count, 3)
 
@@ -382,52 +280,45 @@ class RequestParsersTests: XCTestCase {
         XCTAssertTrue(parsed!.contains("bar"))
     }
 
-    func testDomainBlocksRequestWithEmptyArray() {
-        let parsed = Request<[String]>.parser(json: [])
-
-        XCTAssertEqual(parsed?.count, 0)
-    }
-
-    func testDomainBlocksRequestWithInvalidDictionary() {
-        let parsed = Request<[String]>.parser(json: [:])
+    func testDomainBlocksRequestWithInvalidData() {
+        let parsed = try? [String].decode(data: Data())
 
         XCTAssertNil(parsed)
     }
 
     // MARK: Request<Empty>
 
-    func testEmptyRequestWithEmptyDictionary() {
-        let parsed = Request<Empty>.parser(json: [:])
+    func testEmptyRequestEmpty() {
+        let fixture = "{}".data(using: .utf8)!
+        let parsed = try? Empty.decode(data: fixture)
 
         XCTAssertNotNil(parsed)
     }
 
+    func testEmptyRequestWithEmptyDictionary() {
+        let fixture = "[:]".data(using: .utf8)!
+        let parsed = try? Empty.decode(data: fixture)
+
+        XCTAssertNil(parsed)
+    }
+
     func testEmptyRequestWithNonEmptyDictionary() {
-        let parsed = Request<Empty>.parser(json: ["foo": "bar"])
-
-        XCTAssertNil(parsed)
-    }
-
-    func testEmptyRequestWithNonEmptyArray() {
-        let parsed = Request<Empty>.parser(json: ["foo"])
-
-        XCTAssertNil(parsed)
-    }
-
-    func testEmptyRequestWithEmptyArray() {
-        let parsed = Request<Empty>.parser(json: [])
+        let fixture = "[\"foo\": \"bar\"]".data(using: .utf8)!
+        let parsed = try? Empty.decode(data: fixture)
 
         XCTAssertNil(parsed)
     }
 
     func testEmptyRequestWithEmptyString() {
-        let parsed = Request<Empty>.parser(json: "")
+        let fixture = "".data(using: .utf8)!
+        let parsed = try? Empty.decode(data: fixture)
 
         XCTAssertNil(parsed)
     }
 
     func testEmptyRequestWithString() {
-        let parsed = Request<Empty>.parser(json: "foo")
+        let fixture = "foo".data(using: .utf8)!
+        let parsed = try? Empty.decode(data: fixture)
 
         XCTAssertNil(parsed)
     }

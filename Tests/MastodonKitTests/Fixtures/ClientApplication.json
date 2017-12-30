@@ -1,5 +1,5 @@
 {
-    "id": 42,
+    "id": "42",
     "redirect_uri": "urn:ietf:wg:oauth:2.0:oob",
     "client_id": "very_long_client_id",
     "client_secret": "very_long_client_secret"

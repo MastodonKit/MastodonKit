@@ -20,13 +20,10 @@ class BlocksTests: XCTestCase {
         XCTAssertEqual(request.method.name, "GET")
         XCTAssertNil(request.method.httpBody)
         XCTAssertNil(request.method.queryItems)
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testAllWithRange() {
-        let request = Blocks.all(range: .max(id: 42, limit: nil))
+        let request = Blocks.all(range: .max(id: "42", limit: nil))
         let expectedMaxID = URLQueryItem(name: "max_id", value: "42")
 
         // Endpoint
@@ -37,8 +34,5 @@ class BlocksTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
         XCTAssertEqual(request.method.queryItems?.count, 1)
         XCTAssertTrue(request.method.queryItems!.contains(expectedMaxID))
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 }

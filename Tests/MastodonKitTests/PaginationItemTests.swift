@@ -16,7 +16,7 @@ class PaginationItemTests: XCTestCase {
         XCTAssertNotNil(link)
 
         XCTAssertEqual(link?.type, .next)
-        XCTAssertEqual(link?.id, 420)
+        XCTAssertEqual(link?.id, "420")
         XCTAssertEqual(link?.limit, 42)
     }
 
@@ -26,7 +26,7 @@ class PaginationItemTests: XCTestCase {
         XCTAssertNotNil(link)
 
         XCTAssertEqual(link?.type, .next)
-        XCTAssertEqual(link?.id, 420)
+        XCTAssertEqual(link?.id, "420")
         XCTAssertNil(link?.limit)
     }
 
@@ -36,7 +36,7 @@ class PaginationItemTests: XCTestCase {
         XCTAssertNotNil(link)
 
         XCTAssertEqual(link?.type, .next)
-        XCTAssertEqual(link?.id, 420)
+        XCTAssertEqual(link?.id, "420")
         XCTAssertEqual(link?.limit, 42)
     }
 
@@ -46,7 +46,7 @@ class PaginationItemTests: XCTestCase {
         XCTAssertNotNil(link)
 
         XCTAssertEqual(link?.type, .prev)
-        XCTAssertEqual(link?.id, 420)
+        XCTAssertEqual(link?.id, "420")
         XCTAssertEqual(link?.limit, 42)
     }
 
@@ -56,7 +56,7 @@ class PaginationItemTests: XCTestCase {
         XCTAssertNotNil(link)
 
         XCTAssertEqual(link?.type, .prev)
-        XCTAssertEqual(link?.id, 420)
+        XCTAssertEqual(link?.id, "420")
         XCTAssertNil(link?.limit)
     }
 

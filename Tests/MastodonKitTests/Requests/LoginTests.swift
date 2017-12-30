@@ -28,8 +28,5 @@ class LoginTests: XCTestCase {
         XCTAssertTrue(payload.contains("grant_type=password"))
         XCTAssertTrue(payload.contains("username=foo"))
         XCTAssertTrue(payload.contains("password=123"))
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<LoginSettings>.self)
     }
 }

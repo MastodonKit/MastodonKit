@@ -23,8 +23,8 @@ class HTTPURLResponseTests: XCTestCase {
             headerFields: ["Link": links]
         )
 
-        XCTAssertEqual(response?.pagination?.next, .max(id: 321, limit: 52))
-        XCTAssertEqual(response?.pagination?.previous, .since(id: 123, limit: 42))
+        XCTAssertEqual(response?.pagination?.next, .max(id: "321", limit: 52))
+        XCTAssertEqual(response?.pagination?.previous, .since(id: "123", limit: 42))
     }
 
     func testPaginationWithInvalidLink() {

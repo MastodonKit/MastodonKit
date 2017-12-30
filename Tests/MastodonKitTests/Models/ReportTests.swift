@@ -11,11 +11,10 @@ import XCTest
 
 class ReportTests: XCTestCase {
     func testReportFromJSON() {
-        let fixture = try? Fixture.load(fileName: "Fixtures/Report.json")
-        let dictionary = fixture as! JSONDictionary
-        let report = Report(from: dictionary)
+        let fixture = try! Fixture.load(fileName: "Fixtures/Report.json")
+        let report = try? Report.decode(data: fixture)
 
-        XCTAssertEqual(report?.id, 42)
+        XCTAssertEqual(report?.id, "42")
         XCTAssertEqual(report?.actionTaken, "account deleted")
     }
 }
