@@ -14,7 +14,7 @@ class URLRequestTests: XCTestCase {
         let url = URL(string: "https://mastodon.technology")!
         let mediaData = Data()
         let method = HTTPMethod.post(.media(.gif(mediaData)))
-        let request = Request<String>(path: "/string", method: method) { _ in return "string" }
+        let request = Request<String>(path: "/string", method: method)
 
         let urlRequest = URLRequest(url: url, request: request, accessToken: nil)
 
@@ -28,7 +28,7 @@ class URLRequestTests: XCTestCase {
 
     func testRequestWithoutHTTPBody() {
         let url = URL(string: "https://mastodon.technology")!
-        let request = Request<String>(path: "/string", method: HTTPMethod.get(.empty)) { _ in return "string" }
+        let request = Request<String>(path: "/string", method: HTTPMethod.get(.empty))
 
         let urlRequest = URLRequest(url: url, request: request, accessToken: nil)
 
@@ -42,7 +42,7 @@ class URLRequestTests: XCTestCase {
 
     func testRequestWithAccessToken() {
         let url = URL(string: "https://mastodon.technology")!
-        let request = Request<String>(path: "/string", method: HTTPMethod.get(.empty)) { _ in return "string" }
+        let request = Request<String>(path: "/string", method: HTTPMethod.get(.empty))
 
         let urlRequest = URLRequest(url: url, request: request, accessToken: "foo")
 

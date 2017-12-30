@@ -8,14 +8,12 @@
 
 import Foundation
 
-public struct Request<Model> {
+public struct Request<Model: Codable> {
     let path: String
     let method: HTTPMethod
-    let parse: (JSONObject) -> Model?
 
-    init(path: String, method: HTTPMethod = .get(.empty), parse: @escaping (JSONObject) -> Model?) {
+    init(path: String, method: HTTPMethod = .get(.empty)) {
         self.path = path
         self.method = method
-        self.parse = parse
     }
 }

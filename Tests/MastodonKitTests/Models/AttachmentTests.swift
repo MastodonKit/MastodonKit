@@ -11,11 +11,10 @@ import XCTest
 
 class AttachmentTests: XCTestCase {
     func testAttachmentFromJSON() {
-        let fixture = try? Fixture.load(fileName: "Fixtures/Attachment.json")
-        let dictionary = fixture as! JSONDictionary
-        let attachment = Attachment(from: dictionary)
+        let fixture = try! Fixture.load(fileName: "Fixtures/Attachment.json")
+        let attachment = try? Attachment.decode(data: fixture)
 
-        XCTAssertEqual(attachment?.id, 42)
+        XCTAssertEqual(attachment?.id, "42")
         XCTAssertEqual(attachment?.type, AttachmentType.image)
         XCTAssertEqual(attachment?.url, "http://lorempixel.com/200/200/cats/3/")
         XCTAssertEqual(attachment?.previewURL, "http://lorempixel.com/200/200/cats/4/")
@@ -23,7 +22,7 @@ class AttachmentTests: XCTestCase {
     }
 
     func testAttachmentWithInvalidData() {
-        let attachment = Attachment(from: [:])
+        let attachment = try? Attachment.decode(data: Data())
 
         XCTAssertNil(attachment)
     }

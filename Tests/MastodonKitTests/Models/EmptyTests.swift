@@ -11,9 +11,8 @@ import XCTest
 
 class EmptyTests: XCTestCase {
     func testEmptyFromJSON() {
-        let fixture = try? Fixture.load(fileName: "Fixtures/Empty.json")
-        let dictionary = fixture as! JSONDictionary
-        let empty = Empty(from: dictionary)
+        let fixture = try! Fixture.load(fileName: "Fixtures/Empty.json")
+        let empty = try? Empty.decode(data: fixture)
 
         XCTAssertNotNil(empty)
     }

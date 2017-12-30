@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Client: ClientProtocol {
+public struct Client: ClientType {
     let baseURL: String
     let session: URLSession
     public var accessToken: String?
@@ -35,24 +35,22 @@ public struct Client: ClientProtocol {
                 return
             }
 
-            guard
-                let data = data,
-                let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
-                else {
-                    completion(.failure(ClientError.malformedJSON))
-                    return
+            guard let data = data else {
+                completion(.failure(ClientError.malformedJSON))
+                return
             }
 
             guard
                 let httpResponse = response as? HTTPURLResponse,
                 httpResponse.statusCode == 200
                 else {
-                    let mastodonError = MastodonError(json: jsonObject)
-                    completion(.failure(ClientError.mastodonError(mastodonError.description)))
+                    let mastodonError = try? MastodonError.decode(data: data)
+                    let error = mastodonError.flatMap { ClientError.mastodonError($0.description) } ?? ClientError.genericError
+                    completion(.failure(error))
                     return
             }
 
-            guard let model = request.parse(jsonObject) else {
+            guard let model = try? Model.decode(data: data) else {
                 completion(.failure(ClientError.invalidModel))
                 return
             }

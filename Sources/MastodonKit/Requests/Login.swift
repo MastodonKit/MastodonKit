@@ -29,6 +29,6 @@ public struct Login {
         ]
 
         let method = HTTPMethod.post(.parameters(parameters))
-        return Request<LoginSettings>(path: "/oauth/token", method: method, parse: Request<LoginSettings>.parser)
+        return Request<LoginSettings>(path: "/oauth/token", method: method)
     }
 }

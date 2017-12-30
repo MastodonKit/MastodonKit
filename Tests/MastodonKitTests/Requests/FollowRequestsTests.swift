@@ -20,13 +20,10 @@ class FollowRequestsTests: XCTestCase {
         XCTAssertEqual(request.method.name, "GET")
         XCTAssertNil(request.method.queryItems)
         XCTAssertNil(request.method.httpBody)
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testAllWithRange() {
-        let request = FollowRequests.all(range: .max(id: 12, limit: 50))
+        let request = FollowRequests.all(range: .max(id: "12", limit: 50))
         let expectedMaxID = URLQueryItem(name: "max_id", value: "12")
         let expectedLimit = URLQueryItem(name: "limit", value: "50")
 
@@ -39,13 +36,10 @@ class FollowRequestsTests: XCTestCase {
         XCTAssertEqual(request.method.queryItems?.count, 2)
         XCTAssertTrue(request.method.queryItems!.contains(expectedMaxID))
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testAuthorize() {
-        let request = FollowRequests.authorize(id: 42)
+        let request = FollowRequests.authorize(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/follow_requests/42/authorize")
@@ -54,13 +48,10 @@ class FollowRequestsTests: XCTestCase {
         XCTAssertEqual(request.method.name, "POST")
         XCTAssertNil(request.method.queryItems)
         XCTAssertNil(request.method.httpBody)
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Empty>.self)
     }
 
     func testReject() {
-        let request = FollowRequests.reject(id: 42)
+        let request = FollowRequests.reject(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/follow_requests/42/reject")
@@ -69,8 +60,5 @@ class FollowRequestsTests: XCTestCase {
         XCTAssertEqual(request.method.name, "POST")
         XCTAssertNil(request.method.queryItems)
         XCTAssertNil(request.method.httpBody)
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Empty>.self)
     }
 }

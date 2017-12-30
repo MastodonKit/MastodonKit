@@ -8,31 +8,24 @@
 
 import Foundation
 
-public struct LoginSettings {
+public class LoginSettings: Codable {
     /// The user's access token.
     public let accessToken: String
     /// Access token type.
     public let accessTokenType: String
-    /// Access scopes.
-    public let scopes: [AccessScope]
+    /// Access scope.
+    public let scope: String
     /// Date when the access token was retrieved.
     public let createdAt: TimeInterval
-}
+    /// Access scopes.
+    public var scopes: [AccessScope] {
+        return scope.components(separatedBy: .whitespaces).flatMap(toAccessScope)
+    }
 
-extension LoginSettings: JSONDictionaryInitializable {
-    init?(from dictionary: JSONDictionary) {
-        guard
-            let accessToken = dictionary["access_token"] as? String,
-            let accessTokenType = dictionary["token_type"] as? String,
-            let accessScopeString = dictionary["scope"] as? String,
-            let createdAt = dictionary["created_at"] as? TimeInterval
-            else {
-                return nil
-        }
-
-        self.accessToken = accessToken
-        self.accessTokenType = accessTokenType
-        self.scopes = accessScopeString.components(separatedBy: .whitespaces).flatMap(toAccessScope)
-        self.createdAt = createdAt
+    private enum CodingKeys: String, CodingKey {
+        case accessToken = "access_token"
+        case accessTokenType = "token_type"
+        case scope
+        case createdAt = "created_at"
     }
 }

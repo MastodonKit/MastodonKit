@@ -11,11 +11,10 @@ import XCTest
 
 class NotificationTests: XCTestCase {
     func testNotificationFromJSON() {
-        let fixture = try? Fixture.load(fileName: "Fixtures/Notification.json")
-        let dictionary = fixture as! JSONDictionary
-        let notification = Notification(from: dictionary)
+        let fixture = try! Fixture.load(fileName: "Fixtures/Notification.json")
+        let notification = try? MastodonKit.Notification.decode(data: fixture)
 
-        XCTAssertEqual(notification?.id, 42)
+        XCTAssertEqual(notification?.id, "42")
         XCTAssertEqual(notification?.type, NotificationType.favourite)
         XCTAssertEqual(notification?.createdAt.timeIntervalSince1970, 1482239655.132)
         XCTAssertNotNil(notification?.account)

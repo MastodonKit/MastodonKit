@@ -17,22 +17,22 @@ public struct FollowRequests {
         let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
         let method = HTTPMethod.get(.parameters(parameters))
 
-        return Request<[Account]>(path: "/api/v1/follow_requests", method: method, parse: Request<[Account]>.parser)
+        return Request<[Account]>(path: "/api/v1/follow_requests", method: method)
     }
 
     /// Authorizes a follow request.
     ///
     /// - Parameter id: The accound id.
     /// - Returns: Request for `Empty`.
-    public static func authorize(id: Int) -> Request<Empty> {
-        return Request<Empty>(path: "/api/v1/follow_requests/\(id)/authorize", method: .post(.empty), parse: Request<Empty>.parser)
+    public static func authorize(id: String) -> Request<Empty> {
+        return Request<Empty>(path: "/api/v1/follow_requests/\(id)/authorize", method: .post(.empty))
     }
 
     /// Rejects a follow request.
     ///
     /// - Parameter id: The accound id.
     /// - Returns: Request for `Empty`.
-    public static func reject(id: Int) -> Request<Empty> {
-        return Request<Empty>(path: "/api/v1/follow_requests/\(id)/reject", method: .post(.empty), parse: Request<Empty>.parser)
+    public static func reject(id: String) -> Request<Empty> {
+        return Request<Empty>(path: "/api/v1/follow_requests/\(id)/reject", method: .post(.empty))
     }
 }

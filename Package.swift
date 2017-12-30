@@ -1,3 +1,5 @@
+// swift-tools-version:4.0
+
 //
 //  Package.swift
 //  MastodonKit
@@ -8,4 +10,14 @@
 
 import PackageDescription
 
-let package = Package(name: "MastodonKit")
+let package = Package(
+    name: "MastodonKit",
+    products: [
+        .library(name: "MastodonKit", targets: ["MastodonKit"])
+    ],
+    dependencies: [],
+    targets: [
+        .target(name: "MastodonKit", dependencies: []),
+        .testTarget(name: "MastodonKitTests", dependencies: ["MastodonKit"])
+    ]
+)

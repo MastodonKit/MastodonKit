@@ -20,13 +20,12 @@ class ReportsTests: XCTestCase {
         XCTAssertEqual(request.method.name, "GET")
         XCTAssertNil(request.method.queryItems)
         XCTAssertNil(request.method.httpBody)
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Report]>.self)
     }
 
     func testReport() {
-        let request = Reports.report(accountID: 40, statusIDs: [4, 2, 42], reason: "Westworld Spoiler!!!")
+        let request = Reports.report(accountID: "40",
+                                     statusIDs: ["4", "2", "42"],
+                                     reason: "Westworld Spoiler!!!")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/reports")
@@ -43,8 +42,5 @@ class ReportsTests: XCTestCase {
         XCTAssertTrue(payload.contains("status_ids[]=2"))
         XCTAssertTrue(payload.contains("status_ids[]=42"))
         XCTAssertTrue(payload.contains("comment=Westworld%20Spoiler%21%21%21"))
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<Report>.self)
     }
 }

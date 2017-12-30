@@ -11,18 +11,17 @@ import XCTest
 
 class MentionTests: XCTestCase {
     func testMentionFromJSON() {
-        let fixture = try? Fixture.load(fileName: "Fixtures/Mention.json")
-        let dictionary = fixture as! JSONDictionary
-        let mention = Mention(from: dictionary)
+        let fixture = try! Fixture.load(fileName: "Fixtures/Mention.json")
+        let mention = try? Mention.decode(data: fixture)
 
-        XCTAssertEqual(mention?.id, 42)
+        XCTAssertEqual(mention?.id, "42")
         XCTAssertEqual(mention?.username, "ornithocoder")
         XCTAssertEqual(mention?.acct, "ornithocoder")
         XCTAssertEqual(mention?.url, "https://mastodon.technology/@ornithocoder")
     }
 
     func testMentionWithInvalidData() {
-        let mention = Mention(from: [:])
+        let mention = try? Mention.decode(data: Data())
 
         XCTAssertNil(mention)
     }

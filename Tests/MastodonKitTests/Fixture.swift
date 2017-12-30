@@ -9,11 +9,11 @@
 import Foundation
 
 enum FixtureError: Error {
-    case invalidPath, parseError
+    case invalidPath, invalidData
 }
 
 struct Fixture {
-    static func load(fileName: String) throws -> Any {
+    static func load(fileName: String) throws -> Data {
         var testsDirectory = URL(fileURLWithPath: #file, isDirectory: false)
         testsDirectory.deleteLastPathComponent()
 
@@ -21,13 +21,10 @@ struct Fixture {
             throw FixtureError.invalidPath
         }
 
-        guard
-            let data = try? Data(contentsOf: filePath),
-            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
-            else {
-                throw FixtureError.parseError
+        guard let jsonData = try? Data(contentsOf: filePath) else {
+            throw FixtureError.invalidData
         }
 
-        return jsonObject
+        return jsonData
     }
 }

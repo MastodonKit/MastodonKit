@@ -11,16 +11,15 @@ import XCTest
 
 class ApplicationTests: XCTestCase {
     func testApplicationFromJSON() {
-        let fixture = try? Fixture.load(fileName: "Fixtures/Application.json")
-        let dictionary = fixture as! JSONDictionary
-        let application = Application(from: dictionary)
+        let fixture = try! Fixture.load(fileName: "Fixtures/Application.json")
+        let application = try? Application.decode(data: fixture)
 
         XCTAssertEqual(application?.name, "MastodonKitTestClient")
         XCTAssertEqual(application?.website, "https://github.com/ornithocoder/MastodonKit")
     }
 
     func testApplicationWithInvalidData() {
-        let application = Application(from: [:])
+        let application = try? Application.decode(data: Data())
 
         XCTAssertNil(application)
     }

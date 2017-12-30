@@ -8,9 +8,9 @@
 
 import Foundation
 
-public struct Account {
+public class Account: Codable {
     /// The ID of the account.
-    public let id: Int
+    public let id: String
     /// The username of the account.
     public let username: String
     /// Equals username for local users, includes @domain for remote ones.
@@ -39,46 +39,22 @@ public struct Account {
     public let followingCount: Int
     /// The number of statuses the account has made.
     public let statusesCount: Int
-}
 
-extension Account: JSONDictionaryInitializable {
-    init?(from dictionary: JSONDictionary) {
-        guard
-            let id = dictionary["id"] as? String,
-            let intID = Int(id),
-            let username = dictionary["username"] as? String,
-            let acct = dictionary["acct"] as? String,
-            let displayName = dictionary["display_name"] as? String,
-            let locked = dictionary["locked"] as? Bool,
-            let createdAtString = dictionary["created_at"] as? String,
-            let createdAt = DateFormatter.mastodonFormatter.date(from: createdAtString),
-            let note = dictionary["note"] as? String,
-            let url = dictionary["url"] as? String,
-            let avatar = dictionary["avatar"] as? String,
-            let avatarStatic = dictionary["avatar_static"] as? String,
-            let header = dictionary["header"] as? String,
-            let headerStatic = dictionary["header_static"] as? String,
-            let followersCount = dictionary["followers_count"] as? Int,
-            let followingCount = dictionary["following_count"] as? Int,
-            let statusesCount = dictionary["statuses_count"] as? Int
-            else {
-                return nil
-        }
-
-        self.id = intID
-        self.username = username
-        self.acct = acct
-        self.displayName = displayName
-        self.note = note
-        self.url = url
-        self.avatar = avatar
-        self.avatarStatic = avatarStatic
-        self.header = header
-        self.headerStatic = headerStatic
-        self.locked = locked
-        self.createdAt = createdAt
-        self.followersCount = followersCount
-        self.followingCount = followingCount
-        self.statusesCount = statusesCount
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case username
+        case acct
+        case displayName = "display_name"
+        case note
+        case url
+        case avatar
+        case avatarStatic = "avatar_static"
+        case header
+        case headerStatic = "header_static"
+        case locked
+        case createdAt = "created_at"
+        case followersCount = "followers_count"
+        case followingCount = "following_count"
+        case statusesCount = "statuses_count"
     }
 }

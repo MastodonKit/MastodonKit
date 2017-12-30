@@ -20,13 +20,10 @@ class MutesTests: XCTestCase {
         XCTAssertEqual(request.method.name, "GET")
         XCTAssertNil(request.method.queryItems)
         XCTAssertNil(request.method.httpBody)
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 
     func testAllWithRange() {
-        let request = Mutes.all(range: .since(id: 15, limit: 37))
+        let request = Mutes.all(range: .since(id: "15", limit: 37))
         let expectedSinceID = URLQueryItem(name: "since_id", value: "15")
         let expectedLimit = URLQueryItem(name: "limit", value: "37")
 
@@ -39,8 +36,5 @@ class MutesTests: XCTestCase {
         XCTAssertNotNil(request.method.queryItems)
         XCTAssertTrue(request.method.queryItems!.contains(expectedSinceID))
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
-
-        // Parser
-        XCTAssertTrue(type(of: request.parse) == ParserFunctionType<[Account]>.self)
     }
 }

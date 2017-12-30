@@ -12,20 +12,14 @@ import XCTest
 class MastodonErrorTests: XCTestCase {
     func testErrorWithValidJSON() {
         let fixture = try! Fixture.load(fileName: "Fixtures/RequestError.json")
-        let requestError = MastodonError(json: fixture)
+        let requestError = try? MastodonError.decode(data: fixture)
 
-        XCTAssertEqual(requestError.description, "yes, it's an error.")
+        XCTAssertEqual(requestError?.description, "yes, it's an error.")
     }
 
-    func testErrorWithInvalidDictionary() {
-        let requestError = MastodonError(json: [:])
+    func testErrorWithInvalidData() {
+        let requestError = try? MastodonError.decode(data: Data())
 
-        XCTAssertEqual(requestError.description, "")
-    }
-
-    func testErrorWithInvalidarray() {
-        let requestError = MastodonError(json: [])
-
-        XCTAssertEqual(requestError.description, "")
+        XCTAssertNil(requestError)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  ClientProtocol.swift
+//  ClientType.swift
 //  MastodonKit
 //
 //  Created by Ornithologist Coder on 6/12/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol ClientProtocol {
+public protocol ClientType {
     /// The user access token used to perform the network requests.
     var accessToken: String? { get set }
 

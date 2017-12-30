@@ -8,31 +8,20 @@
 
 import Foundation
 
-public struct ClientApplication {
+public class ClientApplication: Codable {
     /// The application ID.
-    public let id: Int
+    public let id: String
     /// Where the user should be redirected after authorization.
     public let redirectURI: String
     /// The application client ID.
     public let clientID: String
     /// The application client secret.
     public let clientSecret: String
-}
 
-extension ClientApplication: JSONDictionaryInitializable {
-    init?(from dictionary: JSONDictionary) {
-        guard
-            let id = dictionary["id"] as? Int,
-            let redirectURI = dictionary["redirect_uri"] as? String,
-            let clientID = dictionary["client_id"] as? String,
-            let clientSecret = dictionary["client_secret"] as? String
-            else {
-                return nil
-        }
-
-        self.id = id
-        self.redirectURI = redirectURI
-        self.clientID = clientID
-        self.clientSecret = clientSecret
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case redirectURI = "redirect_uri"
+        case clientID = "client_id"
+        case clientSecret = "client_secret"
     }
 }

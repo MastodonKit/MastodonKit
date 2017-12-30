@@ -1,6 +1,6 @@
 [
     {
-        "id": 42,
+        "id": "42",
         "following": false,
         "followed_by": false,
         "blocking": true,
@@ -9,7 +9,7 @@
         "domain_blocking": true
     },
     {
-        "id": 42,
+        "id": "42",
         "following": false,
         "followed_by": false,
         "blocking": true,

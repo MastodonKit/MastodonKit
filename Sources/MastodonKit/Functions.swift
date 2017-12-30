@@ -24,18 +24,6 @@ func between(_ min: Int, and max: Int, fallback: Int) -> (Int) -> Int {
 
 // MARK: - Flat-map
 
-func asString(json: JSONObject) -> String? {
-    return json as? String
-}
-
-func asJSONDictionary(json: JSONObject) -> JSONDictionary? {
-    return json as? JSONDictionary
-}
-
-func asJSONDictionaries(json: JSONObject) -> [JSONDictionary]? {
-    return json as? [JSONDictionary]
-}
-
 func toOptionalString<A>(optional: A?) -> String? {
     return optional.flatMap { String(describing: $0) }
 }

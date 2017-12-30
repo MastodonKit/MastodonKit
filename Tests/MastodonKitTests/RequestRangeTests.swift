@@ -11,7 +11,7 @@ import XCTest
 
 class RequestRangeTests: XCTestCase {
     func testRangeWithMaxValue() {
-        let range = RequestRange.max(id: 42, limit: nil)
+        let range = RequestRange.max(id: "42", limit: nil)
         let expectedMaxID = Parameter(name: "max_id", value: "42")
         let expectedLimit = Parameter(name: "limit", value: nil)
 
@@ -23,7 +23,7 @@ class RequestRangeTests: XCTestCase {
     }
 
     func testRangeWithMaxValueAndLimit() {
-        let range = RequestRange.max(id: 42, limit: 7)
+        let range = RequestRange.max(id: "42", limit: 7)
         let expectedMaxID = Parameter(name: "max_id", value: "42")
         let expectedLimit = Parameter(name: "limit", value: "7")
 
@@ -35,7 +35,7 @@ class RequestRangeTests: XCTestCase {
     }
 
     func testRangeWithSinceValue() {
-        let range = RequestRange.since(id: 80, limit: nil)
+        let range = RequestRange.since(id: "80", limit: nil)
         let expectedSinceID = Parameter(name: "since_id", value: "80")
         let expectedLimit = Parameter(name: "limit", value: nil)
 
@@ -47,7 +47,7 @@ class RequestRangeTests: XCTestCase {
     }
 
     func testRangeWithMaxSinceAndLimit() {
-        let range = RequestRange.since(id: 80, limit: 2)
+        let range = RequestRange.since(id: "80", limit: 2)
         let expectedSinceID = Parameter(name: "since_id", value: "80")
         let expectedLimit = Parameter(name: "limit", value: "2")
 
@@ -77,11 +77,11 @@ class RequestRangeTests: XCTestCase {
     }
 
     func testEqualityEqualValues() {
-        let max = RequestRange.max(id: 42, limit: 10)
-        let anotherMax = RequestRange.max(id: 42, limit: 10)
+        let max = RequestRange.max(id: "42", limit: 10)
+        let anotherMax = RequestRange.max(id: "42", limit: 10)
 
-        let since = RequestRange.since(id: 42, limit: 10)
-        let anotherSince = RequestRange.since(id: 42, limit: 10)
+        let since = RequestRange.since(id: "42", limit: 10)
+        let anotherSince = RequestRange.since(id: "42", limit: 10)
 
         let limit = RequestRange.limit(10)
         let anotherLimit = RequestRange.limit(10)
@@ -93,11 +93,11 @@ class RequestRangeTests: XCTestCase {
     }
 
     func testEqualityDifferentValues() {
-        let max = RequestRange.max(id: 42, limit: 10)
-        let anotherMax = RequestRange.max(id: 420, limit: 12)
+        let max = RequestRange.max(id: "42", limit: 10)
+        let anotherMax = RequestRange.max(id: "420", limit: 12)
 
-        let since = RequestRange.since(id: 42, limit: 10)
-        let anotherSince = RequestRange.since(id: 420, limit: 12)
+        let since = RequestRange.since(id: "42", limit: 10)
+        let anotherSince = RequestRange.since(id: "420", limit: 12)
 
         let limit = RequestRange.limit(10)
         let anotherLimit = RequestRange.limit(12)

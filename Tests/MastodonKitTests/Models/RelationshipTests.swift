@@ -11,16 +11,15 @@ import XCTest
 
 class RelationshipTests: XCTestCase {
     func testRelationshipFromJSON() {
-        let fixture = try? Fixture.load(fileName: "Fixtures/Relationship.json")
-        let dictionary = fixture as! JSONDictionary
-        let relationship = Relationship(from: dictionary)!
+        let fixture = try! Fixture.load(fileName: "Fixtures/Relationship.json")
+        let relationship = try? Relationship.decode(data: fixture)
 
-        XCTAssertEqual(relationship.id, 42)
-        XCTAssertFalse(relationship.following)
-        XCTAssertFalse(relationship.followedBy)
-        XCTAssertTrue(relationship.blocking)
-        XCTAssertFalse(relationship.muting)
-        XCTAssertFalse(relationship.requested)
-        XCTAssertTrue(relationship.domainBlocking)
+        XCTAssertEqual(relationship?.id, "42")
+        XCTAssertFalse((relationship?.following)!)
+        XCTAssertFalse((relationship?.followedBy)!)
+        XCTAssertTrue((relationship?.blocking)!)
+        XCTAssertFalse((relationship?.muting)!)
+        XCTAssertFalse((relationship?.requested)!)
+        XCTAssertTrue((relationship?.domainBlocking)!)
     }
 }

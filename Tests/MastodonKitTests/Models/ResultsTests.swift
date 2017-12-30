@@ -10,19 +10,18 @@ import XCTest
 @testable import MastodonKit
 
 class ResultsTests: XCTestCase {
-    func testResultsFromEmptyJSON() {
-        let results = Results(from: [:])
-
-        XCTAssertNil(results)
-    }
-
     func testResultsFromValidJSON() {
-        let resultsFixture = try? Fixture.load(fileName: "Fixtures/Results.json")
-        let dictionary = resultsFixture as! JSONDictionary
-        let results = Results(from: dictionary)
+        let fixture = try! Fixture.load(fileName: "Fixtures/Results.json")
+        let results = try? Results.decode(data: fixture)
 
         XCTAssertEqual(results?.accounts.count, 1)
         XCTAssertEqual(results?.statuses.count, 1)
         XCTAssertEqual((results?.hashtags)!, ["one", "two", "three"])
+    }
+
+    func testResultsFromEmptyJSON() {
+        let results = try? Results.decode(data: Data())
+
+        XCTAssertNil(results)
     }
 }
