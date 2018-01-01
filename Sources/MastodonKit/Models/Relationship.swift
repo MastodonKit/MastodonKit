@@ -19,6 +19,8 @@ public class Relationship: Codable {
     public let blocking: Bool
     /// Whether the user is currently muting the account.
     public let muting: Bool
+    /// Whether the user is also muting notifications
+    public let mutingNotifications: Bool
     /// Whether the user has requested to follow the account.
     public let requested: Bool
     /// Whether the user is currently blocking the user's domain.
@@ -30,6 +32,7 @@ public class Relationship: Codable {
         case followedBy = "followed_by"
         case blocking
         case muting
+        case mutingNotifications = "muting_notifications"
         case requested
         case domainBlocking = "domain_blocking"
     }

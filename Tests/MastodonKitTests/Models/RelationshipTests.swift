@@ -19,6 +19,7 @@ class RelationshipTests: XCTestCase {
         XCTAssertFalse((relationship?.followedBy)!)
         XCTAssertTrue((relationship?.blocking)!)
         XCTAssertFalse((relationship?.muting)!)
+        XCTAssertTrue((relationship?.mutingNotifications)!)
         XCTAssertFalse((relationship?.requested)!)
         XCTAssertTrue((relationship?.domainBlocking)!)
     }

@@ -21,6 +21,8 @@ public class Attachment: Codable {
     public let previewURL: String
     /// Shorter URL for the image, for insertion into text (only present on local images).
     public let textURL: String?
+    /// A description of the image for the visually impaired.
+    public let description: String?
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -29,5 +31,6 @@ public class Attachment: Codable {
         case remoteURL = "remote_url"
         case previewURL = "preview_url"
         case textURL = "text_url"
+        case description
     }
 }
