@@ -25,6 +25,8 @@ public class Status: Codable {
     public let content: String
     /// The time the status was created.
     public let createdAt: Date
+    /// An array of Emoji.
+    public let emojis: [Emoji]?
     /// The number of reblogs for the status.
     public let reblogsCount: Int
     /// The number of favourites for the status.
@@ -63,6 +65,7 @@ public class Status: Codable {
         case inReplyToAccountID = "in_reply_to_account_id"
         case content
         case createdAt = "created_at"
+        case emojis
         case reblogsCount = "reblogs_count"
         case favouritesCount = "favourites_count"
         case reblogged
