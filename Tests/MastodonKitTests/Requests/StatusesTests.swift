@@ -270,6 +270,30 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
     }
 
+    func testPin() {
+        let request = Statuses.pin(id: "42")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/statuses/42/pin")
+
+        // Method
+        XCTAssertEqual(request.method.name, "POST")
+        XCTAssertNil(request.method.httpBody)
+        XCTAssertNil(request.method.queryItems)
+    }
+
+    func testUnpin() {
+        let request = Statuses.unpin(id: "42")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/statuses/42/unpin")
+
+        // Method
+        XCTAssertEqual(request.method.name, "POST")
+        XCTAssertNil(request.method.httpBody)
+        XCTAssertNil(request.method.queryItems)
+    }
+
     func testMute() {
         let request = Statuses.mute(id: "42")
 
