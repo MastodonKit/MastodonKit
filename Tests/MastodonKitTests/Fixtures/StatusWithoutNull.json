@@ -1,6 +1,13 @@
 {
     "id": "1",
     "created_at": "2017-04-06T16:55:02.132Z",
+    "emojis": [
+        {
+            "shortcode": "mastodon",
+            "url": "https://static.mastodon.technology/custom_emojis/images/000/000/435/original/61371621aea40c9e.png",
+            "static_url": "https://static.mastodon.technology/custom_emojis/images/000/000/435/static/61371621aea40c9e.png"
+        }
+    ],
     "in_reply_to_id": "32",
     "in_reply_to_account_id": "22",
     "sensitive": true,
