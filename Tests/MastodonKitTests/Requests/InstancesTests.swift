@@ -21,4 +21,16 @@ class InstancesTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
         XCTAssertNil(request.method.queryItems)
     }
+
+    func testCustomEmojis() {
+        let request = Instances.customEmojis()
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/custom_emojis")
+
+        // Method
+        XCTAssertEqual(request.method.name, "GET")
+        XCTAssertNil(request.method.httpBody)
+        XCTAssertNil(request.method.queryItems)
+    }
 }

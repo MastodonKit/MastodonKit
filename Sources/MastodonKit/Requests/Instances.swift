@@ -15,4 +15,11 @@ public struct Instances {
     public static func current() -> Request<Instance> {
         return Request<Instance>(path: "/api/v1/instance")
     }
+
+    /// Fetches current instance's custom emojis.
+    ///
+    /// - Returns: Request for `[Emoji]`.
+    public static func customEmojis() -> Request<[Emoji]> {
+        return Request<[Emoji]>(path: "/api/v1/custom_emojis")
+    }
 }
