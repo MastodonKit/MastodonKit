@@ -168,6 +168,19 @@ class AccountsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
     }
 
+    func testStatusesWithPinnedStatusOnly() {
+        let request = Accounts.statuses(id: "42", pinnedOnly: true)
+        let expectedFlag = URLQueryItem(name: "pinned", value: "true")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/accounts/42/statuses")
+
+        // Method
+        XCTAssertEqual(request.method.name, "GET")
+        XCTAssertTrue(request.method.queryItems!.contains(expectedFlag))
+        XCTAssertNil(request.method.httpBody)
+    }
+
     func testStatusesWithoutReplies() {
         let request = Accounts.statuses(id: "42", excludeReplies: true)
         let expectedFlag = URLQueryItem(name: "exclude_replies", value: "true")
