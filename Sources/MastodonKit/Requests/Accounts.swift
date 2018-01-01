@@ -54,7 +54,7 @@ public struct Accounts {
     ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Request for `[Account]`.
     public static func followers(id: String, range: RequestRange = .default) -> Request<[Account]> {
-        let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
+        let parameters = range.parameters(limit: between(1, and: 80, default: 40))
         let method = HTTPMethod.get(.parameters(parameters))
 
         return Request<[Account]>(path: "/api/v1/accounts/\(id)/followers", method: method)
@@ -67,7 +67,7 @@ public struct Accounts {
     ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Request for `[Account]`.
     public static func following(id: String, range: RequestRange = .default) -> Request<[Account]> {
-        let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
+        let parameters = range.parameters(limit: between(1, and: 80, default: 40))
         let method = HTTPMethod.get(.parameters(parameters))
 
         return Request<[Account]>(path: "/api/v1/accounts/\(id)/following", method: method)
@@ -87,7 +87,7 @@ public struct Accounts {
                                 pinnedOnly: Bool? = nil,
                                 excludeReplies: Bool? = nil,
                                 range: RequestRange = .default) -> Request<[Status]> {
-        let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []
+        let rangeParameters = range.parameters(limit: between(1, and: 40, default: 20)) ?? []
         let parameters = rangeParameters + [
             Parameter(name: "only_media", value: mediaOnly.flatMap(trueOrNil)),
             Parameter(name: "pinned", value: pinnedOnly.flatMap(trueOrNil)),
@@ -164,7 +164,7 @@ public struct Accounts {
     ///   - limit: Maximum number of matching accounts to return (default: 40).
     /// - Returns: Request for `[Account]`.
     public static func search(query: String, limit: Int? = nil) -> Request<[Account]> {
-        let toLimitBounds = between(1, and: 80, fallback: 40)
+        let toLimitBounds = between(1, and: 80, default: 40)
         let parameters = [
             Parameter(name: "q", value: query),
             Parameter(name: "limit", value: limit.flatMap(toLimitBounds).flatMap(toOptionalString))

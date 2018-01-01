@@ -15,7 +15,7 @@ class RequestRangeTests: XCTestCase {
         let expectedMaxID = Parameter(name: "max_id", value: "42")
         let expectedLimit = Parameter(name: "limit", value: nil)
 
-        let parameters = range.parameters(limit: between(0, and: 10, fallback: 3))
+        let parameters = range.parameters(limit: between(0, and: 10, default: 3))
 
         XCTAssertEqual(parameters?.count, 2)
         XCTAssertTrue(parameters!.contains(expectedMaxID))
@@ -27,7 +27,7 @@ class RequestRangeTests: XCTestCase {
         let expectedMaxID = Parameter(name: "max_id", value: "42")
         let expectedLimit = Parameter(name: "limit", value: "7")
 
-        let parameters = range.parameters(limit: between(0, and: 10, fallback: 3))
+        let parameters = range.parameters(limit: between(0, and: 10, default: 3))
 
         XCTAssertEqual(parameters?.count, 2)
         XCTAssertTrue(parameters!.contains(expectedMaxID))
@@ -39,7 +39,7 @@ class RequestRangeTests: XCTestCase {
         let expectedSinceID = Parameter(name: "since_id", value: "80")
         let expectedLimit = Parameter(name: "limit", value: nil)
 
-        let parameters = range.parameters(limit: between(0, and: 10, fallback: 3))
+        let parameters = range.parameters(limit: between(0, and: 10, default: 3))
 
         XCTAssertEqual(parameters?.count, 2)
         XCTAssertTrue(parameters!.contains(expectedSinceID))
@@ -51,7 +51,7 @@ class RequestRangeTests: XCTestCase {
         let expectedSinceID = Parameter(name: "since_id", value: "80")
         let expectedLimit = Parameter(name: "limit", value: "2")
 
-        let parameters = range.parameters(limit: between(0, and: 10, fallback: 3))
+        let parameters = range.parameters(limit: between(0, and: 10, default: 3))
 
         XCTAssertEqual(parameters?.count, 2)
         XCTAssertTrue(parameters!.contains(expectedSinceID))
@@ -62,7 +62,7 @@ class RequestRangeTests: XCTestCase {
         let range = RequestRange.limit(42)
         let expectedLimit = Parameter(name: "limit", value: "42")
 
-        let parameters = range.parameters(limit: between(0, and: 80, fallback: 40))
+        let parameters = range.parameters(limit: between(0, and: 80, default: 40))
 
         XCTAssertEqual(parameters?.count, 1)
         XCTAssertTrue(parameters!.contains(expectedLimit))
@@ -71,7 +71,7 @@ class RequestRangeTests: XCTestCase {
     func testRangeWithDefault() {
         let range = RequestRange.default
 
-        let parameters = range.parameters(limit: between(0, and: 80, fallback: 40))
+        let parameters = range.parameters(limit: between(0, and: 80, default: 40))
 
         XCTAssertNil(parameters)
     }
