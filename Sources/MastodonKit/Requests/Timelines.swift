@@ -14,7 +14,7 @@ public struct Timelines {
     /// - Parameter range: The bounds used when requesting data from Mastodon.
     /// - Returns: Request for `[Status]`.
     public static func home(range: RequestRange = .default) -> Request<[Status]> {
-        let parameters = range.parameters(limit: between(1, and: 40, fallback: 20))
+        let parameters = range.parameters(limit: between(1, and: 40, default: 20))
         let method = HTTPMethod.get(.parameters(parameters))
 
         return Request<[Status]>(path: "/api/v1/timelines/home", method: method)
@@ -27,7 +27,7 @@ public struct Timelines {
     ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Request for `[Status]`.
     public static func `public`(local: Bool? = nil, range: RequestRange = .default) -> Request<[Status]> {
-        let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []
+        let rangeParameters = range.parameters(limit: between(1, and: 40, default: 20)) ?? []
         let localParameters = [Parameter(name: "local", value: local.flatMap(trueOrNil))]
         let method = HTTPMethod.get(.parameters(localParameters + rangeParameters))
 
@@ -42,7 +42,7 @@ public struct Timelines {
     ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Request for `[Status]`.
     public static func tag(_ hashtag: String, local: Bool? = nil, range: RequestRange = .default) -> Request<[Status]> {
-        let rangeParameters = range.parameters(limit: between(1, and: 40, fallback: 20)) ?? []
+        let rangeParameters = range.parameters(limit: between(1, and: 40, default: 20)) ?? []
         let localParameters = [Parameter(name: "local", value: local.flatMap(trueOrNil))]
         let method = HTTPMethod.get(.parameters(localParameters + rangeParameters))
 

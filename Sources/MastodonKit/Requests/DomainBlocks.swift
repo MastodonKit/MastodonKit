@@ -14,7 +14,7 @@ public struct DomainBlocks {
     /// - Parameter range: The bounds used when requesting data from Mastodon.
     /// - Returns: Request for `[String]`.
     public static func all(range: RequestRange = .default) -> Request<[String]> {
-        let parameters = range.parameters(limit: between(1, and: 80, fallback: 40))
+        let parameters = range.parameters(limit: between(1, and: 80, default: 40))
         let method = HTTPMethod.get(.parameters(parameters))
 
         return Request<[String]>(path: "/api/v1/domain_blocks", method: method)

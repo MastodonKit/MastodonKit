@@ -18,8 +18,8 @@ func toArrayOfParameters<A>(withName name: String) -> (A) -> Parameter {
     return { value in Parameter(name: "\(name)[]", value: String(describing: value)) }
 }
 
-func between(_ min: Int, and max: Int, fallback: Int) -> (Int) -> Int {
-    return { limit in (limit >= min && limit <= max) ? limit : fallback }
+func between(_ min: Int, and max: Int, default: Int) -> (Int) -> Int {
+    return { limit in (limit >= min && limit <= max) ? limit : `default` }
 }
 
 // MARK: - Flat-map

@@ -14,7 +14,7 @@ public struct Notifications {
     /// - Parameter range: The bounds used when requesting data from Mastodon.
     /// - Returns: Request for `[Notification]`.
     public static func all(range: RequestRange = .default) -> Request<[Notification]> {
-        let parameters = range.parameters(limit: between(1, and: 15, fallback: 30))
+        let parameters = range.parameters(limit: between(1, and: 15, default: 30))
         let method = HTTPMethod.get(.parameters(parameters))
 
         return Request<[Notification]>(path: "/api/v1/notifications", method: method)
