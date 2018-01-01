@@ -26,7 +26,7 @@ class StatusTests: XCTestCase {
         XCTAssertEqual(status?.reblogsCount, 0)
         XCTAssertEqual(status?.favouritesCount, 1)
         XCTAssertNil(status?.reblogged)
-//        XCTAssertTrue((status?.favourited)!)
+        XCTAssertTrue((status?.favourited)!)
         XCTAssertNil(status?.sensitive)
         XCTAssertEqual(status?.spoilerText, "Let's keep his a secret!")
         XCTAssertEqual(status?.visibility, Visibility.public)
@@ -35,6 +35,7 @@ class StatusTests: XCTestCase {
         XCTAssertEqual(status?.tags.count, 0)
         XCTAssertNotNil(status?.application)
         XCTAssertNil(status?.language)
+        XCTAssertNil(status?.pinned)
     }
 
     func testStatusWithoutNullFromJSON() {
@@ -62,5 +63,6 @@ class StatusTests: XCTestCase {
         XCTAssertEqual(status?.tags.count, 0)
         XCTAssertNotNil(status?.application)
         XCTAssertEqual(status?.language, "fr")
+        XCTAssertTrue((status?.pinned)!)
     }
 }

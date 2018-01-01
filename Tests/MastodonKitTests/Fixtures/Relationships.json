@@ -5,6 +5,7 @@
         "followed_by": false,
         "blocking": true,
         "muting": false,
+        "muting_notifications": false,
         "requested": false,
         "domain_blocking": true
     },
@@ -14,6 +15,7 @@
         "followed_by": false,
         "blocking": true,
         "muting": false,
+        "muting_notifications": false,
         "requested": false,
         "domain_blocking": true
     }
