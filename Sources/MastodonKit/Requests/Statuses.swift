@@ -127,6 +127,22 @@ public struct Statuses {
         return Request<Status>(path: "/api/v1/statuses/\(id)/unfavourite", method: .post(.empty))
     }
 
+    /// Pins a status.
+    ///
+    /// - Parameter id: The status id.
+    /// - Returns: Request for `Status`.
+    public static func pin(id: String) -> Request<Status> {
+        return Request<Status>(path: "/api/v1/statuses/\(id)/pin", method: .post(.empty))
+    }
+
+    /// Unpins a status.
+    ///
+    /// - Parameter id: The status id.
+    /// - Returns: Request for `Status`.
+    public static func unpin(id: String) -> Request<Status> {
+        return Request<Status>(path: "/api/v1/statuses/\(id)/unpin", method: .post(.empty))
+    }
+
     /// Mutes a status.
     ///
     /// - Parameter id: The status id.
