@@ -26,7 +26,7 @@ public class Status: Codable {
     /// The time the status was created.
     public let createdAt: Date
     /// An array of Emoji.
-    public let emojis: [Emoji]?
+    public let emojis: [Emoji]
     /// The number of reblogs for the status.
     public let reblogsCount: Int
     /// The number of favourites for the status.
