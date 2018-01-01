@@ -218,6 +218,22 @@ class AccountsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
     }
 
+    func testRemoteFollow() {
+        let request = Accounts.remoteFollow(uri: "username@domain")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/follows")
+
+        // Method
+        XCTAssertEqual(request.method.name, "POST")
+        XCTAssertNil(request.method.queryItems)
+        XCTAssertNotNil(request.method.httpBody)
+
+        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
+        XCTAssertEqual(payload.components(separatedBy: "&").count, 1)
+        XCTAssertTrue(payload.contains("uri=username%40domain"))
+    }
+
     func testBlock() {
         let request = Accounts.block(id: "42")
 

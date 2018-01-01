@@ -114,6 +114,18 @@ public struct Accounts {
         return Request<Account>(path: "/api/v1/accounts/\(id)/unfollow", method: .post(.empty))
     }
 
+    /// Follows a remote user:.
+    ///
+    /// - Parameter uri: The 'username@domain' of the person you want to follow.
+    /// - Returns: Request for `Account`.
+    public static func remoteFollow(uri: String) -> Request<Account> {
+        let parameter = [
+            Parameter(name: "uri", value: uri)
+        ]
+
+        return Request<Account>(path: "/api/v1/follows", method: .post(.parameters(parameter)))
+    }
+
     /// Blocks an account.
     ///
     /// - Parameter id: The account id.
