@@ -13,13 +13,15 @@ public class LoginSettings: Codable {
     public let accessToken: String
     /// Access token type.
     public let accessTokenType: String
-    /// Access scope.
-    public let scope: String
     /// Date when the access token was retrieved.
     public let createdAt: TimeInterval
+    /// Access scope.
+    private let scope: String
     /// Access scopes.
     public var scopes: [AccessScope] {
-        return scope.components(separatedBy: .whitespaces).flatMap(toAccessScope)
+        return scope
+            .components(separatedBy: .whitespaces)
+            .flatMap(toAccessScope)
     }
 
     private enum CodingKeys: String, CodingKey {
