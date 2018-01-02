@@ -91,6 +91,47 @@ class HTTPMethodTests: XCTestCase {
         XCTAssertNil(method.contentType)
     }
 
+    func testPut() {
+        let parameters = [
+            Parameter(name: "number", value: String(42)),
+            Parameter(name: "url", value: "https://mastodon.technology"),
+            Parameter(name: "nilValue", value: nil)
+        ]
+
+        let payload = Payload.parameters(parameters)
+        let method = HTTPMethod.put(payload)
+
+        // Name
+        XCTAssertEqual(method.name, "PUT")
+
+        // Query items
+        XCTAssertNil(method.queryItems)
+
+        // HTTP body
+        XCTAssertNotNil(method.httpBody)
+        XCTAssertEqual(method.httpBody, payload.data)
+
+        // Content Type
+        XCTAssertNotNil(method.contentType)
+        XCTAssertEqual(method.contentType, payload.type)
+    }
+
+    func testPutWithEmptyPayload() {
+        let method = HTTPMethod.put(.empty)
+
+        // Name
+        XCTAssertEqual(method.name, "PUT")
+
+        // Query items
+        XCTAssertNil(method.queryItems)
+
+        // HTTP body
+        XCTAssertNil(method.httpBody)
+
+        // Content Type
+        XCTAssertNil(method.contentType)
+    }
+
     func testPatch() {
         let parameters = [
             Parameter(name: "number", value: String(42)),
