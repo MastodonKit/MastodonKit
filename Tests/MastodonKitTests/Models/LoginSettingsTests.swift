@@ -19,4 +19,10 @@ class LoginSettingsTests: XCTestCase {
         XCTAssertEqual((loginSettings?.scopes)!, [.read, .write])
         XCTAssertEqual(loginSettings?.createdAt, 1492249031)
     }
+
+    func testLoginSettingsWithInvalidData() {
+        let parsed = try? LoginSettings.decode(data: Data())
+
+        XCTAssertNil(parsed)
+    }
 }

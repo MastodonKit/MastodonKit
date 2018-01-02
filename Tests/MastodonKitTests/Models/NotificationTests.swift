@@ -20,4 +20,23 @@ class NotificationTests: XCTestCase {
         XCTAssertNotNil(notification?.account)
         XCTAssertNotNil(notification?.status)
     }
+
+    func testNotificationWithInvalidData() {
+        let parsed = try? MastodonKit.Notification.decode(data: Data())
+
+        XCTAssertNil(parsed)
+    }
+
+    func testNotificationsFromJSON() {
+        let fixture = try! Fixture.load(fileName: "Fixtures/Notifications.json")
+        let parsed = try? [MastodonKit.Notification].decode(data: fixture)
+
+        XCTAssertEqual(parsed?.count, 2)
+    }
+
+    func testNotificationsWithInvalidData() {
+        let parsed = try? [MastodonKit.Notification].decode(data: Data())
+
+        XCTAssertNil(parsed)
+    }
 }

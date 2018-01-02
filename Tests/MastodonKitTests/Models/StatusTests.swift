@@ -67,4 +67,23 @@ class StatusTests: XCTestCase {
         XCTAssertEqual(status?.language, "fr")
         XCTAssertTrue((status?.pinned)!)
     }
+
+    func testStatusWithInvalidData() {
+        let parsed = try? Status.decode(data: Data())
+
+        XCTAssertNil(parsed)
+    }
+
+    func testStatusesFromJSON() {
+        let fixture = try! Fixture.load(fileName: "Fixtures/Timeline.json")
+        let parsed = try? [Status].decode(data: fixture)
+
+        XCTAssertEqual(parsed?.count, 2)
+    }
+
+    func testStatusesWithInvalidData() {
+        let parsed = try? [Status].decode(data: Data())
+
+        XCTAssertNil(parsed)
+    }
 }
