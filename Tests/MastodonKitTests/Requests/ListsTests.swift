@@ -62,6 +62,22 @@ class ListsTests: XCTestCase {
         XCTAssertTrue(payload.contains("title=awesome%20list"))
     }
 
+    func testUpdate() {
+        let request = Lists.update(id: "42", title: "awesome title")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/lists/42")
+
+        // Method
+        XCTAssertEqual(request.method.name, "PUT")
+        XCTAssertNil(request.method.queryItems)
+        XCTAssertNotNil(request.method.httpBody)
+
+        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
+        XCTAssertEqual(payload.components(separatedBy: "&").count, 1)
+        XCTAssertTrue(payload.contains("title=awesome%20title"))
+    }
+
     func testDelete() {
         let request = Lists.delete(id: "42")
 

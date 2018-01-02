@@ -37,11 +37,19 @@ public struct Lists {
     /// - Parameter title: The title of the list.
     /// - Returns: Request for `List`.
     public static func create(title: String) -> Request<List> {
-        let parameter = [
-            Parameter(name: "title", value: title)
-        ]
-
+        let parameter = [Parameter(name: "title", value: title)]
         return Request<List>(path: "/api/v1/lists", method: .post(.parameters(parameter)))
+    }
+
+    /// Updates the list title.
+    ///
+    /// - Parameters:
+    ///   - id: The list ID.
+    ///   - title: The title of the list.
+    /// - Returns: Request for `List`.
+    public static func update(id: String, title: String) -> Request<List> {
+        let parameter = [Parameter(name: "title", value: title)]
+        return Request<List>(path: "/api/v1/lists/\(id)", method: .put(.parameters(parameter)))
     }
 
     /// Deletes a list.
