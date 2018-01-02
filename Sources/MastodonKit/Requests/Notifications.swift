@@ -40,8 +40,8 @@ public struct Notifications {
     /// - Parameter id: The notification id.
     /// - Returns: Request for `Empty`.
     public static func dismiss(id: String) -> Request<Empty> {
-        let parameters = [Parameter(name: "id", value: String(id))]
-        let method = HTTPMethod.post(.parameters(parameters))
+        let parameter = [Parameter(name: "id", value: String(id))]
+        let method = HTTPMethod.post(.parameters(parameter))
 
         return Request<Empty>(path: "/api/v1/notifications/dismiss", method: method)
     }

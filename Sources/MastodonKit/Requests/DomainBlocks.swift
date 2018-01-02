@@ -25,8 +25,8 @@ public struct DomainBlocks {
     /// - Parameter domain: The domain to block.
     /// - Returns: Request for `Empty`.
     public static func block(domain: String) -> Request<Empty> {
-        let parameters = [Parameter(name: "domain", value: domain)]
-        let method = HTTPMethod.post(.parameters(parameters))
+        let parameter = [Parameter(name: "domain", value: domain)]
+        let method = HTTPMethod.post(.parameters(parameter))
 
         return Request<Empty>(path: "/api/v1/domain_blocks", method: method)
     }
@@ -36,8 +36,8 @@ public struct DomainBlocks {
     /// - Parameter domain: The domain to unblock.
     /// - Returns: Request for `Empty`.
     public static func unblock(domain: String) -> Request<Empty> {
-        let parameters = [Parameter(name: "domain", value: domain)]
-        let method = HTTPMethod.delete(.parameters(parameters))
+        let parameter = [Parameter(name: "domain", value: domain)]
+        let method = HTTPMethod.delete(.parameters(parameter))
 
         return Request<Empty>(path: "/api/v1/domain_blocks", method: method)
     }
