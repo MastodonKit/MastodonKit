@@ -17,4 +17,23 @@ class ReportTests: XCTestCase {
         XCTAssertEqual(report?.id, "42")
         XCTAssertEqual(report?.actionTaken, "account deleted")
     }
+
+    func testReportWithInvalidData() {
+        let parsed = try? Report.decode(data: Data())
+
+        XCTAssertNil(parsed)
+    }
+
+    func testReportsFromJSON() {
+        let fixture = try! Fixture.load(fileName: "Fixtures/Reports.json")
+        let parsed = try? [Report].decode(data: fixture)
+
+        XCTAssertEqual(parsed?.count, 2)
+    }
+
+    func testReportsWithInvalidData() {
+        let parsed = try? [Report].decode(data: Data())
+
+        XCTAssertNil(parsed)
+    }
 }

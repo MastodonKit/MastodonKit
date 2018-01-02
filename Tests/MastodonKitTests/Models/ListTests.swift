@@ -17,4 +17,11 @@ class ListTests: XCTestCase {
         XCTAssertEqual(list?.id, "42")
         XCTAssertEqual(list?.title, "nice list title")
     }
+
+    func testListsFromJSON() {
+        let fixture = try! Fixture.load(fileName: "Fixtures/Lists.json")
+        let parsed = try? [List].decode(data: fixture)
+
+        XCTAssertEqual(parsed?.count, 2)
+    }
 }

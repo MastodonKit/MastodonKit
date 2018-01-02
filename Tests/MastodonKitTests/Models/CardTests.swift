@@ -19,4 +19,10 @@ class CardTests: XCTestCase {
         XCTAssertEqual(card?.description, "Card description")
         XCTAssertEqual(card?.image, URL(string: "http://lorempixel.com/200/200/cats/1/"))
     }
+
+    func testCardWithInvalidData() {
+        let parsed = try? Card.decode(data: Data())
+
+        XCTAssertNil(parsed)
+    }
 }

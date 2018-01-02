@@ -16,4 +16,32 @@ class EmptyTests: XCTestCase {
 
         XCTAssertNotNil(empty)
     }
+
+    func testEmptyWithEmptyDictionary() {
+        let fixture = "[:]".data(using: .utf8)!
+        let parsed = try? Empty.decode(data: fixture)
+
+        XCTAssertNil(parsed)
+    }
+
+    func testEmptyWithNonEmptyDictionary() {
+        let fixture = "[\"foo\": \"bar\"]".data(using: .utf8)!
+        let parsed = try? Empty.decode(data: fixture)
+
+        XCTAssertNil(parsed)
+    }
+
+    func testEmptyWithEmptyString() {
+        let fixture = "".data(using: .utf8)!
+        let parsed = try? Empty.decode(data: fixture)
+
+        XCTAssertNil(parsed)
+    }
+
+    func testEmptyWithString() {
+        let fixture = "foo".data(using: .utf8)!
+        let parsed = try? Empty.decode(data: fixture)
+
+        XCTAssertNil(parsed)
+    }
 }

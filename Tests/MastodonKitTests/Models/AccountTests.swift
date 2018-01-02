@@ -30,4 +30,23 @@ class AccountTests: XCTestCase {
         XCTAssertEqual(account?.followingCount, 52)
         XCTAssertEqual(account?.statusesCount, 420)
     }
+
+    func testAccountWithInvalidData() {
+        let parsed = try? Account.decode(data: Data())
+
+        XCTAssertNil(parsed)
+    }
+
+    func testAccountsFromJSON() {
+        let fixture = try! Fixture.load(fileName: "Fixtures/Accounts.json")
+        let parsed = try? [Account].decode(data: fixture)
+
+        XCTAssertEqual(parsed?.count, 2)
+    }
+
+    func testAccountsWithInvalidData() {
+        let parsed = try? [Account].decode(data: Data())
+
+        XCTAssertNil(parsed)
+    }
 }

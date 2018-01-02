@@ -19,7 +19,7 @@ class ResultsTests: XCTestCase {
         XCTAssertEqual((results?.hashtags)!, ["one", "two", "three"])
     }
 
-    func testResultsFromEmptyJSON() {
+    func testResultsWithInvalidData() {
         let results = try? Results.decode(data: Data())
 
         XCTAssertNil(results)

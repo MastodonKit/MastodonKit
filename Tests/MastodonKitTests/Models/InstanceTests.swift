@@ -20,4 +20,10 @@ class InstanceTests: XCTestCase {
         XCTAssertEqual(instance?.email, "wunderbar email")
         XCTAssertEqual(instance?.version, "1.2.3")
     }
+
+    func testInstanceWithInvalidData() {
+        let parsed = try? Instance.decode(data: Data())
+
+        XCTAssertNil(parsed)
+    }
 }

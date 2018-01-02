@@ -19,4 +19,10 @@ class ClientApplicationTests: XCTestCase {
         XCTAssertEqual(application?.clientID, "very_long_client_id")
         XCTAssertEqual(application?.clientSecret, "very_long_client_secret")
     }
+
+    func testClientApplicationWithInvalidData() {
+        let parsed = try? ClientApplication.decode(data: Data())
+
+        XCTAssertNil(parsed)
+    }
 }

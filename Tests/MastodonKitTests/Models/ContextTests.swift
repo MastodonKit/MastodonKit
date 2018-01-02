@@ -17,4 +17,10 @@ class ContextTests: XCTestCase {
         XCTAssertEqual(context?.ancestors.count, 1)
         XCTAssertEqual(context?.descendants.count, 1)
     }
+
+    func testContextWithInvalidData() {
+        let parsed = try? Context.decode(data: Data())
+
+        XCTAssertNil(parsed)
+    }
 }
