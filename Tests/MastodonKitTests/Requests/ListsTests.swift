@@ -89,4 +89,40 @@ class ListsTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
         XCTAssertNil(request.method.httpBody)
     }
+
+    func testAdd() {
+        let request = Lists.add(accountIDs: ["1", "2", "3"], toList: "42")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/lists/42/accounts")
+
+        // Method
+        XCTAssertEqual(request.method.name, "POST")
+        XCTAssertNil(request.method.queryItems)
+        XCTAssertNotNil(request.method.httpBody)
+
+        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
+        XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
+        XCTAssertTrue(payload.contains("account_ids[]=1"))
+        XCTAssertTrue(payload.contains("account_ids[]=2"))
+        XCTAssertTrue(payload.contains("account_ids[]=3"))
+    }
+
+    func testRemove() {
+        let request = Lists.remove(accountIDs: ["1", "2", "3"], fromList: "42")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/lists/42/accounts")
+
+        // Method
+        XCTAssertEqual(request.method.name, "DELETE")
+        XCTAssertNil(request.method.queryItems)
+        XCTAssertNotNil(request.method.httpBody)
+
+        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
+        XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
+        XCTAssertTrue(payload.contains("account_ids[]=1"))
+        XCTAssertTrue(payload.contains("account_ids[]=2"))
+        XCTAssertTrue(payload.contains("account_ids[]=3"))
+    }
 }
