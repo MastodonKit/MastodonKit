@@ -55,8 +55,30 @@ public struct Lists {
     /// Deletes a list.
     ///
     /// - Parameter id: The list ID.
-    /// - Returns: Request for `List`.
+    /// - Returns: Request for `Empty`.
     public static func delete(id: String) -> Request<Empty> {
         return Request<Empty>(path: "/api/v1/lists/\(id)", method: .delete(.empty))
+    }
+
+    /// Adds accounts to a list.
+    ///
+    /// - Parameters:
+    ///   - accountIDs: The account IDs to be added to the list.
+    ///   - id: The list ID>
+    /// - Returns: Request for `Empty`.
+    public static func add(accountIDs: [String], toList id: String) -> Request<Empty> {
+        let parameter = accountIDs.map(toArrayOfParameters(withName: "account_ids"))
+        return Request<Empty>(path: "/api/v1/lists/\(id)/accounts", method: .post(.parameters(parameter)))
+    }
+
+    /// Removes accounts from a list.
+    ///
+    /// - Parameters:
+    ///   - accountIDs: The account IDs to be removed from the list.
+    ///   - id: The list ID>
+    /// - Returns: Request for `Empty`.
+    public static func remove(accountIDs: [String], fromList id: String) -> Request<Empty> {
+        let parameter = accountIDs.map(toArrayOfParameters(withName: "account_ids"))
+        return Request<Empty>(path: "/api/v1/lists/\(id)/accounts", method: .delete(.parameters(parameter)))
     }
 }
