@@ -25,7 +25,7 @@ func between(_ min: Int, and max: Int, default: Int) -> (Int) -> Int {
 // MARK: - Flat-map
 
 func toOptionalString<A>(optional: A?) -> String? {
-    return optional.flatMap { String(describing: $0) }
+    return optional.flatMap(String.init(describing:))
 }
 
 func toQueryItem(parameter: Parameter) -> URLQueryItem? {

@@ -38,7 +38,9 @@ public struct Lists {
     /// - Returns: Request for `List`.
     public static func create(title: String) -> Request<List> {
         let parameter = [Parameter(name: "title", value: title)]
-        return Request<List>(path: "/api/v1/lists", method: .post(.parameters(parameter)))
+        let method = HTTPMethod.post(.parameters(parameter))
+
+        return Request<List>(path: "/api/v1/lists", method: method)
     }
 
     /// Updates the list title.
@@ -49,7 +51,9 @@ public struct Lists {
     /// - Returns: Request for `List`.
     public static func update(id: String, title: String) -> Request<List> {
         let parameter = [Parameter(name: "title", value: title)]
-        return Request<List>(path: "/api/v1/lists/\(id)", method: .put(.parameters(parameter)))
+        let method = HTTPMethod.put(.parameters(parameter))
+
+        return Request<List>(path: "/api/v1/lists/\(id)", method: method)
     }
 
     /// Deletes a list.
@@ -68,7 +72,9 @@ public struct Lists {
     /// - Returns: Request for `Empty`.
     public static func add(accountIDs: [String], toList id: String) -> Request<Empty> {
         let parameter = accountIDs.map(toArrayOfParameters(withName: "account_ids"))
-        return Request<Empty>(path: "/api/v1/lists/\(id)/accounts", method: .post(.parameters(parameter)))
+        let method = HTTPMethod.post(.parameters(parameter))
+
+        return Request<Empty>(path: "/api/v1/lists/\(id)/accounts", method: method)
     }
 
     /// Removes accounts from a list.
@@ -79,6 +85,8 @@ public struct Lists {
     /// - Returns: Request for `Empty`.
     public static func remove(accountIDs: [String], fromList id: String) -> Request<Empty> {
         let parameter = accountIDs.map(toArrayOfParameters(withName: "account_ids"))
-        return Request<Empty>(path: "/api/v1/lists/\(id)/accounts", method: .delete(.parameters(parameter)))
+        let method = HTTPMethod.delete(.parameters(parameter))
+
+        return Request<Empty>(path: "/api/v1/lists/\(id)/accounts", method: method)
     }
 }

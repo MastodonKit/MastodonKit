@@ -116,14 +116,13 @@ public struct Accounts {
 
     /// Follows a remote user:.
     ///
-    /// - Parameter uri: The 'username@domain' of the person you want to follow.
+    /// - Parameter uri: The 'username@domain' of the remote user to follow.
     /// - Returns: Request for `Account`.
     public static func remoteFollow(uri: String) -> Request<Account> {
-        let parameter = [
-            Parameter(name: "uri", value: uri)
-        ]
+        let parameter = [Parameter(name: "uri", value: uri)]
+        let method = HTTPMethod.post(.parameters(parameter))
 
-        return Request<Account>(path: "/api/v1/follows", method: .post(.parameters(parameter)))
+        return Request<Account>(path: "/api/v1/follows", method: method)
     }
 
     /// Blocks an account.
@@ -164,8 +163,8 @@ public struct Accounts {
     /// - Returns: Request for `[Relationship]`.
     public static func relationships(ids: [String]) -> Request<[Relationship]> {
         let parameters = ids.map(toArrayOfParameters(withName: "id"))
-
         let method = HTTPMethod.get(.parameters(parameters))
+
         return Request<[Relationship]>(path: "/api/v1/accounts/relationships", method: method)
     }
 
