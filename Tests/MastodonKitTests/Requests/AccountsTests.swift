@@ -364,4 +364,21 @@ class AccountsTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedQuery))
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
     }
+
+    func testSearchWithFollowingValue() {
+        let request = Accounts.search(query: "Ash", following: true)
+        let expectedQuery = URLQueryItem(name: "q", value: "Ash")
+        let expectedFollowing = URLQueryItem(name: "following", value: "true")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/accounts/search")
+
+        // Method
+        XCTAssertEqual(request.method.name, "GET")
+        XCTAssertNil(request.method.httpBody)
+        XCTAssertNotNil(request.method.queryItems)
+        XCTAssertEqual(request.method.queryItems?.count, 2)
+        XCTAssertTrue(request.method.queryItems!.contains(expectedQuery))
+        XCTAssertTrue(request.method.queryItems!.contains(expectedFollowing))
+    }
 }
