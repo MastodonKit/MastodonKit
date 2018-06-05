@@ -17,7 +17,7 @@ enum Payload {
 extension Payload {
     var items: [URLQueryItem]? {
         switch self {
-        case .parameters(let parameters): return parameters?.flatMap(toQueryItem)
+        case .parameters(let parameters): return parameters?.compactMap(toQueryItem)
         case .media: return nil
         case .empty: return nil
         }
@@ -25,7 +25,7 @@ extension Payload {
 
     var data: Data? {
         switch self {
-        case .parameters(let parameters): return parameters?.flatMap(toString).joined(separator: "&").data(using: .utf8)
+        case .parameters(let parameters): return parameters?.compactMap(toString).joined(separator: "&").data(using: .utf8)
         case .media(let mediaAttachment): return mediaAttachment.flatMap(Data.init)
         case .empty: return nil
         }

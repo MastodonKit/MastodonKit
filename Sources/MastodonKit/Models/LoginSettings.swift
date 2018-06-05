@@ -21,7 +21,7 @@ public class LoginSettings: Codable {
     public var scopes: [AccessScope] {
         return scope
             .components(separatedBy: .whitespaces)
-            .flatMap(toAccessScope)
+            .compactMap(toAccessScope)
     }
 
     private enum CodingKeys: String, CodingKey {

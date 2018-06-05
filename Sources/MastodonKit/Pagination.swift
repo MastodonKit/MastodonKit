@@ -19,7 +19,7 @@ extension Pagination {
     init(string: String) {
         let links = string
             .components(separatedBy: ",")
-            .flatMap(PaginationItem.init)
+            .compactMap(PaginationItem.init)
 
         var nextLink: RequestRange?
         var previousLink: RequestRange?
