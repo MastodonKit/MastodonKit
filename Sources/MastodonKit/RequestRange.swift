@@ -42,19 +42,4 @@ extension RequestRange {
 
 // MARK: - Equatable
 
-extension RequestRange: Equatable {
-    public static func == (lhs: RequestRange, rhs: RequestRange) -> Bool {
-        switch (lhs, rhs) {
-        case (.max(let leftID, let leftLimit), .max(let rightID, let rightLimit)):
-            return leftID == rightID && leftLimit == rightLimit
-        case (.since(let leftID, let leftLimit), .since(let rightID, let rightLimit)):
-            return leftID == rightID && leftLimit == rightLimit
-        case (.limit(let leftLimit), .limit(let rightLimit)):
-            return leftLimit == rightLimit
-        case (.default, .default):
-            return true
-        default:
-            return false
-        }
-    }
-}
+extension RequestRange: Equatable {}

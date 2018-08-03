@@ -15,8 +15,4 @@ struct Parameter {
 
 // MARK: - Equatable
 
-extension Parameter: Equatable {
-    static func == (lhs: Parameter, rhs: Parameter) -> Bool {
-        return lhs.name == rhs.name && lhs.value == rhs.value
-    }
-}
+extension Parameter: Equatable {}
