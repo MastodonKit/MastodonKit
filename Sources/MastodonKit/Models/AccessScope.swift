@@ -15,4 +15,6 @@ public enum AccessScope: String, Codable {
     case write
     /// Allows following, unfollowing, blocking, and unblocking users.
     case follow
+    /// Allows subscribing to push notifications
+    case push
 }
