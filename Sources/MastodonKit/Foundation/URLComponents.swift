@@ -12,7 +12,7 @@ extension URLComponents {
     init?<A>(baseURL: String, request: Request<A>) {
         guard
             let realBaseURL = URL(string: baseURL),
-            let completeURL = URL(string: request.path, relativeTo: realBaseURL)
+            let completeURL = URL(string: request.path.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!, relativeTo: realBaseURL)
             else {
                 return nil
         }
