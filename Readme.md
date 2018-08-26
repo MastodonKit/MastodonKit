@@ -25,6 +25,7 @@ By the way, if you want to get in touch with me, [toot me](https://mastodon.tech
 * [Paul Schifferer (@exsortis)](https://github.com/exsortis)
 * [Valerii Hiora (@vhbit)](https://github.com/vhbit)
 * [Calv Collins (@calv@mastodon.social)](https://github.com/calvcoll)
+* [Frank Rausch](https://github.com/frankrausch)
 
 # License
 

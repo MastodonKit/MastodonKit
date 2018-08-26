@@ -22,6 +22,10 @@ class AccessScopeTests: XCTestCase {
         XCTAssertEqual(AccessScope(rawValue: "follow"), AccessScope.follow)
     }
 
+    func testPush() {
+        XCTAssertEqual(AccessScope(rawValue: "push"), AccessScope.push)
+    }
+
     func testInvalidType() {
         XCTAssertNil(AccessScope(rawValue: "foobar"))
     }
