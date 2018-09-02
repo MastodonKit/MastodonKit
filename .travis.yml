@@ -8,6 +8,11 @@ notifications:
     on_failure: never
 jobs:
     include:
+        - stage: lint
+          name: "SwiftLint"
+          script: swiftlint lint
+          before_install:
+            - brew update && brew upgrade swiftlint
         - stage: swift
           name: "Swift Package Manager"
           script: swift test
