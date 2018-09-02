@@ -12,7 +12,7 @@ jobs:
           name: "SwiftLint"
           script: swiftlint lint
           before_install:
-            - brew update && brew upgrade swiftlint
+            - brew update && if brew outdated --quiet | grep -qx swiftlint; then brew upgrade swiftlint; fi
         - stage: swift
           name: "Swift Package Manager"
           script: swift test
