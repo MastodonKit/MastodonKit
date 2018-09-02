@@ -25,12 +25,12 @@ extension RequestRange {
         case .max(let id, let limit):
             return [
                 Parameter(name: "max_id", value: id),
-                Parameter(name: "limit", value: limit.flatMap(limitFunction).flatMap(toOptionalString))
+                Parameter(name: "limit", value: limit.map(limitFunction).flatMap(toOptionalString))
             ]
         case .since(let id, let limit):
             return [
                 Parameter(name: "since_id", value: id),
-                Parameter(name: "limit", value: limit.flatMap(limitFunction).flatMap(toOptionalString))
+                Parameter(name: "limit", value: limit.map(limitFunction).flatMap(toOptionalString))
             ]
         case .limit(let limit):
             return [Parameter(name: "limit", value: String(limitFunction(limit)))]
