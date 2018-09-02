@@ -33,8 +33,8 @@ extension Payload {
 
     var type: String? {
         switch self {
-        case .parameters(let parameters): return parameters.flatMap { _ in "application/x-www-form-urlencoded; charset=utf-8" }
-        case .media(let mediaAttachment): return mediaAttachment.flatMap { _ in "multipart/form-data; boundary=MastodonKitBoundary" }
+        case .parameters(let parameters): return parameters.map { _ in "application/x-www-form-urlencoded; charset=utf-8" }
+        case .media(let mediaAttachment): return mediaAttachment.map { _ in "multipart/form-data; boundary=MastodonKitBoundary" }
         case .empty: return nil
         }
     }

@@ -24,7 +24,7 @@ extension PaginationItem {
             .condensed()
             .components(separatedBy: ";")
 
-        let url = segments.first.flatMap(trim(left: "<", right: ">"))
+        let url = segments.first.map(trim(left: "<", right: ">"))
         let rel = segments.last?
             .replacingOccurrences(of: "\"", with: "")
             .trimmingCharacters(in: .whitespaces)

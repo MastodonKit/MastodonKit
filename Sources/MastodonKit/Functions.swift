@@ -25,7 +25,7 @@ func between(_ min: Int, and max: Int, default: Int) -> (Int) -> Int {
 // MARK: - Flat-map
 
 func toOptionalString<A>(optional: A?) -> String? {
-    return optional.flatMap(String.init(describing:))
+    return optional.map(String.init(describing:))
 }
 
 func toQueryItem(parameter: Parameter) -> URLQueryItem? {
@@ -36,7 +36,7 @@ func toQueryItem(parameter: Parameter) -> URLQueryItem? {
 func toString(parameter: Parameter) -> String? {
     return parameter.value?
         .addingPercentEncoding(withAllowedCharacters: .bodyAllowed)
-        .flatMap { value in "\(parameter.name)=\(value)" }
+        .map { value in "\(parameter.name)=\(value)" }
 }
 
 func trueOrNil(_ flag: Bool) -> String? {

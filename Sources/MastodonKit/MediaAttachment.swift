@@ -48,6 +48,6 @@ extension MediaAttachment {
     }
 
     var base64EncondedString: String? {
-        return data.flatMap { "data:" + mimeType + ";base64," + $0.base64EncodedString() }
+        return data.map { "data:" + mimeType + ";base64," + $0.base64EncodedString() }
     }
 }

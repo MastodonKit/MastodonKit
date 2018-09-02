@@ -179,7 +179,7 @@ public struct Accounts {
         let toLimitBounds = between(1, and: 80, default: 40)
         let parameters = [
             Parameter(name: "q", value: query),
-            Parameter(name: "limit", value: limit.flatMap(toLimitBounds).flatMap(toOptionalString)),
+            Parameter(name: "limit", value: limit.map(toLimitBounds).flatMap(toOptionalString)),
             Parameter(name: "following", value: following.flatMap(trueOrNil))
         ]
 
