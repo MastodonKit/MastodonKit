@@ -2,11 +2,17 @@ os:
   - osx
 language: generic
 osx_image:  xcode10
-script:
-  - xcodebuild -scheme MastodonKit-macOS -enableCodeCoverage YES build test
-after_success:
-  - bash <(curl -s https://codecov.io/bash) -cF ios
 notifications:
   email:
     on_success: never
     on_failure: never
+jobs:
+    include:
+        - stage: swift
+          name: "Swift Package Manager"
+          script: swift test
+        - stage: xcode
+          name: "Xcode"
+          script: xcodebuild -scheme MastodonKit-macOS -enableCodeCoverage YES build test
+          after_success:
+            - bash <(curl -s https://codecov.io/bash) -cF ios
