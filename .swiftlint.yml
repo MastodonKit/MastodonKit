@@ -24,7 +24,7 @@ identifier_name:
   excluded:
     - id
 
-line_length: 160
+line_length: 120
 
 type_name:
   min_length: 3

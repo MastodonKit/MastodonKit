@@ -45,7 +45,7 @@ public struct Client: ClientType {
                 httpResponse.statusCode == 200
                 else {
                     let mastodonError = try? MastodonError.decode(data: data)
-                    let error = mastodonError.map { ClientError.mastodonError($0.description) } ?? ClientError.genericError
+                    let error: ClientError = mastodonError.map { .mastodonError($0.description) } ?? .genericError
                     completion(.failure(error))
                     return
             }

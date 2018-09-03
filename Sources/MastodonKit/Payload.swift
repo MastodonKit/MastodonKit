@@ -25,7 +25,11 @@ extension Payload {
 
     var data: Data? {
         switch self {
-        case .parameters(let parameters): return parameters?.compactMap(toString).joined(separator: "&").data(using: .utf8)
+        case .parameters(let parameters):
+            return parameters?
+                .compactMap(toString)
+                .joined(separator: "&")
+                .data(using: .utf8)
         case .media(let mediaAttachment): return mediaAttachment.flatMap(Data.init)
         case .empty: return nil
         }
@@ -33,8 +37,10 @@ extension Payload {
 
     var type: String? {
         switch self {
-        case .parameters(let parameters): return parameters.map { _ in "application/x-www-form-urlencoded; charset=utf-8" }
-        case .media(let mediaAttachment): return mediaAttachment.map { _ in "multipart/form-data; boundary=MastodonKitBoundary" }
+        case .parameters(let parameters):
+            return parameters.map { _ in "application/x-www-form-urlencoded; charset=utf-8" }
+        case .media(let mediaAttachment):
+            return mediaAttachment.map { _ in "multipart/form-data; boundary=MastodonKitBoundary" }
         case .empty: return nil
         }
     }
