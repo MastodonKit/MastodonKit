@@ -29,4 +29,24 @@ class LoginTests: XCTestCase {
         XCTAssertTrue(payload.contains("username=foo"))
         XCTAssertTrue(payload.contains("password=123"))
     }
+
+    func testOAuthLogin() {
+        let request = Login.oauth(clientID: "client id", clientSecret: "client secret", scopes: [.read, .write], redirectURI: "foo://oauth", code: "123")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/oauth/token")
+
+        // Method
+        XCTAssertEqual(request.method.name, "POST")
+        XCTAssertNil(request.method.queryItems)
+
+        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
+        XCTAssertEqual(payload.components(separatedBy: "&").count, 6)
+        XCTAssertTrue(payload.contains("client_id=client%20id"))
+        XCTAssertTrue(payload.contains("client_secret=client%20secret"))
+        XCTAssertTrue(payload.contains("scope=read%20write"))
+        XCTAssertTrue(payload.contains("grant_type=authorization_code"))
+        XCTAssertTrue(payload.contains("redirect_uri=foo%3A//oauth"))
+        XCTAssertTrue(payload.contains("code=123"))
+    }
 }
