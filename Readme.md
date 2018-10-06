@@ -26,6 +26,7 @@ By the way, if you want to get in touch with me, [toot me](https://mastodon.tech
 * [Valerii Hiora (@vhbit)](https://github.com/vhbit)
 * [Calv Collins (@calv@mastodon.social)](https://github.com/calvcoll)
 * [Frank Rausch](https://github.com/frankrausch)
+* [Adam Lickel](https://github.com/lickel)
 
 # License
 

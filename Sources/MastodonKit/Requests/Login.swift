@@ -46,10 +46,10 @@ public struct Login {
     ///   - code: The authorization code.
     /// - Returns: Request for `LoginSettings`.
     public static func oauth(clientID: String,
-                              clientSecret: String,
-                              scopes: [AccessScope],
-                              redirectURI: String,
-                              code: String) -> Request<LoginSettings> {
+                             clientSecret: String,
+                             scopes: [AccessScope],
+                             redirectURI: String,
+                             code: String) -> Request<LoginSettings> {
         let parameters = [
             Parameter(name: "client_id", value: clientID),
             Parameter(name: "client_secret", value: clientSecret),
