@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Clients {
+/// `Clients` requests.
+public enum Clients {
     /// Registers an application.
     ///
     /// - Parameters:

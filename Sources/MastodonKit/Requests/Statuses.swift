@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Statuses {
+/// `Statuses` requests.
+public enum Statuses {
     /// Fetches a status.
     ///
     /// - Parameter id: The status id.

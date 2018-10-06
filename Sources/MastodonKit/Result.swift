@@ -15,9 +15,9 @@ public enum Result<Model> {
     case failure(Error)
 }
 
-extension Result {
+public extension Result {
     /// Convenience getter for the value.
-    public var value: Model? {
+    var value: Model? {
         switch self {
         case .success(let value, _): return value
         case .failure: return nil
@@ -25,7 +25,7 @@ extension Result {
     }
 
     /// Convenience getter for the pagination.
-    public var pagination: Pagination? {
+    var pagination: Pagination? {
         switch self {
         case .success(_, let pagination): return pagination
         case .failure: return nil
@@ -33,7 +33,7 @@ extension Result {
     }
 
     /// Convenience getter for the error.
-    public var error: Error? {
+    var error: Error? {
         switch self {
         case .success: return nil
         case .failure(let error): return error
@@ -41,7 +41,7 @@ extension Result {
     }
 
     /// Convenience getter to test whether the result is an error or not.
-    public var isError: Bool {
+    var isError: Bool {
         switch self {
         case .success: return false
         case .failure: return true

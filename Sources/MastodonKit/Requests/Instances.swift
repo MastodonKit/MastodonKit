@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Instances {
+/// `Instances` requests.
+public enum Instances {
     /// Gets instance information.
     ///
     /// - Returns: Request for `Instance`.

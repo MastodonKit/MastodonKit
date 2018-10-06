@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Lists {
+/// `Lists` requests.
+public enum Lists {
     /// Retrieves lists.
     ///
     /// - Returns: Request for `[List]`.

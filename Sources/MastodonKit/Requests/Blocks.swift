@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Blocks {
+/// `Blocks` requests.
+public enum Blocks {
     /// Fetches a user's blocks.
     ///
     /// - Parameter range: The bounds used when requesting data from Mastodon.

@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Reports {
+/// `Reports` requests.
+public enum Reports {
     /// Fetches a user's reports.
     ///
     /// - Returns: Request for `[Report]`.

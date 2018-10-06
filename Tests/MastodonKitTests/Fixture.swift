@@ -12,7 +12,7 @@ enum FixtureError: Error {
     case invalidPath, invalidData
 }
 
-struct Fixture {
+enum Fixture {
     static func load(fileName: String) throws -> Data {
         var testsDirectory = URL(fileURLWithPath: #file, isDirectory: false)
         testsDirectory.deleteLastPathComponent()

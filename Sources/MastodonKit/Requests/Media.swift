@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Media {
+/// `Media` requests.
+public enum Media {
     /// Uploads a media attachment.
     ///
     /// - Parameter mediaAttachment: The media attachment to upload.

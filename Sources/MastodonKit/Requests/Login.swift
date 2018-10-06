@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Login {
+/// `Login` requests.
+public enum Login {
     /// Performs a silent login.
     ///
     /// - Parameters:
