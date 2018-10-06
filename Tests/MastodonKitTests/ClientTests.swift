@@ -9,6 +9,8 @@
 import XCTest
 @testable import MastodonKit
 
+// swiftlint:disable single_test_class
+
 class ClientInitializationTests: XCTestCase {
     func testClientInitializationWithAccessToken() {
         let client = Client(baseURL: "https://my.mastodon.instance/", accessToken: "foo")

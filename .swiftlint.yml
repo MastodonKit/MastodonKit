@@ -1,22 +1,47 @@
 opt_in_rules:
+  - anyobject_protocol
+  - array_init
+  - block_based_kvo
   - closure_end_indentation
   - closure_spacing
+  - contains_over_first_not_nil
+  - convenience_type
+  - discouraged_object_literal
   - empty_count
+  - empty_string
+  - empty_xctest_method
   - explicit_init
+  - extension_access_modifier
   - fatal_error_message
+  - file_header
   - file_length
   - first_where
   - force_cast
   - force_try
   - force_unwrapping
+  - implicit_return
   - implicitly_unwrapped_optional
+  - joined_default_parameter
+  - lower_acl_than_parent
+  - modifier_order
+  - multiline_function_chains
+  - multiline_parameters
+  - no_fallthrough_only
   - operator_usage_whitespace
   - overridden_super_call
+  - prefixed_toplevel_constant
+  - private_action
   - private_outlet
   - prohibited_super_call
   - redundant_nil_coalescing
-  - multiline_parameters
-  - file_header
+  - single_test_class
+  - sorted_first_last
+  - trailing_closure
+  - unavailable_function
+  - unneeded_parentheses_in_closure_argument
+  - vertical_parameter_alignment_on_call
+  - xctfail_message
+  - yoda_condition
 
 identifier_name:
   min_length:

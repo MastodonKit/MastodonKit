@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Favourites {
+/// `Favourites` requests.
+public enum Favourites {
     /// Fetches a user's favourites.
     ///
     /// - Parameter range: The bounds used when requesting data from Mastodon.

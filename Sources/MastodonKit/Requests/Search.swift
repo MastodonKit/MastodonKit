@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Search {
+/// `Search` requests.
+public enum Search {
     /// Searches for content.
     ///
     /// - Parameters:

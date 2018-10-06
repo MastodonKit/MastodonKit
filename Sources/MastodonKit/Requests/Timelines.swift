@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Timelines {
+/// `Timelines` requests.
+public enum Timelines {
     /// Retrieves the home timeline.
     ///
     /// - Parameter range: The bounds used when requesting data from Mastodon.

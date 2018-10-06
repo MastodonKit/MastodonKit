@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Accounts {
+/// `Accounts` requests.
+public enum Accounts {
     /// Fetches an account.
     ///
     /// - Parameter id: The account id.

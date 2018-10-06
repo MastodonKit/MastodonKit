@@ -10,6 +10,8 @@
 
 import PackageDescription
 
+// swiftlint:disable prefixed_toplevel_constant
+
 let package = Package(
     name: "MastodonKit",
     products: [

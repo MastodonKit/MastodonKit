@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Notifications {
+/// `Notifications` requests.
+public enum Notifications {
     /// Fetches a user's notifications.
     ///
     /// - Parameter range: The bounds used when requesting data from Mastodon.
