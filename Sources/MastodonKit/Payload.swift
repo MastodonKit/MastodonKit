@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Payload {
+public enum Payload {
     case parameters([Parameter]?)
     case media(MediaAttachment?)
     case empty
