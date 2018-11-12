@@ -3,5 +3,6 @@
     "title": "nice title",
     "description": "sweet description",
     "email": "wunderbar email",
-    "version": "1.2.3"
+    "version": "1.2.3",
+    "urls": {"some_url": "somewhere"}
 }
