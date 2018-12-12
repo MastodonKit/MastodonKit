@@ -29,6 +29,9 @@ class AccountTests: XCTestCase {
         XCTAssertEqual(account?.followersCount, 42)
         XCTAssertEqual(account?.followingCount, 52)
         XCTAssertEqual(account?.statusesCount, 420)
+        XCTAssertEqual(account?.emojis.first?.shortcode, "mastodon")
+        XCTAssertEqual(account?.emojis.first?.url, URL(string: "https://static.mastodon.technology/custom_emojis/images/000/000/435/original/61371621aea40c9e.png"))
+        XCTAssertEqual(account?.emojis.first?.staticURL, URL(string: "https://static.mastodon.technology/custom_emojis/images/000/000/435/static/61371621aea40c9e.png"))
     }
 
     func testAccountWithInvalidData() {
