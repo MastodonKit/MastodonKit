@@ -60,4 +60,24 @@ public struct Client: ClientType {
 
         task.resume()
     }
+
+    /// OAuth authorization URL. Use this to initiate a standard OAuth login.
+    ///
+    /// - Parameters:
+    ///   - clientID: The client ID.
+    ///   - scopes: The access scopes.
+    ///   - redirectURI: The client redirectURI.
+    /// - Returns: URL for the OAuth authorization endpoint.
+    public func oauthAuthorizationURL(clientID: String, scopes: [AccessScope], redirectURI: String) -> URL? {
+        let parameters = [
+            Parameter(name: "client_id", value: clientID),
+            Parameter(name: "scope", value: scopes.map(toString).joined(separator: " ")),
+            Parameter(name: "redirect_uri", value: redirectURI),
+            Parameter(name: "response_type", value: "code")
+        ]
+
+        let method = HTTPMethod.get(.parameters(parameters))
+        let request = Request<LoginSettings>(path: "/oauth/authorize", method: method)
+        return URLComponents(baseURL: baseURL, request: request)?.url
+    }
 }
