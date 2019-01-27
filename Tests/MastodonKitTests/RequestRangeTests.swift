@@ -34,6 +34,30 @@ class RequestRangeTests: XCTestCase {
         XCTAssertTrue(parameters!.contains(expectedLimit))
     }
 
+    func testRangeWithMinValue() {
+        let range = RequestRange.min(id: "42", limit: nil)
+        let expectedMaxID = Parameter(name: "min_id", value: "42")
+        let expectedLimit = Parameter(name: "limit", value: nil)
+
+        let parameters = range.parameters(limit: between(0, and: 10, default: 3))
+
+        XCTAssertEqual(parameters?.count, 2)
+        XCTAssertTrue(parameters!.contains(expectedMaxID))
+        XCTAssertTrue(parameters!.contains(expectedLimit))
+    }
+
+    func testRangeWithMinValueAndLimit() {
+        let range = RequestRange.min(id: "42", limit: 7)
+        let expectedMaxID = Parameter(name: "min_id", value: "42")
+        let expectedLimit = Parameter(name: "limit", value: "7")
+
+        let parameters = range.parameters(limit: between(0, and: 10, default: 3))
+
+        XCTAssertEqual(parameters?.count, 2)
+        XCTAssertTrue(parameters!.contains(expectedMaxID))
+        XCTAssertTrue(parameters!.contains(expectedLimit))
+    }
+
     func testRangeWithSinceValue() {
         let range = RequestRange.since(id: "80", limit: nil)
         let expectedSinceID = Parameter(name: "since_id", value: "80")
