@@ -19,7 +19,7 @@ public struct Client: ClientType {
         self.accessToken = accessToken
     }
 
-    public func run<Model>(_ request: Request<Model>, completion: @escaping (Result<Model>) -> Void) {
+    public func run<Model>(_ request: Request<Model>, completion: @escaping (Result<(Model, Pagination?), Error>) -> Void) {
         guard
             let components = URLComponents(baseURL: baseURL, request: request),
             let url = components.url
@@ -55,7 +55,7 @@ public struct Client: ClientType {
                 return
             }
 
-            completion(.success(model, httpResponse.pagination))
+            completion(.success((model, httpResponse.pagination)))
         }
 
         task.resume()
