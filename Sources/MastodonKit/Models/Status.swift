@@ -56,6 +56,8 @@ public class Status: Codable {
     /// Whether this is the pinned status for the account that posted it.
     public let pinned: Bool?
 
+    public let repliesCount: Int
+
     private enum CodingKeys: String, CodingKey {
         case id
         case uri
@@ -80,5 +82,6 @@ public class Status: Codable {
         case language
         case reblog
         case pinned
+        case repliesCount = "replies_count"
     }
 }
