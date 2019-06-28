@@ -17,4 +17,6 @@ public enum AttachmentType: String, Codable {
     case gifv
     /// The attachment contains an unknown image file.
     case unknown
+
+    case audio
 }
