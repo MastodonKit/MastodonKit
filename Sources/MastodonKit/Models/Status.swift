@@ -58,6 +58,8 @@ public class Status: Codable {
 
     public let repliesCount: Int
 
+    public let card: Card?
+
     private enum CodingKeys: String, CodingKey {
         case id
         case uri
@@ -83,5 +85,6 @@ public class Status: Codable {
         case reblog
         case pinned
         case repliesCount = "replies_count"
+        case card
     }
 }
