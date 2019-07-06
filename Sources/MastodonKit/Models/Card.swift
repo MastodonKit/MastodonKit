@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class Card: Codable {
+public struct Card: Codable {
     /// The url associated with the card.
-    public let url: URL
+    public var url: URL
     /// The title of the card.
-    public let title: String
+    public var title: String
     /// The card description.
-    public let description: String
+    public var description: String
     /// The image associated with the card, if any.
-    public let image: URL?
+    public var image: URL?
 }
