@@ -18,7 +18,7 @@ public struct Attachment: Codable {
     /// For remote images, the remote URL of the original image.
     public var remoteURL: String?
     /// URL of the preview image.
-    public var previewURL: String
+    public var previewURL: URL
     /// Shorter URL for the image, for insertion into text (only present on local images).
     public var textURL: String?
     /// A description of the image for the visually impaired.
