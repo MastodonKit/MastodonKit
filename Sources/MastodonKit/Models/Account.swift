@@ -15,8 +15,17 @@ public class Account: Codable {
     public let username: String
     /// Equals username for local users, includes @domain for remote ones.
     public let acct: String
+
     /// The account's display name.
-    public let displayName: String
+    public var displayName: String {
+        if _displayName.isEmpty {
+            return username
+        }
+        return _displayName
+    }
+
+    private let _displayName: String
+
     /// Biography of user.
     public let note: String
     /// URL of the user's profile page (can be remote).
@@ -24,7 +33,7 @@ public class Account: Codable {
     /// URL to the avatar image.
     public let avatar: String
     /// URL to the avatar static image
-    public let avatarStatic: String
+    public let avatarStatic: URL
     /// URL to the header image.
     public let header: String
     /// URL to the header static image
@@ -56,7 +65,7 @@ public class Account: Codable {
         case id
         case username
         case acct
-        case displayName = "display_name"
+        case _displayName = "display_name"
         case note
         case url
         case avatar

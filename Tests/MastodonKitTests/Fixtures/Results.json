@@ -59,7 +59,8 @@
             "favourites_count": 1,
             "favourited": true,
             "reblogged": true,
-            "language": "fr"
+            "language": "fr",
+            "replies_count": 0
         }
     ],
     "hashtags": [

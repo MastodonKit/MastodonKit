@@ -19,7 +19,7 @@ public struct Client: ClientType {
         self.accessToken = accessToken
     }
 
-    public func run<Model>(_ request: Request<Model>, completion: @escaping (Result<Model>) -> Void) {
+    public func run<Model>(_ request: Request<Model>, completion: @escaping (Result<(Model, Pagination?), Error>) -> Void) {
         guard
             let components = URLComponents(baseURL: baseURL, request: request),
             let url = components.url
@@ -50,12 +50,12 @@ public struct Client: ClientType {
                     return
             }
 
-            guard let model = try? Model.decode(data: data) else {
-                completion(.failure(ClientError.invalidModel))
-                return
+            do {
+                let model = try Model.decode(data: data)
+                completion(.success((model, httpResponse.pagination)))
+            } catch {
+                completion(.failure(error))
             }
-
-            completion(.success(model, httpResponse.pagination))
         }
 
         task.resume()
