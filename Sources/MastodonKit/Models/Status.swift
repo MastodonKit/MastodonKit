@@ -36,7 +36,7 @@ public class Status: Codable {
     /// Whether the authenticated user has favourited the status.
     public let favourited: Bool?
     /// Whether media attachments should be hidden by default.
-    public let sensitive: Bool?
+    public let sensitive: Bool
     /// If not empty, warning text that should be displayed before the actual content.
     public let spoilerText: String
     /// The visibility of the status.
