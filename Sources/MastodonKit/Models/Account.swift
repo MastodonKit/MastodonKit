@@ -33,7 +33,7 @@ public class Account: Codable {
     /// URL to the avatar image.
     public let avatar: String
     /// URL to the avatar static image
-    public let avatarStatic: String
+    public let avatarStatic: URL
     /// URL to the header image.
     public let header: String
     /// URL to the header static image
