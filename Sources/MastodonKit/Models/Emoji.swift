@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class Emoji: Codable {
+public struct Emoji: Codable {
     /// The shortcode of the emoji
-    public let shortcode: String
+    public var shortcode: String
     /// URL to the emoji static image
-    public let staticURL: URL
+    public var staticURL: URL
     /// URL to the emoji image
-    public let url: URL
+    public var url: URL
 
     private enum CodingKeys: String, CodingKey {
         case shortcode
