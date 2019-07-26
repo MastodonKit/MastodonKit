@@ -17,4 +17,6 @@ public enum NotificationType: String, Codable {
     case favourite
     /// The user has a new follower.
     case follow
+    /// The user has a new poll notification.
+    case poll
 }
