@@ -88,5 +88,21 @@
     "favourited": true,
     "reblogged": true,
     "language": "fr",
-    "pinned": true
+    "pinned": true,
+    "poll": {
+        "id": "1337",
+        "expires_at": "2019-07-24T20:43:43.000Z",
+        "expired": true,
+        "multiple": false,
+        "votes_count": 881,
+        "voted": true,
+        "options": [{
+            "title": "Yes",
+            "votes_count": 604
+        }, {
+            "title": "No",
+            "votes_count": 277
+        }],
+        "emojis": []
+    }
 }
