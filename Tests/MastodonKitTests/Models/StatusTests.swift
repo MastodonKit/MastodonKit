@@ -70,6 +70,8 @@ class StatusTests: XCTestCase {
         XCTAssertNotNil(status?.application)
         XCTAssertEqual(status?.language, "fr")
         XCTAssertTrue((status?.pinned)!)
+        XCTAssertNotNil(status?.poll)
+        XCTAssertEqual(status?.poll?.votesCount, 881)
     }
 
     func testStatusWithInvalidData() {

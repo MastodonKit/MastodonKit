@@ -18,22 +18,23 @@ public class Poll: Codable {
     /// Whether this is a multi poll.
     public let multiple: Bool
     /// Number of votes (total).
-    public let votesCount: String
+    public let votesCount: Int
     /// Whether the current user voted.
     public let voted: Bool
     /// An array of poll options.
     public let options: [PollOption]
     /// An array of Emoji.
     public let emojis: [Emoji]
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case expiresAt = "expires_at"
+        case expired
+        case multiple
+        case votesCount = "votes_count"
+        case voted
+        case options
+        case emojis
+    }
 }
 
-private enum CodingKeys: String, CodingKey {
-    case id
-    case expiresAt = "expires_at"
-    case expired
-    case multiple
-    case votesCount = "votes_count"
-    case voted
-    case options
-    case emojis
-}
