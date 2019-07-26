@@ -37,4 +37,3 @@ public class Poll: Codable {
         case emojis
     }
 }
-
