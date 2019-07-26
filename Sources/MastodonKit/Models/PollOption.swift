@@ -10,12 +10,12 @@ import Foundation
 
 public class PollOption: Codable {
     public let title: String
-    public let votesCount: String
-}
-
-private enum CodingKeys: String, CodingKey {
-    /// The title of the poll option.
-    case title
-    /// The number of votes for this option.
-    case votesCount = "votes_count"
+    public let votesCount: Int
+    
+    private enum CodingKeys: String, CodingKey {
+        /// The title of the poll option.
+        case title
+        /// The number of votes for this option.
+        case votesCount = "votes_count"
+    }
 }
