@@ -55,6 +55,8 @@ public class Status: Codable {
     public let reblog: Status?
     /// Whether this is the pinned status for the account that posted it.
     public let pinned: Bool?
+    // The poll for this status.
+    public let poll: Poll?
 
     public let repliesCount: Int
 
@@ -86,5 +88,6 @@ public class Status: Codable {
         case pinned
         case repliesCount = "replies_count"
         case card
+        case poll
     }
 }
