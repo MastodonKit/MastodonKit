@@ -41,5 +41,7 @@
     "reblogged": null,
     "language": null,
     "pinned": null,
-    "replies_count": 0
+    "replies_count": 0,
+    "card": null,
+    "poll": null
 }
