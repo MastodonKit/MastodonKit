@@ -12,11 +12,15 @@ import XCTest
 class ResultsTests: XCTestCase {
     func testResultsFromValidJSON() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Results.json")
-        let results = try? Results.decode(data: fixture)
+        do {
+            let results = try Results.decode(data: fixture)
 
-        XCTAssertEqual(results?.accounts.count, 1)
-        XCTAssertEqual(results?.statuses.count, 1)
-        XCTAssertEqual((results?.hashtags)!, ["one", "two", "three"])
+            XCTAssertEqual(results.accounts.count, 1)
+            XCTAssertEqual(results.statuses.count, 1)
+            XCTAssertEqual(results.hashtags, ["one", "two", "three"])
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
     }
 
     func testResultsWithInvalidData() {

@@ -6,7 +6,7 @@
             "emojis": [],
             "in_reply_to_id": null,
             "in_reply_to_account_id": null,
-            "sensitive": null,
+            "sensitive": false,
             "spoiler_text": "Let's keep his a secret!",
             "visibility": "public",
             "application": {
@@ -41,7 +41,10 @@
             "reblog": null,
             "favourited": true,
             "reblogged": null,
-            "language": "fr"
+            "language": "fr",
+            "replies_count": 0,
+            "card": null,
+            "poll": null
         }
     ],
     "descendants": [
@@ -85,7 +88,10 @@
             "favourites_count": 1,
             "favourited": true,
             "reblogged": true,
-            "language": "fr"
+            "language": "fr",
+            "replies_count": 0,
+            "card": null,
+            "poll": null
         }
     ]
 }

@@ -41,7 +41,12 @@ class ClientInitializationWithInvalidURLTests: XCTestCase {
         var passedError: Error?
 
         client.run(Timelines.home()) { result in
-            passedError = result.error
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                passedError = error
+            }
         }
 
         XCTAssertEqual(passedError?.localizedDescription, ClientError.malformedURL.localizedDescription)
@@ -50,7 +55,7 @@ class ClientInitializationWithInvalidURLTests: XCTestCase {
 
 class ClientRunTests: XCTestCase {
     let mockSession = MockURLSession()
-    var result: Result<[Status]>?
+    var result: Result<([Status], Pagination?), Error>?
 
     override func setUp() {
         super.setUp()
@@ -83,13 +88,33 @@ class ClientRunTests: XCTestCase {
 
         mockSession.lastCompletionHandler?(nil, nil, mockError)
 
-        XCTAssertEqual(result?.error?.localizedDescription, mockError.localizedDescription)
+        guard let result = result else {
+            XCTFail()
+            return
+        }
+
+        switch result {
+        case .success:
+            XCTFail()
+        case .failure(let error):
+            XCTAssertEqual(error.localizedDescription, mockError.localizedDescription)
+        }
     }
 
     func testDataTaskCompletionBlockWithMissingData() {
         mockSession.lastCompletionHandler?(nil, nil, nil)
 
-        XCTAssertEqual(result?.error?.localizedDescription, ClientError.malformedJSON.localizedDescription)
+        guard let result = result else {
+            XCTFail()
+            return
+        }
+
+        switch result {
+        case .success:
+            XCTFail()
+        case .failure(let error):
+            XCTAssertEqual(error.localizedDescription, ClientError.malformedJSON.localizedDescription)
+        }
     }
 
     func testDataTaskCompletionBlockWithMastodonError() {
@@ -102,20 +127,17 @@ class ClientRunTests: XCTestCase {
 
         mockSession.lastCompletionHandler?(fixture, response, nil)
 
-        XCTAssertEqual(result?.error?.localizedDescription, ClientError.mastodonError("yes, it's an error.").localizedDescription)
-    }
+        guard let result = result else {
+            XCTFail()
+            return
+        }
 
-    func testDataTaskCompletionBlockWithInvalidModel() {
-        let fixture = try! Fixture.load(fileName: "Fixtures/Account.json")
-        let response = HTTPURLResponse(
-            url: URL(string: "https://my.mastodon.instance/api/v1/timelines/home")!,
-            statusCode: 200,
-            httpVersion: nil,
-            headerFields: nil)
-
-        mockSession.lastCompletionHandler?(fixture, response, nil)
-
-        XCTAssertEqual(result?.error?.localizedDescription, ClientError.invalidModel.localizedDescription)
+        switch result {
+        case .success:
+            XCTFail()
+        case .failure(let error):
+            XCTAssertEqual(error.localizedDescription, ClientError.mastodonError("yes, it's an error.").localizedDescription)
+        }
     }
 
     func testDataTaskCompletionBlockWithSuccessWithoutHeaderLink() {
@@ -129,8 +151,18 @@ class ClientRunTests: XCTestCase {
 
         mockSession.lastCompletionHandler?(fixture, response, nil)
 
-        XCTAssertEqual(result?.value?.count, 2)
-        XCTAssertNil(result?.pagination)
+        guard let result = result else {
+            XCTFail()
+            return
+        }
+
+        switch result {
+        case .success(let (value, pagination)):
+            XCTAssertEqual(value.count, 2)
+            XCTAssertNil(pagination)
+        case .failure:
+            XCTFail()
+        }
     }
 
     func testDataTaskCompletionBlockWithSuccessWithHeaderLink() {
@@ -149,8 +181,18 @@ class ClientRunTests: XCTestCase {
 
         mockSession.lastCompletionHandler?(fixture, response, nil)
 
-        XCTAssertEqual(result?.value?.count, 2)
-        XCTAssertNotNil(result?.pagination)
+        guard let result = result else {
+            XCTFail()
+            return
+        }
+
+        switch result {
+        case .success(let (value, pagination)):
+            XCTAssertEqual(value.count, 2)
+            XCTAssertNotNil(pagination)
+        case .failure:
+            XCTFail()
+        }
     }
 }
 

@@ -36,7 +36,7 @@ public class Status: Codable {
     /// Whether the authenticated user has favourited the status.
     public let favourited: Bool?
     /// Whether media attachments should be hidden by default.
-    public let sensitive: Bool?
+    public let sensitive: Bool
     /// If not empty, warning text that should be displayed before the actual content.
     public let spoilerText: String
     /// The visibility of the status.
@@ -55,6 +55,12 @@ public class Status: Codable {
     public let reblog: Status?
     /// Whether this is the pinned status for the account that posted it.
     public let pinned: Bool?
+    /// The poll for this status.
+    public let poll: Poll?
+
+    public let repliesCount: Int
+
+    public let card: Card?
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -80,5 +86,8 @@ public class Status: Codable {
         case language
         case reblog
         case pinned
+        case repliesCount = "replies_count"
+        case card
+        case poll
     }
 }

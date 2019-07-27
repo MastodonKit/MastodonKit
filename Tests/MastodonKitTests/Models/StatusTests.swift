@@ -11,32 +11,36 @@ import XCTest
 
 class StatusTests: XCTestCase {
     func testStatusWithNullFromJSON() {
-        let fixture = try! Fixture.load(fileName: "Fixtures/StatusWithNull.json")
-        let status = try? Status.decode(data: fixture)
+        do {
+            let fixture = try Fixture.load(fileName: "Fixtures/StatusWithNull.json")
+            let status = try Status.decode(data: fixture)
 
-        XCTAssertEqual(status?.id, "1")
-        XCTAssertEqual(status?.uri, "tag_uri")
-        XCTAssertEqual(status?.url, URL(string: "https://mastodon.technology/@ornithocoder"))
-        XCTAssertNotNil(status?.account)
-        XCTAssertNil(status?.inReplyToID)
-        XCTAssertNil(status?.inReplyToAccountID)
-        XCTAssertNil(status?.reblog)
-        XCTAssertEqual(status?.content, "This is a very very long status message posted on Mastodon. OK, not that long because I'm lazy and don't want to type a long fixture.")
-        XCTAssertEqual(status?.createdAt.timeIntervalSince1970, 1491497702.132)
-        XCTAssertEqual(status?.emojis.count, 0)
-        XCTAssertEqual(status?.reblogsCount, 0)
-        XCTAssertEqual(status?.favouritesCount, 1)
-        XCTAssertNil(status?.reblogged)
-        XCTAssertTrue((status?.favourited)!)
-        XCTAssertNil(status?.sensitive)
-        XCTAssertEqual(status?.spoilerText, "Let's keep his a secret!")
-        XCTAssertEqual(status?.visibility, Visibility.public)
-        XCTAssertEqual(status?.mediaAttachments.count, 0)
-        XCTAssertEqual(status?.mentions.count, 0)
-        XCTAssertEqual(status?.tags.count, 0)
-        XCTAssertNotNil(status?.application)
-        XCTAssertNil(status?.language)
-        XCTAssertNil(status?.pinned)
+            XCTAssertEqual(status.id, "1")
+            XCTAssertEqual(status.uri, "tag_uri")
+            XCTAssertEqual(status.url, URL(string: "https://mastodon.technology/@ornithocoder"))
+            XCTAssertNotNil(status.account)
+            XCTAssertNil(status.inReplyToID)
+            XCTAssertNil(status.inReplyToAccountID)
+            XCTAssertNil(status.reblog)
+            XCTAssertEqual(status.content, "This is a very very long status message posted on Mastodon. OK, not that long because I'm lazy and don't want to type a long fixture.")
+            XCTAssertEqual(status.createdAt.timeIntervalSince1970, 1491497702.132)
+            XCTAssertEqual(status.emojis.count, 0)
+            XCTAssertEqual(status.reblogsCount, 0)
+            XCTAssertEqual(status.favouritesCount, 1)
+            XCTAssertNil(status.reblogged)
+            XCTAssertTrue((status.favourited)!)
+            XCTAssertFalse(status.sensitive)
+            XCTAssertEqual(status.spoilerText, "Let's keep his a secret!")
+            XCTAssertEqual(status.visibility, Visibility.public)
+            XCTAssertEqual(status.mediaAttachments.count, 0)
+            XCTAssertEqual(status.mentions.count, 0)
+            XCTAssertEqual(status.tags.count, 0)
+            XCTAssertNotNil(status.application)
+            XCTAssertNil(status.language)
+            XCTAssertNil(status.pinned)
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
     }
 
     func testStatusWithoutNullFromJSON() {
@@ -66,6 +70,8 @@ class StatusTests: XCTestCase {
         XCTAssertNotNil(status?.application)
         XCTAssertEqual(status?.language, "fr")
         XCTAssertTrue((status?.pinned)!)
+        XCTAssertNotNil(status?.poll)
+        XCTAssertEqual(status?.poll?.votesCount, 881)
     }
 
     func testStatusWithInvalidData() {

@@ -25,6 +25,10 @@ class NotificationTypeTests: XCTestCase {
     func testFollow() {
         XCTAssertEqual(NotificationType(rawValue: "follow"), NotificationType.follow)
     }
+    
+    func testPoll() {
+        XCTAssertEqual(NotificationType(rawValue: "poll"), NotificationType.poll)
+    }
 
     func testInvalidType() {
         XCTAssertNil(NotificationType(rawValue: "foobar"))

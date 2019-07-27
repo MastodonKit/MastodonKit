@@ -8,21 +8,21 @@
 
 import Foundation
 
-public class Attachment: Codable {
+public struct Attachment: Codable {
     /// ID of the attachment.
-    public let id: String
+    public var id: String
     /// Type of the attachment.
-    public let type: AttachmentType
+    public var type: AttachmentType
     /// URL of the locally hosted version of the image.
-    public let url: String
+    public var url: String
     /// For remote images, the remote URL of the original image.
-    public let remoteURL: String?
+    public var remoteURL: String?
     /// URL of the preview image.
-    public let previewURL: String
+    public var previewURL: URL
     /// Shorter URL for the image, for insertion into text (only present on local images).
-    public let textURL: String?
+    public var textURL: String?
     /// A description of the image for the visually impaired.
-    public let description: String?
+    public var description: String?
 
     private enum CodingKeys: String, CodingKey {
         case id

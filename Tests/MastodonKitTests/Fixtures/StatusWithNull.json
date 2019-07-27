@@ -4,7 +4,7 @@
     "emojis": [],
     "in_reply_to_id": null,
     "in_reply_to_account_id": null,
-    "sensitive": null,
+    "sensitive": false,
     "spoiler_text": "Let's keep his a secret!",
     "visibility": "public",
     "application": {
@@ -40,5 +40,8 @@
     "favourited": true,
     "reblogged": null,
     "language": null,
-    "pinned": null
+    "pinned": null,
+    "replies_count": 0,
+    "card": null,
+    "poll": null
 }
