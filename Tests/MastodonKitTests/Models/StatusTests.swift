@@ -29,7 +29,7 @@ class StatusTests: XCTestCase {
             XCTAssertEqual(status.favouritesCount, 1)
             XCTAssertNil(status.reblogged)
             XCTAssertTrue((status.favourited)!)
-            XCTAssertNil(status.sensitive)
+            XCTAssertFalse(status.sensitive)
             XCTAssertEqual(status.spoilerText, "Let's keep his a secret!")
             XCTAssertEqual(status.visibility, Visibility.public)
             XCTAssertEqual(status.mediaAttachments.count, 0)

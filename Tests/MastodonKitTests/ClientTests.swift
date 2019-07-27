@@ -140,29 +140,6 @@ class ClientRunTests: XCTestCase {
         }
     }
 
-    func testDataTaskCompletionBlockWithInvalidModel() {
-        let fixture = try! Fixture.load(fileName: "Fixtures/Account.json")
-        let response = HTTPURLResponse(
-            url: URL(string: "https://my.mastodon.instance/api/v1/timelines/home")!,
-            statusCode: 200,
-            httpVersion: nil,
-            headerFields: nil)
-
-        mockSession.lastCompletionHandler?(fixture, response, nil)
-
-        guard let result = result else {
-            XCTFail()
-            return
-        }
-
-        switch result {
-        case .success:
-            XCTFail()
-        case .failure(let error):
-            XCTAssertEqual(error.localizedDescription, ClientError.invalidModel.localizedDescription)
-        }
-    }
-
     func testDataTaskCompletionBlockWithSuccessWithoutHeaderLink() {
         let fixture = try! Fixture.load(fileName: "Fixtures/Timeline.json")
         let response = HTTPURLResponse(
