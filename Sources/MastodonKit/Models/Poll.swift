@@ -22,7 +22,7 @@ public class Poll: Codable {
     /// Whether the current user voted.
     public let voted: Bool
     /// An array of poll options.
-    public let options: [PollOption]
+    public let options: [Option]
     /// An array of Emoji.
     public let emojis: [Emoji]
     
