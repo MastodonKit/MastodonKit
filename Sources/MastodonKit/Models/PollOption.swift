@@ -8,14 +8,16 @@
 
 import Foundation
 
-public class PollOption: Codable {
-    public let title: String
-    public let votesCount: Int
-    
-    private enum CodingKeys: String, CodingKey {
-        /// The title of the poll option.
-        case title
-        /// The number of votes for this option.
-        case votesCount = "votes_count"
+extension Poll {
+    public struct Option: Codable {
+        public let title: String
+        public let votesCount: Int
+        
+        private enum CodingKeys: String, CodingKey {
+            /// The title of the poll option.
+            case title
+            /// The number of votes for this option.
+            case votesCount = "votes_count"
+        }
     }
 }
