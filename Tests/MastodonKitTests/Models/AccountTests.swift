@@ -21,7 +21,7 @@ class AccountTests: XCTestCase {
         XCTAssertEqual(account?.note, "Developer of MastodonKit")
         XCTAssertEqual(account?.url, "https://mastodon.technology/@ornithocoder")
         XCTAssertEqual(account?.avatar, "http://lorempixel.com/200/200/cats/3/")
-        XCTAssertEqual(account?.avatarStatic, "http://lorempixel.com/300/300/cats/3/")
+        XCTAssertEqual(account?.avatarStatic, URL(string: "http://lorempixel.com/300/300/cats/3/"))
         XCTAssertEqual(account?.header, "http://lorempixel.com/700/300/cats/1/")
         XCTAssertEqual(account?.headerStatic, "http://lorempixel.com/800/400/cats/1/")
         XCTAssertEqual(account?.locked, false)
