@@ -39,7 +39,10 @@
         "favourites_count": 1,
         "favourited": true,
         "reblogged": true,
-        "language": "fr"
+        "language": "fr",
+        "replies_count": 0,
+        "card": null,
+        "poll": null
     },
     {
         "id": "1",
@@ -81,6 +84,9 @@
         "favourites_count": 1,
         "favourited": true,
         "reblogged": true,
-        "language": "fr"
+        "language": "fr",
+        "replies_count": 0,
+        "card": null,
+        "poll": null
     }
 ]

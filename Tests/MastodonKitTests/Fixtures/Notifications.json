@@ -61,7 +61,10 @@
             "reblog": null,
             "favourited": true,
             "reblogged": null,
-            "language": "fr"
+            "language": "fr",
+            "replies_count": 0,
+            "card": null,
+            "poll": null
         }
     },
     {
@@ -126,7 +129,10 @@
             "reblog": null,
             "favourited": true,
             "reblogged": null,
-            "language": "fr"
+            "language": "fr",
+            "replies_count": 0,
+            "card": null,
+            "poll": null
         }
     }
 ]

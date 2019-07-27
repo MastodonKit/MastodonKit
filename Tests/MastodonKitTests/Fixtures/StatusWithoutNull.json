@@ -48,7 +48,7 @@
         "emojis": [],
         "in_reply_to_id": null,
         "in_reply_to_account_id": null,
-        "sensitive": null,
+        "sensitive": false,
         "spoiler_text": "Let's keep his a secret!",
         "visibility": "public",
         "application": {
@@ -83,12 +83,17 @@
         "reblog": null,
         "favourited": true,
         "reblogged": null,
-        "language": "fr"
+        "language": "fr",
+        "replies_count": 0,
+        "card": null,
+        "poll": null
     },
     "favourited": true,
     "reblogged": true,
     "language": "fr",
     "pinned": true,
+    "replies_count": 0,
+    "card": null,
     "poll": {
         "id": "1337",
         "expires_at": "2019-07-24T20:43:43.000Z",
