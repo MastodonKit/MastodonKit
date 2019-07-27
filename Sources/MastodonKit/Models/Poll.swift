@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Poll: Codable {
+public struct Poll: Codable {
     /// The ID of the status.
     public let id: String
     /// When the poll will expire.
