@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FoundationNetworking
 
 public struct Client: ClientType {
     let baseURL: String

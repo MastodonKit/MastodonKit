@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FoundationNetworking
 
 extension HTTPURLResponse {
     var pagination: Pagination? {

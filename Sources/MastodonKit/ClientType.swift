@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FoundationNetworking
 
 public protocol ClientType {
     /// The user access token used to perform the network requests.
