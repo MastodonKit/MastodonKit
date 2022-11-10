@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Application: Codable {
+public struct Application: Codable, Hashable {
     /// Name of the app.
     public let name: String
     /// Homepage URL of the app.

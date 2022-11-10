@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum AttachmentType: String, Codable {
+public enum AttachmentType: String, Codable, Hashable {
     /// The attachment contains a static image.
     case image
     /// The attachment contains a video.

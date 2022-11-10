@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Mention: Codable {
+public struct Mention: Codable, Hashable {
     /// Account ID.
     public let id: String
     /// The username of the account.

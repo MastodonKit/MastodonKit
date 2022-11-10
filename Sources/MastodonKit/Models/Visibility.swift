@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Visibility: String, Codable {
+public enum Visibility: String, Codable, Hashable {
     /// The status message is public.
     /// - Visible on Profile: Anyone incl. anonymous viewers.
     /// - Visible on Public Timeline: Yes.

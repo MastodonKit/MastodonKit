@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Results: Codable {
+public struct Results: Codable, Hashable {
     /// An array of matched accounts.
     public let accounts: [Account]
     /// An array of matchhed statuses.

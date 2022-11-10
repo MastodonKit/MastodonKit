@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum AccessScope: String, Codable {
+public enum AccessScope: String, Codable, Hashable {
     /// Allows reading data.
     case read
     /// Allows posting statuses and uploading media for statuses.

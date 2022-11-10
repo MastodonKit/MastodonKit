@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Instance: Codable {
+public struct Instance: Codable, Hashable {
     /// URI of the current instance.
     public let uri: String
     /// The instance's title.

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class List: Codable {
+public struct List: Codable, Hashable {
     /// The ID of the list.
     public let id: String
     /// The Title of the list.

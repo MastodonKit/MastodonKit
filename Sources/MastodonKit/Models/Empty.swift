@@ -8,4 +8,4 @@
 
 import Foundation
 
-public class Empty: Codable { }
+public struct Empty: Codable { }

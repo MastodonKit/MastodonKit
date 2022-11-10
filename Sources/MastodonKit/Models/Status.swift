@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Status: Codable {
+public class Status: Codable, Hashable {
     /// The ID of the status.
     public let id: String
     /// A Fediverse-unique resource ID.
@@ -83,5 +83,13 @@ public class Status: Codable {
         case reblog
         case pinned
         case card
+    }
+
+    public static func == (lhs: Status, rhs: Status) -> Bool {
+        ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(ObjectIdentifier(self))
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Emoji: Codable {
+public struct Emoji: Codable, Hashable {
     /// The shortcode of the emoji
     public let shortcode: String
     /// URL to the emoji static image
