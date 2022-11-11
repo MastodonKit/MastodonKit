@@ -18,6 +18,16 @@ class CardTests: XCTestCase {
         XCTAssertEqual(card?.title, "Awesome card title")
         XCTAssertEqual(card?.description, "Card description")
         XCTAssertEqual(card?.image, URL(string: "http://lorempixel.com/200/200/cats/1/"))
+        XCTAssertEqual(card?.authorName, "Tom Fenske Photography")
+        XCTAssertEqual(card?.authorURL, URL(string: "https://www.flickr.com/photos/tomfenskephotography/"))
+        XCTAssertEqual(card?.providerName, "Flickr")
+        XCTAssertEqual(card?.providerURL, URL(string: "https://www.flickr.com/"))
+        XCTAssertEqual(card?.embedURL, URL(string: "https://live.staticflickr.com/65535/49088768431_6a4322b3bb_b.jpg"))
+        XCTAssertEqual(card?.width, 1024)
+        XCTAssertEqual(card?.height, 427)
+        XCTAssertEqual(card?.blurhash, "UnE{@jt6M_oIAhjYs+ayT2WBf9ayRkkDXAj[")
+        XCTAssertEqual(card?.html, "")
+        XCTAssertEqual(card?.type, .photo)
     }
 
     func testCardWithInvalidData() {
