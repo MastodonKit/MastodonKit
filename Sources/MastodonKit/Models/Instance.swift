@@ -19,4 +19,6 @@ public class Instance: Codable {
     public let email: String
     /// The Mastodon version used by instance (as of version 1.3).
     public let version: String?
+    /// URLs for Streaming API
+    public let urls: [String: String]?
 }
