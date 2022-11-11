@@ -103,16 +103,16 @@ public enum Accounts {
     ///
     /// - Parameter id: The account id.
     /// - Returns: Request for `Account`.
-    public static func follow(id: String) -> Request<Account> {
-        return Request<Account>(path: "/api/v1/accounts/\(id)/follow", method: .post(.empty))
+    public static func follow(id: String) -> Request<Relationship> {
+        return Request<Relationship>(path: "/api/v1/accounts/\(id)/follow", method: .post(.empty))
     }
 
     /// Unfollow an account.
     ///
     /// - Parameter id: The account id.
     /// - Returns: Request for `Account`.
-    public static func unfollow(id: String) -> Request<Account> {
-        return Request<Account>(path: "/api/v1/accounts/\(id)/unfollow", method: .post(.empty))
+    public static func unfollow(id: String) -> Request<Relationship> {
+        return Request<Relationship>(path: "/api/v1/accounts/\(id)/unfollow", method: .post(.empty))
     }
 
     /// Follows a remote user:.
