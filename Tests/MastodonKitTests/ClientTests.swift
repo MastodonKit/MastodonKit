@@ -41,7 +41,12 @@ class ClientInitializationWithInvalidURLTests: XCTestCase {
         var passedError: Error?
 
         client.run(Timelines.home()) { result in
-            passedError = result.error
+            switch result {
+            case .success:
+                XCTFail("")
+            case .failure(let error):
+                passedError = error
+            }
         }
 
         XCTAssertEqual(passedError?.localizedDescription, ClientError.malformedURL.localizedDescription)
@@ -50,7 +55,7 @@ class ClientInitializationWithInvalidURLTests: XCTestCase {
 
 class ClientRunTests: XCTestCase {
     let mockSession = MockURLSession()
-    var result: Result<[Status]>?
+    var result: Result<Response<[Status]>, Error>?
 
     override func setUp() {
         super.setUp()
@@ -129,8 +134,8 @@ class ClientRunTests: XCTestCase {
 
         mockSession.lastCompletionHandler?(fixture, response, nil)
 
-        XCTAssertEqual(result?.value?.count, 2)
-        XCTAssertNil(result?.pagination)
+        XCTAssertEqual(result?.success?.value.count, 2)
+        XCTAssertNil(result?.success?.pagination)
     }
 
     func testDataTaskCompletionBlockWithSuccessWithHeaderLink() {
@@ -149,8 +154,14 @@ class ClientRunTests: XCTestCase {
 
         mockSession.lastCompletionHandler?(fixture, response, nil)
 
-        XCTAssertEqual(result?.value?.count, 2)
-        XCTAssertNotNil(result?.pagination)
+        XCTAssertEqual(result?.success?.value.count, 2)
+        XCTAssertNotNil(result?.success?.pagination)
+    }
+
+    func testRunWithAsyncVariation() async throws {
+        let client = Client(baseURL: "https://my.mastodon.instance")
+
+        let response = try await client.run(Timelines.home())
     }
 }
 
@@ -238,5 +249,20 @@ class ClientRunWithGetAndQueryItemsTests: XCTestCase {
         XCTAssertEqual(request?.httpMethod, "GET")
         XCTAssertNotNil(request?.url?.query)
         XCTAssertNil(request!.httpBody)
+    }
+}
+
+extension Result {
+    var error: Error? {
+        do {
+            _ = try get()
+            return nil
+        } catch {
+            return error
+        }
+    }
+
+    var success: Success? {
+        try? get()
     }
 }
