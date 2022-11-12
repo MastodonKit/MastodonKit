@@ -157,12 +157,6 @@ class ClientRunTests: XCTestCase {
         XCTAssertEqual(result?.success?.value.count, 2)
         XCTAssertNotNil(result?.success?.pagination)
     }
-
-    func testRunWithAsyncVariation() async throws {
-        let client = Client(baseURL: "https://my.mastodon.instance")
-
-        let response = try await client.run(Timelines.home())
-    }
 }
 
 class ClientRunWithoutAccessTokenTests: XCTestCase {
