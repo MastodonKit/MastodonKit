@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class LoginSettings: Codable {
+public struct LoginSettings: Codable, Hashable {
     /// The user's access token.
     public let accessToken: String
     /// Access token type.

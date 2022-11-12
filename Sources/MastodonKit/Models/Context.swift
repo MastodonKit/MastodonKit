@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Context: Codable {
+public struct Context: Codable, Hashable {
     /// The ancestors of the status in the conversation, as a list of statuses.
     public let ancestors: [Status]
     /// The descendants of the status in the conversation, as a list of statuses.

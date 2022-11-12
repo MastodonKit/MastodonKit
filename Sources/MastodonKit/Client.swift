@@ -24,9 +24,9 @@ public struct Client: ClientType {
         guard
             let components = URLComponents(baseURL: baseURL, request: request),
             let url = components.url
-            else {
-                completion(.failure(ClientError.malformedURL))
-                return
+        else {
+            completion(.failure(ClientError.malformedURL))
+            return
         }
 
         let urlRequest = URLRequest(url: url, request: request, accessToken: accessToken)
@@ -44,11 +44,11 @@ public struct Client: ClientType {
             guard
                 let httpResponse = response as? HTTPURLResponse,
                 httpResponse.statusCode == 200
-                else {
-                    let mastodonError = try? MastodonError.decode(data: data)
-                    let error: ClientError = mastodonError.map { .mastodonError($0.description) } ?? .genericError
-                    completion(.failure(error))
-                    return
+            else {
+                let mastodonError = try? MastodonError.decode(data: data)
+                let error: ClientError = mastodonError.map { .mastodonError($0.description) } ?? .genericError
+                completion(.failure(error))
+                return
             }
 
             guard let model = try? Model.decode(data: data) else {
@@ -61,4 +61,15 @@ public struct Client: ClientType {
 
         task.resume()
     }
+
+#if compiler(>=5.6.0) && canImport(_Concurrency)
+    @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+    public func run<Model>(_ request: Request<Model>) async throws -> Response<Model> {
+        try await withCheckedThrowingContinuation { continuation in
+            run(request) { result in
+                continuation.resume(with: result)
+            }
+        }
+    }
+#endif
 }

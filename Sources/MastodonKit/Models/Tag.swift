@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Tag: Codable {
+public struct Tag: Codable, Hashable {
     /// The hashtag, not including the preceding #.
     public let name: String
     /// The URL of the hashtag.

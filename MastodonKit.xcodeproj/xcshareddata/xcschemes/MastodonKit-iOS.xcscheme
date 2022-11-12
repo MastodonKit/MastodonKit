@@ -20,6 +20,20 @@
                ReferencedContainer = "container:MastodonKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "MastodonKit::MastodonKitTests"
+               BuildableName = "MastodonKitTests.xctest"
+               BlueprintName = "MastodonKitTests"
+               ReferencedContainer = "container:MastodonKit.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

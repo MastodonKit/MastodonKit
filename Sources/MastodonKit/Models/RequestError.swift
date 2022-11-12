@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MastodonError: Codable {
+struct MastodonError: Codable, Hashable {
     /// Reason why Mastodon returned an error.
     let description: String
 

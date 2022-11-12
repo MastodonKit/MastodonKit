@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Relationship: Codable {
+public struct Relationship: Codable, Hashable {
     /// Target account id.
     public let id: String
     /// Whether the user is currently following the account.

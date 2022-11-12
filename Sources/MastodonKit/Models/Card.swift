@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Card: Codable {
+public struct Card: Codable, Hashable {
 
     public enum PreviewType: String, Codable {
         /// Link OEmbed

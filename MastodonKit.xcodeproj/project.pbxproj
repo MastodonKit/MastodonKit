@@ -245,7 +245,6 @@
 		OBJ_277 /* SearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_133 /* SearchTests.swift */; };
 		OBJ_278 /* StatusesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_134 /* StatusesTests.swift */; };
 		OBJ_279 /* TimelinesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_135 /* TimelinesTests.swift */; };
-		OBJ_280 /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_136 /* ResultTests.swift */; };
 		OBJ_282 /* MastodonKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "MastodonKit::MastodonKit::Product" /* MastodonKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -303,7 +302,6 @@
 		OBJ_133 /* SearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTests.swift; sourceTree = "<group>"; };
 		OBJ_134 /* StatusesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusesTests.swift; sourceTree = "<group>"; };
 		OBJ_135 /* TimelinesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinesTests.swift; sourceTree = "<group>"; };
-		OBJ_136 /* ResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
 		OBJ_14 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		OBJ_15 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		OBJ_16 /* Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decodable.swift; sourceTree = "<group>"; };
@@ -564,7 +562,6 @@
 				OBJ_117 /* PayloadTests.swift */,
 				OBJ_118 /* RequestRangeTests.swift */,
 				OBJ_119 /* Requests */,
-				OBJ_136 /* ResultTests.swift */,
 			);
 			name = MastodonKitTests;
 			path = Tests/MastodonKitTests;
@@ -1044,7 +1041,6 @@
 				OBJ_277 /* SearchTests.swift in Sources */,
 				OBJ_278 /* StatusesTests.swift in Sources */,
 				OBJ_279 /* TimelinesTests.swift in Sources */,
-				OBJ_280 /* ResultTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1224,7 +1220,9 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MastodonKit.xcodeproj/MastodonKitTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -1244,7 +1242,9 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MastodonKit.xcodeproj/MastodonKitTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
