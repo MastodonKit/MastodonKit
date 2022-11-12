@@ -34,11 +34,11 @@ public struct Card: Codable, Hashable {
     /// The author of the original resource.
     public let authorName: String?
     /// A link to the author of the original resource.
-    public let authorURL: URL?
+    public let authorURL: String?
     /// The provider of the original resource.
     public let providerName: String?
     /// A link to the provider of the original resource.
-    public let providerURL: URL?
+    public let providerURL: String?
     /// HTML to be used for generating the preview card.
     public let html: String?
     /// Width of preview, in pixels.
