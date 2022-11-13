@@ -46,7 +46,7 @@ public struct Card: Codable, Hashable {
     /// Height of preview, in pixels.
     public let height: Double?
     /// Used for photo embeds, instead of custom html.
-    public let embedURL: URL?
+    public let embedURL: String?
     /// A hash computed by the [BlurHash](https://github.com/woltapp/blurhash) algorithm, for
     /// generating colorful preview thumbnails when media has not been downloaded yet.
     public let blurhash: String?
