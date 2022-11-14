@@ -18,7 +18,7 @@ public struct  Attachment: Codable, Hashable {
     /// For remote images, the remote URL of the original image.
     public let remoteURL: String?
     /// URL of the preview image.
-    public let previewURL: String
+    public let previewURL: String?
     /// Shorter URL for the image, for insertion into text (only present on local images).
     public let textURL: String?
     /// A description of the image for the visually impaired.

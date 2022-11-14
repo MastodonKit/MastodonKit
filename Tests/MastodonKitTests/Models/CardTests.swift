@@ -22,7 +22,7 @@ class CardTests: XCTestCase {
         XCTAssertEqual(card?.authorURL,  "https://www.flickr.com/photos/tomfenskephotography/")
         XCTAssertEqual(card?.providerName, "Flickr")
         XCTAssertEqual(card?.providerURL, "https://www.flickr.com/")
-        XCTAssertEqual(card?.embedURL, URL(string: "https://live.staticflickr.com/65535/49088768431_6a4322b3bb_b.jpg"))
+        XCTAssertEqual(card?.embedURL,  "https://live.staticflickr.com/65535/49088768431_6a4322b3bb_b.jpg")
         XCTAssertEqual(card?.width, 1024)
         XCTAssertEqual(card?.height, 427)
         XCTAssertEqual(card?.blurhash, "UnE{@jt6M_oIAhjYs+ayT2WBf9ayRkkDXAj[")
