@@ -17,7 +17,7 @@ Visit [MastodonKit's Complete Documentation](https://mastodonkit.github.io/Masto
 * [Ranges and Limits](https://mastodonkit.github.io/MastodonKit/docs/ranges-and-limits.html)
 * [Uploading Media Attachments](https://mastodonkit.github.io/MastodonKit/docs/uploading-media-attachments.html)
 
-By the way, if you want to get in touch with me, [toot me](https://mastodon.technology/@ornithocoder).
+By the way, if you want to get in touch with me, [toot me](https://mastodon.social/@otaviocc).
 
 # Contributors
 
