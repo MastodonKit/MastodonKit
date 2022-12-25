@@ -57,6 +57,8 @@ public class Status: Codable, Hashable {
     public let pinned: Bool?
     /// Preview card for links included within status content.
     public let card: Card?
+    /// The amount of replies.
+    public let repliesCount: Int
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -83,6 +85,7 @@ public class Status: Codable, Hashable {
         case reblog
         case pinned
         case card
+        case repliesCount = "replies_count"
     }
 
     public static func == (lhs: Status, rhs: Status) -> Bool {

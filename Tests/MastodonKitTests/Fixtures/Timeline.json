@@ -2,6 +2,7 @@
     {
         "id": "1",
         "created_at": "2017-04-06T16:55:02.132Z",
+        "replies_count": 1,
         "emojis": [],
         "in_reply_to_id": "32",
         "in_reply_to_account_id": "22",
@@ -44,6 +45,7 @@
     {
         "id": "1",
         "created_at": "2017-04-06T16:55:02.132Z",
+        "replies_count": 2,
         "emojis": [],
         "in_reply_to_id": "32",
         "in_reply_to_account_id": "22",

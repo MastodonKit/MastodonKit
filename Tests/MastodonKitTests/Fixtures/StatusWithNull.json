@@ -40,5 +40,6 @@
     "favourited": true,
     "reblogged": null,
     "language": null,
-    "pinned": null
+    "pinned": null,
+    "replies_count": 69
 }
