@@ -49,4 +49,24 @@ class LoginTests: XCTestCase {
         XCTAssertTrue(payload.contains("redirect_uri=foo%3A//oauth"))
         XCTAssertTrue(payload.contains("code=123"))
     }
+    
+    func testOAuthLogout() throws {
+
+        let request = Login.revokeOauth(clientID: "client id",
+                                        clientSecret: "client secret",
+                                        token: "the secret code is yellow")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/oauth/revoke")
+
+        // Method
+        XCTAssertEqual(request.method.name, "POST")
+        XCTAssertNil(request.method.queryItems)
+
+        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
+        XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
+        XCTAssertTrue(payload.contains("client_id=client%20id"))
+        XCTAssertTrue(payload.contains("client_secret=client%20secret"))
+        XCTAssertTrue(payload.contains("token=the%20secret%20code%20is%20yellow"))
+    }
 }

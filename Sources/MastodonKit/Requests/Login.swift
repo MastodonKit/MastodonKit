@@ -63,4 +63,23 @@ public enum Login {
         let method = HTTPMethod.post(.parameters(parameters))
         return Request<LoginSettings>(path: "/oauth/token", method: method)
     }
+    
+    /// Logs the user out.
+    ///
+    /// - Parameters:
+    ///   - clientID: The client ID.
+    ///   - clientSecret: The client secret.
+    ///   - loginSettings: The previously obtained loginSettings, to be invalidated.
+    public static func revokeOauth(clientID: String,
+                             clientSecret: String,
+                             token: String) -> Request<Empty> {
+        let parameters = [
+            Parameter(name: "client_id", value: clientID),
+            Parameter(name: "client_secret", value: clientSecret),
+            Parameter(name: "token", value: token)
+        ]
+
+        let method = HTTPMethod.post(.parameters(parameters))
+        return Request<Empty>(path: "/oauth/revoke", method: method)
+    }
 }
