@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FoundationNetworking
 
 extension URLRequest {
     init<A>(url: URL, request: Request<A>, accessToken: String?) {
