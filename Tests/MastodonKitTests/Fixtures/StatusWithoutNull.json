@@ -1,6 +1,7 @@
 {
     "id": "1",
     "created_at": "2017-04-06T16:55:02.132Z",
+    "replies_count": 420,
     "emojis": [
         {
             "shortcode": "mastodon",
@@ -45,6 +46,7 @@
     "reblog": {
         "id": "1",
         "created_at": "2017-04-06T16:55:02.132Z",
+        "replies_count": 1337,
         "emojis": [],
         "in_reply_to_id": null,
         "in_reply_to_account_id": null,
