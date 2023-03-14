@@ -35,6 +35,8 @@ public class Status: Codable, Hashable {
     public let reblogged: Bool?
     /// Whether the authenticated user has favourited the status.
     public let favourited: Bool?
+    /// Whether the authenticated user has bookmarked the status.
+    public let bookmarked: Bool?
     /// Whether media attachments should be hidden by default.
     public let sensitive: Bool?
     /// If not empty, warning text that should be displayed before the actual content.
@@ -74,6 +76,7 @@ public class Status: Codable, Hashable {
         case favouritesCount = "favourites_count"
         case reblogged
         case favourited
+        case bookmarked
         case sensitive
         case spoilerText = "spoiler_text"
         case visibility
