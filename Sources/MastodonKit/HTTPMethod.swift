@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum HTTPMethod {
+public enum HTTPMethod {
     case get(Payload)
     case post(Payload)
     case put(Payload)

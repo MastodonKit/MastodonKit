@@ -12,7 +12,7 @@ public struct Request<Model: Codable> {
     let path: String
     let method: HTTPMethod
 
-    init(path: String, method: HTTPMethod = .get(.empty)) {
+    public init(path: String, method: HTTPMethod = .get(.empty)) {
         self.path = path
         self.method = method
     }
